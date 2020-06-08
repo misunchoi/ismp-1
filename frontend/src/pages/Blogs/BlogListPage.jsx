@@ -79,11 +79,6 @@ const sortOptions = [
     key: 'Newest',
     text: 'Newest',
     value: 'Newest'
-  },
-  {
-    key: 'Alphabetical',
-    text: 'Alphabetical',
-    value: 'Alphabetical'
   }
 ];
 
