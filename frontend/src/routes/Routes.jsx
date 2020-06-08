@@ -15,14 +15,7 @@ class Routes extends Component {
               exact
               path="/blog-list"
               // TODO: Need to grab list of blogposts from backend, currently using hardcoded data
-              render={routerProps => {
-                return (
-                  <RouteEnum.BLOG_LIST
-                    blogListData={blogTestData}
-                    {...routerProps}
-                  />
-                );
-              }}
+              children={<RouteEnum.BLOG_LIST blogListData={blogTestData} />}
             />
             <Route exact path="/edit-blog" component={RouteEnum.EDIT_BLOG} />
             <Route exact path="/blog-type" component={RouteEnum.BLOG_TYPE} />

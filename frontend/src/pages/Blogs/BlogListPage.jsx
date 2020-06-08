@@ -55,7 +55,7 @@ const Title = styled.h2`
 `;
 
 const BackButton = styled(Link)`
-  margin: 60px 0 0 30px;
+  margin: 30px 0 0 30px;
   width: fit-content;
   ${mixins.link}
 `;
@@ -109,7 +109,7 @@ export default class BlogSearch extends Component {
     const { blogListData } = this.props;
 
     return (
-      <div style={{ margin: 'auto', maxWidth: '1060px' }}>
+      <div style={{ margin: '2em auto', maxWidth: '1060px' }}>
         <BackButton to="/blog">
           <i class="arrow left icon"></i>Blog Home
         </BackButton>
@@ -125,7 +125,7 @@ export default class BlogSearch extends Component {
               leading: true
             })}
             value={value}
-            showNoResults={false}
+            showNoResults={!isLoading && value && results.length === 0}
             input={{
               input: {
                 placeHolder: 'Search within topic',
