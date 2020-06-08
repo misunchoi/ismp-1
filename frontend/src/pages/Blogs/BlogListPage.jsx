@@ -138,6 +138,7 @@ export default class BlogSearch extends Component {
           />
 
           <FilterWrapper>
+            {/* TODO: Add function for filtering and sorting blog list */}
             <FilterDropdown
               options={filterOptions}
               label="Filter type"
