@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import media from '../../styles/media';
 import mixins from '../../styles/mixins';
+import theme from '../../styles/theme';
 
 const ItemContainer = styled.div`
   display: flex;
@@ -25,12 +26,13 @@ const Image = styled.img`
   width: 100%;
 `;
 
-const Title = styled.h3`
+const Title = styled.div`
   margin: 0;
 `;
 
-const SubHeader = styled.h2`
+const SubHeader = styled.div`
   margin: 8px 0;
+  font-family: ${theme.fonts.Poppins};
 `;
 
 const Content = styled.div`

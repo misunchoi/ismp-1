@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Search } from 'semantic-ui-react';
 import BlogList from 'components/BlogList/BlogList';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const blogTestData = [
   {
@@ -39,6 +40,10 @@ const Results = styled.h3`
   margin: 8px 30px;
 `;
 
+const Title = styled.h2`
+  text-align: center;
+`;
+
 const initialState = { isLoading: false, results: [], value: '' };
 
 export default class BlogSearch extends Component {
@@ -65,12 +70,20 @@ export default class BlogSearch extends Component {
 
   render() {
     const { isLoading, value, results } = this.state;
+    const { blogListData, history } = this.props;
+    console.log(this.props);
 
     return (
       <div>
+        <Link to="/blog">
+          <i class="arrow left icon"></i>Blog Home
+        </Link>
+
+        <Title>Search Results</Title>
+
         <SearchWrapper>
           <Search
-            size="large"
+            size="medium"
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
             onSearchChange={_.debounce(this.handleSearchChange, 500, {
@@ -92,7 +105,7 @@ export default class BlogSearch extends Component {
 
         {value && <Results>Results for ‘{value}’</Results>}
 
-        <BlogList data={value ? results : this.props.data} />
+        <BlogList data={value ? results : blogListData} />
       </div>
     );
   }

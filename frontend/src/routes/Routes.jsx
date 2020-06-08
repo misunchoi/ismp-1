@@ -2,7 +2,7 @@ import React, { Component, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import * as RouteEnum from './index';
 import Spinner from '../components/Spinner/Spinner.component';
-import { blogTestData } from '../pages/Blogs/BlogList';
+import { blogTestData } from '../pages/Blogs/BlogListPage';
 
 class Routes extends Component {
   render() {
@@ -15,8 +15,13 @@ class Routes extends Component {
               exact
               path="/blog-list"
               // TODO: Need to grab list of blogposts from backend, currently using hardcoded data
-              render={props => {
-                return <RouteEnum.BLOG_LIST data={blogTestData} />;
+              render={routerProps => {
+                return (
+                  <RouteEnum.BLOG_LIST
+                    blogListData={blogTestData}
+                    {...routerProps}
+                  />
+                );
               }}
             />
             <Route exact path="/edit-blog" component={RouteEnum.EDIT_BLOG} />
