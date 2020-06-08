@@ -4,6 +4,7 @@ import { Search } from 'semantic-ui-react';
 import BlogList from 'components/BlogList/BlogList';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import mixins from '../../styles/mixins';
 
 export const blogTestData = [
   {
@@ -36,12 +37,24 @@ const SearchWrapper = styled.div`
   margin: 30px;
 `;
 
-const Results = styled.h3`
+const Results = styled.div`
   margin: 8px 30px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
 `;
 
 const Title = styled.h2`
   text-align: center;
+  margin-top: 0;
+  margin-bottom: 60px;
+`;
+
+const BackButton = styled(Link)`
+  margin: 60px 0 0 30px;
+  width: fit-content;
+  ${mixins.link}
 `;
 
 const initialState = { isLoading: false, results: [], value: '' };
@@ -63,27 +76,26 @@ export default class BlogSearch extends Component {
 
       this.setState({
         isLoading: false,
-        results: _.filter(this.props.data, isMatch)
+        results: _.filter(this.props.blogListData, isMatch)
       });
     }, 300);
   };
 
   render() {
     const { isLoading, value, results } = this.state;
-    const { blogListData, history } = this.props;
-    console.log(this.props);
+    const { blogListData } = this.props;
 
     return (
-      <div>
-        <Link to="/blog">
+      <div style={{ margin: 'auto', maxWidth: '1060px' }}>
+        <BackButton to="/blog">
           <i class="arrow left icon"></i>Blog Home
-        </Link>
+        </BackButton>
 
-        <Title>Search Results</Title>
+        <Title>{value ? 'Search Results' : 'All Blog Posts'}</Title>
 
         <SearchWrapper>
           <Search
-            size="medium"
+            size="small"
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
             onSearchChange={_.debounce(this.handleSearchChange, 500, {

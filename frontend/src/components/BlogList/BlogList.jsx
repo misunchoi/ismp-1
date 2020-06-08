@@ -8,7 +8,7 @@ const ItemContainer = styled.div`
   display: flex;
   align-items: end;
   justify-content: center;
-  max-width: 1000px;
+  max-width: 1060px;
 
   ${media.phone`flex-direction: column;align-items: center;`};
 `;
@@ -28,11 +28,19 @@ const Image = styled.img`
 
 const Title = styled.div`
   margin: 0;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
 `;
 
 const SubHeader = styled.div`
   margin: 8px 0;
-  font-family: ${theme.fonts.Poppins};
+  font-family: PT Serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 48px;
 `;
 
 const Content = styled.div`
@@ -41,6 +49,12 @@ const Content = styled.div`
   align-items: left;
   margin: 30px;
   width: 60%;
+
+  font-family: Poppins;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 30px;
 
   ${media.phone`width: 80%;margin-top: 0;`};
 `;
