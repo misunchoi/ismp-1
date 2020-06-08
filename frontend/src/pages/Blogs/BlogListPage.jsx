@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Search } from 'semantic-ui-react';
 import BlogList from 'components/BlogList/BlogList';
+import FilterDropdown from 'components/FilterDropdown/FilterDropdown';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import mixins from '../../styles/mixins';
@@ -35,6 +36,8 @@ export const blogTestData = [
 
 const SearchWrapper = styled.div`
   margin: 30px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Results = styled.div`
@@ -57,7 +60,32 @@ const BackButton = styled(Link)`
   ${mixins.link}
 `;
 
+const FilterWrapper = styled.div`
+  display: flex;
+`;
+
 const initialState = { isLoading: false, results: [], value: '' };
+
+const filterOptions = [
+  {
+    key: 'All',
+    text: 'All',
+    value: 'All'
+  }
+];
+
+const sortOptions = [
+  {
+    key: 'Newest',
+    text: 'Newest',
+    value: 'Newest'
+  },
+  {
+    key: 'Alphabetical',
+    text: 'Alphabetical',
+    value: 'Alphabetical'
+  }
+];
 
 export default class BlogSearch extends Component {
   state = initialState;
@@ -113,6 +141,15 @@ export default class BlogSearch extends Component {
             }}
             {...this.props}
           />
+
+          <FilterWrapper>
+            <FilterDropdown
+              options={filterOptions}
+              label="Filter type"
+              marginRight
+            />
+            <FilterDropdown options={sortOptions} label="Sort by" />
+          </FilterWrapper>
         </SearchWrapper>
 
         {value && <Results>Results for ‘{value}’</Results>}
