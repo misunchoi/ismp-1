@@ -15,7 +15,6 @@ class Blogpost(models.Model):
     class Meta:
         ordering = ['-id']
 
-
     blogpost_type_choices = (
         ('blogpost', 'blogpost'),
         ('webinar', 'webinar')
@@ -84,9 +83,10 @@ class Topic(models.Model):
     class Meta:
         ordering = ['-id']
 
-    name = models.CharField(max_length=100, unique=True)
+    title = models.CharField(max_length=100, unique=True)
+    display_text = models.CharField(max_length=100, unique=True)
     description = models.TextField(blank=True)
     blogpost = models.ManyToManyField(Blogpost, blank=True)
 
     def __str__(self):
-        return "{} - {}".format(self.id, self.name)
+        return "{} - {} - {}".format(self.id, self.title, self.display_text)

@@ -147,9 +147,18 @@ class TopicViewSetTest(APITestCase):
         self.blogpost_3 = Blogpost.objects.create(author=self.profile)
 
         self.topic_1 = Topic.objects.create(
-            name="everything", description="description of everything")
-        self.topic_2 = Topic.objects.create(name="something", description="")
-        self.topic_3 = Topic.objects.create(name="funny")
+            title="everything",
+            display_text="everything display text",
+            description="description of everything")
+        self.topic_2 = Topic.objects.create(
+            title="something",
+            display_text="something funny",
+            description="something funny: there was a joke")
+        self.topic_3 = Topic.objects.create(
+            title="funny",
+            display_text="funny business",
+            description="funny business: lorem ipsum "
+        )
 
         self.topic_1.blogpost.set([self.blogpost_2, self.blogpost_1, self.blogpost_3])
         self.topic_2.blogpost.set([self.blogpost_1])
@@ -173,7 +182,9 @@ class TopicViewSetTest(APITestCase):
         self.assertEqual(len(Topic.objects.all()), 3)
         response = self.client.post("/api/v1/topic/",
                                     {
-                                        "name": "new",
+                                        "title": "new",
+                                        "display_text": "new_topic",
+                                        "description": "this is a description",
                                         "blogpost": [self.blogpost_1.id]
                                     })
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)

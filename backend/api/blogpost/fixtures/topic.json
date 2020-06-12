@@ -2,7 +2,8 @@
     "model": "blogpost.topic",
     "pk": 1,
     "fields": {
-        "name": "English Training: Writing",
+        "title": "english",
+        "display_text": "English Training: Writing",
         "description": "English is difficult to master, especially in the university setting.  We will cover basic and advance English writing techniques such as essay organization, professional email writing, and common grammar mistakes to help you succeed in your classes and research!",
         "blogpost": [1]
     }
@@ -11,7 +12,8 @@
     "model": "blogpost.topic",
     "pk": 2,
     "fields": {
-        "name": "Transitioning to America",
+        "title": "transitioning",
+        "display_text": "Transitioning to America",
         "description": "We will cover topics like safety tips, American culture, and advice for making new friends to help make your transition to America go as smoothly as possible!",
         "blogpost": [2]
     }
@@ -20,7 +22,8 @@
     "model": "blogpost.topic",
     "pk": 3,
     "fields": {
-        "name": "How to Succeed in Grad School",
+        "title": "grad school",
+        "display_text": "How to Succeed in Grad School",
         "description": "Grad students face different expectations and challenges than undergraduates.  Learn how to manage your time, interact with lab mates and professors, and other tips to write effectively and find a job after graduation.",
         "blogpost": []
     }
@@ -29,7 +32,8 @@
     "model": "blogpost.topic",
     "pk": 4,
     "fields": {
-        "name": "Applying to US Colleges",
+        "title": "applying",
+        "display_text": "Applying to US Colleges",
         "description": "We will break down the admissions process and all the different factors to keep in mind as you prepare to study abroad in the US.",
         "blogpost": []
     }
