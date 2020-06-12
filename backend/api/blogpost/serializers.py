@@ -8,6 +8,7 @@ class BlogpostSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'media_url',
+            'thumbnail_url',
             'author',
             'type',
             'is_featured',

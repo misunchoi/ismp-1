@@ -15,12 +15,14 @@ class Blogpost(models.Model):
     class Meta:
         ordering = ['-id']
 
+
     blogpost_type_choices = (
         ('blogpost', 'blogpost'),
         ('webinar', 'webinar')
     )
+    media_url = models.URLField(max_length=1000, blank=True)  # the main header media
+    thumbnail_url = models.URLField(max_length=1000, blank=True)  # smaller thumbnail
 
-    media_url = models.URLField(max_length=1000, blank=True)
     author = models.ForeignKey(
         'profiles.Profile', on_delete=models.CASCADE, related_name='blogpost', default=1
     )
@@ -30,9 +32,10 @@ class Blogpost(models.Model):
     is_featured = models.BooleanField(default=False)
 
     def __str__(self):
-        return "{} - {} - {} - {} - {}".format(
+        return "{} - {} - {} - {} - {} - {}".format(
             self.id,
             self.media_url,
+            self.thumbnail_url,
             self.author,
             self.type,
             self.is_featured
@@ -43,8 +46,10 @@ class Blogpost(models.Model):
 
     def update(self, instance, validated_data):
         instance.media_url = validated_data.get("media_url", instance.media_url)
+        instance.thumbnail_url = validated_data.get("thumbnail_url", instance.thumbnail_url)
         instance.author = validated_data.get("author", instance.author)
         instance.slug = validated_data.get("slug", instance.slug)
+        instance.type = validated_data.get("type", instance.type)
         instance.save()
         return instance
 
