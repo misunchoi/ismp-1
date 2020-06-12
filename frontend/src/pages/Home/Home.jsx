@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Styled from 'styled-components';
 import Subscribe from 'components/Subscribe';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import HeroImage from 'components/HeroImage/HeroImage';
 import theme from '../../styles/theme';
 import { Blogposts } from '../../utils/agent';
 import { useTranslation } from 'react-i18next';
 import { Embed } from 'semantic-ui-react';
+import blogpostcontentFallbackData from "fallback_data/blogpostcontent.json";
 
 // TODO: Just testing things out
 const MentorContainer = Styled.div`
@@ -74,29 +75,33 @@ const Home = () => {
   const { t } = useTranslation('home');
 
   // console.log(useParams);
-  const [featuredBlogs, setFeaturedBlogs] = useState([
-    {
-      title_content: 'placeholder',
-      body_content: 'something'
-    },
-    {
-      title_content: 'placeholder 2',
-      body_content: 'something'
-    },
-    {
-      title_content: 'placeholder 3',
-      body_content: 'something'
-    }
-  ]);
+  const [featuredBlogs, setFeaturedBlogs] = useState([]);
 
-  Blogposts.getFeatured().then(data => {
-    // TODO: use setFeaturedBlogs to update featuredBlogs from the backend data
-    // make sure to only update if it is in the initial state, otherwise it will
-    // cause an inifinite loop
-    if (featuredBlogs[0].title_content !== data[0].title_content) {
-      setFeaturedBlogs(data);
-    }
-  });
+  useEffect(() => {
+
+      const pullFeaturedBlogs = async () => {
+          try {
+              await Blogposts.getFeatured().then(results => {
+                  // TODO: use setFeaturedBlogs to update featuredBlogs from the backend data
+                  // make sure to only update if it is in the initial state, otherwise it will
+                  // cause an inifinite loop
+                  if (featuredBlogs[0].title_content !== results[0].title_content) {
+                      setFeaturedBlogs(results);
+                  } else {
+                      console.log("the featured blogposts were not changed.");
+                  }
+              })
+          } catch (error) {
+              // If the API call fails, just load blogpost
+              let featuredBlogposts = blogpostcontentFallbackData
+                  .filter(blogpostContentJson => blogpostContentJson.blogpost.is_featured);
+              setFeaturedBlogs(featuredBlogposts);
+          }
+      };
+      pullFeaturedBlogs();
+  }, []);
+
+
 
   return (
     <>

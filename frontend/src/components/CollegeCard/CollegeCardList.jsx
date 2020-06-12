@@ -4,6 +4,7 @@ import Styled from 'styled-components';
 
 import { schools } from '../../utils/agent.js';
 import CollegeCard from './CollegeCard';
+import fallbackSchoolData from 'fallback_data/school.json';
 
 const StyledHeader = Styled.h3`
   grid-column-end: -1;
@@ -25,6 +26,8 @@ const CollegeCardList = () => {
         setSchoolsInfo(collegesData);
       } catch (error) {
         console.log(error);
+        setIsLoading(false);
+        setSchoolsInfo(fallbackSchoolData);
       }
     };
     collegeInfo();

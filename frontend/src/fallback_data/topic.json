@@ -1,0 +1,80 @@
+[
+  {
+    "id": 4,
+    "blogpost": [],
+    "name": "Applying to US Colleges",
+    "description": "We will break down the admissions process and all the different factors to keep in mind as you prepare to study abroad in the US."
+  },
+  {
+    "id": 3,
+    "blogpost": [],
+    "name": "How to Succeed in Grad School",
+    "description": "Grad students face different expectations and challenges than undergraduates.  Learn how to manage your time, interact with lab mates and professors, and other tips to write effectively and find a job after graduation."
+  },
+  {
+    "id": 2,
+    "blogpost": [
+      {
+        "id": 2,
+        "media_url": "https://wallpaperplay.com/walls/full/a/5/8/199352.jpg",
+        "thumbnail_url": "https://wallpaperplay.com/walls/full/a/5/8/199352.jpg",
+        "author": {
+          "id": 2,
+          "created_at": "2020-06-12T18:07:08.816269Z",
+          "updated_at": "2020-06-12T18:07:08.816293Z",
+          "bio": "",
+          "image": "",
+          "user": 2
+        },
+        "type": "blogpost",
+        "is_featured": false,
+        "topic_set": [
+          {
+            "id": 2,
+            "name": "Transitioning to America",
+            "description": "We will cover topics like safety tips, American culture, and advice for making new friends to help make your transition to America go as smoothly as possible!",
+            "blogpost": [
+              2
+            ]
+          }
+        ],
+        "tag_set": []
+      }
+    ],
+    "name": "Transitioning to America",
+    "description": "We will cover topics like safety tips, American culture, and advice for making new friends to help make your transition to America go as smoothly as possible!"
+  },
+  {
+    "id": 1,
+    "blogpost": [
+      {
+        "id": 1,
+        "media_url": "https://www.youtube.com/watch?v=9fJEFi3ccwI",
+        "thumbnail_url": "",
+        "author": {
+          "id": 1,
+          "created_at": "2020-06-12T18:07:08.805484Z",
+          "updated_at": "2020-06-12T18:07:08.805509Z",
+          "bio": "",
+          "image": "",
+          "user": 1
+        },
+        "type": "blogpost",
+        "is_featured": true,
+        "topic_set": [
+          {
+            "id": 1,
+            "name": "English Training: Writing",
+            "description": "English is difficult to master, especially in the university setting.  We will cover basic and advance English writing techniques such as essay organization, professional email writing, and common grammar mistakes to help you succeed in your classes and research!",
+            "blogpost": [
+              1
+            ]
+          }
+        ],
+        "tag_set": []
+      }
+    ],
+    "name": "English Training: Writing",
+    "description": "English is difficult to master, especially in the university setting.  We will cover basic and advance English writing techniques such as essay organization, professional email writing, and common grammar mistakes to help you succeed in your classes and research!"
+  }
+]

@@ -34,11 +34,7 @@ export const requests = {
 };
 
 export const Blogposts = {
-  getFeatured: () => {
-    return requests.get(`blogpostcontent/?featured=true`).then(data => {
-      return data.results;
-    });
-  }
+  getFeatured: () => requests.get(`blogpostcontent/?featured=true`),
 };
 
 // Example
@@ -59,7 +55,7 @@ export const Blogposts = {
 // schools.get_all().then( ... ) ;
 export const schools = {
   get: params => requests.get('school/' + params),
-  get_all: () => requests.get('school')
+  get_all: () => requests.get('school/')
 };
 
 export const SubscribeNewsletter = {

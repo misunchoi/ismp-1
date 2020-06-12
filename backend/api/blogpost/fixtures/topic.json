@@ -11,8 +11,8 @@
     "model": "blogpost.topic",
     "pk": 2,
     "fields": {
-        "name": "housing tips",
-        "description": "Still waiting on a description for this.",
+        "name": "Transitioning to America",
+        "description": "We will cover topics like safety tips, American culture, and advice for making new friends to help make your transition to America go as smoothly as possible!",
         "blogpost": [2]
     }
 },
@@ -20,8 +20,8 @@
     "model": "blogpost.topic",
     "pk": 3,
     "fields": {
-        "name": "Transitioning to America",
-        "description": "We will cover topics like safety tips, American culture, and advice for making new friends to help make your transition to America go as smoothly as possible!",
+        "name": "How to Succeed in Grad School",
+        "description": "Grad students face different expectations and challenges than undergraduates.  Learn how to manage your time, interact with lab mates and professors, and other tips to write effectively and find a job after graduation.",
         "blogpost": []
     }
 },
@@ -29,53 +29,8 @@
     "model": "blogpost.topic",
     "pk": 4,
     "fields": {
-        "name": "productivity tips",
-        "description": "Still waiting on a description for this.",
-        "blogpost": []
-    }
-},
-{
-    "model": "blogpost.topic",
-    "pk": 5,
-    "fields": {
-        "name": "American society/societal norms",
-        "description": "Still waiting on a description for this.",
-        "blogpost": []
-    }
-},
-{
-    "model": "blogpost.topic",
-    "pk": 6,
-    "fields": {
-        "name": "places to visit",
-        "description": "Still waiting on a description for this.",
-        "blogpost": []
-    }
-},
-{
-    "model": "blogpost.topic",
-    "pk": 7,
-    "fields": {
-        "name": "writing tips",
-        "description": "Still waiting on a description for this.",
-        "blogpost": []
-    }
-},
-{
-    "model": "blogpost.topic",
-    "pk": 8,
-    "fields": {
-        "name": "career/job advice",
-        "description": "Still waiting on a description for this.",
-        "blogpost": []
-    }
-},
-{
-    "model": "blogpost.topic",
-    "pk": 9,
-    "fields": {
-        "name": "American culture",
-        "description": "Still waiting on a description for this.",
+        "name": "Applying to US Colleges",
+        "description": "We will break down the admissions process and all the different factors to keep in mind as you prepare to study abroad in the US.",
         "blogpost": []
     }
 }
