@@ -3,6 +3,7 @@ import ProgramCard from 'components/ProgramCard/ProgramCard';
 import Section from 'layout/Section';
 import React from 'react';
 import Styled from 'styled-components';
+import {Container} from 'semantic-ui-react';
 
 import programData from './data';
 
@@ -20,14 +21,16 @@ const pageHeaderProps = {
 
 const Program = () => {
   return (
-    <Section>
-      <PageHeader {...pageHeaderProps}></PageHeader>
-      <ProgramContainer>
-        {programData.map(program => {
-          return <ProgramCard key={program.title} program={program} />;
-        })}
-      </ProgramContainer>
-    </Section>
+    <Container>
+      <Section>
+        <PageHeader {...pageHeaderProps}></PageHeader>
+        <ProgramContainer>
+          {programData.map(program => {
+            return <ProgramCard key={program.title} program={program} />;
+          })}
+        </ProgramContainer>
+      </Section>
+    </Container>
   );
 };
 
