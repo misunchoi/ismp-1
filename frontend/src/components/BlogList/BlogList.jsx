@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import media from '../../styles/media';
 import mixins from '../../styles/mixins';
-import theme from '../../styles/theme';
 
 const ItemContainer = styled.div`
   display: flex;

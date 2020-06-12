@@ -12,6 +12,9 @@ import Terms from '../pages/Legal/Terms';
 import Privacy from '../pages/Legal/Privacy';
 import Leadership from '../pages/Leadership/Leadership';
 import BlogList from 'pages/Blogs/BlogListPage';
+import Login from "../components/Authentication/login.component";
+import Register from "../components/Authentication/register.component";
+import Profile from "../components/Authentication/profile.component";
 
 export const HOME = Home;
 export const EDIT_BLOG = EditBlog;
@@ -31,3 +34,6 @@ export const BLOGPOST = Blogpost;
 export const PRIVACY = Privacy;
 export const TERMS = Terms;
 export const LEADERSHIP = Leadership;
+export const LOGIN = Login;
+export const REGISTER = Register;
+export const PROFILE = Profile

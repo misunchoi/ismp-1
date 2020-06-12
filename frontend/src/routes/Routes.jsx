@@ -36,6 +36,9 @@ class Routes extends Component {
             <Route exact path="/stories" component={RouteEnum.STORIES} />
             <Route exact path="/privacy" component={RouteEnum.PRIVACY} />
             <Route exact path="/terms" component={RouteEnum.TERMS} />
+            <Route exact path="/login" component={RouteEnum.LOGIN} />
+            <Route exact path="/register" component={RouteEnum.REGISTER} />
+            <Route exact path="/profile" component={RouteEnum.PROFILE} />
             <Route path="/blogpost/:id" component={RouteEnum.BLOGPOST} />
           </Suspense>
         </Switch>

@@ -10,24 +10,21 @@ from .serializers import (RegistrationSerializer, LoginSerializer, UserSerialize
 
 class RegistrationAPIView(APIView):
     # Allow any user (authenticated or not) to hit this endpoint.
-    permission_classes = (AllowAny)
-    renderer_classes = (UserJSONRenderer)
+    permission_classes = (AllowAny,)
     serializer_class = RegistrationSerializer
-
-    def index(self):
-        return HttpResponse("Hello, world. You're at the polls index.")
 
     def post(self, request):
         user = request.data.get('user', {})
         serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class LoginAPIView(APIView):
-    permission_classes = (AllowAny)
-    renderer_classes = (UserJSONRenderer)
+    permission_classes = (AllowAny,)
+    renderer_classes = (UserJSONRenderer,)
     serializer_class = LoginSerializer
 
     def post(self, request):
@@ -38,8 +35,8 @@ class LoginAPIView(APIView):
 
 
 class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
-    permission_classes = (IsAuthenticated)
-    renderer_classes = (UserJSONRenderer)
+    permission_classes = (IsAuthenticated,)
+    renderer_classes = (UserJSONRenderer,)
     serializer_class = UserSerializer
 
     def retrieve(self, request, *args, **kwargs):
