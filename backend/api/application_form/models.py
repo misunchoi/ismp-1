@@ -5,9 +5,9 @@ from django.conf import settings
 from django.db import models
 from django.core.validators import RegexValidator
 from mailchimp3 import MailChimp
+from api.core.models import TimestampedModel
 
-
-class ApplicationForm(models.Model):
+class ApplicationForm(TimestampedModel):
     """
     This model contains the information that people input when they apply.
     """
