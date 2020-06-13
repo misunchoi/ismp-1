@@ -1,4 +1,4 @@
-import LeadershipCard from 'components/LeadershipCard/LeadershipCard';
+import ProfileCardVertical from 'components/ProfileCardVertical';
 import PageContainer from 'layout/PageContainer';
 import PageHeader from 'layout/PageHeader';
 import Section from 'layout/Section';
@@ -31,7 +31,7 @@ const LeadershipSection = ({ title, leaders }) => (
     <Grid doubling stackable columns={3}>
       {leaders.map(leader => (
         <Grid.Column key={leader.name}>
-          <LeadershipCard key={leader.name} leader={leader} />
+          <ProfileCardVertical mentor={leader} showRole />
         </Grid.Column>
       ))}
     </Grid>

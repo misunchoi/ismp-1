@@ -4,7 +4,12 @@ const leadershipInfo = {
       image: 'http://jessewoo.github.io/images/ismp/jessicafu.jpg',
       name: 'Jessica Fu',
       title: 'President',
-      credentials: ['A.B. Harvard College, Economics, cum laude'],
+      credentials: [
+        {
+          title: 'A.B. Economics, cum laude',
+          organization: 'Harvard College'
+        }
+      ],
       current_job: 'POS Supply Chain Planner at Red Bull',
       linkedin_url: 'https://www.linkedin.com/in/jessica-fu-78625812/'
     },
@@ -13,8 +18,14 @@ const leadershipInfo = {
       name: 'Ken Hsu',
       title: 'Vice President',
       credentials: [
-        'B.A. Political Science and Film, UC Berkeley',
-        'J.D. UC Berkeley'
+        {
+          title: 'B.A. Political Science and Film',
+          organization: 'UC Berkeley'
+        },
+        {
+          title: 'J.D.',
+          organization: 'UC Berkeley'
+        }
       ],
       current_job: 'Commercial Counsel and Director of Legal at Petco',
       linkedin_url: 'https://www.linkedin.com/in/hsukenneth/'
@@ -23,7 +34,16 @@ const leadershipInfo = {
       image: 'http://jessewoo.github.io/images/ismp/jacobchang.jpg',
       name: 'Jacob Chang',
       title: 'Secretary',
-      credentials: ['B.S. Bioengineering, UC Berkeley', 'J.D. UC Davis'],
+      credentials: [
+        {
+          title: 'B.A. Political Science and Film',
+          organization: 'UC Berkeley'
+        },
+        {
+          title: 'J.D.',
+          organization: 'UC Berkeley'
+        }
+      ],
       current_job: 'Associate General Counsel at TechSoup Global',
       linkedin_url: 'https://www.linkedin.com/in/jacob-chang-b5001819/'
     },
@@ -32,10 +52,22 @@ const leadershipInfo = {
       name: 'James Nam',
       title: 'Treasurer',
       credentials: [
-        'B.A. Economics, UC Berkeley',
-        'B.S. Accounting, San Francisco State University',
-        'MBT USC',
-        'CPA'
+        {
+          title: 'B.A. Economics',
+          organization: 'UC Berkeley'
+        },
+        {
+          title: 'B.S. Accounting',
+          organization: 'San Francisco State University'
+        },
+        {
+          title: 'MBT',
+          organization: 'USC'
+        },
+        {
+          title: 'CPA',
+          organization: ''
+        }
       ],
       current_job: 'Tax Accountant at HCVT',
       linkedin_url: 'https://www.linkedin.com/in/james-kuk-nam-8b201423/'
@@ -47,8 +79,14 @@ const leadershipInfo = {
       name: 'Henry Chen',
       title: 'Director',
       credentials: [
-        'B.S. Electrical Engineering & Computer Science, UC Berkeley',
-        'MBA from UT Austin'
+        {
+          title: 'B.S. Electrical Engineering & Computer Science',
+          organization: 'UC Berkeley'
+        },
+        {
+          title: 'MBA',
+          organization: 'UT Austin'
+        }
       ],
       current_job: 'Program Director, IBM',
       linkedin_url: 'https://www.linkedin.com/in/henrychen/'
@@ -58,8 +96,14 @@ const leadershipInfo = {
       name: 'Sara Hong',
       title: 'Director',
       credentials: [
-        'B.A. Wellesley College - English Literature',
-        'Ph.D. Boston College - English Literature'
+        {
+          title: 'Ph.D. English Literature',
+          organization: 'Boston College'
+        },
+        {
+          title: 'B.A. - English Literature',
+          organization: 'Wellesley College'
+        }
       ],
       current_job: 'Lecturer, College Writing Program, UC Berkeley',
       staff_url: 'https://writing.berkeley.edu/staff/sara-hong'
@@ -69,9 +113,14 @@ const leadershipInfo = {
       name: 'Bo Zheng',
       title: 'Director',
       credentials: [
-        'B.S. Electrical Engineering - Stanford University',
-        'M.S. Bioengineering - Stanford University',
-        'Ph.D. Bioengineering - UC Berkeley / UCSF'
+        {
+          title: 'Ph.D. English Literature',
+          organization: 'Boston College'
+        },
+        {
+          title: 'B.A. - English Literature',
+          organization: 'Wellesley College'
+        }
       ],
       current_job: 'Senior Communication Systems Engineer, Impinj',
       linkedin_url: 'https://www.linkedin.com/in/bozheng08/'
@@ -81,8 +130,14 @@ const leadershipInfo = {
       name: 'Mark Borja',
       title: 'Director',
       credentials: [
-        'B.A. - Biochemistry, UC Berkeley',
-        'Ph.D. -Chemistry & Chemical Biology, UCSF'
+        {
+          title: 'Ph.D. English Literature',
+          organization: 'Boston College'
+        },
+        {
+          title: 'B.A. - English Literature',
+          organization: 'Wellesley College'
+        }
       ],
       current_job: 'Assistant Professor of Chemistry, CSU East Bay',
       linkedin_url: 'https://www.linkedin.com/in/mark-borja-66897b34/'
@@ -92,8 +147,14 @@ const leadershipInfo = {
       name: 'Francisca Chan',
       title: 'Director',
       credentials: [
-        'B.S. Civil and Environmental Engineering, UC Berkeley',
-        'M.S. Geotechnical Engineering, UC Berkeley'
+        {
+          title: 'Ph.D. English Literature',
+          organization: 'Boston College'
+        },
+        {
+          title: 'B.A. - English Literature',
+          organization: 'Wellesley College'
+        }
       ],
       current_job: 'Project Engineer, Partner Engineering and Science',
       linkedin_url: 'https://www.linkedin.com/in/franciscalopez/'
@@ -103,8 +164,14 @@ const leadershipInfo = {
       name: 'Kit Ng',
       title: 'Director',
       credentials: [
-        'B.S. Chemistry, UC Davis',
-        'Ph.D. Molecular, Cellular and Integrative Physiology, UC Davis'
+        {
+          title: 'Ph.D. English Literature',
+          organization: 'Boston College'
+        },
+        {
+          title: 'B.A. - English Literature',
+          organization: 'Wellesley College'
+        }
       ],
       current_job:
         'Assistant Professor of Biological Sciences, Biola University',

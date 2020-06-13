@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import mixins from 'styles/mixins';
 import theme from 'styles/theme';
 
-const ProfileCardVertical = ({ mentor }) => (
+const ProfileCardVertical = ({ mentor, showRole }) => (
   <Container>
     <Image
       alt={mentor.name + ' profile picture'}
@@ -13,9 +13,10 @@ const ProfileCardVertical = ({ mentor }) => (
       src={mentor.image}
       size="medium"
     />
+    {showRole && mentor.title && <Role>{mentor.title}</Role>}
     <Header title={mentor.name} h3 sans left />{' '}
     {mentor.credentials.map(credential => (
-      <Details>
+      <Details key={credential.title}>
         <Organization>{credential.organization}</Organization>
         <Title>{credential.title}</Title>
       </Details>
@@ -31,6 +32,11 @@ const Container = styled.div`
 
 const Image = styled(SemanticImage)`
   ${mixins.marginBottomSm}
+`;
+
+const Role = styled.div`
+  font-family: ${theme.fonts.PTSerif};
+  font-style: italic;
 `;
 
 const Details = styled.div`
