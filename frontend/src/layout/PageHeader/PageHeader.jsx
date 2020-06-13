@@ -1,16 +1,16 @@
 import React from 'react';
+import { Container } from 'semantic-ui-react';
 import Styled from 'styled-components';
 
-const Header = Styled.div`
-  text-align: center;
-  margin-bottom: 25px;
+const PageHeaderContainer = Styled(Container)`
+  margin-bottom: 32px;
 `;
 
 const PageHeader = ({ title, description }) => (
-  <Header>
+  <PageHeaderContainer textAlign="center">
     <h2>{title}</h2>
     {description && <p>{description}</p>}
-  </Header>
+  </PageHeaderContainer>
 );
 
 export default PageHeader;

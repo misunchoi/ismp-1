@@ -1,9 +1,9 @@
-import PageHeader from 'components/PageHeader';
 import ProgramCard from 'components/ProgramCard/ProgramCard';
+import PageHeader from 'layout/PageHeader';
 import Section from 'layout/Section';
 import React from 'react';
 import Styled from 'styled-components';
-import {Container} from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
 import programData from './data';
 

@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import theme from '../../styles/theme';
+import theme from 'styles/theme';
 
 export const Card = styled.div`
   flex: 0 50%;
   padding: 15px 0;
+  min-width: 450px;
 `;
 
 export const Leader = styled.div`

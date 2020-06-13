@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 import FontFaces from './fonts';
-import media from './media';
-// import mixins from './mixins';
 import theme from './theme';
 
 const { colors, fontSizes, fonts } = theme;
@@ -33,8 +31,7 @@ const GlobalStyle = createGlobalStyle`
     color: ${colors.black};
     line-height: 1.5;
     font-family: ${fonts.Poppins};
-    font-size: ${fontSizes.md};
-    ${media.tablet`font-size: ${fontSizes.sm};`}
+    font-size: ${fontSizes.sm};
 
     &.hidden {
       overflow: hidden;
