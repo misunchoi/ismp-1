@@ -1,8 +1,8 @@
 """
 These views pertain to BlogpostContent.
 """
-from datetime import datetime
 from django.contrib.postgres.search import SearchVector
+from django.utils import timezone
 from rest_framework import filters, generics, viewsets, status
 from rest_framework.response import Response
 from .models import BlogpostContent
@@ -93,8 +93,8 @@ class BlogpostContentViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many
         if featured and featured.lower() == 'true':
             result = result.filter(blogpost__is_featured=True)
             result = result.filter(is_draft=False)
-            result = result.filter(publish_at__lte=datetime.now())
+            result = result.filter(publish_at__lte=timezone.now())
         if published_only and not published_only.lower() == 'false':
             result = result.filter(is_draft=False)
-            result = result.filter(publish_at__lte=datetime.now())
+            result = result.filter(publish_at__lte=timezone.now())
         return result
