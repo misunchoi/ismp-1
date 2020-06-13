@@ -1,26 +1,26 @@
 [
-{
-  "model": "blogpost_content.blogpostcontent",
+  {
+    "model": "blogpost_content.blogpostcontent",
     "pk": 1,
     "fields": {
       "language": "en",
       "blogpost": 1,
-      "title_content": "my blogpost",
-      "body_content": "hello world",
+      "title_content": "7 ways to prepare for studying abroad",
+      "body_content": "<h4><strong>1. Accommodation</strong></h4><p>Once you&rsquo;ve confirmed your place, you&rsquo;ll need to arrange your accommodation. There are many considerations around where to live, starting with the cost, the facilities you want and the location.</p><p>Being close to campus can make life easy in many ways, but choosing homestay accommodation can give you an opportunity to experience the local culture first-hand.</p><p>Likewise, living in accommodation with shared facilities can help you build new friendships through shared meals and experiences.</p><h4><strong>2. Documents</strong></h4><p>It sounds obvious but, don&rsquo;t get caught out by not having your travel documents in order. If you don&rsquo;t have a passport, get applying right now &ndash; this is something you can never do too early.</p><p>Likewise, ensure your <a href=\"https://www.intostudy.com/en-gb/help/visas-and-pre-arrival-support-services\" target=\"_blank\" rel=\"noopener noreferrer\">study visa</a> (if you need one!) is in place along with any other documentation you need &ndash; whether it&rsquo;s academic, financial or medical.</p>",
       "updated_at": "2020-05-07",
       "created_at": "2020-05-07 00:00:00+00",
       "is_draft": false,
       "publish_at": "2020-06-02T18:04:44.296110Z"
     }
-},
+  },
   {
-  "model": "blogpost_content.blogpostcontent",
+    "model": "blogpost_content.blogpostcontent",
     "pk": 2,
     "fields": {
       "language": "en",
       "blogpost": 2,
-      "title_content": "test blogpost with html",
-      "body_content": "<div>hello world</div>",
+      "title_content": "7 study strategies for learning from home",
+      "body_content": "<h4><strong>1. Accommodation</strong></h4><p>Once you&rsquo;ve confirmed your place, you&rsquo;ll need to arrange your accommodation. There are many considerations around where to live, starting with the cost, the facilities you want and the location.</p><p>Being close to campus can make life easy in many ways, but choosing homestay accommodation can give you an opportunity to experience the local culture first-hand.</p><p>Likewise, living in accommodation with shared facilities can help you build new friendships through shared meals and experiences.</p><h4><strong>2. Documents</strong></h4><p>It sounds obvious but, don&rsquo;t get caught out by not having your travel documents in order. If you don&rsquo;t have a passport, get applying right now &ndash; this is something you can never do too early.</p><p>Likewise, ensure your <a href=\"https://www.intostudy.com/en-gb/help/visas-and-pre-arrival-support-services\" target=\"_blank\" rel=\"noopener noreferrer\">study visa</a> (if you need one!) is in place along with any other documentation you need &ndash; whether it&rsquo;s academic, financial or medical.</p>",
       "updated_at": "2020-05-07",
       "created_at": "2020-05-07 00:00:00+00",
       "is_draft": true
@@ -32,8 +32,64 @@
     "fields": {
       "language": "en",
       "blogpost": 3,
-      "title_content": "english training",
-      "body_content": "<p>talk to people</p>",
+      "title_content": "How to stay active while studying at home",
+      "body_content": "<h4><strong>2. Documents</strong></h4><p>It sounds obvious but, don&rsquo;t get caught out by not having your travel documents in order. If you don&rsquo;t have a passport, get applying right now &ndash; this is something you can never do too early.</p><p>Likewise, ensure your <a href=\"https://www.intostudy.com/en-gb/help/visas-and-pre-arrival-support-services\" target=\"_blank\" rel=\"noopener noreferrer\">study visa</a> (if you need one!) is in place along with any other documentation you need &ndash; whether it&rsquo;s academic, financial or medical.</p><h4><strong>3. Booking flights</strong></h4><p>Once you know you are &lsquo;fit&rsquo; to fly, you&rsquo;ll need to get your flight/s booked.</p><p>Book as early as you can to benefit from discounts and seasonal offers. Think about where you actually want to fly to &ndash; if you&rsquo;ve got a little extra time, you may want to fly elsewhere in the country, to give yourself some time to explore before you make your way to your university.</p><p>Speaking of which, don&rsquo;t forget to sort your local transportation &ndash; whether it&rsquo;s a taxi from the airport or cross-country train travel.</p><img src=\"https://blog.intostudy.com/wp-content/uploads/2019/08/Packing-1.gif\" alt=\"packing\"/><p>For many, this is the fun bit. This is where plenty of research comes in handy as it will help prepare you for many things, not least knowing the clothes you&rsquo;ll need to take.</p>\n<p>You may like to check out our handy <a href=\"https://blog.intostudy.com/how-to-with-into/prepare-to-study-abroad/how-to-pack/\" target=\"_blank\" rel=\"noreferrer noopener\" aria-label=\" (opens in a new tab)\">how to pack checklist</a>.</p><p>Don&rsquo;t over-pack! It&rsquo;s easily done, particularly when you know you&rsquo;re going to be away for a while, but most airlines will limit your checked-in baggage to around 20kg, which doesn&rsquo;t give you a whole amount of space or weight to pack.</p>\n<p>Sending packages around the world can be costly, so consider what you can stock up on when you arrive at your study destination. If nothing else, it&rsquo;s a great excuse to go shopping once you&rsquo;re settled.</p><h4><strong>5. Money</strong></h4><p>They say it makes the world go around, and there&rsquo;s an element of truth in that.</p><p>Consider taking enough cash for your first few days in the country but don&rsquo;t take too much. Look at the cards that are accepted locally &ndash; most countries accept Visa and MasterCard, and, as well as debit and credit cards, you can also obtain pre-paid cards.</p><img src=\"https://blog.intostudy.com/wp-content/uploads/2017/09/giphy-80.gif\" alt=\"animated\"/><p>Opening a local bank account will help in many ways, including saving on transaction fees. Don&rsquo;t be afraid to ask for advice from your Student Support team.</p><h4><strong>6. Health care research </strong></h4><p>When you&rsquo;re researching your new home from home, make sure you check out the health care arrangements.</p><p>It may sound unimportant but, when you&rsquo;re sick and need a doctor, you&rsquo;ll be glad you did.</p><p>In most countries, you&rsquo;ll need some form of health insurance. If you&rsquo;re from the EEA or Switzerland, you get free basic health care in the UK.</p>",
+      "updated_at": "2020-05-07",
+      "created_at": "2020-05-07 00:00:00+00",
+      "is_draft": false,
+      "publish_at": "2020-06-02T18:04:44.296110Z"
+    }
+  },
+  {
+    "model": "blogpost_content.blogpostcontent",
+    "pk": 4,
+    "fields": {
+      "language": "en",
+      "blogpost": 4,
+      "title_content": "The international student guide to a work-life balance while staying home",
+      "body_content": "<h4><strong>3. Booking flights</strong></h4><p>Once you know you are &lsquo;fit&rsquo; to fly, you&rsquo;ll need to get your flight/s booked.</p><p>Book as early as you can to benefit from discounts and seasonal offers. Think about where you actually want to fly to &ndash; if you&rsquo;ve got a little extra time, you may want to fly elsewhere in the country, to give yourself some time to explore before you make your way to your university.</p><p>Speaking of which, don&rsquo;t forget to sort your local transportation &ndash; whether it&rsquo;s a taxi from the airport or cross-country train travel.</p><img src=\"https://blog.intostudy.com/wp-content/uploads/2019/08/Packing-1.gif\" alt=\"packing\"/><p>For many, this is the fun bit. This is where plenty of research comes in handy as it will help prepare you for many things, not least knowing the clothes you&rsquo;ll need to take.</p>\n<p>You may like to check out our handy <a href=\"https://blog.intostudy.com/how-to-with-into/prepare-to-study-abroad/how-to-pack/\" target=\"_blank\" rel=\"noreferrer noopener\" aria-label=\" (opens in a new tab)\">how to pack checklist</a>.</p><p>Don&rsquo;t over-pack! It&rsquo;s easily done, particularly when you know you&rsquo;re going to be away for a while, but most airlines will limit your checked-in baggage to around 20kg, which doesn&rsquo;t give you a whole amount of space or weight to pack.</p>\n<p>Sending packages around the world can be costly, so consider what you can stock up on when you arrive at your study destination. If nothing else, it&rsquo;s a great excuse to go shopping once you&rsquo;re settled.</p><h4><strong>5. Money</strong></h4><p>They say it makes the world go around, and there&rsquo;s an element of truth in that.</p><p>Consider taking enough cash for your first few days in the country but don&rsquo;t take too much. Look at the cards that are accepted locally &ndash; most countries accept Visa and MasterCard, and, as well as debit and credit cards, you can also obtain pre-paid cards.</p><img src=\"https://blog.intostudy.com/wp-content/uploads/2017/09/giphy-80.gif\" alt=\"animated\"/><p>Opening a local bank account will help in many ways, including saving on transaction fees. Don&rsquo;t be afraid to ask for advice from your Student Support team.</p><h4><strong>6. Health care research </strong></h4><p>When you&rsquo;re researching your new home from home, make sure you check out the health care arrangements.</p><p>It may sound unimportant but, when you&rsquo;re sick and need a doctor, you&rsquo;ll be glad you did.</p><p>In most countries, you&rsquo;ll need some form of health insurance. If you&rsquo;re from the EEA or Switzerland, you get free basic health care in the UK.</p>",
+      "updated_at": "2020-05-07",
+      "created_at": "2020-05-07 00:00:00+00",
+      "is_draft": false,
+      "publish_at": "2020-06-02T18:04:44.296110Z"
+    }
+  },
+  {
+    "model": "blogpost_content.blogpostcontent",
+    "pk": 5,
+    "fields": {
+      "language": "en",
+      "blogpost": 5,
+      "title_content": "8 simple tips for exam success",
+      "body_content": "<h4><strong>5. Money</strong></h4><p>They say it makes the world go around, and there&rsquo;s an element of truth in that.</p><p>Consider taking enough cash for your first few days in the country but don&rsquo;t take too much. Look at the cards that are accepted locally &ndash; most countries accept Visa and MasterCard, and, as well as debit and credit cards, you can also obtain pre-paid cards.</p><img src=\"https://blog.intostudy.com/wp-content/uploads/2017/09/giphy-80.gif\" alt=\"animated\"/><p>Opening a local bank account will help in many ways, including saving on transaction fees. Don&rsquo;t be afraid to ask for advice from your Student Support team.</p><h4><strong>6. Health care research </strong></h4><p>When you&rsquo;re researching your new home from home, make sure you check out the health care arrangements.</p><p>It may sound unimportant but, when you&rsquo;re sick and need a doctor, you&rsquo;ll be glad you did.</p><p>In most countries, you&rsquo;ll need some form of health insurance. If you&rsquo;re from the EEA or Switzerland, you get free basic health care in the UK.</p>",
+      "updated_at": "2020-05-07",
+      "created_at": "2020-05-07 00:00:00+00",
+      "is_draft": false,
+      "publish_at": "2020-06-02T18:04:44.296110Z"
+    }
+  },
+  {
+    "model": "blogpost_content.blogpostcontent",
+    "pk": 6,
+    "fields": {
+      "language": "en",
+      "blogpost": 6,
+      "title_content": "9 secrets to successful university study",
+      "body_content": "<h4><strong>1. Accommodation</strong></h4><p>Once you&rsquo;ve confirmed your place, you&rsquo;ll need to arrange your accommodation. There are many considerations around where to live, starting with the cost, the facilities you want and the location.</p><p>Being close to campus can make life easy in many ways, but choosing homestay accommodation can give you an opportunity to experience the local culture first-hand.</p><p>Likewise, living in accommodation with shared facilities can help you build new friendships through shared meals and experiences.</p><h4><strong>2. Documents</strong></h4><p>It sounds obvious but, don&rsquo;t get caught out by not having your travel documents in order. If you don&rsquo;t have a passport, get applying right now &ndash; this is something you can never do too early.</p><p>Likewise, ensure your <a href=\"https://www.intostudy.com/en-gb/help/visas-and-pre-arrival-support-services\" target=\"_blank\" rel=\"noopener noreferrer\">study visa</a> (if you need one!) is in place along with any other documentation you need &ndash; whether it&rsquo;s academic, financial or medical.</p><h4><strong>3. Booking flights</strong></h4><p>Once you know you are &lsquo;fit&rsquo; to fly, you&rsquo;ll need to get your flight/s booked.</p><p>Book as early as you can to benefit from discounts and seasonal offers. Think about where you actually want to fly to &ndash; if you&rsquo;ve got a little extra time, you may want to fly elsewhere in the country, to give yourself some time to explore before you make your way to your university.</p><p>Speaking of which, don&rsquo;t forget to sort your local transportation &ndash; whether it&rsquo;s a taxi from the airport or cross-country train travel.</p><img src=\"https://blog.intostudy.com/wp-content/uploads/2019/08/Packing-1.gif\" alt=\"packing\"/><p>For many, this is the fun bit. This is where plenty of research comes in handy as it will help prepare you for many things, not least knowing the clothes you&rsquo;ll need to take.</p>\n<p>You may like to check out our handy <a href=\"https://blog.intostudy.com/how-to-with-into/prepare-to-study-abroad/how-to-pack/\" target=\"_blank\" rel=\"noreferrer noopener\" aria-label=\" (opens in a new tab)\">how to pack checklist</a>.</p><p>Don&rsquo;t over-pack! It&rsquo;s easily done, particularly when you know you&rsquo;re going to be away for a while, but most airlines will limit your checked-in baggage to around 20kg, which doesn&rsquo;t give you a whole amount of space or weight to pack.</p>\n<p>Sending packages around the world can be costly, so consider what you can stock up on when you arrive at your study destination. If nothing else, it&rsquo;s a great excuse to go shopping once you&rsquo;re settled.</p><h4><strong>5. Money</strong></h4><p>They say it makes the world go around, and there&rsquo;s an element of truth in that.</p><p>Consider taking enough cash for your first few days in the country but don&rsquo;t take too much. Look at the cards that are accepted locally &ndash; most countries accept Visa and MasterCard, and, as well as debit and credit cards, you can also obtain pre-paid cards.</p><img src=\"https://blog.intostudy.com/wp-content/uploads/2017/09/giphy-80.gif\" alt=\"animated\"/><p>Opening a local bank account will help in many ways, including saving on transaction fees. Don&rsquo;t be afraid to ask for advice from your Student Support team.</p><h4><strong>6. Health care research </strong></h4><p>When you&rsquo;re researching your new home from home, make sure you check out the health care arrangements.</p><p>It may sound unimportant but, when you&rsquo;re sick and need a doctor, you&rsquo;ll be glad you did.</p><p>In most countries, you&rsquo;ll need some form of health insurance. If you&rsquo;re from the EEA or Switzerland, you get free basic health care in the UK.</p>",
+      "updated_at": "2020-05-07",
+      "created_at": "2020-05-07 00:00:00+00",
+      "is_draft": false,
+      "publish_at": "2020-06-02T18:04:44.296110Z"
+    }
+  },
+  {
+    "model": "blogpost_content.blogpostcontent",
+    "pk": 7,
+    "fields": {
+      "language": "en",
+      "blogpost": 7,
+      "title_content": "How to look after your mental health while studying from home",
+      "body_content": "<p>So, you&rsquo;ve made the decision to study abroad and you&rsquo;ve been offered a place. </p><p>You&rsquo;re super excited! But, what next? </p><p><strong>It may be weeks &ndash; or months &ndash; until it&rsquo;s time to start your course, but there&rsquo;s plenty you can do now to prepare yourself for what will be a huge adventure. </strong></p><h4><strong>1. Accommodation</strong></h4><p>Once you&rsquo;ve confirmed your place, you&rsquo;ll need to arrange your accommodation. There are many considerations around where to live, starting with the cost, the facilities you want and the location.</p><p>Being close to campus can make life easy in many ways, but choosing homestay accommodation can give you an opportunity to experience the local culture first-hand.</p><p>Likewise, living in accommodation with shared facilities can help you build new friendships through shared meals and experiences.</p><h4><strong>2. Documents</strong></h4><p>It sounds obvious but, don&rsquo;t get caught out by not having your travel documents in order. If you don&rsquo;t have a passport, get applying right now &ndash; this is something you can never do too early.</p><p>Likewise, ensure your <a href=\"https://www.intostudy.com/en-gb/help/visas-and-pre-arrival-support-services\" target=\"_blank\" rel=\"noopener noreferrer\">study visa</a> (if you need one!) is in place along with any other documentation you need &ndash; whether it&rsquo;s academic, financial or medical.</p><h4><strong>3. Booking flights</strong></h4><p>Once you know you are &lsquo;fit&rsquo; to fly, you&rsquo;ll need to get your flight/s booked.</p><p>Book as early as you can to benefit from discounts and seasonal offers. Think about where you actually want to fly to &ndash; if you&rsquo;ve got a little extra time, you may want to fly elsewhere in the country, to give yourself some time to explore before you make your way to your university.</p><p>Speaking of which, don&rsquo;t forget to sort your local transportation &ndash; whether it&rsquo;s a taxi from the airport or cross-country train travel.</p><h4><strong>5. Money</strong></h4><p>They say it makes the world go around, and there&rsquo;s an element of truth in that.</p><p>Consider taking enough cash for your first few days in the country but don&rsquo;t take too much. Look at the cards that are accepted locally &ndash; most countries accept Visa and MasterCard, and, as well as debit and credit cards, you can also obtain pre-paid cards.</p><img src=\"https://blog.intostudy.com/wp-content/uploads/2017/09/giphy-80.gif\" alt=\"animated\"/><p>Opening a local bank account will help in many ways, including saving on transaction fees. Don&rsquo;t be afraid to ask for advice from your Student Support team.</p><h4><strong>6. Health care research </strong></h4><p>When you&rsquo;re researching your new home from home, make sure you check out the health care arrangements.</p><p>It may sound unimportant but, when you&rsquo;re sick and need a doctor, you&rsquo;ll be glad you did.</p><p>In most countries, you&rsquo;ll need some form of health insurance. If you&rsquo;re from the EEA or Switzerland, you get free basic health care in the UK.</p>",
       "updated_at": "2020-05-07",
       "created_at": "2020-05-07 00:00:00+00",
       "is_draft": false,
@@ -41,4 +97,3 @@
     }
   }
 ]
-

@@ -142,7 +142,8 @@ USE_TZ = True
 AUTH_USER_MODEL = 'authentication.User'
 
 # Page size for pagination, can adjust later
-DEFAULT_PAGE_SIZE = 5
+# Google Search is 10 items per page.
+DEFAULT_PAGE_SIZE = 10
 
 # Custom Exception Handler
 REST_FRAMEWORK = {

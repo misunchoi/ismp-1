@@ -1,17 +1,17 @@
 .error {
-    color:red;
-    text-align: left;
+  color: red;
+  text-align: left;
 }
 
 .form {
-    padding-top:100px;
-    padding-bottom:100px;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
-#masterhead{
-     min-height: 700px;
-      padding: 1em 0em;
+#masterhead {
+  min-height: 700px;
+  padding: 1em 0em;
 }
-#header{
-    padding-top: 150px;
+#header {
+  padding-top: 150px;
 }

@@ -4,7 +4,7 @@ import Register from 'components/Authentication/register.component';
 import About from 'pages/About';
 import ApplicationForm from 'pages/ApplicationForm/ApplicationForm';
 import ApplicationFormSuccess from 'pages/ApplicationFormSuccess/ApplicationFormSuccess';
-import BlogList from 'pages/Blogs/BlogListPage';
+import BlogList from 'pages/BlogSearchResults/BlogListPage';
 import Blogpost from 'pages/Blogs/Blogpost';
 import BlogType from 'pages/Blogs/BlogType';
 import EditBlog from 'pages/Blogs/EditBlog';

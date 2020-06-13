@@ -21,31 +21,31 @@ class Blogpost extends Component {
     const populateBlogpostData = async () => {
       try {
         await requests
-        .get('blogpostcontent/' + this.state.blogpostcontent_id + '/')
-            .then(result => {
-              this.setState({
-                blogpostcontent: result,
-                content: result.body_content
-              });
+          .get('blogpostcontent/' + this.state.blogpostcontent_id + '/')
+          .then(result => {
+            this.setState({
+              blogpostcontent: result,
+              content: result.body_content
             });
-
+          });
       } catch (error) {
-        console.log("there was an error in blogposts");
+        console.log('there was an error in blogposts');
         console.log(fallbackBlogpostContentData[0]['id']);
-        let fallbackBlogpostContent = fallbackBlogpostContentData.filter(blogpostJson => {
-          return this.state.blogpostcontent_id === blogpostJson.id;
-        });
+        let fallbackBlogpostContent = fallbackBlogpostContentData.filter(
+          blogpostJson => {
+            return this.state.blogpostcontent_id === blogpostJson.id;
+          }
+        );
         if (fallbackBlogpostContent.length === 0) {
-          this.setState({content: "The requested blogpost was not found"});
+          this.setState({ content: 'The requested blogpost was not found' });
         } else {
           this.setState({
             blogpostcontent: fallbackBlogpostContent[0],
-            content: fallbackBlogpostContent[0]['body_content'],
+            content: fallbackBlogpostContent[0]['body_content']
           });
         }
-
       }
-    }
+    };
     populateBlogpostData();
   }
 
