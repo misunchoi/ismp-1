@@ -178,7 +178,7 @@ GET - gets the existing blogpostcontents. For populating pages.
 
 * Author: since a blogpostcontent is associated with only one blogpost, filter by the id of the author of the blogpost. This is just for convenience since author is technically a field in blogpost.
 
-* Topic: For convenience, you can pass in the name of a topic (?topic=<topic name>) and receive only blogpostcontent records where the associated blogpost has the topic you pass in.
+* Topic: For convenience, you can pass in the title of a topic (?topic=<topic title>) and receive only blogpostcontent records where the associated blogpost has the topic you pass in.
 
 * Tag: For convenience, you can pass in the name of a tag (?tag=<tag name>) and receive only blogpostcontent records where the associated blogpost has the tag you pass in.
 
