@@ -82,14 +82,7 @@ const Home = () => {
     const pullFeaturedBlogs = async () => {
       try {
         await Blogposts.getFeatured().then(results => {
-          // TODO: use setFeaturedBlogs to update featuredBlogs from the backend data
-          // make sure to only update if it is in the initial state, otherwise it will
-          // cause an inifinite loop
-          if (featuredBlogs[0].title_content !== results[0].title_content) {
-            setFeaturedBlogs(results);
-          } else {
-            console.log('the featured blogposts were not changed.');
-          }
+          setFeaturedBlogs(results.results);
         });
       } catch (error) {
         // If the API call fails, just load blogpost
@@ -146,7 +139,7 @@ const Home = () => {
       <ul>
         {featuredBlogs.map((blog, index) => (
           <li key={index}>
-            Title: {blog.title_content}, Description {blog.body_content}
+            Title: {blog.title_content}
           </li>
         ))}
       </ul>
