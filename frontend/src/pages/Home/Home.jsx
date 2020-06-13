@@ -100,7 +100,7 @@ const Home = () => {
       }
     };
     pullFeaturedBlogs();
-  }, [featuredBlogs]);
+  }, []);
 
   return (
     <>
