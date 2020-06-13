@@ -1,29 +1,35 @@
 import LeadershipCard from 'components/LeadershipCard';
-import FlexContainer from 'layout/FlexContainer';
+import PageContainer from 'layout/PageContainer';
 import PageHeader from 'layout/PageHeader';
 import Section from 'layout/Section';
+import SectionHeader from 'layout/SectionHeader';
 import mentors from 'mock-data/mentors';
 import React from 'react';
-import { Container } from 'semantic-ui-react';
-import Styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
+import { Grid } from 'semantic-ui-react';
 
-const MentorsFlexContainer = Styled(FlexContainer)`
-  padding-bottom: 32px;
-`;
+const Mentors = () => {
+  const { t } = useTranslation('mentors');
+  return (
+    <PageContainer>
+      <PageHeader title={t('title')} />
+      {Object.keys(mentors).map(school => (
+        <SchoolSection key={school} school={school} mentors={mentors[school]} />
+      ))}
+    </PageContainer>
+  );
+};
 
-const Mentors = () => (
+const SchoolSection = ({ school, mentors }) => (
   <Section>
-    <PageHeader title="Meet Our Mentors"></PageHeader>
-    {Object.keys(mentors).map(school => (
-      <Container>
-        <h3>{school}</h3>
-        <MentorsFlexContainer>
-          {mentors[school].map(mentor => (
-            <LeadershipCard key={mentor.name} leader={mentor} />
-          ))}
-        </MentorsFlexContainer>
-      </Container>
-    ))}
+    <SectionHeader title={school} />
+    <Grid doubling stackable columns={3}>
+      {mentors.map(mentor => (
+        <Grid.Column key={mentor.name}>
+          <LeadershipCard key={mentor.name} leader={mentor} />
+        </Grid.Column>
+      ))}
+    </Grid>
   </Section>
 );
 

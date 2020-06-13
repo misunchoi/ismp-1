@@ -1,8 +1,8 @@
+import PageContainer from 'layout/PageContainer';
 import React from 'react';
-import Styled from 'styled-components';
-import theme from '../../styles/theme';
 import { Grid } from 'semantic-ui-react';
-import { BodyContainer } from '../../layout/BodyContainer/BodyContainer';
+import Styled from 'styled-components';
+import theme from 'styles/theme';
 
 const StyledBodyText = Styled.p`
     font-family: ${theme.fonts.Poppins};
@@ -14,7 +14,7 @@ const StyledBodyText = Styled.p`
 
 const Terms = () => {
   return (
-    <BodyContainer>
+    <PageContainer>
       <Grid doubling stackable>
         <Grid.Row columns={1}>
           <Grid.Column>
@@ -29,47 +29,47 @@ const Terms = () => {
               <h2>AGREEMENT TO TERMS</h2>
               <br />
               <br />
-              These Terms and Conditions constitute a legally binding
-              agreement made between you, whether personally or on behalf of
-              an entity (“you”) and [business entity name] (“we,” “us” or
-              “our”), concerning your access to and use of the [website
-              name.com] website as well as any other media form, media
-              channel, mobile website or mobile application related, linked,
-              or otherwise connected thereto (collectively, the “Site”).
+              These Terms and Conditions constitute a legally binding agreement
+              made between you, whether personally or on behalf of an entity
+              (“you”) and [business entity name] (“we,” “us” or “our”),
+              concerning your access to and use of the [website name.com]
+              website as well as any other media form, media channel, mobile
+              website or mobile application related, linked, or otherwise
+              connected thereto (collectively, the “Site”).
               <br />
               <br />
               You agree that by accessing the Site, you have read, understood,
-              and agree to be bound by all of these Terms and Conditions. If
-              you do not agree with all of these Terms and Conditions, then
-              you are expressly prohibited from using the Site and you must
-              discontinue use immediately.
+              and agree to be bound by all of these Terms and Conditions. If you
+              do not agree with all of these Terms and Conditions, then you are
+              expressly prohibited from using the Site and you must discontinue
+              use immediately.
               <br />
               <br />
-              Supplemental terms and conditions or documents that may be
-              posted on the Site from time to time are hereby expressly
-              incorporated herein by reference. We reserve the right, in our
-              sole discretion, to make changes or modifications to these Terms
-              and Conditions at any time and for any reason.
+              Supplemental terms and conditions or documents that may be posted
+              on the Site from time to time are hereby expressly incorporated
+              herein by reference. We reserve the right, in our sole discretion,
+              to make changes or modifications to these Terms and Conditions at
+              any time and for any reason.
               <br />
               <br />
-              We will alert you about any changes by updating the “Last
-              updated” date of these Terms and Conditions, and you waive any
-              right to receive specific notice of each such change.
+              We will alert you about any changes by updating the “Last updated”
+              date of these Terms and Conditions, and you waive any right to
+              receive specific notice of each such change.
               <br />
               <br />
               It is your responsibility to periodically review these Terms and
               Conditions to stay informed of updates. You will be subject to,
               and will be deemed to have been made aware of and to have
-              accepted, the changes in any revised Terms and Conditions by
-              your continued use of the Site after the date such revised Terms
-              and Conditions are posted.
+              accepted, the changes in any revised Terms and Conditions by your
+              continued use of the Site after the date such revised Terms and
+              Conditions are posted.
               <br />
               <br />
               The information provided on the Site is not intended for
-              distribution to or use by any person or entity in any
-              jurisdiction or country where such distribution or use would be
-              contrary to law or regulation or which would subject us to any
-              registration requirement within such jurisdiction or country.
+              distribution to or use by any person or entity in any jurisdiction
+              or country where such distribution or use would be contrary to law
+              or regulation or which would subject us to any registration
+              requirement within such jurisdiction or country.
               <br />
               <br />
               Accordingly, those persons who choose to access the Site from
@@ -82,9 +82,9 @@ const Terms = () => {
               Conditions Generator.
               <br />
               <br />
-              Option 1: The Site is intended for users who are at least 18
-              years old. Persons under the age of 18 are not permitted to
-              register for the Site.
+              Option 1: The Site is intended for users who are at least 18 years
+              old. Persons under the age of 18 are not permitted to register for
+              the Site.
               <br />
               <br />
               Option 2: [The Site is intended for users who are at least 13
@@ -101,31 +101,31 @@ const Terms = () => {
               <br />
               Unless otherwise indicated, the Site is our proprietary property
               and all source code, databases, functionality, software, website
-              designs, audio, video, text, photographs, and graphics on the
-              Site (collectively, the “Content”) and the trademarks, service
-              marks, and logos contained therein (the “Marks”) are owned or
-              controlled by us or licensed to us, and are protected by
-              copyright and trademark laws and various other intellectual
-              property rights and unfair competition laws of the United
-              States, foreign jurisdictions, and international conventions.
+              designs, audio, video, text, photographs, and graphics on the Site
+              (collectively, the “Content”) and the trademarks, service marks,
+              and logos contained therein (the “Marks”) are owned or controlled
+              by us or licensed to us, and are protected by copyright and
+              trademark laws and various other intellectual property rights and
+              unfair competition laws of the United States, foreign
+              jurisdictions, and international conventions.
               <br />
               <br />
               The Content and the Marks are provided on the Site “AS IS” for
               your information and personal use only. Except as expressly
-              provided in these Terms and Conditions, no part of the Site and
-              no Content or Marks may be copied, reproduced, aggregated,
+              provided in these Terms and Conditions, no part of the Site and no
+              Content or Marks may be copied, reproduced, aggregated,
               republished, uploaded, posted, publicly displayed, encoded,
-              translated, transmitted, distributed, sold, licensed, or
-              otherwise exploited for any commercial purpose whatsoever,
-              without our express prior written permission.
+              translated, transmitted, distributed, sold, licensed, or otherwise
+              exploited for any commercial purpose whatsoever, without our
+              express prior written permission.
               <br />
               <br />
-              Provided that you are eligible to use the Site, you are granted
-              a limited license to access and use the Site and to download or
+              Provided that you are eligible to use the Site, you are granted a
+              limited license to access and use the Site and to download or
               print a copy of any portion of the Content to which you have
               properly gained access solely for your personal, non-commercial
-              use. We reserve all rights not expressly granted to you in and
-              to the Site, the Content and the Marks.
+              use. We reserve all rights not expressly granted to you in and to
+              the Site, the Content and the Marks.
               <br />
               <br />
               <h2>USER REPRESENTATIONS</h2>
@@ -136,19 +136,19 @@ const Terms = () => {
               <br />
               [(1) all registration information you submit will be true,
               accurate, current, and complete; (2) you will maintain the
-              accuracy of such information and promptly update such
-              registration information as necessary;]
+              accuracy of such information and promptly update such registration
+              information as necessary;]
               <br />
               <br />
-              (3) you have the legal capacity and you agree to comply with
-              these Terms and Conditions;
+              (3) you have the legal capacity and you agree to comply with these
+              Terms and Conditions;
               <br />
               <br />
               [(4) you are not under the age of 13;]
               <br />
               <br />
-              (5) not a minor in the jurisdiction in which you reside [, or if
-              a minor, you have received parental permission to use the Site];
+              (5) not a minor in the jurisdiction in which you reside [, or if a
+              minor, you have received parental permission to use the Site];
               <br />
               <br />
               (6) you will not access the Site through automated or non-human
@@ -164,29 +164,29 @@ const Terms = () => {
               <br />
               <br />
               If you provide any information that is untrue, inaccurate, not
-              current, or incomplete, we have the right to suspend or
-              terminate your account and refuse any and all current or future
-              use of the Site (or any portion thereof).
+              current, or incomplete, we have the right to suspend or terminate
+              your account and refuse any and all current or future use of the
+              Site (or any portion thereof).
               <br />
               <br />
               <h2>USER REGISTRATION</h2>
               <br />
               <br />
               You may be required to register with the Site. You agree to keep
-              your password confidential and will be responsible for all use
-              of your account and password. We reserve the right to remove,
+              your password confidential and will be responsible for all use of
+              your account and password. We reserve the right to remove,
               reclaim, or change a username you select if we determine, in our
-              sole discretion, that such username is inappropriate, obscene,
-              or otherwise objectionable.
+              sole discretion, that such username is inappropriate, obscene, or
+              otherwise objectionable.
               <br />
               <br />
               <h2>PROHIBITED ACTIVITIES</h2>
               <br />
               <br />
-              You may not access or use the Site for any purpose other than
-              that for which we make the Site available. The Site may not be
-              used in connection with any commercial endeavors except those
-              that are specifically endorsed or approved by us.
+              You may not access or use the Site for any purpose other than that
+              for which we make the Site available. The Site may not be used in
+              connection with any commercial endeavors except those that are
+              specifically endorsed or approved by us.
               <br />
               <br />
               As a user of the Site, you agree not to:
@@ -201,7 +201,7 @@ const Terms = () => {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-     </BodyContainer>
+    </PageContainer>
   );
 };
 

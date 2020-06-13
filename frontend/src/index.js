@@ -1,18 +1,18 @@
 import 'semantic-ui-css/semantic.min.css';
 
-import ResponsiveContainer from './layout/Responsive/ResponsiveContainer.component';
+// i18n translation
+import './i18n';
 
-import Routes from './routes/Routes';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+
+import ResponsiveContainer from './layout/Responsive/ResponsiveContainer';
+import Routes from './routes/Routes';
 import GlobalStyle from './styles/globalStyle';
 import theme from './styles/theme';
 import * as serviceWorker from './utils/serviceWorker';
-
-// i18n translation
-import './i18n';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

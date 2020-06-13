@@ -1,4 +1,5 @@
-import React, { useState, Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Container,
@@ -9,12 +10,10 @@ import {
   Sidebar
 } from 'semantic-ui-react';
 
-import { Link } from 'react-router-dom';
-
-import Nav from '../Nav/Nav.component';
-import Footer from '../Footer/Footer';
-import { getWidth } from './responsiveUtils';
 import Spinner from '../../components/Spinner/Spinner.component';
+import Footer from '../Footer/Footer';
+import Nav from '../Nav/Nav.component';
+import { getWidth } from './responsiveUtils';
 
 const MobileContainer = ({ children }) => {
   const [sidebarOpened, setSidebarOpened] = useState(false);
@@ -56,7 +55,7 @@ const MobileContainer = ({ children }) => {
         >
           <Container>
             {/* Hamburger button */}
-            <Menu inverted pointing secondary size="large">
+            <Menu inverted pointing secondary size="massive">
               <Menu.Item onClick={handleToggle}>
                 <Icon name="sidebar" />
               </Menu.Item>

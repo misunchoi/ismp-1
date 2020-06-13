@@ -1,8 +1,9 @@
+import Spinner from 'components/Spinner/Spinner.component';
+import { blogTestData } from 'pages/Blogs/BlogListPage';
 import React, { Component, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import * as RouteEnum from './index';
-import Spinner from '../components/Spinner/Spinner.component';
-import { blogTestData } from '../pages/Blogs/BlogListPage';
+
+import * as RouteEnum from '.';
 
 class Routes extends Component {
   render() {
@@ -19,11 +20,7 @@ class Routes extends Component {
             />
             <Route exact path="/edit-blog" component={RouteEnum.EDIT_BLOG} />
             <Route exact path="/blog-type" component={RouteEnum.BLOG_TYPE} />
-            <Route
-              exact
-              path="/apply"
-              component={RouteEnum.APPLICATION_FORM}
-            />
+            <Route exact path="/apply" component={RouteEnum.APPLICATION_FORM} />
             <Route
               exact
               path="/apply-success"

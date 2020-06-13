@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import {
   Container,
   Menu,
@@ -7,10 +7,9 @@ import {
   Visibility
 } from 'semantic-ui-react';
 
-import Nav from '../Nav/Nav.component';
-import Footer from '../Footer/Footer';
 import Spinner from '../../components/Spinner/Spinner.component';
-
+import Footer from '../Footer/Footer';
+import Nav from '../Nav/Nav.component';
 import { getWidth } from './responsiveUtils';
 
 const DesktopContainer = ({ children }) => {

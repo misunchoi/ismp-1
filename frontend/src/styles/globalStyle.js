@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     box-sizing: border-box;
-    font-size: 87.5%; // Set 1em = 14px
+    // font-size: 62.5%; // Set 1rem = 10px
     width: 100%;
   }
 
@@ -31,11 +31,12 @@ const GlobalStyle = createGlobalStyle`
     color: ${colors.black};
     line-height: 1.5;
     font-family: ${fonts.Poppins};
-    font-size: ${fontSizes.sm};
+    font-size: ${fontSizes.md};
 
     &.hidden {
       overflow: hidden;
     }
+
     &.blur {
       overflow: hidden;
       #root > #content > * {
@@ -52,13 +53,28 @@ const GlobalStyle = createGlobalStyle`
     font-size: ${fontSizes.xxl};
   }
 
+  h1.serif {
+    font-family: ${fonts.PTSerif};
+    font-size: ${fontSizes.xxl};
+  }
+
   h2 {
     font-family: ${fonts.Poppins};
     font-size: ${fontSizes.xl};
   }
 
+  h2.serif {
+    font-family: ${fonts.PTSerif};
+    font-size: ${fontSizes.xl};
+  }
+
   h3 {
     font-family: ${fonts.Poppins};
+    font-size: ${fontSizes.lg};
+  }
+
+  h3.serif {
+    font-family: ${fonts.PTSerif};
     font-size: ${fontSizes.lg};
   }
 

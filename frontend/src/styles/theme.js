@@ -1,5 +1,3 @@
-// import { hex2rgba } from 'utils';
-
 const theme = {
   colors: {
     yellow: '#fdc82e',
@@ -24,17 +22,12 @@ const theme = {
   },
 
   fontSizes: {
-    xs: '1rem',
-    sm: '1.2rem',
-    md: '1.8rem',
-    lg: '2.4rem',
-    xl: '3.2rem',
-    xxl: '5.6rem',
-    h1: '3.5rem', // 56px;
-    h2: '2.0rem', // 32px;
-    h3: '1.5rem', // 24px;
-    p: '1.0rem', // 16px;
-    sub: '0.75rem' // 12px;
+    xs: '10px', // '1rem',
+    sm: '12px', // '1.2rem',
+    md: '18px', // '1.8rem',
+    lg: '24px', // '2.4rem',
+    xl: '32px', // '3.2rem',
+    xxl: '56px' //'5.6rem'
   },
 
   easing: 'cubic-bezier(0.645, 0.045, 0.355, 1)',

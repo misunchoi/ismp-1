@@ -19,6 +19,16 @@ const mentors = {
         'J.D. UC Berkeley'
       ],
       current_job: 'Commercial Counsel and Director of Legal at Petco'
+    },
+    {
+      image: 'http://jessewoo.github.io/images/ismp/sarahong.jpg',
+      name: 'Sara Hong',
+      title: 'Director',
+      credentials: [
+        'B.A. Wellesley College - English Literature',
+        'Ph.D. Boston College - English Literature'
+      ],
+      current_job: 'Lecturer, College Writing Program, UC Berkeley'
     }
   ],
   'University of California, Los Angeles': [
@@ -40,6 +50,16 @@ const mentors = {
         'CPA'
       ],
       current_job: 'Tax Accountant at HCVT'
+    },
+    {
+      image: 'http://jessewoo.github.io/images/ismp/henrychen.jpg',
+      name: 'Henry Chen',
+      title: 'Director',
+      credentials: [
+        'B.S. Electrical Engineering & Computer Science, UC Berkeley',
+        'MBA from UT Austin'
+      ],
+      current_job: 'Program Director, IBM'
     }
   ]
   // {

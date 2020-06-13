@@ -1,17 +1,15 @@
+import LanguageList from 'components/LanguageList/LanguageList';
+import logo from 'images/ISMP_logo.png';
 import React from 'react';
-import { Menu, Button, Dropdown } from 'semantic-ui-react';
-import { Link, withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-
-import logo from '../../images/ISMP_logo.png';
-
-import LanguageList from '../../components/LanguageList/LanguageList';
+import { Link, withRouter } from 'react-router-dom';
+import { Button, Dropdown, Menu } from 'semantic-ui-react';
 
 const navLinks = [
   {
     text: 'About Us',
     i18n_key: 'about_us',
-    link: '/about',
+    link: '/about'
   },
   { text: 'Mentors', i18n_key: 'mentors', link: '/mentors' },
   { text: 'Program', i18n_key: 'program', link: '/program' },
@@ -25,7 +23,13 @@ const Nav = ({ mobile, history }) => {
 
   return (
     <>
-      <Menu.Item as={Link} name="home" position="left" to="/" style={{ paddingLeft: '0px' }}>
+      <Menu.Item
+        as={Link}
+        name="home"
+        position="left"
+        to="/"
+        style={{ paddingLeft: '0px' }}
+      >
         <img src={logo} alt="ISMP" style={{ width: '2.5em' }} />
       </Menu.Item>
       <Menu.Menu position="right">

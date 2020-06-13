@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import Section from '../../layout/Section';
+import React, { useEffect, useState } from 'react';
+import { DateInput } from 'semantic-ui-calendar-react';
 import {
   Button,
-  Input,
-  Form,
-  Select,
-  Step,
-  Container,
   Checkbox,
-  Segment
+  Container,
+  Form,
+  Input,
+  Segment,
+  Select,
+  Step
 } from 'semantic-ui-react';
 
-import { DateInput } from 'semantic-ui-calendar-react'
-
+import Section from '../../layout/Section';
 import { requests } from '../../utils/agent';
-
 import {
   appFormStep,
   genderOptions,
@@ -45,7 +43,7 @@ const DEBUG_FORM_STATE = {
   major: 'Computer Science',
   referral: 'friend',
   additional_input: 'when can I get mentored?'
-}
+};
 
 const useApplicationForm = callback => {
   let defaultState = {
@@ -68,9 +66,9 @@ const useApplicationForm = callback => {
     additional_input: '',
     other_referral: '',
     other_topic: ''
-  }
-  
-  if (DEBUG) defaultState = DEBUG_FORM_STATE
+  };
+
+  if (DEBUG) defaultState = DEBUG_FORM_STATE;
 
   // Set defaults
   const [inputs, setInputs] = useState(defaultState);
@@ -114,12 +112,14 @@ const ApplicationForm = props => {
   const signup = () => {
     const data = inputs;
     data['interest_topics'] = [];
-    topicsOptions.map(option => option.value).forEach(topic => {
-      if (data[topic]) {
-        data['interest_topics'].push(topic);
-        data[topic] = undefined;
-      }
-    });
+    topicsOptions
+      .map(option => option.value)
+      .forEach(topic => {
+        if (data[topic]) {
+          data['interest_topics'].push(topic);
+          data[topic] = undefined;
+        }
+      });
 
     if (data['other_topic']) {
       data['interest_topics'].push(data['other_topic']);
@@ -128,13 +128,13 @@ const ApplicationForm = props => {
 
     if (data['birth_date']) {
       // TODO: test that this doesn't break
-      // in theory the validation 
-      const [month, day, year] = data['birth_date'].split('-')
-      data['birth_date'] = `${year}-${month}-${day}`
+      // in theory the validation
+      const [month, day, year] = data['birth_date'].split('-');
+      data['birth_date'] = `${year}-${month}-${day}`;
     }
 
     if (data['other_referral']) {
-      data['referral'] = `${data['referral']}: ${data['other_referral']}`
+      data['referral'] = `${data['referral']}: ${data['other_referral']}`;
     }
 
     return requests.post('application/', data).then(
@@ -149,9 +149,7 @@ const ApplicationForm = props => {
     );
   };
 
-  const { inputs, handleInputChange } = useApplicationForm(
-    signup
-  );
+  const { inputs, handleInputChange } = useApplicationForm(signup);
 
   // feedback
   const { feedbacks, handleFeedbackChange } = useApplicationFormFeedback(
@@ -169,6 +167,7 @@ const ApplicationForm = props => {
       }
     },
     validateEmail: (fieldName, value) => {
+      /* eslint-disable no-control-regex*/
       const re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
 
       if (!re.test(value)) {
@@ -197,7 +196,7 @@ const ApplicationForm = props => {
       }
     },
     validateDate: (fieldName, value) => {
-      const re = /^(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])\-\d{4}$/
+      const re = /^(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])-\d{4}$/;
 
       if (!re.test(value)) {
         handleFeedbackChange(
@@ -272,10 +271,7 @@ const ApplicationForm = props => {
         'major'
       ];
     } else if (step === 3) {
-      fields = [
-        'referral', 
-        'additional_comments'
-      ];
+      fields = ['referral', 'additional_comments'];
     }
 
     let valid = true;
@@ -329,7 +325,7 @@ const ApplicationForm = props => {
     // Submit Form
     if (action === 'next' && currentStep === 3) {
       if (validateStep(currentStep)) {
-        signup().then((result) => {
+        signup().then(result => {
           if (result) {
             props.history.push('/apply-success');
           }
@@ -426,7 +422,9 @@ const ApplicationForm = props => {
                       }}
                       name="birth_date"
                       dateFormat="MM-DD-YYYY"
-                      onBlur={() => validateField('birth_date', inputs.birth_date)}
+                      onBlur={() =>
+                        validateField('birth_date', inputs.birth_date)
+                      }
                       id="form-input-control-birthday"
                       onChange={handleInputChange}
                       value={inputs.birth_date}
@@ -608,19 +606,21 @@ const ApplicationForm = props => {
                       onChange={handleInputChange}
                       value={inputs.referral}
                     />
-                    { inputs.referral == 'other' && <Form.Field
-                      control={Input}
-                      label="Please Describe"
-                      placeholder="Other"
-                      name="other_referral"
-                      type="text"
-                      onChange={handleInputChange}
-                      value={inputs.other_referral}
-                    />}
+                    {inputs.referral === 'other' && (
+                      <Form.Field
+                        control={Input}
+                        label="Please Describe"
+                        placeholder="Other"
+                        name="other_referral"
+                        type="text"
+                        onChange={handleInputChange}
+                        value={inputs.other_referral}
+                      />
+                    )}
                   </Form.Group>
                   <Form.Group grouped>
                     <label>Choose topics interested in:</label>
-                    {topicsOptions.map((topic) => {
+                    {topicsOptions.map(topic => {
                       return (
                         <Form.Field
                           label={topic.text}
@@ -631,19 +631,21 @@ const ApplicationForm = props => {
                           onChange={handleInputChange}
                           type="checkbox"
                         />
-                      )
+                      );
                     })}
                   </Form.Group>
-                  { inputs['other'] && <Form.Field
-                    id="form-input-control-other-topic"
-                    control={Input}
-                    label="Other Topic"
-                    placeholder="Other Topic"
-                    name="other_topic"
-                    type="text"
-                    onChange={handleInputChange}
-                    value={inputs.other_topic}
-                  />}
+                  {inputs['other'] && (
+                    <Form.Field
+                      id="form-input-control-other-topic"
+                      control={Input}
+                      label="Other Topic"
+                      placeholder="Other Topic"
+                      name="other_topic"
+                      type="text"
+                      onChange={handleInputChange}
+                      value={inputs.other_topic}
+                    />
+                  )}
                   <Form.TextArea
                     label="Questions / Comments"
                     placeholder="Questions / Comments"

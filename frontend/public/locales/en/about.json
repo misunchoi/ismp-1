@@ -2,13 +2,14 @@
   "title": "Who We Are",
   "mission_statement": {
     "title": "Mission Statement",
-    "blurb": "International Student Mentorship Program is a nonprofit organization with a network of volunteer mentors across the United States. We are passionate about mentoring international students through their college and graduate school experience in America, from the admissions process all the way through graduation. Our goal is to provide international students with a mentor that can guide them through each step of college, grad school, and beyond.",
+    "blurb": "International Student Mentorship Program is a nonprofit organization with a network of volunteer mentors across the United States. We are passionate about mentoring international students through their college and graduate school experience in America, from the admissions process all the way through graduation. Our goal is to provide international students with a mentor that can guide them through each step of college, grad school, and beyond."
   },
   "our_campuses": {
     "title": "Our Campuses"
   },
-  "dont_see_your_campus": {
+  "see_your_campus": {
     "title": "Don't see your campus?",
     "blurb": "You can still apply to get connected to a mentor nearby, or request mentorship at your campus!"
-  }
+  },
+  "apply_now": "Apply Now!"
 }

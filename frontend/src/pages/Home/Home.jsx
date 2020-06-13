@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import Styled from 'styled-components';
-import Subscribe from 'components/Subscribe';
-import { Link } from 'react-router-dom';
 import HeroImage from 'components/HeroImage/HeroImage';
+import Subscribe from 'components/Subscribe';
+import blogpostcontentFallbackData from 'fallback_data/blogpostcontent.json';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { Embed } from 'semantic-ui-react';
+import Styled from 'styled-components';
+
 import theme from '../../styles/theme';
 import { Blogposts } from '../../utils/agent';
-import { useTranslation } from 'react-i18next';
-import { Embed } from 'semantic-ui-react';
-import blogpostcontentFallbackData from "fallback_data/blogpostcontent.json";
 
 // TODO: Just testing things out
 const MentorContainer = Styled.div`
@@ -78,30 +79,28 @@ const Home = () => {
   const [featuredBlogs, setFeaturedBlogs] = useState([]);
 
   useEffect(() => {
-
-      const pullFeaturedBlogs = async () => {
-          try {
-              await Blogposts.getFeatured().then(results => {
-                  // TODO: use setFeaturedBlogs to update featuredBlogs from the backend data
-                  // make sure to only update if it is in the initial state, otherwise it will
-                  // cause an inifinite loop
-                  if (featuredBlogs[0].title_content !== results[0].title_content) {
-                      setFeaturedBlogs(results);
-                  } else {
-                      console.log("the featured blogposts were not changed.");
-                  }
-              })
-          } catch (error) {
-              // If the API call fails, just load blogpost
-              let featuredBlogposts = blogpostcontentFallbackData
-                  .filter(blogpostContentJson => blogpostContentJson.blogpost.is_featured);
-              setFeaturedBlogs(featuredBlogposts);
+    const pullFeaturedBlogs = async () => {
+      try {
+        await Blogposts.getFeatured().then(results => {
+          // TODO: use setFeaturedBlogs to update featuredBlogs from the backend data
+          // make sure to only update if it is in the initial state, otherwise it will
+          // cause an inifinite loop
+          if (featuredBlogs[0].title_content !== results[0].title_content) {
+            setFeaturedBlogs(results);
+          } else {
+            console.log('the featured blogposts were not changed.');
           }
-      };
-      pullFeaturedBlogs();
-  }, []);
-
-
+        });
+      } catch (error) {
+        // If the API call fails, just load blogpost
+        let featuredBlogposts = blogpostcontentFallbackData.filter(
+          blogpostContentJson => blogpostContentJson.blogpost.is_featured
+        );
+        setFeaturedBlogs(featuredBlogposts);
+      }
+    };
+    pullFeaturedBlogs();
+  }, [featuredBlogs]);
 
   return (
     <>

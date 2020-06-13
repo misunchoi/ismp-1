@@ -1,6 +1,7 @@
 import React from 'react';
-import DesktopContainer from './DesktopContainer.component';
-import MobileContainer from './MobileContainer.component';
+
+import DesktopContainer from './DesktopContainer';
+import MobileContainer from './MobileContainer';
 
 const ResponsiveContainer = ({ children }) => (
   <div>

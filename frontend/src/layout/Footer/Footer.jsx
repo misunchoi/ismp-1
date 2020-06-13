@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Container,
@@ -7,28 +8,27 @@ import {
   List,
   Segment
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 
-import logo from '../../images/ISMP_logo.png';
 import SocialMediaIconList from '../../components/SocialIconsList';
+import logo from '../../images/ISMP_logo.png';
 
 const style = {
   footerContainer: {
     margin: '0',
     padding: '3em 0em',
     width: '100%',
-    backgroundColor: '#628BF3',
+    backgroundColor: '#628BF3'
   },
   footerContentSection: {
     fontFamily: 'Poppins',
     fontSize: '24px',
-    lineHeight: '36px',
+    lineHeight: '36px'
   },
   footerLink: {
     fontFamily: 'Poppins',
     fontSize: '18px',
     lineHeight: '30px',
-    color: 'white',
+    color: 'white'
   },
   applyNowButton: {
     fontFamily: 'Poppins',
@@ -44,7 +44,7 @@ const style = {
     fontSize: '16px',
     lineHeight: '24px',
     textAlign: 'right',
-    padding: '19px',
+    padding: '19px'
   },
   languages: {
     color: 'white',
@@ -69,7 +69,7 @@ const footerContent = [
     links: [
       { text: 'Program', link: '/program' },
       { text: 'Mentors', link: '/mentors' },
-      { text: 'Blog', link: '/blog' },
+      { text: 'Blog', link: '/blog' }
     ],
     width: 3
   },
@@ -77,14 +77,14 @@ const footerContent = [
     section: 'Legal',
     links: [
       { text: 'Terms of Use', link: '/terms' },
-      { text: 'Privacy Policy', link: '/privacy' },
+      { text: 'Privacy Policy', link: '/privacy' }
     ],
     width: 3
   },
   {
     section: 'Contact',
     links: [
-      { text: 'Email Us', link: 'mailto:info@internationalmentorship.org' },
+      { text: 'Email Us', link: 'mailto:info@internationalmentorship.org' }
     ],
     width: 3
   }
@@ -93,7 +93,12 @@ const footerContent = [
 const footerLinks = linkArr => {
   return linkArr.map((linkObj, index) => {
     return (
-      <List.Item as={Link} key={`${linkObj.text}_${index}`} to={linkObj.link} style={style.footerLink}>
+      <List.Item
+        as={Link}
+        key={`${linkObj.text}_${index}`}
+        to={linkObj.link}
+        style={style.footerLink}
+      >
         {linkObj.text}
       </List.Item>
     );
@@ -104,7 +109,12 @@ const links = contentArr => {
   return contentArr.map((content, index) => {
     return (
       <Grid.Column width={content.width} key={index}>
-        <Header inverted as="h4" content={content.section} style={style.footerContentSection} />
+        <Header
+          inverted
+          as="h4"
+          content={content.section}
+          style={style.footerContentSection}
+        />
         <List link inverted>
           {footerLinks(content.links)}
         </List>
@@ -121,28 +131,32 @@ const Footer = () => {
           <Grid.Row>
             {links(footerContent)}
             <Grid.Column width={3}>
-              <Button size="massive" as="a" inverted={false} style={style.applyNowButton}>
+              <Button
+                size="massive"
+                as="a"
+                inverted={false}
+                style={style.applyNowButton}
+              >
                 APPLY NOW
               </Button>
-              <SocialMediaIconList/>
+              <SocialMediaIconList />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <Grid.Column floated="left" width={5}>
               <List horizontal inverted size="small">
-                <List.Item inverted>
+                <List.Item>
                   <img src={logo} alt="ISMP" style={{ width: '53px' }} />
                 </List.Item>
-                <List.Item inverted style={style.languages}>
-                  EN
-                </List.Item>
-                <List.Item inverted style={style.languages}>
-                  中文
-                </List.Item>
+                <List.Item style={style.languages}>EN</List.Item>
+                <List.Item style={style.languages}>中文</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column floated="right" width={10}>
-              <div style={style.rights}>© 2020 International Student Mentorship Program. All rights reserved.</div>
+              <div style={style.rights}>
+                © 2020 International Student Mentorship Program. All rights
+                reserved.
+              </div>
             </Grid.Column>
           </Grid.Row>
         </Grid>
