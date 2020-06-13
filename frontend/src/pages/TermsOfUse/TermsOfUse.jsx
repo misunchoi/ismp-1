@@ -12,7 +12,7 @@ const StyledBodyText = Styled.p`
     line-height: 30px;
 `;
 
-const Terms = () => {
+const TermsOfUse = () => {
   return (
     <PageContainer>
       <Grid doubling stackable>
@@ -205,4 +205,4 @@ const Terms = () => {
   );
 };
 
-export default Terms;
+export default TermsOfUse;

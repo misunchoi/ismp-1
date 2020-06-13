@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
-
-import FontFaces from './fonts';
-import theme from './theme';
+import FontFaces from 'styles/fonts';
+import media from 'styles/media';
+import theme from 'styles/theme';
 
 const { colors, fontSizes, fonts } = theme;
 
@@ -51,6 +51,11 @@ const GlobalStyle = createGlobalStyle`
   h1 {
     font-family: ${fonts.Poppins};
     font-size: ${fontSizes.xxl};
+    ${media.phone`font-size: ${fontSizes.xl};`}
+  }
+
+  h1.serif {
+    font-family: ${fonts.PTSerif};
   }
 
   h1.serif {
@@ -61,6 +66,11 @@ const GlobalStyle = createGlobalStyle`
   h2 {
     font-family: ${fonts.Poppins};
     font-size: ${fontSizes.xl};
+    ${media.phone`font-size: ${fontSizes.lg};`}
+  }
+
+  h2.serif {
+    font-family: ${fonts.PTSerif};
   }
 
   h2.serif {
@@ -71,6 +81,11 @@ const GlobalStyle = createGlobalStyle`
   h3 {
     font-family: ${fonts.Poppins};
     font-size: ${fontSizes.lg};
+    ${media.phone`font-size: ${fontSizes.md};`}
+  }
+
+  h3.serif {
+    font-family: ${fonts.PTSerif};
   }
 
   h3.serif {

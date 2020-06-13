@@ -1,9 +1,10 @@
 import Header from 'layout/Header';
 import React from 'react';
 import Styled from 'styled-components';
+import mixins from 'styles/mixins';
 
 const SectionHeaderContainer = Styled.div`
-  margin-bottom: 24px;
+  ${mixins.marginBottomSm}
 `;
 
 const SectionHeader = ({ title, center }) => (

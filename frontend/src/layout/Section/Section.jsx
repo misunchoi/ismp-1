@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import mixins from 'styles/mixins';
 
 const Section = styled.section`
-  padding-bottom: 72px;
+  ${mixins.marginBottomLg}
 `;
 
 export default Section;

@@ -4,9 +4,20 @@ import media from './media';
 import theme from './theme';
 
 const { colors } = theme;
-// const { colors, fontSizes, fonts } = theme;
 
 const mixins = {
+  marginBottomSm: css`
+    margin-bottom: 24px;
+  `,
+
+  marginBottomMd: css`
+    margin-bottom: 32px;
+  `,
+
+  marginBottomLg: css`
+    margin-bottom: 64px;
+  `,
+
   flexCenter: css`
     display: flex;
     justify-content: center;

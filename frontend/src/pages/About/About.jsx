@@ -21,9 +21,9 @@ const About = () => {
 
 const MissionStatementSection = ({ t }) => (
   <Section>
+    <SectionHeader title={t('mission_statement.title')} />
     <Grid doubling stackable columns={2}>
       <Grid.Column>
-        <SectionHeader title={t('mission_statement.title')} />
         <p>{t('mission_statement.blurb')}</p>
       </Grid.Column>
       <Grid.Column>
@@ -40,8 +40,12 @@ const MissionStatementSection = ({ t }) => (
 const SeeYourCampusSection = ({ t }) => (
   <Section>
     <SectionHeader title={t('see_your_campus.title')} center />
-    <span>{t('see_your_campus.blurb')}</span>{' '}
-    <Link to="">{t('apply_now')}</Link>
+    <Grid doubling stackable columns={1}>
+      <Grid.Column>
+        <span>{t('see_your_campus.blurb')}</span>{' '}
+        <Link to="">{t('apply_now')}</Link>
+      </Grid.Column>
+    </Grid>
   </Section>
 );
 
