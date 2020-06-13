@@ -1,10 +1,10 @@
-import Link from 'components/Link';
 import PageContainer from 'layout/PageContainer';
 import PageHeader from 'layout/PageHeader';
 import Section from 'layout/Section';
 import SectionHeader from 'layout/SectionHeader';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { Image } from 'semantic-ui-react';
 import { Grid } from 'semantic-ui-react';
 

@@ -5,18 +5,18 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Embed } from 'semantic-ui-react';
-import Styled from 'styled-components';
+import styled from 'styled-components';
 
 import theme from '../../styles/theme';
 import { Blogposts } from '../../utils/agent';
 
 // TODO: Just testing things out
-const MentorContainer = Styled.div`
+const MentorContainer = styled.div`
   padding: 1.5em 17.5%;
-  background-color: ${theme.colors.darkYellow}
+  background-color: ${theme.colors.darkYellow};
 `;
 
-const MentorTitle = Styled.h3`
+const MentorTitle = styled.h3`
   color: ${theme.colors.white};
   font-family: ${theme.fonts.PTSerif};
   font-style: normal;
@@ -24,7 +24,7 @@ const MentorTitle = Styled.h3`
   font-size: ${theme.fontSizes.h3};
 `;
 
-const DuoContainer = Styled.div`
+const DuoContainer = styled.div`
   display: grid;
   grid-template-columns: 49% 49%;
   grid-gap: 2%;
@@ -33,14 +33,14 @@ const DuoContainer = Styled.div`
   padding: 0 13.5%;
 `;
 
-const SubTitle = Styled.h3`
+const SubTitle = styled.h3`
   font-family: ${theme.fonts.PTSerif};
   font-style: normal;
   font-weight: bold;
   font-size: ${theme.fontSizes.h2};
 `;
 
-const StyledParagraph = Styled.p`
+const StyledParagraph = styled.p`
   font-family: ${theme.fonts.Poppins};
   font-style: normal;
   font-weight: normal;
@@ -48,28 +48,28 @@ const StyledParagraph = Styled.p`
   line-height: 2rem;
 `;
 
-const ItalizedParagraph = Styled(StyledParagraph)`
+const ItalizedParagraph = styled(StyledParagraph)`
   font-style: italic;
 `;
 
-const VideoPlaceholder = Styled.div`
+const VideoPlaceholder = styled.div`
   background-color: black;
   width: 50%;
 `;
 
-const TitleContainer = Styled.div`
+const TitleContainer = styled.div`
   display: flex;
   padding: 0 13.5%;
   align-items: baseline;
 `;
 
-const StyledLink = Styled(Link)`
-    font-family: ${theme.fonts.Poppins};
-    font-style: normal;
-    font-weight: normal;
-    font-size: ${theme.fontSizes.sm};
-    color: ${theme.colors.purple};
-    padding: 0 2rem; 
+const StyledLink = styled(Link)`
+  font-family: ${theme.fonts.Poppins};
+  font-style: normal;
+  font-weight: normal;
+  font-size: ${theme.fontSizes.sm};
+  color: ${theme.colors.purple};
+  padding: 0 2rem;
 `;
 
 const Home = () => {

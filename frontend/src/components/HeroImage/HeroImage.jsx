@@ -1,29 +1,30 @@
 import React from 'react';
-import welcome from '../../images/welcome.jpg';
-import Styled from 'styled-components';
-import { Button } from 'semantic-ui-react';
-import theme from '../../styles/theme';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { Button } from 'semantic-ui-react';
+import styled from 'styled-components';
 
-const Container = Styled.div`
+import welcome from '../../images/welcome.jpg';
+import theme from '../../styles/theme';
+
+const Container = styled.div`
   position: relative;
   display: inline-block;
   text-align: center;
 `;
 
-const StyledImage = Styled.img`
+const StyledImage = styled.img`
   display: block;
   width: 100%;
   object-fit: cover;
 `;
 
-const StyledImageText = Styled.div`
+const StyledImageText = styled.div`
   position: absolute;
   width: 100%;
   top: 50%;
   left: 50%;
-  transform: translate( -50%, -50% );
+  transform: translate(-50%, -50%);
   text-align: center;
   color: white;
   font-weight: bold;
@@ -31,22 +32,22 @@ const StyledImageText = Styled.div`
   padding: 0 13.5%;
 `;
 
-const StyledTitle = Styled.h1`
+const StyledTitle = styled.h1`
   font-family: ${theme.fonts.PTSerif};
   font-style: normal;
   font-weight: bold;
   font-size: ${theme.fontSizes.h1};
 `;
 
-const StyledSubTitle = Styled.h3`
+const StyledSubTitle = styled.h3`
   font-family: ${theme.fonts.Poppins};
   font-style: normal;
   font-weight: bold;
   font-size: ${theme.fontSizes.h3};
 `;
 
-const StyledButton = Styled(Button)`
-  &&&{
+const StyledButton = styled(Button)`
+  &&& {
     font-family: ${theme.fonts.Poppins};
     font-style: normal;
     font-weight: normal;
@@ -57,8 +58,8 @@ const StyledButton = Styled(Button)`
   }
 `;
 
-const ApplyButton = Styled(StyledButton)`
-  &&&{
+const ApplyButton = styled(StyledButton)`
+  &&& {
     background-color: ${theme.colors.purple};
     border: 1px solid ${theme.colors.purple};
     color: white;
@@ -66,8 +67,8 @@ const ApplyButton = Styled(StyledButton)`
   }
 `;
 
-const ExploreButton = Styled(StyledButton)`
-  &&&{
+const ExploreButton = styled(StyledButton)`
+  &&& {
     background-color: transparent;
     border: 1px solid ${theme.colors.purple};
     color: ${theme.colors.purple};
@@ -75,7 +76,7 @@ const ExploreButton = Styled(StyledButton)`
   }
 `;
 
-const ButtonContainer = Styled.div`
+const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   width: 60%;

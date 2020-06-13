@@ -1,9 +1,10 @@
 import React from 'react';
-import Styled from 'styled-components';
-import theme from '../../styles/theme';
-import { Image, Grid } from 'semantic-ui-react';
+import { Grid, Image } from 'semantic-ui-react';
+import styled from 'styled-components';
 
-const StyledImage = Styled(Image)`
+import theme from '../../styles/theme';
+
+const StyledImage = styled(Image)`
   width: 240px;
   height: 240px;
   background-repeat: no-repeat;
@@ -11,23 +12,23 @@ const StyledImage = Styled(Image)`
   border-radius: 50%;
   transition: transform 0.5s;
   :hover {
-      transform: translateY(-2px);
+    transform: translateY(-2px);
   }
 `;
 
-const StyledTitle = Styled.div`
-    position: relative;
-    z-index: 1;
-    font-size: ${theme.fontSizes.p};
-    display: inline-block; 
-    padding-top: 24px;
-    bottom: 0%;
-    font-family: ${theme.fonts.Poppins};
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 30px;
-    text-align: center;
+const StyledTitle = styled.div`
+  position: relative;
+  z-index: 1;
+  font-size: ${theme.fontSizes.p};
+  display: inline-block;
+  padding-top: 24px;
+  bottom: 0%;
+  font-family: ${theme.fonts.Poppins};
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
 `;
 
 const CollegeCard = ({ name, imgUrl, description }) => {

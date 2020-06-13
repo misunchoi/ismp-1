@@ -1,10 +1,8 @@
 import React from 'react';
-import Styled from 'styled-components';
-import media from 'styles/media';
+import styled from 'styled-components';
 
-const HeaderContainer = Styled.div`
+const HeaderContainer = styled.div`
   text-align: ${props => (props.center ? 'center' : 'left')};
-  ${media.phone`text-align: center;`}
 `;
 
 // Ugly, but hey it keeps everything else neat 🤷🏻‍♂️

@@ -1,7 +1,7 @@
-import Styled from 'styled-components';
+import styled from 'styled-components';
 import media from 'styles/media';
 
-const PageContainer = Styled.div`
+const PageContainer = styled.div`
   padding: 64px 196px;
   ${media.desktop`padding: 64px 132px;`}
   ${media.laptop`padding: 64px 108px;`}

@@ -4,7 +4,7 @@ import Section from 'layout/Section';
 import SectionHeader from 'layout/SectionHeader';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Styled from 'styled-components';
+import styled from 'styled-components';
 import mixins from 'styles/mixins';
 
 const PrivacyPolicy = () => {
@@ -21,7 +21,7 @@ const PrivacyPolicy = () => {
   );
 };
 
-const LastUpdatedDate = Styled.div`
+const LastUpdatedDate = styled.div`
   font-style: italic;
   ${mixins.marginBottomSm}
 `;

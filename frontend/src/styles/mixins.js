@@ -6,6 +6,10 @@ import theme from './theme';
 const { colors } = theme;
 
 const mixins = {
+  marginBottomXs: css`
+    margin-bottom: 12px;
+  `,
+
   marginBottomSm: css`
     margin-bottom: 24px;
   `,

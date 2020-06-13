@@ -1,15 +1,15 @@
 import PageContainer from 'layout/PageContainer';
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
-import Styled from 'styled-components';
+import styled from 'styled-components';
 import theme from 'styles/theme';
 
-const StyledBodyText = Styled.p`
-    font-family: ${theme.fonts.Poppins};
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 30px;
+const StyledBodyText = styled.p`
+  font-family: ${theme.fonts.Poppins};
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 30px;
 `;
 
 const TermsOfUse = () => {

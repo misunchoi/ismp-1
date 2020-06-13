@@ -1,6 +1,6 @@
 import Header from 'layout/Header';
 import React from 'react';
-import Styled from 'styled-components';
+import styled from 'styled-components';
 import mixins from 'styles/mixins';
 
 const PageHeader = ({ title, description }) => (
@@ -12,12 +12,12 @@ const PageHeader = ({ title, description }) => (
   </Container>
 );
 
-const Container = Styled.div`
+const Container = styled.div`
   text-align: center; // For description
   ${mixins.marginBottomLg}
 `;
 
-const Description = Styled.div`
+const Description = styled.div`
   margin-top: 32px;
 `;
 

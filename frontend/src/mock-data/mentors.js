@@ -7,7 +7,12 @@ const mentors = {
       image: 'http://jessewoo.github.io/images/ismp/jessicafu.jpg',
       name: 'Jessica Fu',
       title: '',
-      credentials: ['A.B. Harvard College, Economics, cum laude'],
+      credentials: [
+        {
+          title: 'A.B. Economics, cum laude',
+          organization: 'Harvard College'
+        }
+      ],
       current_job: 'POS Supply Chain Planner at Red Bull'
     },
     {
@@ -15,8 +20,14 @@ const mentors = {
       name: 'Ken Hsu',
       title: '',
       credentials: [
-        'B.A. Political Science and Film, UC Berkeley',
-        'J.D. UC Berkeley'
+        {
+          title: 'B.A. Political Science and Film',
+          organization: 'UC Berkeley'
+        },
+        {
+          title: 'J.D.',
+          organization: 'UC Berkeley'
+        }
       ],
       current_job: 'Commercial Counsel and Director of Legal at Petco'
     },
@@ -25,8 +36,14 @@ const mentors = {
       name: 'Sara Hong',
       title: 'Director',
       credentials: [
-        'B.A. Wellesley College - English Literature',
-        'Ph.D. Boston College - English Literature'
+        {
+          title: 'Ph.D. English Literature',
+          organization: 'Boston College'
+        },
+        {
+          title: 'B.A. - English Literature',
+          organization: 'Wellesley College'
+        }
       ],
       current_job: 'Lecturer, College Writing Program, UC Berkeley'
     }
@@ -36,7 +53,16 @@ const mentors = {
       image: 'http://jessewoo.github.io/images/ismp/jacobchang.jpg',
       name: 'Jacob Chang',
       title: 'Secretary',
-      credentials: ['B.S. Bioengineering, UC Berkeley', 'J.D. UC Davis'],
+      credentials: [
+        {
+          title: 'B.S. Bioengineering',
+          organization: 'UC Berkeley'
+        },
+        {
+          title: 'J.D.',
+          organization: 'UC Davis'
+        }
+      ],
       current_job: 'Associate General Counsel at TechSoup Global'
     },
     {
@@ -44,10 +70,22 @@ const mentors = {
       name: 'James Nam',
       title: 'Treasurer',
       credentials: [
-        'B.A. Economics, UC Berkeley',
-        'B.S. Accounting, San Francisco State University',
-        'MBT USC',
-        'CPA'
+        {
+          title: 'B.A. Economics',
+          organization: 'UC Berkeley'
+        },
+        {
+          title: 'B.S. Accounting',
+          organization: 'San Francisco State University'
+        },
+        {
+          title: 'MBT',
+          organization: 'USC'
+        },
+        {
+          title: 'CPA',
+          organization: ''
+        }
       ],
       current_job: 'Tax Accountant at HCVT'
     },
@@ -56,8 +94,14 @@ const mentors = {
       name: 'Henry Chen',
       title: 'Director',
       credentials: [
-        'B.S. Electrical Engineering & Computer Science, UC Berkeley',
-        'MBA from UT Austin'
+        {
+          title: 'B.S. Electrical Engineering & Computer Science',
+          organization: 'UC Berkeley'
+        },
+        {
+          title: 'MBA',
+          organization: 'UT Austin'
+        }
       ],
       current_job: 'Program Director, IBM'
     }

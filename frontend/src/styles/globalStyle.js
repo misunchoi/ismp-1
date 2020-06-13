@@ -110,6 +110,15 @@ const GlobalStyle = createGlobalStyle`
   img:not([alt]) {
     filter: blur(5px);
   }
+
+  a {
+    color: ${colors.purple};
+    font-weight: 500;
+  }
+  a:hover {
+    color: ${colors.purple};
+    text-decoration-line: underline;
+  }
 `;
 
 export default GlobalStyle;

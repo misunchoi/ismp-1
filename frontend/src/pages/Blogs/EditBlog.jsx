@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import { Input } from 'semantic-ui-react';
-import Styled from 'styled-components';
 import { Editor } from '@tinymce/tinymce-react';
 import parse from 'html-react-parser';
+import React, { Component } from 'react';
+import { Input } from 'semantic-ui-react';
+import styled from 'styled-components';
 import { requests } from 'utils/agent';
 
 import EditBlogModal from '../../components/EditBlog/EditBlogModal';
 import { EDITOR_API_KEY, EDITOR_INIT } from '../../utils/editorConstants';
 
 // Styles
-const Container = Styled.div`
+const Container = styled.div`
   margin: 0 10%;
 `;
 
-const BlogContainer = Styled.div`
+const BlogContainer = styled.div`
   margin: 5% 0;
 `;
 
-const HeaderContainer = Styled.div`
+const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -25,37 +25,37 @@ const HeaderContainer = Styled.div`
   margin: 10px 0;
 `;
 
-const Heading = Styled.p`
+const Heading = styled.p`
   font-size: ${props => props.theme.fontSizes.h1};
   font-family: ${props => props.theme.fonts.Poppins};
   font-weight: bold;
   margin: 0;
 `;
 
-const Category = Styled(Heading)`
+const Category = styled(Heading)`
   font-size: ${props => props.theme.fontSizes.h2};
 `;
 
-const ActionButtonContainer = Styled.div`
+const ActionButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
 `;
 
-const InputContainer = Styled.div`
+const InputContainer = styled.div`
   margin: 10px 0;
 `;
 
-const TitleInput = Styled(Input)`
+const TitleInput = styled(Input)`
   width: 100%;
   font-size: ${props => props.theme.fontSizes.h2};
 `;
 
-const TagsInput = Styled(Input)`
+const TagsInput = styled(Input)`
   width: 100%;
   font-size: ${props => props.theme.fontSizes.p};
 `;
 
-const ActionButton = Styled.div`
+const ActionButton = styled.div`
   display: flex;
   background-color: ${props => props.theme.colors.lightPurple};
   font-size: ${props => props.theme.fontSizes.p};
@@ -76,27 +76,26 @@ const ActionButton = Styled.div`
   }
 `;
 
-const UploadButtonText = Styled.p`
+const UploadButtonText = styled.p`
   color: ${props => props.theme.colors.white};
   font-size ${props => props.theme.fontSizes.p};
   font-weight: bold;
   font-family: ${props => props.theme.fonts.Poppins};
 `;
 
-const PublishButtonContainer = Styled.div`
+const PublishButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   font-family: ${props => props.theme.fonts.Poppins};
-
 `;
 
-const PreviewBlogTitle = Styled.p`
+const PreviewBlogTitle = styled.p`
   font-size: ${props => props.theme.fontSizes.h1};
   font-weight: bold;
   margin-bottom: 16px;
 `;
 
-const Tag = Styled.p`
+const Tag = styled.p`
   font-size: ${props => props.theme.fontSizes.p};
   font-family: ${props => props.theme.fonts.Poppins};
 `;

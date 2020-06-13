@@ -1,12 +1,12 @@
+import fallbackSchoolData from 'fallback_data/school.json';
 import React, { useEffect, useState } from 'react';
 import { Grid } from 'semantic-ui-react';
-import Styled from 'styled-components';
+import styled from 'styled-components';
 
 import { schools } from '../../utils/agent.js';
 import CollegeCard from './CollegeCard';
-import fallbackSchoolData from 'fallback_data/school.json';
 
-const StyledHeader = Styled.h3`
+const StyledHeader = styled.h3`
   grid-column-end: -1;
   grid-column-start: 1;
   text-align: left;

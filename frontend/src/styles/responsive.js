@@ -6,8 +6,8 @@ import sizes from 'styles/sizes';
 export const breakpoints = Object.keys(sizes).reduce((accumulator, label) => {
   // use em in breakpoints to work properly cross-browser and support users
   // changing their browsers font-size: https://zellwk.com/blog/media-query-units/
-  const emSize = sizes[label] / 10; // 1em = 10px
-  accumulator[label] = `(max-width: ${emSize}em)`;
+  const emSize = sizes[label] / 16; // 10; // 1em = 10px
+  accumulator[label] = `(max-width: ${emSize}em)`; // TODO: Need min-width on these for multiple to work together
   return accumulator;
 }, {});
 

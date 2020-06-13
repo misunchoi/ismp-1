@@ -5,9 +5,9 @@ import Section from 'layout/Section';
 import programData from 'mock-data/program';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Styled from 'styled-components';
+import styled from 'styled-components';
 
-const ProgramContainer = Styled.div`
+const ProgramContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
