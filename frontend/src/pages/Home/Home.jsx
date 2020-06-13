@@ -113,6 +113,7 @@ const Home = () => {
         </div>
         <Embed
           active={true}
+          autoplay={false}
           icon="arrow circle down"
           id="Pcmwvi212jE"
           placeholder="/images/image-16by9.png"
