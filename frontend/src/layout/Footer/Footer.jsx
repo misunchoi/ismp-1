@@ -94,9 +94,8 @@ const footerLinks = linkArr => {
   return linkArr.map((linkObj, index) => {
     return (
       <List.Item
-        as={Link}
         key={`${linkObj.text}_${index}`}
-        to={linkObj.link}
+        href={linkObj.link}
         style={style.footerLink}
       >
         {linkObj.text}
