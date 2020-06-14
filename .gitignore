@@ -4,6 +4,7 @@ node_modules
 venv
 data
 .idea
+backend/.env
 backend/media
 backend/static
 frontend/yarn-error.log
