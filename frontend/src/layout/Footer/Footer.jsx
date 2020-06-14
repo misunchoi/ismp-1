@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Button, Grid, Header, List, Segment } from 'semantic-ui-react';
 import SocialMediaIconList from '../../components/SocialIconsList';
 import logo from '../../images/ISMP_logo.png';
@@ -70,7 +69,8 @@ const footerContent = [
     section: 'Legal',
     links: [
       { text: 'Terms of Use', link: '/terms' },
-      { text: 'Privacy Policy', link: '/privacy' }
+      { text: 'Privacy Policy', link: '/privacy' },
+      { text: 'Code of Conduct', link: '/code-of-conduct' }
     ],
     width: 3
   },

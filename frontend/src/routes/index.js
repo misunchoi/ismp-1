@@ -15,6 +15,7 @@ import PrivacyPolicy from 'pages/PrivacyPolicy';
 import Program from 'pages/Program';
 import Stories from 'pages/Stories/Stories';
 import TermsOfUse from 'pages/TermsOfUse';
+import CodeOfConduct from 'pages/CodeOfConduct';
 
 export const HOME = Home;
 export const EDIT_BLOG = EditBlog;
@@ -31,6 +32,7 @@ export const BLOGTYPE = BlogType;
 export const BLOGPOST = Blogpost;
 export const PRIVACY = PrivacyPolicy;
 export const TERMS = TermsOfUse;
+export const CODE_OF_CONDUCT = CodeOfConduct;
 export const LEADERSHIP = Leadership;
 export const LOGIN = Login;
 export const REGISTER = Register;
