@@ -1,43 +1,29 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import mixins from 'styles/mixins';
 
-export const Card = styled.div`
-  flex: 0 48%;
-  padding: 20px 10px;
+import { Image as SemanticImage } from 'semantic-ui-react';
+
+export const Container = styled.div`
+  ${mixins.containerFlexStartColumn}
+  ${mixins.boxShadow}
+
   border: 1px solid ${theme.colors.darkGrey};
-  margin: 10px 5px;
-  border-radius: 10px;
-  background-color: ${theme.colors.lightGrey};
-  min-height: 230px;
+  border-radius: 5px;
+  overflow: hidden;
+
+  // Full card height
+  height: 100%;
 `;
 
-export const Program = styled.div`
-  display: flex;
+export const Image = styled(SemanticImage)`
+  ${mixins.marginBottomSm}
 `;
 
-export const IconCont = styled.div`
-  width: 10%;
+export const Description = styled.div`
+  ${mixins.containerPaddingSm}
 `;
 
-export const IconImg = styled.img`
-  width: 100%;
-  padding: 2px;
-`;
-
-export const ProgramDescription = styled.div`
-  width: 90%;
-  padding: 0 25px 10px 25px;
-`;
-
-export const Title = styled.h3`
-  font-size: ${theme.fontSizes.md};
-`;
-
-export const Separator = styled.hr`
-  border-color: ${theme.colors.lightGrey};
-`;
-
-export const Blurb = styled.p`
-  font-size: ${theme.fontSizes.sm};
-  margin-top: 10px;
+export const Details = styled.p`
+  margin-top: 12px;
 `;

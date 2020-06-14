@@ -6,6 +6,16 @@ import theme from './theme';
 const { colors } = theme;
 
 const mixins = {
+  containerFlexStartColumn: css`
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+  `,
+
+  containerPaddingSm: css`
+    padding: 24px;
+  `,
+
   marginBottomXs: css`
     margin-bottom: 12px;
   `,
@@ -114,12 +124,12 @@ const mixins = {
   `,
 
   boxShadow: css`
-    box-shadow: 0 10px 30px -15px ${colors.shadowNavy};
+    box-shadow: 0 10px 30px -15px ${colors.darkGrey};
     transition: ${theme.transition};
 
     &:hover,
     &:focus {
-      box-shadow: 0 20px 30px -15px ${colors.shadowNavy};
+      box-shadow: 0 20px 30px -15px ${colors.darkGrey};
     }
   `
 };

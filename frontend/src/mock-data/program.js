@@ -1,45 +1,55 @@
-const programInfo = [
+export const programInstructions = [
   {
-    iconImage: 'https://jessewoo.github.io/images/ismp/ISMP_logo.png',
-    title: 'English Training',
-    blurb:
-      'Who said learning English was easy? Grow in confidence as you gain new English skills. Your mentor will help you handle American slang, interact with your classmates and professors, and improve your listening and communication skills.'
+    icon: 'wordpress forms',
+    title: 'Apply',
+    blurbHtml:
+      '<p><b>Submit your application</b> <a href="/application">here</a>! After you apply, you will receive an email on the times and dates for the orientation.</p>'
   },
   {
-    iconImage: 'https://jessewoo.github.io/images/ismp/ISMP_logo.png',
-    title: 'Time Management',
-    blurb:
-      'Ever feel like you just don’t have enough time to do what you need to do? We will provide concrete advice, tips, and help so that you can maximize your time to do what you need to do.'
+    icon: 'group',
+    title: 'Meet and Greet',
+    blurbHtml:
+      '<p><b>Attend the orientation</b> If you did not get an email within a week of applying, please <a href="mailto:info@internationalmentorship.org">contact us</a>! </p>'
   },
   {
-    iconImage: 'https://jessewoo.github.io/images/ismp/ISMP_logo.png',
-    title: 'Life Skills',
-    blurb:
-      'Who said learning English was easy? Grow in confidence as you gain new English skills. Your mentor will help you handle American slang, interact with your classmates and professors, and improve your listening and communication skills.'
+    icon: 'calendar alternate outline',
+    title: '6 Weeks',
+    blurbHtml:
+      '<p><b>Meet with your mentor</b> once a week for 6 weeks, in person or online.</p>'
   },
   {
-    iconImage: 'https://jessewoo.github.io/images/ismp/ISMP_logo.png',
-    title: 'Healthy Living',
-    blurb:
-      'Whether it’s adjusting to life in America or dealing with stress, we know it’s a challenge to maintain a healthy mindset. You’ll learn practical ways to maintain a healthy lifestyle while balancing the busy demands of student life.'
-  },
-  {
-    iconImage: 'https://jessewoo.github.io/images/ismp/ISMP_logo.png',
-    title: 'Living in America',
-    blurb:
-      'Living here for the first time can be exciting. And confusing. We’ll offer guidance on how to best navigate life here. Whether it’s how to order food or how to interact with Americans, we’ll help you adjust to life in a new environment.'
-  },
-  {
-    iconImage: 'https://jessewoo.github.io/images/ismp/ISMP_logo.png',
-    title: 'Study Tips',
-    blurb: 'Learn some smart tips on how to study better and more efficiently!'
-  },
-  {
-    iconImage: 'https://jessewoo.github.io/images/ismp/ISMP_logo.png',
-    title: 'Hobbies & Sports',
-    blurb:
-      'Learn new sports, pick up a few new hobbies, and gain new interests!'
+    icon: 'thumbs up outline',
+    title: 'You Decide',
+    blurbHtml:
+      '<p><b>After 6 weeks</b> you and your mentor can decide how frequently you want to meet. You can also decide to stop meeting as well.</p>'
   }
 ];
 
-export default programInfo;
+export const programDetails = [
+  {
+    headerImage: 'https://jessewoo.github.io/images/ismp/program/program.jpg',
+    title: 'Transitioning to America',
+    blurb:
+      'We will cover topics like safety tips, American culture, and advice for making new friends to help make your transition to America go as smoothly as possible!'
+  },
+  {
+    headerImage: 'https://jessewoo.github.io/images/ismp/program/writing.jpg',
+    title: 'English Training: Writing',
+    blurb:
+      'English is difficult to master, especially in the university setting. We will cover basic and advance English writing techniques such as essay organization, professional email writing, and common grammar mistakes to help you succeed in your classes and research!'
+  },
+  {
+    headerImage:
+      'https://jessewoo.github.io/images/ismp/program/gradschool.jpg',
+    title: 'How to Succeed in Grad School',
+    blurb:
+      'Grad students face different expectations and challenges than undergraduates. Learn how to manage your time, interact with lab mates and professors, and other tips to write effectively and find a job after graduation.'
+  },
+  {
+    headerImage:
+      'https://jessewoo.github.io/images/ismp/program/uscolleges.jpg',
+    title: 'Applying to US Colleges',
+    blurb:
+      'We will break down the admissions process and all the different factors to keep in mind as you prepare to study abroad in the US'
+  }
+];

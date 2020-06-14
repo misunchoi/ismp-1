@@ -138,9 +138,7 @@ const Home = () => {
 
       <ul>
         {featuredBlogs.map((blog, index) => (
-          <li key={index}>
-            Title: {blog.title_content}
-          </li>
+          <li key={index}>Title: {blog.title_content}</li>
         ))}
       </ul>
       <Subscribe />
