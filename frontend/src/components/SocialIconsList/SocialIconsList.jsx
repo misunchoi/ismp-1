@@ -18,14 +18,17 @@ const socialMediaList = [
 ];
 
 const HeaderContainer = styled.div`
-  margin-left: 15px;
-  margin-top: 15px;
+  margin-top: 16px;
+  margin-right: 8px;
+  :last-child {
+    margin-right: 0px;
+  }
 `;
 
-const SocialIconList = ({ isHeader }) => {
+const SocialIconList = ({ isHeader, alignItems }) => {
   const socialMediaIconList = socialMediaList.map((social, index) => {
     return (
-      <HeaderContainer key={social.icon} >
+      <HeaderContainer key={`${social.icon}_${index}`}>
         <a href={social.url} target="_blank" rel="noopener noreferrer">
           <Button
             className={`ui ${social.icon} icon button`}

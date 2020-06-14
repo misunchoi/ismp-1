@@ -1,16 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Button,
-  Container,
-  Grid,
-  Header,
-  List,
-  Segment
-} from 'semantic-ui-react';
-
+import { Button, Grid, Header, List, Segment } from 'semantic-ui-react';
 import SocialMediaIconList from '../../components/SocialIconsList';
 import logo from '../../images/ISMP_logo.png';
+import PageContainer from 'layout/PageContainer';
 
 const style = {
   footerContainer: {
@@ -125,11 +118,11 @@ const links = contentArr => {
 const Footer = () => {
   return (
     <Segment vertical style={style.footerContainer}>
-      <Container>
-        <Grid inverted stackable textAlign="left">
+      <PageContainer>
+        <Grid doubling stackable>
           <Grid.Row>
             {links(footerContent)}
-            <Grid.Column width={3}>
+            <Grid.Column floated="right" width={3}>
               <Button
                 size="massive"
                 as="a"
@@ -141,9 +134,10 @@ const Footer = () => {
               <SocialMediaIconList />
             </Grid.Column>
           </Grid.Row>
+          <Grid.Row></Grid.Row>
           <Grid.Row>
             <Grid.Column floated="left" width={5}>
-              <List horizontal inverted size="small">
+              <List horizontal size="small">
                 <List.Item>
                   <img src={logo} alt="ISMP" style={{ width: '53px' }} />
                 </List.Item>
@@ -159,7 +153,7 @@ const Footer = () => {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </Container>
+      </PageContainer>
     </Segment>
   );
 };
