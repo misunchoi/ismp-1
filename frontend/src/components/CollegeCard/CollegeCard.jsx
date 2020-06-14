@@ -1,47 +1,26 @@
+import Header from 'layout/Header';
 import React from 'react';
-import { Grid, Image } from 'semantic-ui-react';
+import { Image as SemanticImage } from 'semantic-ui-react';
 import styled from 'styled-components';
+import mixins from 'styles/mixins';
 
-import theme from '../../styles/theme';
+const CollegeCard = ({ college }) => {
+  const { name, abbr, imageUrl } = college;
 
-const StyledImage = styled(Image)`
-  width: 240px;
-  height: 240px;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  border-radius: 50%;
-  transition: transform 0.5s;
-  :hover {
-    transform: translateY(-2px);
-  }
-`;
-
-const StyledTitle = styled.div`
-  position: relative;
-  z-index: 1;
-  font-size: ${theme.fontSizes.p};
-  display: inline-block;
-  padding-top: 24px;
-  bottom: 0%;
-  font-family: ${theme.fonts.Poppins};
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 30px;
-  text-align: center;
-`;
-
-const CollegeCard = ({ name, imgUrl, description }) => {
   return (
-    <Grid textAlign="center" doubling stackable>
-      <Grid.Row computer={2} mobile={16} tablet={2}>
-        <StyledImage src={imgUrl} alt={description} />
-      </Grid.Row>
-      <Grid.Row computer={2} mobile={16} tablet={2}>
-        <StyledTitle>{!name ? 'not available' : name}</StyledTitle>
-      </Grid.Row>
-    </Grid>
+    <Container>
+      <Image alt={name + abbr + ' campus'} rounded src={imageUrl} />
+      <Header title={name} h3 sans center />
+    </Container>
   );
 };
+
+const Container = styled.div`
+  ${mixins.containerFlexStartColumn}
+`;
+
+const Image = styled(SemanticImage)`
+  ${mixins.marginBottomSm}
+`;
 
 export default CollegeCard;

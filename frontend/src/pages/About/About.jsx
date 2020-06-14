@@ -8,12 +8,16 @@ import { Link } from 'react-router-dom';
 import { Image } from 'semantic-ui-react';
 import { Grid } from 'semantic-ui-react';
 
+import colleges from 'mock-data/colleges';
+import CollegeCard from 'components/CollegeCard/CollegeCard';
+
 const About = () => {
   const { t } = useTranslation('about');
   return (
     <PageContainer>
       <PageHeader title={t('title')} />
       <MissionStatementSection t={t} />
+      <CollegeListSection t={t} />
       <SeeYourCampusSection t={t} />
     </PageContainer>
   );
@@ -33,6 +37,19 @@ const MissionStatementSection = ({ t }) => (
           src="https://images.squarespace-cdn.com/content/v1/5d4ce82e08242000010863a1/1566366189899-AUEJHMXX6K86JV7ET2GQ/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/Membership_WL-9a.jpg?format=2500w"
         />
       </Grid.Column>
+    </Grid>
+  </Section>
+);
+
+const CollegeListSection = ({ t }) => (
+  <Section>
+    <SectionHeader title={t('our_campuses.title')} />
+    <Grid doubling stackable columns={4}>
+      {colleges.map(college => (
+        <Grid.Column key={college.abbr}>
+          <CollegeCard college={college} />
+        </Grid.Column>
+      ))}
     </Grid>
   </Section>
 );
