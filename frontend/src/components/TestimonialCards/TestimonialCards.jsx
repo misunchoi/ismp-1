@@ -1,10 +1,8 @@
 import React from 'react';
+import { Responsive } from 'semantic-ui-react';
 import styled from 'styled-components';
-import theme from '../../styles/theme';
-import sizes from '../../styles/sizes';
-import { Responsive, Modal } from 'semantic-ui-react';
-import Section from 'layout/Section';
-import { Desktop } from 'styles/responsive';
+import sizes from 'styles/sizes';
+import theme from 'styles/theme';
 
 // TODO: come from an API later
 const mentorsInfo = [
@@ -39,7 +37,7 @@ const mentorsInfo = [
   }
 ];
 
-const DesktopContainer = styled(Section)`
+const DesktopContainer = styled.section`
   /* max-height: 285px; */
   display: flex;
   flex-wrap: no-wrap;
@@ -187,7 +185,7 @@ const Cards = () => {
     <>
       {mentorsInfo.map((info, i) => {
         return (
-          <CardRatio>
+          <CardRatio key={i}>
             <TestimonialCard key={i}>
               <QuoteAndContentContainer>
                 <ColoredQuotationMark index={i} />

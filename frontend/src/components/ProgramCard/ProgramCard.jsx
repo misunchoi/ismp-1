@@ -1,10 +1,11 @@
-import React from 'react';
 import Header from 'layout/Header';
+import React from 'react';
 
 import { Container, Description, Details, Image } from './ProgramCard.styles';
 
 const ProgramCard = ({ program }) => {
-  const { headerImage, title, blurb } = program;
+  const { headerImage, title } = program;
+  const blurb = `${program.blurb.slice(0, 250)}...`;
 
   return (
     <Container>

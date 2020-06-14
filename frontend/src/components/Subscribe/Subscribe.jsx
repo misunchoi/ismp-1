@@ -1,68 +1,39 @@
+import Header from 'layout/Header';
 import React, { useState } from 'react';
-import { Button, Input } from 'semantic-ui-react';
-import Styled from 'styled-components';
-import theme from '../../styles/theme';
-import { SubscribeNewsletter } from 'utils/agent';
 import { useTranslation } from 'react-i18next';
-
-const Container = Styled.div`
-  width: 100%;
-  padding: 40px 5%;
-  background-color: ${theme.colors.blue};
-  text-align: center;
-  display: grid;
-  justify-items: center;
-`;
-
-const Title = Styled.h3`
-  font-size: ${theme.fontSizes.h3};
-  color: ${theme.colors.white};
-  margin-bottom: 24px;
-`;
-
-const StyledInput = Styled(Input)`
-  &&& {
-    width: 80%;
-    max-width: 42rem;
-    height: 3rem;
-    font-size: ${theme.fontSizes.sm};
-  }
-`;
-
-const SubscribeButton = Styled(Button)`
-  &&& {
-    font-weight: normal;
-    color: ${theme.colors.black};
-    background: ${theme.colors.yellow};
-  }
-`;
+import { Button, Input } from 'semantic-ui-react';
+import styled from 'styled-components';
+import mixins from 'styles/mixins';
+import theme from 'styles/theme';
+import { SubscribeNewsletter } from 'utils/agent';
 
 const Subscribe = () => {
-  const [email, setEmail] = useState('');
   const { t } = useTranslation(['general', 'subscribe']);
+  const [email, setEmail] = useState('');
 
-  const handleSubmit = event => {
-    let body = {
-      email: email
-    };
+  const handleChange = (_, data) => {
+    setEmail(data.value);
+  };
 
-    SubscribeNewsletter.post(body).then(response => {
-      if (response['error']) {
-        alert(response['error']);
+  const handleSubmit = () => {
+    SubscribeNewsletter.post({ email }).then(response => {
+      if (response.error) {
+        alert(response.error);
       } else {
         alert(t('subscribe:subscribe_success'));
       }
     });
   };
 
-  const handleChange = (event, data) => {
-    setEmail(data.value);
-  };
-
   return (
-    <Container>
-      <Title>{t('subscribe:subscribe_success')}</Title>
-      <StyledInput
+    <SubscribeSection backgroundColor={theme.colors.blue}>
+      <Header
+        h3
+        sans
+        title={t('subscribe:subscribe_to_our_monthly_newsletter')}
+        color={theme.colors.white}
+      />
+      <EmailInput
         fluid
         placeholder={t('email_address')}
         type="email"
@@ -74,10 +45,35 @@ const Subscribe = () => {
             content={t('subscribe')}
           />
         }
-        actionPosition="right"
       />
-    </Container>
+    </SubscribeSection>
   );
 };
+
+const SubscribeSection = styled.section`
+  background: ${props => props.backgroundColor};
+  padding-top: 64px;
+  padding-bottom: 64px;
+  ${mixins.flexCenterColumn}
+  ${mixins.responsivePadding};
+`;
+
+const EmailInput = styled(Input)`
+  &&& {
+    width: 80%;
+    max-width: 42rem;
+    height: 3rem;
+    font-size: ${theme.fontSizes.sm};
+    margin-top: 32px;
+  }
+`;
+
+const SubscribeButton = styled(Button)`
+  &&& {
+    font-weight: normal;
+    color: ${theme.colors.black};
+    background: ${theme.colors.yellow};
+  }
+`;
 
 export default Subscribe;

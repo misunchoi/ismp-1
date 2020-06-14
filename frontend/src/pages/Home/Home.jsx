@@ -1,146 +1,76 @@
 import HeroImage from 'components/HeroImage/HeroImage';
+import ProgramCard from 'components/ProgramCard';
 import Subscribe from 'components/Subscribe';
-import WebinarHighlight from 'components/WebinarHighlight';
 import TestimonialCards from 'components/TestimonialCards/TestimonialCards';
-import blogpostcontentFallbackData from 'fallback_data/blogpostcontent.json';
-import React, { useEffect, useState } from 'react';
+import WebinarHighlight from 'components/WebinarHighlight';
+// import blogPostFallbackData from 'fallback_data/blogpostcontent.json';
+import Header from 'layout/Header';
+import SectionHeader from 'layout/SectionHeader';
+import { blogPosts } from 'mock-data/blog';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Embed, Responsive } from 'semantic-ui-react';
-import Styled from 'styled-components';
-import theme from '../../styles/theme';
-import sizes from '../../styles/sizes';
-import { Blogposts } from '../../utils/agent';
-import Section from 'layout/Section';
-
-// TODO: Just testing things out
-const MentorContainer = Styled(Section)`
-  padding: 1.5em 17.5%;
-  background-color: ${theme.colors.yellow}
-`;
-
-const MentorTitle = Styled.h3`
-  color: ${theme.colors.white};
-  font-family: ${theme.fonts.PTSerif};
-  font-style: normal;
-  font-weight: bold;
-  font-size: ${theme.fontSizes.h3};
-  text-transform: uppercase;
-`;
-
-const DesktopDuo = Styled(Section)`
-  display: grid;
-  grid-template-columns: 49% 49%;
-  grid-gap: 2%;
-  align-items: flex-start;
-  /* margin: 2em 0; */
-  padding: 0;
-  padding: 0 13.5%;
-`;
-
-const MobileDuo = Styled(DesktopDuo)`
-  /* grid-template-rows: 1fr 1fr; */
-  grid-template-columns: 1fr;
-`;
-
-const DuoContainer = ({ children }) => {
-  return (
-    <>
-      <Responsive as={DesktopDuo} minWidth={sizes.tablet}>
-        {children}
-      </Responsive>
-      <Responsive as={MobileDuo} maxWidth={sizes.tablet}>
-        {children}
-      </Responsive>
-    </>
-  );
-};
-const SubTitle = Styled.h3`
-  font-family: ${theme.fonts.PTSerif};
-  font-style: normal;
-  font-weight: bold;
-  font-size: ${theme.fontSizes.h2};
-  padding-right: .5em;
-`;
-
-const StyledParagraph = Styled.p`
-  font-family: ${theme.fonts.Poppins};
-  font-style: normal;
-  font-weight: normal;
-  font-size: ${theme.fontSizes.md};
-  line-height: 2rem;
-`;
-
-const TitleContainer = Styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 13.5%;
-  align-items: baseline;
-`;
-
-const StyledLink = Styled(Link)`
-    font-family: ${theme.fonts.Poppins};
-    font-style: normal;
-    font-weight: normal;
-    font-size: ${theme.fontSizes.md};
-    color: ${theme.colors.purple};
-`;
+import { Embed, Grid } from 'semantic-ui-react';
+import styled from 'styled-components';
+import mixins from 'styles/mixins';
+import theme from 'styles/theme';
+// import { BlogPosts } from 'utils/agent';
 
 const Home = () => {
   const { t } = useTranslation(['home', 'general']);
 
-  // console.log(useParams);
-  const [featuredBlogs, setFeaturedBlogs] = useState([]);
+  // TODO: Update to use real blog post data
+  // const [featuredBlogs, setFeaturedBlogs] = useState([]);
 
-  useEffect(() => {
-    const pullFeaturedBlogs = async () => {
-      try {
-        await Blogposts.getFeatured().then(results => {
-          setFeaturedBlogs(results.results);
-        });
-      } catch (error) {
-        // If the API call fails, just load blogpost
-        let featuredBlogposts = blogpostcontentFallbackData.filter(
-          blogpostContentJson => blogpostContentJson.blogpost.is_featured
-        );
-        setFeaturedBlogs(featuredBlogposts);
-      }
-    };
-    pullFeaturedBlogs();
-  }, []);
+  // useEffect(() => {
+  //   const pullFeaturedBlogs = async () => {
+  //     await BlogPosts.getFeatured()
+  //       .then(results => {
+  //         setFeaturedBlogs(results.results);
+  //       })
+  //       .catch(error => {
+  //         const featuredBlogposts = blogPostFallbackData.filter(
+  //           blogpostContentJson => blogpostContentJson.blogpost.is_featured
+  //         );
+  //         setFeaturedBlogs(featuredBlogposts);
+  //       });
+  //   };
+  //   pullFeaturedBlogs();
+  // }, []);
 
   return (
     <>
       <HeroImage />
-      <Section>
-        <DuoContainer stackable>
-          <div>
-            <SubTitle>{t('who_section.title')}</SubTitle>
-            <StyledParagraph>{t('who_section.blurb')}</StyledParagraph>
-          </div>
-          <Embed
-            aspectRatio="16:9"
-            autoplay={false}
-            active={true}
-            icon="arrow circle down"
-            id="Pcmwvi212jE"
-            iframe={{ allowFullScreen: true }}
-            placeholder="/images/image-16by9.png"
-            source="youtube"
-          />
-        </DuoContainer>
-      </Section>
+      <WhoAreWeSection t={t} />
+      <MentorSection t={t} />
+      <TestimonialCards />
+      <HomeSection>
+        <WebinarHighlightsSection t={t} />
+        <VerticalSpacer />
+        <FeaturedBlogPostsSection t={t} />
+      </HomeSection>
+      <Subscribe />
+    </>
+  );
+};
 
-      <MentorContainer>
-        <MentorTitle>{t('mentor_section.title')}</MentorTitle>
-        <StyledParagraph>{t('mentor_section.blurb')}</StyledParagraph>
-      </MentorContainer>
+const HomeSection = styled.section`
+  background: ${props => props.backgroundColor};
+  margin: 0;
+  padding-top: 64px;
+  padding-bottom: 64px;
+  text-align: ${props => (props.center ? 'center' : 'left')};
+  ${mixins.responsivePadding};
+`;
 
-      <DuoContainer>
-        <div>
-          <SubTitle>{t('diff_section.title')}</SubTitle>
-          <StyledParagraph>{t('diff_section.blurb')}</StyledParagraph>
-        </div>
+const WhoAreWeSection = ({ t }) => (
+  <HomeSection>
+    <Grid doubling stackable columns={2}>
+      <Grid.Column>
+        <SectionHeader title={t('who_section.title')} />
+        <p>{t('who_section.blurb')}</p>
+      </Grid.Column>
+      <Grid.Column>
         <Embed
           aspectRatio="16:9"
           autoplay={false}
@@ -151,33 +81,70 @@ const Home = () => {
           placeholder="/images/image-16by9.png"
           source="youtube"
         />
-      </DuoContainer>
+      </Grid.Column>
+    </Grid>
+  </HomeSection>
+);
 
-      <TestimonialCards />
+const MentorSection = ({ t }) => (
+  <HomeSection backgroundColor={theme.colors.yellow} center>
+    <Grid doubling stackable columns={1}>
+      <Grid.Column>
+        <SectionHeader title={t('mentor_section.title')} center />
+        <p>{t('mentor_section.blurb')}</p>
+      </Grid.Column>
+    </Grid>
+  </HomeSection>
+);
 
-      <TitleContainer>
-        <SubTitle>{t('webinar_highlights')}</SubTitle>
-        <StyledLink to="/">{t('general:view_all')}</StyledLink>
-      </TitleContainer>
-
-      <DuoContainer style={{ marginTop: 0 }}>
+const WebinarHighlightsSection = ({ t }) => (
+  <>
+    <SectionHeaderContainer>
+      <Header title={t('webinar_highlights')} h2 serif left />
+      <HorizontalSpacer />
+      <Link to="">{t('general:view_all')}</Link>
+    </SectionHeaderContainer>
+    <Grid doubling stackable columns={2}>
+      <Grid.Column>
         <WebinarHighlight id="Pcmwvi212jE" title="test 1" blog="" />
+      </Grid.Column>
+      <Grid.Column>
         <WebinarHighlight id="Pcmwvi212jE" title="test 2" blog="" />
-      </DuoContainer>
+      </Grid.Column>
+    </Grid>
+  </>
+);
 
-      <TitleContainer>
-        <SubTitle>{t('featured_blogposts')}</SubTitle>
-        <StyledLink to="/">{t('general:view_all')}</StyledLink>
-      </TitleContainer>
+const FeaturedBlogPostsSection = ({ t }) => (
+  <>
+    <SectionHeaderContainer>
+      <Header title={t('featured_blogposts')} h2 serif left />
+      <HorizontalSpacer />
+      <Link to="">{t('general:view_all')}</Link>
+    </SectionHeaderContainer>
+    <Grid doubling stackable columns={3}>
+      {blogPosts.slice(0, 3).map(blogPost => (
+        <Grid.Column key={blogPost.title}>
+          <ProgramCard program={blogPost} />
+        </Grid.Column>
+      ))}
+    </Grid>
+  </>
+);
 
-      <ul>
-        {featuredBlogs.map((blog, index) => (
-          <li key={index}>Title: {blog.title_content}</li>
-        ))}
-      </ul>
-      <Subscribe />
-    </>
-  );
-};
+const SectionHeaderContainer = styled.div`
+  ${mixins.marginBottomSm}
+  ${mixins.flexStart};
+  align-items: baseline;
+`;
+
+const HorizontalSpacer = styled.div`
+  width: 12px;
+`;
+
+// TODO: Clean this up
+const VerticalSpacer = styled.div`
+  height: 64px;
+`;
 
 export default Home;

@@ -1,11 +1,10 @@
-import styled from 'styled-components';
-import theme from '../../styles/theme';
-import mixins from 'styles/mixins';
-
 import { Image as SemanticImage } from 'semantic-ui-react';
+import styled from 'styled-components';
+import mixins from 'styles/mixins';
+import theme from 'styles/theme';
 
 export const Container = styled.div`
-  ${mixins.containerFlexStartColumn}
+  ${mixins.flexStartColumn}
   ${mixins.boxShadow}
 
   border: 1px solid ${theme.colors.darkGrey};
@@ -17,11 +16,12 @@ export const Container = styled.div`
 `;
 
 export const Image = styled(SemanticImage)`
-  ${mixins.marginBottomSm}
+  ${mixins.marginBottomXs}
 `;
 
 export const Description = styled.div`
-  ${mixins.containerPaddingSm}
+  ${mixins.paddingAllSm}
+  ${mixins.marginBottomSm}
 `;
 
 export const Details = styled.p`

@@ -1,8 +1,9 @@
+import PageContainer from 'layout/PageContainer';
 import React from 'react';
 import { Button, Grid, Header, List, Segment } from 'semantic-ui-react';
+
 import SocialMediaIconList from '../../components/SocialIconsList';
 import logo from '../../images/ISMP_logo.png';
-import PageContainer from 'layout/PageContainer';
 
 const style = {
   footerContainer: {

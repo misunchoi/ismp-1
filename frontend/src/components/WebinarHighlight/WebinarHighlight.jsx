@@ -1,20 +1,11 @@
 import React from 'react';
-import theme from '../../styles/theme';
-import Styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Embed } from 'semantic-ui-react';
-import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 
-const WebinarLink = Styled(Link)`
-    font-family: ${theme.fonts.PTSerif};
-    font-weight: bold;
-    font-style: normal;
-    font-size: ${theme.fontSizes.h3};
-    padding: 0;
-    color: ${theme.colors.purple};
-    &:hover: {
-      color: ${theme.colors.darkYellow};
-    }
+const WebinarLink = styled(Link)`
+  font-weight: bold;
 `;
 
 const WebinarHighlight = ({ title, id, blog }) => {

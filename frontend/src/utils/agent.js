@@ -33,7 +33,7 @@ export const requests = {
       .then(responseBody)
 };
 
-export const Blogposts = {
+export const BlogPosts = {
   getFeatured: () => requests.get(`blogpostcontent/?featured=true`)
 };
 

@@ -92,6 +92,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${fonts.PTSerif};
     font-size: ${fontSizes.lg};
   }
+  
+  // Because semantic is 🤦🏻‍♂️ and overrides our line-height
+  p {
+    line-height: 1.5;
+  }
 
   #root {
     min-height: 100vh;

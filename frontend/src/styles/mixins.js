@@ -6,13 +6,34 @@ import theme from './theme';
 const { colors } = theme;
 
 const mixins = {
-  containerFlexStartColumn: css`
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-direction: column;
+  responsivePadding: css`
+    ${media.wide`
+      padding-left: 196px;
+      padding-right: 196px;
+    `}
+    ${media.retina`
+      padding-left: 196px;
+      padding-right: 196px;
+    `}
+    ${media.desktop`
+      padding-left: 132px;
+      padding-right: 132px;
+    `}
+    ${media.laptop`
+      padding-left: 108px;
+      padding-right: 108px;
+    `}
+    ${media.tablet`
+      padding-left 84px;
+      padding-right: 84px;
+    `}
+    ${media.phone`
+      padding-left: 32px;
+      padding-right: 32px;
+    `}
   `,
 
-  containerPaddingSm: css`
+  paddingAllSm: css`
     padding: 24px;
   `,
 
@@ -36,6 +57,26 @@ const mixins = {
     display: flex;
     justify-content: center;
     align-items: center;
+  `,
+
+  flexCenterColumn: css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  `,
+
+  flexStart: css`
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  `,
+
+  flexStartColumn: css`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
   `,
 
   flexBetween: css`
