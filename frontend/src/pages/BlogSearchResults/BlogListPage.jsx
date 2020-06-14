@@ -128,7 +128,7 @@ const BlogSearch = ({ term }) => {
       },
       error => {
         const errorObj = error.response;
-        setErrorMsg(`${errorObj.error}`);
+        setErrorMsg(`${errorObj ? errorObj.error : error}`);
         setIsLoading(false);
       }
     );
