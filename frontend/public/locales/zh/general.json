@@ -1,6 +1,7 @@
 {
   "hello": "你好",
   "apply_now": "现在申请",
+  "email_address": "电子邮件地址",
   "explore": "探索",
   "subscribe": "订阅",
   "international_student_mentorship": "国际学生指导",
@@ -9,5 +10,6 @@
   "program": "程序",
   "mentors": "导师",
   "stories": "故事",
-  "blog": "博客"
+  "blog": "博客",
+  "view_all": "查看全部"
 }

@@ -1,91 +1,81 @@
 import React, { useState } from 'react';
 import { Button, Input } from 'semantic-ui-react';
-import styled from 'styled-components';
+import Styled from 'styled-components';
 import theme from '../../styles/theme';
 import { SubscribeNewsletter } from 'utils/agent';
+import { useTranslation } from 'react-i18next';
 
-const Container = styled.div`
-  /* grid-column: 1 / 15; */
+const Container = Styled.div`
   width: 100%;
-  padding: 40px;
-  background-color: ${theme.colors.darkGrey};
+  padding: 40px 5%;
+  background-color: ${theme.colors.blue};
   text-align: center;
   display: grid;
   justify-items: center;
 `;
 
-const Title = styled.h3`
-  font-family: ${theme.fonts.Poppins};
-  font-style: normal;
-  font-weight: bold;
+const Title = Styled.h3`
   font-size: ${theme.fontSizes.h3};
+  color: ${theme.colors.white};
   margin-bottom: 24px;
 `;
 
-const SearchContainer = styled.div`
-  width: 40%;
-  min-width: 450px;
+const StyledInput = Styled(Input)`
+  &&& {
+    width: 80%;
+    max-width: 42rem;
+    height: 3rem;
+    font-size: ${theme.fontSizes.sm};
+  }
 `;
 
-const SearchButton = styled(Button)`
+const SubscribeButton = Styled(Button)`
   &&& {
-    font-family: ${theme.fonts.Poppins};
-    font-style: normal;
-    font-weight: bold;
-    font-size: ${theme.fontSizes.sm};
-    color: white;
-    background: ${theme.colors.purple};
+    font-weight: normal;
+    color: ${theme.colors.black};
+    background: ${theme.colors.yellow};
   }
 `;
 
 const Subscribe = () => {
   const [email, setEmail] = useState('');
-
-  const submitOnEnter = event => {
-    if (event.key === 'Enter') {
-      handleSubmit(event);
-    }
-  };
+  const { t } = useTranslation(['general', 'subscribe']);
 
   const handleSubmit = event => {
     let body = {
       email: email
     };
+
     SubscribeNewsletter.post(body).then(response => {
       if (response['error']) {
         alert(response['error']);
       } else {
-        alert('Successfully subscribed to mailing list');
+        alert(t('subscribe:subscribe_success'));
       }
     });
   };
 
   const handleChange = (event, data) => {
-    event.preventDefault();
-    event.stopPropagation();
-    //     console.log(data.value);
     setEmail(data.value);
   };
 
   return (
     <Container>
-      <Title>Subscribe to our monthly newsletter</Title>
-      <SearchContainer>
-        <Input
-          fluid
-          placeholder="Email Address"
-          type="email"
-          onChange={handleChange}
-          action
-        >
-          <input onKeyPress={submitOnEnter} />
-          <SearchButton
+      <Title>{t('subscribe:subscribe_success')}</Title>
+      <StyledInput
+        fluid
+        placeholder={t('email_address')}
+        type="email"
+        onChange={handleChange}
+        action={
+          <SubscribeButton
             type="submit"
             onClick={handleSubmit}
-            content="Subscribe"
+            content={t('subscribe')}
           />
-        </Input>
-      </SearchContainer>
+        }
+        actionPosition="right"
+      />
     </Container>
   );
 };

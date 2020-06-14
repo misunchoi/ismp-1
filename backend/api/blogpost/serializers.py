@@ -12,6 +12,7 @@ class BlogpostSerializer(serializers.ModelSerializer):
             'author',
             'type',
             'is_featured',
+            'type',
             'topic_set',
             'tag_set'
         )

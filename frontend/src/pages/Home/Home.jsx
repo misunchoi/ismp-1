@@ -1,79 +1,93 @@
 import HeroImage from 'components/HeroImage/HeroImage';
 import Subscribe from 'components/Subscribe';
+import WebinarHighlight from 'components/WebinarHighlight';
+import TestimonialCards from 'components/TestimonialCards/TestimonialCards';
 import blogpostcontentFallbackData from 'fallback_data/blogpostcontent.json';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Embed } from 'semantic-ui-react';
-import styled from 'styled-components';
-
+import { Embed, Responsive } from 'semantic-ui-react';
+import Styled from 'styled-components';
 import theme from '../../styles/theme';
+import sizes from '../../styles/sizes';
 import { Blogposts } from '../../utils/agent';
+import Section from 'layout/Section';
 
 // TODO: Just testing things out
-const MentorContainer = styled.div`
+const MentorContainer = Styled(Section)`
   padding: 1.5em 17.5%;
-  background-color: ${theme.colors.darkYellow};
+  background-color: ${theme.colors.yellow}
 `;
 
-const MentorTitle = styled.h3`
+const MentorTitle = Styled.h3`
   color: ${theme.colors.white};
   font-family: ${theme.fonts.PTSerif};
   font-style: normal;
   font-weight: bold;
   font-size: ${theme.fontSizes.h3};
+  text-transform: uppercase;
 `;
 
-const DuoContainer = styled.div`
+const DesktopDuo = Styled(Section)`
   display: grid;
   grid-template-columns: 49% 49%;
   grid-gap: 2%;
   align-items: flex-start;
-  margin: 2em 0;
+  /* margin: 2em 0; */
+  padding: 0;
   padding: 0 13.5%;
 `;
 
-const SubTitle = styled.h3`
+const MobileDuo = Styled(DesktopDuo)`
+  /* grid-template-rows: 1fr 1fr; */
+  grid-template-columns: 1fr;
+`;
+
+const DuoContainer = ({ children }) => {
+  return (
+    <>
+      <Responsive as={DesktopDuo} minWidth={sizes.tablet}>
+        {children}
+      </Responsive>
+      <Responsive as={MobileDuo} maxWidth={sizes.tablet}>
+        {children}
+      </Responsive>
+    </>
+  );
+};
+const SubTitle = Styled.h3`
   font-family: ${theme.fonts.PTSerif};
   font-style: normal;
   font-weight: bold;
   font-size: ${theme.fontSizes.h2};
+  padding-right: .5em;
 `;
 
-const StyledParagraph = styled.p`
+const StyledParagraph = Styled.p`
   font-family: ${theme.fonts.Poppins};
   font-style: normal;
   font-weight: normal;
-  font-size: ${theme.fontSizes.sm};
+  font-size: ${theme.fontSizes.md};
   line-height: 2rem;
 `;
 
-const ItalizedParagraph = styled(StyledParagraph)`
-  font-style: italic;
-`;
-
-const VideoPlaceholder = styled.div`
-  background-color: black;
-  width: 50%;
-`;
-
-const TitleContainer = styled.div`
+const TitleContainer = Styled.div`
   display: flex;
+  flex-wrap: wrap;
   padding: 0 13.5%;
   align-items: baseline;
 `;
 
-const StyledLink = styled(Link)`
-  font-family: ${theme.fonts.Poppins};
-  font-style: normal;
-  font-weight: normal;
-  font-size: ${theme.fontSizes.sm};
-  color: ${theme.colors.purple};
-  padding: 0 2rem;
+const StyledLink = Styled(Link)`
+    font-family: ${theme.fonts.Poppins};
+    font-style: normal;
+    font-weight: normal;
+    font-size: ${theme.fontSizes.md};
+    color: ${theme.colors.purple};
 `;
 
 const Home = () => {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation(['home', 'general']);
 
   // console.log(useParams);
   const [featuredBlogs, setFeaturedBlogs] = useState([]);
@@ -98,24 +112,28 @@ const Home = () => {
   return (
     <>
       <HeroImage />
-      <DuoContainer>
-        <div>
-          <SubTitle>{t('who_section.title')}</SubTitle>
-          <StyledParagraph>{t('who_section.blurb')}</StyledParagraph>
-        </div>
-        <Embed
-          active={true}
-          autoplay={false}
-          icon="arrow circle down"
-          id="Pcmwvi212jE"
-          placeholder="/images/image-16by9.png"
-          source="youtube"
-        />
-      </DuoContainer>
+      <Section>
+        <DuoContainer stackable>
+          <div>
+            <SubTitle>{t('who_section.title')}</SubTitle>
+            <StyledParagraph>{t('who_section.blurb')}</StyledParagraph>
+          </div>
+          <Embed
+            aspectRatio="16:9"
+            autoplay={false}
+            active={true}
+            icon="arrow circle down"
+            id="Pcmwvi212jE"
+            iframe={{ allowFullScreen: true }}
+            placeholder="/images/image-16by9.png"
+            source="youtube"
+          />
+        </DuoContainer>
+      </Section>
 
       <MentorContainer>
         <MentorTitle>{t('mentor_section.title')}</MentorTitle>
-        <ItalizedParagraph>{t('mentor_section.blurb')}</ItalizedParagraph>
+        <StyledParagraph>{t('mentor_section.blurb')}</StyledParagraph>
       </MentorContainer>
 
       <DuoContainer>
@@ -123,17 +141,33 @@ const Home = () => {
           <SubTitle>{t('diff_section.title')}</SubTitle>
           <StyledParagraph>{t('diff_section.blurb')}</StyledParagraph>
         </div>
-        <VideoPlaceholder />
+        <Embed
+          aspectRatio="16:9"
+          autoplay={false}
+          active={true}
+          icon="arrow circle down"
+          id="Pcmwvi212jE"
+          iframe={{ allowFullScreen: true }}
+          placeholder="/images/image-16by9.png"
+          source="youtube"
+        />
+      </DuoContainer>
+
+      <TestimonialCards />
+
+      <TitleContainer>
+        <SubTitle>{t('webinar_highlights')}</SubTitle>
+        <StyledLink to="/">{t('general:view_all')}</StyledLink>
+      </TitleContainer>
+
+      <DuoContainer style={{ marginTop: 0 }}>
+        <WebinarHighlight id="Pcmwvi212jE" title="test 1" blog="" />
+        <WebinarHighlight id="Pcmwvi212jE" title="test 2" blog="" />
       </DuoContainer>
 
       <TitleContainer>
-        <SubTitle>Webinar Highlights</SubTitle>
-        <StyledLink to="/">view all</StyledLink>
-      </TitleContainer>
-
-      <TitleContainer>
-        <SubTitle>Featured Blog Articles</SubTitle>
-        <StyledLink to="/">view all</StyledLink>
+        <SubTitle>{t('featured_blogposts')}</SubTitle>
+        <StyledLink to="/">{t('general:view_all')}</StyledLink>
       </TitleContainer>
 
       <ul>

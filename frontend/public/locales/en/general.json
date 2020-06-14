@@ -1,6 +1,7 @@
 {
   "hello": "Hello",
   "apply_now": "Apply Now",
+  "email_address": "Email Address",
   "explore": "Explore",
   "subscribe": "Subscribe",
   "international_student_mentorship": "International Student Mentorship",
@@ -11,5 +12,6 @@
   "program": "Program",
   "mentors": "Mentors",
   "stories": "Stories",
-  "blog": "Blog"
+  "blog": "Blog",
+  "view_all": "View All"
 }
