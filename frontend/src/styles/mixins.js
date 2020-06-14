@@ -7,6 +7,8 @@ const { colors } = theme;
 
 const mixins = {
   responsivePadding: css`
+    padding-left: 196px;
+    padding-right: 196px;
     ${media.wide`
       padding-left: 196px;
       padding-right: 196px;
