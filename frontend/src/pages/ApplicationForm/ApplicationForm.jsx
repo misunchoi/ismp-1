@@ -5,25 +5,37 @@ import {
   Checkbox,
   Container,
   Form,
+  Grid,
   Input,
   Segment,
   Select,
   Step
 } from 'semantic-ui-react';
 
-import Section from '../../layout/Section';
-import { requests } from '../../utils/agent';
+import { 
+  Asterisk,
+  List,
+  ListItem,
+  SubTitle, 
+  Title
+} from './ApplicationForm.styles';
+
+import Section from 'layout/Section';
+
+import { requests } from 'utils/agent';
+
 import {
   appFormStep,
   genderOptions,
   gradeLevelOptions,
   referralOptions
 } from './ApplicationOptions';
+
 import { topicsOptions } from './ApplicationOptions';
 
 // change to true to prefill the form with valid inputs and debug easier
 // THIS SHOULD BE FALSE WHEN MERGING CODE
-const DEBUG = false;
+const DEBUG = true;
 
 const DEBUG_FORM_STATE = {
   first_name: 'Debug',
@@ -45,7 +57,7 @@ const DEBUG_FORM_STATE = {
   additional_input: 'when can I get mentored?'
 };
 
-const useApplicationForm = callback => {
+const useApplicationForm = () => {
   let defaultState = {
     first_name: '',
     last_name: '',
@@ -73,7 +85,7 @@ const useApplicationForm = callback => {
   // Set defaults
   const [inputs, setInputs] = useState(defaultState);
 
-  const handleInputChange = (event, data) => {
+  const handleInputChange = (_, data) => {
     setInputs(inputs => ({
       ...inputs,
       [data.name]: data.value
@@ -85,7 +97,7 @@ const useApplicationForm = callback => {
   };
 };
 
-const useApplicationFormFeedback = callback => {
+const useApplicationFormFeedback = () => {
   const [feedbacks, setFeedbacks] = useState({});
 
   const handleFeedbackChange = (fieldName, feedback) => {
@@ -108,54 +120,40 @@ const useApplicationFormFeedback = callback => {
   };
 };
 
-const ApplicationForm = props => {
-  const signup = () => {
-    const data = inputs;
-    data['interest_topics'] = [];
-    topicsOptions
-      .map(option => option.value)
-      .forEach(topic => {
-        if (data[topic]) {
-          data['interest_topics'].push(topic);
-          data[topic] = undefined;
+const useStepFlow = (history, validateStep, signup) => {
+  // Step Application
+  const [currentStep, setCurrentStep] = useState(1);
+  const totalSteps = appFormStep.length;
+  const [nextButtonLabel, setNextButtonLabel] = useState('Next');
+
+  useEffect(() => {
+    currentStep === 3
+      ? setNextButtonLabel('Submit')
+      : setNextButtonLabel('Next');
+  }, [currentStep]);
+
+  const stepClick = action => {
+    if (action === 'prev' && currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    } else if (action === 'next' && currentStep < totalSteps && validateStep(currentStep)) {
+        setCurrentStep(currentStep + 1);
+    } else if (action === 'next' && currentStep === 3 && validateStep(currentStep)) {
+      signup().then((result) => {
+        if (result) {
+          history.push('/apply-success');
         }
       });
-
-    if (data['other_topic']) {
-      data['interest_topics'].push(data['other_topic']);
-      data['other_topic'] = undefined;
     }
-
-    if (data['birth_date']) {
-      // TODO: test that this doesn't break
-      // in theory the validation
-      const [month, day, year] = data['birth_date'].split('-');
-      data['birth_date'] = `${year}-${month}-${day}`;
-    }
-
-    if (data['other_referral']) {
-      data['referral'] = `${data['referral']}: ${data['other_referral']}`;
-    }
-
-    return requests.post('application/', data).then(
-      response => {
-        if (DEBUG) console.log(response);
-        return true;
-      },
-      error => {
-        if (DEBUG) console.log(error);
-        return false;
-      }
-    );
   };
 
-  const { inputs, handleInputChange } = useApplicationForm(signup);
+  return {
+    stepClick, 
+    nextButtonLabel, 
+    currentStep,
+  }
+};
 
-  // feedback
-  const { feedbacks, handleFeedbackChange } = useApplicationFormFeedback(
-    undefined
-  );
-
+const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
   const validations = {
     validateNotBlank: (fieldName, value) => {
       if (!value) {
@@ -291,6 +289,51 @@ const ApplicationForm = props => {
     validateField(fieldName, value);
   };
 
+  return {handleValidateOnBlur, validateField, validateStep}
+};
+
+const ApplicationForm = props => {
+    const signup = () => {
+      const data = inputs;
+      data['interest_topics'] = [];
+      topicsOptions.map(option => option.value).filter(topic => !!data[topic]).forEach(topic => {
+        data['interest_topics'].push(topic);
+        data[topic] = undefined;
+      });
+
+      if (data['other_topic']) {
+        data['interest_topics'].push(data['other_topic']);
+        data['other_topic'] = undefined;
+      }
+
+      if (data['birth_date']) {
+        // TODO: test that this doesn't break
+        // in theory the validation 
+        const [month, day, year] = data['birth_date'].split('-')
+        data['birth_date'] = `${year}-${month}-${day}`
+      }
+
+      if (data['other_referral']) {
+        data['referral'] = `${data['referral']}: ${data['other_referral']}`
+      }
+
+      return requests.post('application/', data).then(
+        response => {
+          if (DEBUG) console.log(response);
+          return true;
+        },
+        error => {
+          if (DEBUG) console.log(error);
+          return false;
+        }
+      );
+  };
+
+  const { inputs, handleInputChange } = useApplicationForm();
+
+  // feedback
+  const { feedbacks, handleFeedbackChange } = useApplicationFormFeedback();
+
   const renderError = fieldName => {
     return feedbacks[fieldName]
       ? {
@@ -300,39 +343,9 @@ const ApplicationForm = props => {
       : undefined;
   };
 
-  // Step Application
-  const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = appFormStep.length;
-  const [nextButtonLabel, setNextButtonLabel] = useState('Next');
+  const { validateStep, validateField, handleValidateOnBlur } = ApplicationFormValidator(handleFeedbackChange, inputs)
 
-  useEffect(() => {
-    currentStep === 3
-      ? setNextButtonLabel('Submit')
-      : setNextButtonLabel('Next');
-  }, [currentStep]);
-
-  const stepClick = action => {
-    if (action === 'prev' && currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-
-    if (action === 'next' && currentStep < totalSteps) {
-      if (validateStep(currentStep)) {
-        setCurrentStep(currentStep + 1);
-      }
-    }
-
-    // Submit Form
-    if (action === 'next' && currentStep === 3) {
-      if (validateStep(currentStep)) {
-        signup().then(result => {
-          if (result) {
-            props.history.push('/apply-success');
-          }
-        });
-      }
-    }
-  };
+  const { stepClick, nextButtonLabel, currentStep } = useStepFlow(props.history, validateStep, signup);
 
   const appStepList = appFormStep.map(step => {
     return (
@@ -350,339 +363,391 @@ const ApplicationForm = props => {
   return (
     <Container>
       <Section>
-        <Container text>
+        <Container>
           <Segment>
             <Step.Group fluid>{appStepList}</Step.Group>
-            <Form size="large">
-              {currentStep === 1 && (
-                <div id="personalInfo">
-                  <h2>Section 1: Personal and Contact Information</h2>
-                  <Form.Group widths="equal">
-                    <Form.Field
-                      required
-                      id="form-input-control-first-name"
-                      control={Input}
-                      label="First name"
-                      placeholder="First name"
-                      name="first_name"
-                      type="text"
-                      onBlur={handleValidateOnBlur}
-                      onChange={handleInputChange}
-                      value={inputs.first_name}
-                      error={renderError('first_name')}
-                    />
-                    <Form.Field
-                      required
-                      id="form-input-control-last-name"
-                      control={Input}
-                      label="Last name"
-                      placeholder="Last name"
-                      name="last_name"
-                      onBlur={handleValidateOnBlur}
-                      type="text"
-                      onChange={handleInputChange}
-                      value={inputs.last_name}
-                      error={renderError('last_name')}
-                    />
-                    <Form.Field
-                      id="form-input-control-preferred-name"
-                      control={Input}
-                      label="English name"
-                      placeholder="English name"
-                      name="preferred_name"
-                      type="text"
-                      onChange={handleInputChange}
-                      value={inputs.preferred_name}
-                    />
-                  </Form.Group>
-                  <Form.Group widths="equal">
-                    <Form.Field
-                      required
-                      control={Select}
-                      options={genderOptions}
-                      label={{
-                        children: 'Gender',
-                        htmlFor: 'form-select-control-gender'
-                      }}
-                      placeholder="Gender"
-                      name="gender"
-                      onBlur={() => {
-                        validateField('gender', inputs.gender);
-                      }}
-                      onChange={handleInputChange}
-                      value={inputs.gender}
-                      error={renderError('gender')}
-                    />
-                    <Form.Field
-                      required
-                      control={DateInput}
-                      label={{
-                        children: 'Birthday'
-                        // htmlFor: 'something'
-                      }}
-                      name="birth_date"
-                      dateFormat="MM-DD-YYYY"
-                      onBlur={() =>
-                        validateField('birth_date', inputs.birth_date)
-                      }
-                      id="form-input-control-birthday"
-                      onChange={handleInputChange}
-                      value={inputs.birth_date}
-                      error={renderError('birth_date')}
-                    />
-                  </Form.Group>
-                  <Form.Group widths="equal">
-                    <Form.Field
-                      required
-                      id="form-input-control-country"
-                      control={Input}
-                      label="Country of Origin"
-                      placeholder="Country of Origin"
-                      name="country_of_origin"
-                      type="text"
-                      onBlur={handleValidateOnBlur}
-                      onChange={handleInputChange}
-                      value={inputs.country_of_origin}
-                      error={renderError('country_of_origin')}
-                    />
-                    <Form.Field
-                      required
-                      id="form-input-control-email"
-                      control={Input}
-                      label="Email"
-                      placeholder="Email"
-                      name="email"
-                      type="email"
-                      onBlur={handleValidateOnBlur}
-                      onChange={handleInputChange}
-                      value={inputs.email}
-                      error={renderError('email')}
-                    />
-                    <Form.Field
-                      required
-                      id="form-input-control-phone"
-                      control={Input}
-                      label="Phone"
-                      placeholder="Phone"
-                      name="phone"
-                      type="text"
-                      onBlur={handleValidateOnBlur}
-                      onChange={handleInputChange}
-                      value={inputs.phone}
-                      error={renderError('phone')}
-                    />
-                  </Form.Group>
-                </div>
-              )}
-              <br />
-              {currentStep === 2 && (
-                <div id="academicInfo">
-                  <h2>Section 2: Academic Information</h2>
-                  <h3>Current School Information</h3>
-                  <Form.Group widths="equal">
-                    <Form.Field
-                      required
-                      control={Select}
-                      options={gradeLevelOptions}
-                      label={{
-                        children: 'Grade Level',
-                        htmlFor: 'form-select-control-current-grade-level'
-                      }}
-                      placeholder="Grade Level"
-                      search
-                      searchInput={{
-                        id: 'form-select-control-current-grade-level'
-                      }}
-                      name="grade_level"
-                      onBlur={() =>
-                        validateField('grade_level', inputs.grade_level)
-                      }
-                      onChange={handleInputChange}
-                      value={inputs.grade_level}
-                      error={renderError('grade_level')}
-                    />
-                    <Form.Field
-                      required
-                      id="form-input-control-current-school-name"
-                      control={Input}
-                      label="School Name"
-                      placeholder="School Name"
-                      name="school_name"
-                      type="text"
-                      onBlur={handleValidateOnBlur}
-                      onChange={handleInputChange}
-                      value={inputs.school_name}
-                      error={renderError('school_name')}
-                    />
-                  </Form.Group>
-                  <Form.Group widths="equal">
-                    <Form.Field
-                      required
-                      id="form-input-control-current-school-city"
-                      control={Input}
-                      label="School City"
-                      placeholder="City"
-                      name="school_city"
-                      type="text"
-                      onBlur={handleValidateOnBlur}
-                      onChange={handleInputChange}
-                      value={inputs.school_city}
-                      error={renderError('school_city')}
-                    />
-                    <Form.Field
-                      required
-                      id="form-input-control-current-school-state"
-                      control={Input}
-                      label="School State / Province"
-                      placeholder="State / Province"
-                      name="school_state"
-                      type="text"
-                      onBlur={handleValidateOnBlur}
-                      onChange={handleInputChange}
-                      value={inputs.school_state}
-                      error={renderError('school_state')}
-                    />
-                    <Form.Field
-                      required
-                      id="form-input-control-current-school-country"
-                      control={Input}
-                      label="School Country"
-                      placeholder="Country"
-                      name="school_country"
-                      type="text"
-                      onBlur={handleValidateOnBlur}
-                      onChange={handleInputChange}
-                      value={inputs.school_country}
-                      error={renderError('school_country')}
-                    />
-                  </Form.Group>
-                  <p>If attending a new U.S. school next school term:</p>
-                  <Form.Group widths="equal">
-                    <Form.Field
-                      id="form-input-control-new-us-school-name"
-                      control={Input}
-                      label="US School Name"
-                      placeholder="School Name"
-                      name="destination_school"
-                      type="text"
-                      onChange={handleInputChange}
-                      value={inputs.destination_school}
-                    />
-                    <Form.Field
-                      required
-                      id="form-input-control-school-major"
-                      control={Input}
-                      label="Current or Future Major"
-                      placeholder="Major"
-                      name="major"
-                      type="text"
-                      onBlur={handleValidateOnBlur}
-                      onChange={handleInputChange}
-                      value={inputs.major}
-                      error={renderError('major')}
-                    />
-                  </Form.Group>
-                </div>
-              )}
-              <br />
-
-              {currentStep === 3 && (
-                <div id="mentorshipInterest">
-                  <h2>Section 3: Mentorship Information</h2>
-                  <Form.Group widths="equal">
-                    <Form.Field
-                      required
-                      control={Select}
-                      options={referralOptions}
-                      label={{
-                        children: 'How Did You Hear About Us?',
-                        htmlFor: 'form-select-control-referral'
-                      }}
-                      placeholder="Referral"
-                      search
-                      searchInput={{ id: 'form-select-control-referral' }}
-                      name="referral"
-                      onBlur={() => validateField('referral', inputs.referral)}
-                      onChange={handleInputChange}
-                      value={inputs.referral}
-                    />
-                    {inputs.referral === 'other' && (
-                      <Form.Field
-                        control={Input}
-                        label="Please Describe"
-                        placeholder="Other"
-                        name="other_referral"
-                        type="text"
-                        onChange={handleInputChange}
-                        value={inputs.other_referral}
-                      />
-                    )}
-                  </Form.Group>
-                  <Form.Group grouped>
-                    <label>Choose topics interested in:</label>
-                    {topicsOptions.map(topic => {
-                      return (
-                        <Form.Field
-                          label={topic.text}
-                          value={topic.value}
-                          key={topic.key}
-                          control={Checkbox}
-                          name={topic.value}
-                          onChange={handleInputChange}
-                          type="checkbox"
-                        />
-                      );
-                    })}
-                  </Form.Group>
-                  {inputs['other'] && (
-                    <Form.Field
-                      id="form-input-control-other-topic"
-                      control={Input}
-                      label="Other Topic"
-                      placeholder="Other Topic"
-                      name="other_topic"
-                      type="text"
-                      onChange={handleInputChange}
-                      value={inputs.other_topic}
-                    />
-                  )}
-                  <Form.TextArea
-                    label="Questions / Comments"
-                    placeholder="Questions / Comments"
-                    name="additional_input"
-                    type="text"
-                    onChange={handleInputChange}
-                    value={inputs.additional_input}
+            <Grid>
+              <Grid.Row>
+                <Grid.Column width={10}> 
+                  <ApplicationFormInputs 
+                    currentStep={currentStep}
+                    handleValidateOnBlur={handleValidateOnBlur}
+                    handleInputChange={handleInputChange}
+                    inputs={inputs}
+                    renderError={renderError}
+                    validateField={validateField}
+                    stepClick={stepClick}
+                    nextButtonLabel={nextButtonLabel}
                   />
-                </div>
-              )}
-              <br />
-
-              <Button.Group id="actionButtons" horizontal="true">
-                <Button
-                  id="form-button-control-previous"
-                  disabled={currentStep === 1}
-                  content="Previous"
-                  primary
-                  type="button"
-                  size="large"
-                  onClick={() => stepClick('prev')}
-                  style={{ marginRight: '10px' }}
-                />
-                <Button
-                  id="form-button-control-next"
-                  content={nextButtonLabel}
-                  primary
-                  type="button"
-                  size="large"
-                  onClick={() => stepClick('next')}
-                />
-              </Button.Group>
-            </Form>
+                </Grid.Column>
+                <Grid.Column width={6}>
+                  <Segment>
+                    <SubTitle>Important Information</SubTitle>
+                    <List ordered>
+                      <ListItem>
+                        Our application includes a $10 printing fee to be submitted when you pick up your materials.*
+                      </ListItem>
+                      <ListItem>
+                        Our program is 1 year long.*
+                      </ListItem>
+                      <ListItem>
+                        There will be weekly check-ins during the first 6 weeks*. Afterwards, your check-in frequency will be based on your preference.
+                      </ListItem>
+                      <ListItem>
+                        Quarterly check-ins are recommended.
+                      </ListItem>
+                    </List>
+                    <Asterisk>*MAY VARY BASED ON CAMPUS.</Asterisk>
+                  </Segment>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
           </Segment>
         </Container>
       </Section>
     </Container>
   );
 };
+
+const ApplicationFormInputs = (props) => {
+ const {
+    currentStep,
+    handleValidateOnBlur,
+    handleInputChange,
+    inputs,
+    renderError,
+    validateField,
+    stepClick,
+    nextButtonLabel
+  } = props;
+  return (
+    <Form size="large">
+      {currentStep === 1 && (
+        <div id="personalInfo">
+          <Title>Section 1: Personal and Contact Information</Title>
+          <Form.Group widths="equal">
+            <Form.Field
+              fluid
+              required
+              id="form-input-control-first-name"
+              control={Input}
+              label="First name"
+              placeholder="First name"
+              name="first_name"
+              type="text"
+              onBlur={handleValidateOnBlur}
+              onChange={handleInputChange}
+              value={inputs.first_name}
+              error={renderError('first_name')}
+            />
+            <Form.Field
+              fluid
+              required
+              id="form-input-control-last-name"
+              control={Input}
+              label="Last name"
+              placeholder="Last name"
+              name="last_name"
+              onBlur={handleValidateOnBlur}
+              type="text"
+              onChange={handleInputChange}
+              value={inputs.last_name}
+              error={renderError('last_name')}
+            />
+            <Form.Field
+              fluid
+              id="form-input-control-preferred-name"
+              control={Input}
+              label="English name"
+              placeholder="English name"
+              name="preferred_name"
+              type="text"
+              onChange={handleInputChange}
+              value={inputs.preferred_name}
+            />
+          </Form.Group>
+          <Form.Group widths="equal">
+            <Form.Field
+              fluid
+              required
+              control={Select}
+              options={genderOptions}
+              label={{
+                children: 'Gender',
+                htmlFor: 'form-select-control-gender'
+              }}
+              placeholder="Gender"
+              name="gender"
+              onBlur={() => {
+                validateField('gender', inputs.gender);
+              }}
+              onChange={handleInputChange}
+              value={inputs.gender}
+              error={renderError('gender')}
+            />
+            <Form.Field
+              fluid
+              required
+              control={DateInput}
+              label={{
+                children: 'Birthday'
+                // htmlFor: 'something'
+              }}
+              name="birth_date"
+              dateFormat="MM-DD-YYYY"
+              onBlur={() => validateField('birth_date', inputs.birth_date)}
+              id="form-input-control-birthday"
+              onChange={handleInputChange}
+              value={inputs.birth_date}
+              error={renderError('birth_date')}
+            />
+          </Form.Group>
+          <Form.Group widths="equal">
+            <Form.Field
+              fluid
+              required
+              id="form-input-control-country"
+              control={Input}
+              label="Country of Origin"
+              placeholder="Country of Origin"
+              name="country_of_origin"
+              type="text"
+              onBlur={handleValidateOnBlur}
+              onChange={handleInputChange}
+              value={inputs.country_of_origin}
+              error={renderError('country_of_origin')}
+            />
+            <Form.Field
+              fluid
+              required
+              id="form-input-control-email"
+              control={Input}
+              label="Email"
+              placeholder="Email"
+              name="email"
+              type="email"
+              onBlur={handleValidateOnBlur}
+              onChange={handleInputChange}
+              value={inputs.email}
+              error={renderError('email')}
+            />
+            <Form.Field
+              fluid
+              required
+              id="form-input-control-phone"
+              control={Input}
+              label="Phone"
+              placeholder="Phone"
+              name="phone"
+              type="text"
+              onBlur={handleValidateOnBlur}
+              onChange={handleInputChange}
+              value={inputs.phone}
+              error={renderError('phone')}
+            />
+          </Form.Group>
+        </div>
+      )}
+      {currentStep === 2 && (
+        <div id="academicInfo">
+          <Title>Section 2: Academic Information</Title>
+          <SubTitle>Current School Information</SubTitle>
+          <Form.Group widths="equal">
+            <Form.Field
+              fluid
+              required
+              control={Select}
+              options={gradeLevelOptions}
+              label={{
+                children: 'Grade Level',
+                htmlFor: 'form-select-control-current-grade-level'
+              }}
+              placeholder="Grade Level"
+              search
+              searchInput={{
+                id: 'form-select-control-current-grade-level'
+              }}
+              name="grade_level"
+              onBlur={() =>
+                validateField('grade_level', inputs.grade_level)
+              }
+              onChange={handleInputChange}
+              value={inputs.grade_level}
+              error={renderError('grade_level')}
+            />
+            <Form.Field
+              required
+              id="form-input-control-current-school-name"
+              control={Input}
+              label="School Name"
+              placeholder="School Name"
+              name="school_name"
+              type="text"
+              onBlur={handleValidateOnBlur}
+              onChange={handleInputChange}
+              value={inputs.school_name}
+              error={renderError('school_name')}
+            />
+          </Form.Group>
+          <Form.Group widths="equal">
+            <Form.Field
+              required
+              id="form-input-control-current-school-city"
+              control={Input}
+              label="School City"
+              placeholder="City"
+              name="school_city"
+              type="text"
+              onBlur={handleValidateOnBlur}
+              onChange={handleInputChange}
+              value={inputs.school_city}
+              error={renderError('school_city')}
+            />
+            <Form.Field
+              required
+              id="form-input-control-current-school-state"
+              control={Input}
+              label="School State / Province"
+              placeholder="State / Province"
+              name="school_state"
+              type="text"
+              onBlur={handleValidateOnBlur}
+              onChange={handleInputChange}
+              value={inputs.school_state}
+              error={renderError('school_state')}
+            />
+            <Form.Field
+              required
+              id="form-input-control-current-school-country"
+              control={Input}
+              label="School Country"
+              placeholder="Country"
+              name="school_country"
+              type="text"
+              onBlur={handleValidateOnBlur}
+              onChange={handleInputChange}
+              value={inputs.school_country}
+              error={renderError('school_country')}
+            />
+          </Form.Group>
+          <p>If attending a new U.S. school next school term:</p>
+          <Form.Group widths="equal">
+            <Form.Field
+              id="form-input-control-new-us-school-name"
+              control={Input}
+              label="US School Name"
+              placeholder="School Name"
+              name="destination_school"
+              type="text"
+              onChange={handleInputChange}
+              value={inputs.destination_school}
+            />
+            <Form.Field
+              required
+              id="form-input-control-school-major"
+              control={Input}
+              label="Current or Future Major"
+              placeholder="Major"
+              name="major"
+              type="text"
+              onBlur={handleValidateOnBlur}
+              onChange={handleInputChange}
+              value={inputs.major}
+              error={renderError('major')}
+            />
+          </Form.Group>
+        </div>
+      )}
+
+      {currentStep === 3 && (
+        <div id="mentorshipInterest">
+          <Title>Section 3: Mentorship Information</Title>
+          <Form.Group widths="equal">
+            <Form.Field
+              required
+              control={Select}
+              options={referralOptions}
+              label={{
+                children: 'How Did You Hear About Us?',
+                htmlFor: 'form-select-control-referral'
+              }}
+              placeholder="Referral"
+              search
+              searchInput={{ id: 'form-select-control-referral' }}
+              name="referral"
+              onBlur={() => validateField('referral', inputs.referral)}
+              onChange={handleInputChange}
+              value={inputs.referral}
+            />
+            {inputs.referral === 'other' && <Form.Field
+              control={Input}
+              label="Please Describe"
+              placeholder="Other"
+              name="other_referral"
+              type="text"
+              onChange={handleInputChange}
+              value={inputs.other_referral}
+            />}
+          </Form.Group>
+          <Form.Group grouped>
+            <label>Choose topics interested in:</label>
+            {topicsOptions.map(topic => {
+              return (
+                <Form.Field
+                  label={topic.text}
+                  value={topic.value}
+                  key={topic.key}
+                  control={Checkbox}
+                  name={topic.value}
+                  onChange={handleInputChange}
+                  type="checkbox"
+                />
+              );
+            })}
+          </Form.Group>
+          {inputs['other'] && <Form.Field
+            id="form-input-control-other-topic"
+            control={Input}
+            label="Other Topic"
+            placeholder="Other Topic"
+            name="other_topic"
+            type="text"
+            onChange={handleInputChange}
+            value={inputs.other_topic}
+          />}
+          <Form.TextArea
+            label="Questions / Comments"
+            placeholder="Questions / Comments"
+            name="additional_input"
+            type="text"
+            onChange={handleInputChange}
+            value={inputs.additional_input}
+          />
+        </div>
+      )}
+      <br />
+
+      <Button.Group id="actionButtons" horizontal="true">
+        <Button
+          id="form-button-control-previous"
+          disabled={currentStep === 1}
+          content="Previous"
+          primary
+          type="button"
+          size="large"
+          onClick={() => stepClick('prev')}
+          style={{ marginRight: '10px' }}
+        />
+        <Button
+          id="form-button-control-next"
+          content={nextButtonLabel}
+          primary
+          type="button"
+          size="large"
+          onClick={() => stepClick('next')}
+        />
+      </Button.Group>
+    </Form>
+  );
+}
 export default ApplicationForm;
