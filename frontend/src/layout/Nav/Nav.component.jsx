@@ -6,16 +6,32 @@ import { Link, withRouter } from 'react-router-dom';
 import { Button, Dropdown, Menu } from 'semantic-ui-react';
 
 const navLinks = [
-  {
-    text: 'About Us',
-    i18n_key: 'about_us',
-    link: '/about'
-  },
   { text: 'Mentors', i18n_key: 'mentors', link: '/mentors' },
   { text: 'Program', i18n_key: 'program', link: '/program' },
   { text: 'Blog', i18n_key: 'blog', link: '/blog-list' },
   { text: 'Admin', i18n_key: 'Admin', link: '/login' }
 ];
+
+const AboutUsDropdown = () => {
+  const { t } = useTranslation('general');
+
+  return (
+    <Dropdown
+      item
+      text={t('about_us')}
+      style={{ alignSelf: 'center', border: 0 }}
+    >
+      <Dropdown.Menu>
+        <Dropdown.Item as={Link} to="/about">
+          {t('who_we_are')}
+        </Dropdown.Item>
+        <Dropdown.Item as={Link} to="/leadership">
+          {t('leadership')}
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+};
 
 const Nav = ({ mobile, history }) => {
   const { t } = useTranslation('general');
@@ -33,6 +49,7 @@ const Nav = ({ mobile, history }) => {
         <img src={logo} alt="ISMP" style={{ width: '2.5em' }} />
       </Menu.Item>
       <Menu.Menu position="right">
+        <AboutUsDropdown />
         {navLinks.map((nav, index) => {
           return (
             <Menu.Item
