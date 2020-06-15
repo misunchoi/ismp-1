@@ -65,9 +65,9 @@ const HomeSection = styled.section`
 
 const WhoAreWeSection = ({ t }) => (
   <HomeSection>
+    <SectionHeader>{t('who_section.title')}</SectionHeader>
     <Grid doubling stackable columns={2}>
       <Grid.Column>
-        <SectionHeader title={t('who_section.title')} />
         <p>{t('who_section.blurb')}</p>
       </Grid.Column>
       <Grid.Column>
@@ -88,9 +88,9 @@ const WhoAreWeSection = ({ t }) => (
 
 const MentorSection = ({ t }) => (
   <HomeSection backgroundColor={theme.colors.yellow} center>
+    <SectionHeader center>{t('mentor_section.title')}</SectionHeader>
     <Grid doubling stackable columns={1}>
       <Grid.Column>
-        <SectionHeader title={t('mentor_section.title')} center />
         <p>{t('mentor_section.blurb')}</p>
       </Grid.Column>
     </Grid>
@@ -100,7 +100,9 @@ const MentorSection = ({ t }) => (
 const WebinarHighlightsSection = ({ t }) => (
   <>
     <SectionHeaderContainer>
-      <Header title={t('webinar_highlights')} h2 serif left />
+      <Header size="h2" font="serif">
+        {t('webinar_highlights')}
+      </Header>
       <HorizontalSpacer />
       <Link to="">{t('general:view_all')}</Link>
     </SectionHeaderContainer>
@@ -118,7 +120,9 @@ const WebinarHighlightsSection = ({ t }) => (
 const FeaturedBlogPostsSection = ({ t }) => (
   <>
     <SectionHeaderContainer>
-      <Header title={t('featured_blogposts')} h2 serif left />
+      <Header size="h2" font="serif">
+        {t('featured_blogposts')}
+      </Header>
       <HorizontalSpacer />
       <Link to="">{t('general:view_all')}</Link>
     </SectionHeaderContainer>

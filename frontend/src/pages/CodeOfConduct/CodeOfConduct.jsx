@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import Markdown from 'react-remarkable';
 import styled from 'styled-components';
 import mixins from 'styles/mixins';
+
 import PageContainer from '../../layout/PageContainer/PageContainer';
 import PageHeader from '../../layout/PageHeader/PageHeader';
 import Section from '../../layout/Section/Section';
@@ -33,7 +34,7 @@ const CodeOfConduct = () => {
         </SectionContent>
       </Section>
       <Section>
-        <SectionHeader title={t('applicationAndEnrollment.title')} />
+        <SectionHeader>{t('applicationAndEnrollment.title')}</SectionHeader>
         <ol>
           <SectionListItem>
             {t('applicationAndEnrollment.content1')}
@@ -47,31 +48,33 @@ const CodeOfConduct = () => {
         </ol>
       </Section>
       <Section>
-        <SectionHeader title={t('mimimumAgeRequirement.title')} />
+        <SectionHeader>{t('mimimumAgeRequirement.title')}</SectionHeader>
         <>{t('mimimumAgeRequirement.content')}</>
       </Section>
       <Section>
-        <SectionHeader title={t('useOfLanguageAndImages.title')} />
+        <SectionHeader>{t('useOfLanguageAndImages.title')}</SectionHeader>
         <>{t('useOfLanguageAndImages.content')}</>
       </Section>
       <Section>
-        <SectionHeader title={t('personalRespect.title')} />
+        <SectionHeader>{t('personalRespect.title')}</SectionHeader>
         <>{t('personalRespect.content')}</>
       </Section>
       <Section>
-        <SectionHeader title={t('zeroTolerancePolicyForHarassment.title')} />
+        <SectionHeader>
+          {t('zeroTolerancePolicyForHarassment.title')}
+        </SectionHeader>
         <>{t('zeroTolerancePolicyForHarassment.content')}</>
       </Section>
       <Section>
-        <SectionHeader title={t('virtualMeetings.title')} />
+        <SectionHeader>{t('virtualMeetings.title')}</SectionHeader>
         <>{t('virtualMeetings.content')}</>
       </Section>
       <Section>
-        <SectionHeader title={t('noAcademicCreditOrGuarantees.title')} />
+        <SectionHeader>{t('noAcademicCreditOrGuarantees.title')}</SectionHeader>
         <>{t('noAcademicCreditOrGuarantees.content')}</>
       </Section>
       <Section>
-        <SectionHeader title={t('emergencies.title')} />
+        <SectionHeader>{t('emergencies.title')}</SectionHeader>
         <>{t('emergencies.content')}</>
       </Section>
     </PageContainer>

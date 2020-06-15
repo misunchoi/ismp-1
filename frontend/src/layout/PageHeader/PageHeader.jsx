@@ -5,9 +5,15 @@ import mixins from 'styles/mixins';
 
 const PageHeader = ({ title, description }) => (
   <Container>
-    <Header title={title} h1 sans center />
+    <Header size="h1" font="sans">
+      {title}
+    </Header>
     <Description>
-      {description && <Header title={description} h3 sans center />}
+      {description && (
+        <Header size="h3" font="sans">
+          {description}
+        </Header>
+      )}
     </Description>
   </Container>
 );

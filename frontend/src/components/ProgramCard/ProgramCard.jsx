@@ -11,7 +11,9 @@ const ProgramCard = ({ program }) => {
     <Container>
       <Image alt={title + ' program picture'} src={headerImage} fluid />
       <Description>
-        <Header title={title} h3 sans left />
+        <Header size="h3" font="sans">
+          {title}
+        </Header>
         <Details>{blurb}</Details>
       </Description>
     </Container>

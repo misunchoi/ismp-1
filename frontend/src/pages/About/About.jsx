@@ -1,15 +1,14 @@
+import CollegeCard from 'components/CollegeCard/CollegeCard';
 import PageContainer from 'layout/PageContainer';
 import PageHeader from 'layout/PageHeader';
 import Section from 'layout/Section';
 import SectionHeader from 'layout/SectionHeader';
+import colleges from 'mock-data/colleges';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Image } from 'semantic-ui-react';
 import { Grid } from 'semantic-ui-react';
-
-import colleges from 'mock-data/colleges';
-import CollegeCard from 'components/CollegeCard/CollegeCard';
 
 const About = () => {
   const { t } = useTranslation('about');
@@ -25,7 +24,7 @@ const About = () => {
 
 const MissionStatementSection = ({ t }) => (
   <Section>
-    <SectionHeader title={t('mission_statement.title')} />
+    <SectionHeader>{t('mission_statement.title')}</SectionHeader>
     <Grid doubling stackable columns={2}>
       <Grid.Column>
         <p>{t('mission_statement.blurb')}</p>
@@ -43,7 +42,7 @@ const MissionStatementSection = ({ t }) => (
 
 const CollegeListSection = ({ t }) => (
   <Section>
-    <SectionHeader title={t('our_campuses.title')} />
+    <SectionHeader>{t('our_campuses.title')}</SectionHeader>
     <Grid doubling stackable columns={4}>
       {colleges.map(college => (
         <Grid.Column key={college.abbr}>
@@ -56,7 +55,7 @@ const CollegeListSection = ({ t }) => (
 
 const SeeYourCampusSection = ({ t }) => (
   <Section>
-    <SectionHeader title={t('see_your_campus.title')} center />
+    <SectionHeader center>{t('see_your_campus.title')}</SectionHeader>
     <Grid doubling stackable columns={1}>
       <Grid.Column>
         <span>{t('see_your_campus.blurb')}</span>{' '}
