@@ -1,9 +1,10 @@
-import PageContainer from 'layout/PageContainer';
+import SocialMediaIconList from 'components/SocialIconsList';
+import logo from 'images/ISMP_logo.png';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, Grid, Header, List, Segment } from 'semantic-ui-react';
-
-import SocialMediaIconList from '../../components/SocialIconsList';
-import logo from '../../images/ISMP_logo.png';
+import styled from 'styled-components';
+import mixins from 'styles/mixins';
 
 const style = {
   footerContainer: {
@@ -37,14 +38,15 @@ const style = {
     fontSize: '16px',
     lineHeight: '24px',
     textAlign: 'right',
-    padding: '19px'
+    padding: '19px 0 19px 19px'
   },
   languages: {
     color: 'white',
     fontFamily: 'Poppins',
     fontSize: '16px',
     lineHeight: '24px',
-    marginLeft: '50px'
+    marginLeft: '50px',
+    cursor: 'pointer'
   }
 };
 
@@ -55,7 +57,7 @@ const footerContent = [
       { text: 'Who We Are', link: '/about' },
       { text: 'Leadership', link: '/leadership' }
     ],
-    width: 4
+    width: 3
   },
   {
     section: 'Learn',
@@ -116,19 +118,25 @@ const links = contentArr => {
   });
 };
 
+const PaddedSection = styled.section`
+  ${mixins.responsivePadding};
+`;
+
 const Footer = () => {
+  const { i18n } = useTranslation();
   return (
     <Segment vertical style={style.footerContainer}>
-      <PageContainer>
+      <PaddedSection>
         <Grid doubling stackable>
           <Grid.Row>
             {links(footerContent)}
-            <Grid.Column floated="right" width={3}>
+            <Grid.Column width={4}>
               <Button
-                size="massive"
                 as="a"
                 inverted={false}
                 style={style.applyNowButton}
+                floated="right"
+                fluid
               >
                 APPLY NOW
               </Button>
@@ -142,8 +150,18 @@ const Footer = () => {
                 <List.Item>
                   <img src={logo} alt="ISMP" style={{ width: '53px' }} />
                 </List.Item>
-                <List.Item style={style.languages}>EN</List.Item>
-                <List.Item style={style.languages}>中文</List.Item>
+                <List.Item
+                  style={style.languages}
+                  onClick={() => i18n.changeLanguage('en')}
+                >
+                  EN
+                </List.Item>
+                <List.Item
+                  style={style.languages}
+                  onClick={() => i18n.changeLanguage('zh')}
+                >
+                  中文
+                </List.Item>
               </List>
             </Grid.Column>
             <Grid.Column floated="right" width={10}>
@@ -154,7 +172,7 @@ const Footer = () => {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </PageContainer>
+      </PaddedSection>
     </Segment>
   );
 };

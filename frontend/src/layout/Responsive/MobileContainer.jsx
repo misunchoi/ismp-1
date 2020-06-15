@@ -1,3 +1,6 @@
+import Spinner from 'components/Spinner/Spinner.component';
+import Footer from 'layout/Footer';
+import Nav from 'layout/Navigation';
 import React, { Suspense, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -10,9 +13,6 @@ import {
   Sidebar
 } from 'semantic-ui-react';
 
-import Spinner from '../../components/Spinner/Spinner.component';
-import Footer from '../Footer/Footer';
-import Nav from '../Nav/Nav.component';
 import { getWidth } from './responsiveUtils';
 
 const MobileContainer = ({ children }) => {
@@ -74,7 +74,9 @@ const MobileContainer = ({ children }) => {
         </Segment>
 
         {children}
-        <Footer />
+        <Suspense fallback={<Spinner />}>
+          <Footer />
+        </Suspense>
       </Sidebar.Pusher>
     </Responsive>
   );

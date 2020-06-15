@@ -1,3 +1,6 @@
+import Spinner from 'components/Spinner/Spinner.component';
+import Footer from 'layout/Footer';
+import Nav from 'layout/Navigation';
 import React, { Suspense, useState } from 'react';
 import {
   Container,
@@ -7,9 +10,6 @@ import {
   Visibility
 } from 'semantic-ui-react';
 
-import Spinner from '../../components/Spinner/Spinner.component';
-import Footer from '../Footer/Footer';
-import Nav from '../Nav/Nav.component';
 import { getWidth } from './responsiveUtils';
 
 const DesktopContainer = ({ children }) => {
@@ -48,7 +48,9 @@ const DesktopContainer = ({ children }) => {
         </Segment>
       </Visibility>
       {children}
-      <Footer />
+      <Suspense fallback={<Spinner />}>
+        <Footer />
+      </Suspense>
     </Responsive>
   );
 };

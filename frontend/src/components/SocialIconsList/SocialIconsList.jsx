@@ -1,7 +1,10 @@
-import React from 'react';
-import { Button } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
+
+import React from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { Button } from 'semantic-ui-react';
 import styled from 'styled-components';
+import { breakpoints } from 'styles/responsive';
 
 const socialMediaList = [
   {
@@ -25,7 +28,10 @@ const HeaderContainer = styled.div`
   }
 `;
 
-const SocialIconList = ({ isHeader, alignItems }) => {
+const SocialIconList = ({ isHeader }) => {
+  const isTablet = useMediaQuery({ query: breakpoints.tablet });
+  const floated = isTablet ? 'left' : 'right';
+
   const socialMediaIconList = socialMediaList.map((social, index) => {
     return (
       <HeaderContainer key={`${social.icon}_${index}`}>
@@ -42,7 +48,11 @@ const SocialIconList = ({ isHeader, alignItems }) => {
     );
   });
 
-  return <Button.Group horizontal="true">{socialMediaIconList}</Button.Group>;
+  return (
+    <Button.Group horizontal="true" floated={floated}>
+      {socialMediaIconList}
+    </Button.Group>
+  );
 };
 
 export default SocialIconList;
