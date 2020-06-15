@@ -24,6 +24,7 @@ from api.blogpost.views import BlogpostViewSet, TagViewSet, TopicViewSet
 from api.school.views import SchoolViewSet
 from api.application_form.views import ApplicationFormViewSet, SubscribeNewsletterView
 from api.mentor.views import MentorViewSet
+from api.utility.views import ping_view
 
 router = routers.SimpleRouter()
 
@@ -40,6 +41,7 @@ urlpatterns = [
     url(r'^api/', include('api.authentication.urls', namespace='user')),
     re_path('api/(?P<version>(v1|v2))/', include(router.urls)),
     path('api/', include('api.profiles.urls', namespace='profiles')),
+    path('ping/', ping_view),
     path('tinymce/', include('tinymce.urls')),
     path('upload/', include('api.upload.urls')),
     path('subscribe-newsletter/', SubscribeNewsletterView.as_view())

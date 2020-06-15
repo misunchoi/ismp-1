@@ -14,7 +14,9 @@ const ProfileCardVertical = ({ mentor, showRole }) => (
       size="medium"
     />
     {showRole && mentor.title && <Role>{mentor.title}</Role>}
-    <Header title={mentor.name} h3 sans left />{' '}
+    <Header size="h3" font="sans">
+      {mentor.name}
+    </Header>{' '}
     {mentor.credentials.map(credential => (
       <Details key={credential.title}>
         <Organization>{credential.organization}</Organization>

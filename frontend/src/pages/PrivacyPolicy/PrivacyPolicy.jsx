@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
       <PageHeader title={t('title')} />
       <LastUpdatedDate title="poop">Last updated June 1, 2020</LastUpdatedDate>
       <Section>
-        <SectionHeader title={t('introduction.title')} />
+        <SectionHeader>{t('introduction.title')}</SectionHeader>
         <p>{t('introduction.description')}</p>
       </Section>
     </PageContainer>

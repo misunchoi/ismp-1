@@ -36,6 +36,7 @@ class Routes extends Component {
             <Route exact path="/register" component={RouteEnum.REGISTER} />
             <Route exact path="/profile" component={RouteEnum.PROFILE} />
             <Route path="/blogpost/:id" component={RouteEnum.BLOGPOST} />
+            <Route path="/ping">pong</Route>
           </Suspense>
         </Switch>
       </>

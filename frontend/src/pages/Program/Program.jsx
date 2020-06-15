@@ -19,7 +19,7 @@ const Program = () => {
 
   return (
     <PageContainer>
-      <PageHeader {...pageHeaderProps}></PageHeader>
+      <PageHeader {...pageHeaderProps} />
 
       <Section>
         <Grid doubling stackable columns={4}>

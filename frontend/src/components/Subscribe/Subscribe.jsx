@@ -27,12 +27,9 @@ const Subscribe = () => {
 
   return (
     <SubscribeSection backgroundColor={theme.colors.blue}>
-      <Header
-        h3
-        sans
-        title={t('subscribe:subscribe_to_our_monthly_newsletter')}
-        color={theme.colors.white}
-      />
+      <Header size="h3" font="sans" color="white">
+        {t('subscribe:subscribe_to_our_monthly_newsletter')}
+      </Header>
       <EmailInput
         fluid
         placeholder={t('email_address')}

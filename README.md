@@ -4,9 +4,19 @@
 The website is built with Django and React.
 This is a set up so that we can easily create apps that use Django on the backend (and take advantage of the amazing admin UI) and React (set up with [`create-react-app`](https://npm.im/create-react-app)) for the front end application.
 
+
 ## Setup
+### Full Environment using Conda
+Unlike venv which manages `pip` dependencies, [conda](https://docs.conda.io/en/latest/) is a package management system for any dependency (e.g. `postgres`).
+1. Install `anaconda` 
+    1. Macs: `brew cask install anaconda`
+1. `conda env create -f environment.yml`
+1. Activate this environment `conda activate ismp-website`
+
+### Virtual Env
 1. Download [docker](https://docs.docker.com/compose/install/)
 2. run `cd backend; `pip3 install -r requirements.txt` to install all the dependencies in the backend
+
 ## Development
 1. Make your edits in `backend/` or `frontend/`
 1. `make dev`
