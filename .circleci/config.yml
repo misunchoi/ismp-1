@@ -11,8 +11,9 @@ jobs:
       - checkout
       - docker/install-docker-tools
       - run:
-          command: make test
           name: Test
+          command: |
+            .circleci/test_backend.sh
   build-and-publish:
     environment:
       IMAGE_BEND: richyen/ismp-backend
