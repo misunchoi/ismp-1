@@ -106,7 +106,7 @@ const BlogSearch = ({ term }) => {
             thumbnail_url: p && p.thumbnail_url,
             title: blog.title_content,
             blurb: blog.body_content,
-            blog_url: `/blog/${blog.id}`,
+            blog_url: `/blogpost/${blog.id}`,
             blog_type: p && p.type,
             category: p && p.topic_set.map(topic => topic.display_text),
             author: p && p.author.user,

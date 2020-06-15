@@ -4,11 +4,14 @@ import styled from 'styled-components';
 
 const BlogContainer = styled.div`
   width: 100%;
-  height: 100%;
 `;
 
-const RenderBlog = ({ blogpostcontent_id, initial_content }) => {
-  return <BlogContainer>{ReactHtmlParser(initial_content)}</BlogContainer>;
+const RenderBlog = ({ initialContent }) => {
+  return (
+    <BlogContainer>
+      {ReactHtmlParser(initialContent)}
+    </BlogContainer>
+  )
 };
 
 export default RenderBlog;

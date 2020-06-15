@@ -66,6 +66,10 @@ export const SubscribeNewsletter = {
       .then(responseBody)
 };
 
+export const BlogPost = {
+  get: id => requests.get('blogpostcontent/' + id + '/')
+}
+
 export default {
   setToken: _token => {
     token = _token;
