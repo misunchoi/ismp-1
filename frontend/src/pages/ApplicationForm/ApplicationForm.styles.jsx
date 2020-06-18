@@ -10,7 +10,7 @@ export const SubTitle = styled.h4`
   font-size: ${theme.fontSizes.md};
 `;
 
-export const List = styled.ol`
+export const List = styled.ul`
   padding-left: 35px;
 `;
 

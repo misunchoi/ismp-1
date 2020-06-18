@@ -413,21 +413,17 @@ const ApplicationForm = props => {
                 <Grid.Column width={6}>
                   <Segment>
                     <SubTitle>Important Information</SubTitle>
-                    <List ordered>
+                    <List>
                       <ListItem>
-                        Our application includes a $10 printing fee to be submitted when you pick up your materials.*
+                       Application is on a rolling basis. Once your application is submitted, you will be notified of your application status within 10 business days. 
                       </ListItem>
                       <ListItem>
-                        Our program is 1 year long.*
+                        For those under the age of 18, please note that you will be required to receive parental or guardian consent. You will receive a follow up email with an online document to be signed and returned before you are paired with a mentor.
                       </ListItem>
                       <ListItem>
-                        There will be weekly check-ins during the first 6 weeks*. Afterwards, your check-in frequency will be based on your preference.
-                      </ListItem>
-                      <ListItem>
-                        Quarterly check-ins are recommended.
+                        Please note that we reserve the right to deny any applications.
                       </ListItem>
                     </List>
-                    <Asterisk>*MAY VARY BASED ON CAMPUS.</Asterisk>
                   </Segment>
                 </Grid.Column>
               </Grid.Row>
