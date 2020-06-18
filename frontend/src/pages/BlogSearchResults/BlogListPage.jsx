@@ -31,7 +31,7 @@ const BlogSearch = ({ term }) => {
   // Component State
   const [searchInputs, setSearchInputs] = useState(defaultInputState);
   const [isLoading, setIsLoading] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState(null);
   const [searchApiUrl, setSearchApiUrl] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
   const [isZeroResults, setIsZeroResults] = useState(false);
@@ -106,7 +106,7 @@ const BlogSearch = ({ term }) => {
             thumbnail_url: p && p.thumbnail_url,
             title: blog.title_content,
             blurb: blog.body_content,
-            blog_url: `/blogpost/${blog.id}`,
+            blog_url: `/blog/${blog.id}`,
             blog_type: p && p.type,
             category: p && p.topic_set.map(topic => topic.display_text),
             author: p && p.author.user,
@@ -128,7 +128,7 @@ const BlogSearch = ({ term }) => {
       },
       error => {
         const errorObj = error.response;
-        setErrorMsg(`${errorObj ? errorObj.error : error}`);
+        setErrorMsg(`${errorObj.error}`);
         setIsLoading(false);
       }
     );
@@ -197,7 +197,7 @@ const BlogSearch = ({ term }) => {
       </Section>
 
       <Section>
-        {isLoading ? (
+        {isLoading || searchResults === null ? (
           <Spinner />
         ) : errorMsg ? (
           errorMessage(errorMsg)

@@ -1,22 +1,16 @@
 import React from 'react';
-import {
-  Modal,
-  Button,
-  Icon,
-} from 'semantic-ui-react';
+import { Modal, Button, Icon } from 'semantic-ui-react';
 import Markdown from 'react-remarkable';
 import { useTranslation } from 'react-i18next';
 
-
-const PrivacyPolicyModal = (props) => {
-
+const PrivacyPolicyModal = props => {
   const { t } = useTranslation('privacy-policy');
 
-  const generateBlock = (section) => {
+  const generateBlock = section => {
     let bodyElements = [];
     for (let i = 1; i < 100; i++) {
-      const bodyKey = section + ".body" + i
-      if(t(bodyKey) === bodyKey){
+      const bodyKey = section + '.body' + i;
+      if (t(bodyKey) === bodyKey) {
         break;
       } else {
         bodyElements.push(t(bodyKey));
@@ -25,14 +19,14 @@ const PrivacyPolicyModal = (props) => {
 
     return (
       <div>
-        <Markdown>{t(section + ".title")}</Markdown>
-        {bodyElements.map((text) => (
+        <Markdown>{t(section + '.title')}</Markdown>
+        {bodyElements.map(text => (
           <Markdown>{text}</Markdown>
         ))}
         <br />
       </div>
     );
-  }
+  };
 
   const sections = [
     'introduction',
@@ -48,7 +42,7 @@ const PrivacyPolicyModal = (props) => {
     'changes_to_our_privacy_policy'
   ];
 
-  return(
+  return (
     <Modal trigger={<a as={Button}>Privacy Policy</a>}>
       <Modal.Header>
         <Markdown>{t('title')}</Markdown>
@@ -56,13 +50,11 @@ const PrivacyPolicyModal = (props) => {
       <Modal.Content>
         <Markdown>{t('last_modified')}</Markdown>
         <Modal.Description>
-          {sections.map((section) => (
-            generateBlock(section)
-          ))}
+          {sections.map(section => generateBlock(section))}
         </Modal.Description>
       </Modal.Content>
     </Modal>
   );
-}
+};
 
 export default PrivacyPolicyModal;

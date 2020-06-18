@@ -10,6 +10,8 @@ import { ThemeProvider } from 'styled-components';
 
 import ResponsiveContainer from './layout/Responsive/ResponsiveContainer';
 import Routes from './routes/Routes';
+import ScrollToTop from './routes/ScrollToTop';
+
 import GlobalStyle from './styles/globalStyle';
 import theme from './styles/theme';
 import * as serviceWorker from './utils/serviceWorker';
@@ -20,9 +22,11 @@ ReactDOM.render(
     <BrowserRouter>
       {/* Responsive Container has navigation and footer */}
       {/* Routes contain body content that will pass as children into responsive container */}
-      <ResponsiveContainer>
-        <Routes />
-      </ResponsiveContainer>
+      <ScrollToTop>
+        <ResponsiveContainer>
+          <Routes />
+        </ResponsiveContainer>
+      </ScrollToTop>
     </BrowserRouter>
   </ThemeProvider>,
   document.getElementById('root')

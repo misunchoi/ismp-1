@@ -44,11 +44,13 @@ const CollegeListSection = ({ t }) => (
   <Section>
     <SectionHeader>{t('our_campuses.title')}</SectionHeader>
     <Grid doubling stackable columns={4}>
-      {colleges.map(college => (
-        <Grid.Column key={college.abbr}>
-          <CollegeCard college={college} />
-        </Grid.Column>
-      ))}
+      {colleges
+        .filter(college => college.active)
+        .map(college => (
+          <Grid.Column key={college.abbr}>
+            <CollegeCard college={college} />
+          </Grid.Column>
+        ))}
     </Grid>
   </Section>
 );

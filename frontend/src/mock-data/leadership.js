@@ -1,7 +1,7 @@
 const leadershipInfo = {
   officers: [
     {
-      image: 'http://jessewoo.github.io/images/ismp/jessicafu.jpg',
+      image: 'http://jessewoo.github.io/images/ismp/img-jessica-fu@2x.jpg',
       name: 'Jessica Fu',
       title: 'President',
       credentials: [
@@ -92,7 +92,7 @@ const leadershipInfo = {
       linkedin_url: 'https://www.linkedin.com/in/henrychen/'
     },
     {
-      image: 'http://jessewoo.github.io/images/ismp/sarahong.jpg',
+      image: 'http://jessewoo.github.io/images/ismp/img-sara-hong@2x.jpg',
       name: 'Sara Hong',
       title: 'Director',
       credentials: [
@@ -109,7 +109,7 @@ const leadershipInfo = {
       staff_url: 'https://writing.berkeley.edu/staff/sara-hong'
     },
     {
-      image: 'http://jessewoo.github.io/images/ismp/bozheng.jpg',
+      image: 'http://jessewoo.github.io/images/ismp/img-bo-zheng@2x.jpg',
       name: 'Bo Zheng',
       title: 'Director',
       credentials: [
@@ -143,7 +143,7 @@ const leadershipInfo = {
       linkedin_url: 'https://www.linkedin.com/in/mark-borja-66897b34/'
     },
     {
-      image: 'http://jessewoo.github.io/images/ismp/franciscachan.jpeg',
+      image: 'http://jessewoo.github.io/images/ismp/img-fran-chan@2x.jpg',
       name: 'Francisca Chan',
       title: 'Director',
       credentials: [

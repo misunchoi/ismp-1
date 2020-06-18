@@ -13,11 +13,11 @@ import {
   Label
 } from 'semantic-ui-react';
 
-import { 
+import {
   Asterisk,
   List,
   ListItem,
-  SubTitle, 
+  SubTitle,
   Title
 } from './ApplicationForm.styles';
 
@@ -94,7 +94,7 @@ const useApplicationForm = () => {
 
     if (data.checked !== undefined) {
       // workaround because checkboxes don't have "value"
-      value = data.checked ? "checked" : "";
+      value = data.checked ? 'checked' : '';
     }
 
     setInputs(inputs => ({
@@ -146,10 +146,18 @@ const useStepFlow = (history, validateStep, signup) => {
   const stepClick = action => {
     if (action === 'prev' && currentStep > 1) {
       setCurrentStep(currentStep - 1);
-    } else if (action === 'next' && currentStep < totalSteps && validateStep(currentStep)) {
-        setCurrentStep(currentStep + 1);
-    } else if (action === 'next' && currentStep === 3 && validateStep(currentStep)) {
-      signup().then((result) => {
+    } else if (
+      action === 'next' &&
+      currentStep < totalSteps &&
+      validateStep(currentStep)
+    ) {
+      setCurrentStep(currentStep + 1);
+    } else if (
+      action === 'next' &&
+      currentStep === 3 &&
+      validateStep(currentStep)
+    ) {
+      signup().then(result => {
         if (result) {
           history.push('/apply-success');
         }
@@ -158,10 +166,10 @@ const useStepFlow = (history, validateStep, signup) => {
   };
 
   return {
-    stepClick, 
-    nextButtonLabel, 
-    currentStep,
-  }
+    stepClick,
+    nextButtonLabel,
+    currentStep
+  };
 };
 
 const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
@@ -219,13 +227,10 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
       }
     },
     validateYear: (fieldName, value) => {
-      const re=/^\d{4}$/
+      const re = /^\d{4}$/;
 
       if (!re.test(value)) {
-        handleFeedbackChange(
-          fieldName,
-          'Please enter a valid 4-digit year'
-        )
+        handleFeedbackChange(fieldName, 'Please enter a valid 4-digit year');
         return false;
       } else {
         handleFeedbackChange(fieldName, '');
@@ -233,7 +238,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
       }
     },
     validateTermsChecked: (fieldName, value) => {
-      if (value !== "checked") {
+      if (value !== 'checked') {
         handleFeedbackChange(
           fieldName,
           'Application cannot be submitted until you agree to the terms of service'
@@ -291,7 +296,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
         'gender',
         'birth_year',
         'country_of_origin',
-        'email',
+        'email'
       ];
     } else if (step === 2) {
       fields = [
@@ -324,38 +329,40 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
     validateField(fieldName, value);
   };
 
-  return {handleValidateOnBlur, validateField, validateStep}
+  return { handleValidateOnBlur, validateField, validateStep };
 };
 
 const ApplicationForm = props => {
-    const signup = () => {
-      const data = inputs;
-      data['interest_topics'] = [];
-      topicsOptions.map(option => option.value).filter(topic => !!data[topic]).forEach(topic => {
+  const signup = () => {
+    const data = inputs;
+    data['interest_topics'] = [];
+    topicsOptions
+      .map(option => option.value)
+      .filter(topic => !!data[topic])
+      .forEach(topic => {
         data['interest_topics'].push(topic);
         data[topic] = undefined;
       });
 
-      if (data['other_topic']) {
-        data['interest_topics'].push(data['other_topic']);
-        data['other_topic'] = undefined;
+    if (data['other_topic']) {
+      data['interest_topics'].push(data['other_topic']);
+      data['other_topic'] = undefined;
+    }
+
+    if (data['other_referral']) {
+      data['referral'] = `${data['referral']}: ${data['other_referral']}`;
+    }
+
+    return requests.post('application/', data).then(
+      response => {
+        if (DEBUG) console.log(response);
+        return true;
+      },
+      error => {
+        if (DEBUG) console.log(error);
+        return false;
       }
-
-
-      if (data['other_referral']) {
-        data['referral'] = `${data['referral']}: ${data['other_referral']}`
-      }
-
-      return requests.post('application/', data).then(
-        response => {
-          if (DEBUG) console.log(response);
-          return true;
-        },
-        error => {
-          if (DEBUG) console.log(error);
-          return false;
-        }
-      );
+    );
   };
 
   const { inputs, handleInputChange } = useApplicationForm();
@@ -372,9 +379,17 @@ const ApplicationForm = props => {
       : undefined;
   };
 
-  const { validateStep, validateField, handleValidateOnBlur } = ApplicationFormValidator(handleFeedbackChange, inputs)
+  const {
+    validateStep,
+    validateField,
+    handleValidateOnBlur
+  } = ApplicationFormValidator(handleFeedbackChange, inputs);
 
-  const { stepClick, nextButtonLabel, currentStep } = useStepFlow(props.history, validateStep, signup);
+  const { stepClick, nextButtonLabel, currentStep } = useStepFlow(
+    props.history,
+    validateStep,
+    signup
+  );
 
   const appStepList = appFormStep.map(step => {
     return (
@@ -397,8 +412,8 @@ const ApplicationForm = props => {
             <Step.Group fluid>{appStepList}</Step.Group>
             <Grid>
               <Grid.Row>
-                <Grid.Column width={10}> 
-                  <ApplicationFormInputs 
+                <Grid.Column width={10}>
+                  <ApplicationFormInputs
                     currentStep={currentStep}
                     handleValidateOnBlur={handleValidateOnBlur}
                     handleInputChange={handleInputChange}
@@ -415,13 +430,20 @@ const ApplicationForm = props => {
                     <SubTitle>Important Information</SubTitle>
                     <List>
                       <ListItem>
-                       Application is on a rolling basis. Once your application is submitted, you will be notified of your application status within 10 business days. 
+                        Application is on a rolling basis. Once your application
+                        is submitted, you will be notified of your application
+                        status within 10 business days.
                       </ListItem>
                       <ListItem>
-                        For those under the age of 18, please note that you will be required to receive parental or guardian consent. You will receive a follow up email with an online document to be signed and returned before you are paired with a mentor.
+                        For those under the age of 18, please note that you will
+                        be required to receive parental or guardian consent. You
+                        will receive a follow up email with an online document
+                        to be signed and returned before you are paired with a
+                        mentor.
                       </ListItem>
                       <ListItem>
-                        Please note that we reserve the right to deny any applications.
+                        Please note that we reserve the right to deny any
+                        applications.
                       </ListItem>
                     </List>
                   </Segment>
@@ -435,8 +457,8 @@ const ApplicationForm = props => {
   );
 };
 
-const ApplicationFormInputs = (props) => {
- const {
+const ApplicationFormInputs = props => {
+  const {
     currentStep,
     handleValidateOnBlur,
     handleInputChange,
@@ -581,15 +603,13 @@ const ApplicationFormInputs = (props) => {
                 id: 'form-select-control-current-grade-level'
               }}
               name="grade_level"
-              onBlur={() =>
-                validateField('grade_level', inputs.grade_level)
-              }
+              onBlur={() => validateField('grade_level', inputs.grade_level)}
               onChange={handleInputChange}
               value={inputs.grade_level}
               error={renderError('grade_level')}
             />
             <Form.Field
-              fluid 
+              fluid
               required
               id="form-input-control-current-school-name"
               control={Input}
@@ -698,15 +718,17 @@ const ApplicationFormInputs = (props) => {
               onChange={handleInputChange}
               value={inputs.referral}
             />
-            {inputs.referral === 'other' && <Form.Field
-              control={Input}
-              label="Please Describe"
-              placeholder="Other"
-              name="other_referral"
-              type="text"
-              onChange={handleInputChange}
-              value={inputs.other_referral}
-            />}
+            {inputs.referral === 'other' && (
+              <Form.Field
+                control={Input}
+                label="Please Describe"
+                placeholder="Other"
+                name="other_referral"
+                type="text"
+                onChange={handleInputChange}
+                value={inputs.other_referral}
+              />
+            )}
           </Form.Group>
           <Form.Group grouped>
             <label>Choose topics interested in:</label>
@@ -724,17 +746,19 @@ const ApplicationFormInputs = (props) => {
               );
             })}
           </Form.Group>
-          {inputs['other'] && <Form.Field
-            fluid
-            id="form-input-control-other-topic"
-            control={Input}
-            label="Other Topic"
-            placeholder="Other Topic"
-            name="other_topic"
-            type="text"
-            onChange={handleInputChange}
-            value={inputs.other_topic}
-          />}
+          {inputs['other'] && (
+            <Form.Field
+              fluid
+              id="form-input-control-other-topic"
+              control={Input}
+              label="Other Topic"
+              placeholder="Other Topic"
+              name="other_topic"
+              type="text"
+              onChange={handleInputChange}
+              value={inputs.other_topic}
+            />
+          )}
           <Form.TextArea
             fluid
             label="Questions / Comments"
@@ -747,26 +771,28 @@ const ApplicationFormInputs = (props) => {
 
           <Form.Field
             required
-            id='terms-and-conditions-checkbox'
+            id="terms-and-conditions-checkbox"
             label={{
-              children: 
-              <span>
-                I agree to the <TermsModal>Terms and Services</TermsModal> and <PrivacyPolicyModal>Privacy Policy</PrivacyPolicyModal>
-              </span>,
+              children: (
+                <span>
+                  I agree to the <TermsModal>Terms and Services</TermsModal> and{' '}
+                  <PrivacyPolicyModal>Privacy Policy</PrivacyPolicyModal>
+                </span>
+              ),
               htmlFor: 'terms-and-conditions-checkbox'
             }}
             control={Checkbox}
             name="terms"
             onBlur={() => {
-              validateField('terms', inputs.terms)}
-            } 
+              validateField('terms', inputs.terms);
+            }}
             onChange={handleInputChange}
           />
-          {feedbacks['terms'] &&
-          <Label
-            basic
-            color='red'
-          >{feedbacks['terms']}</Label>}
+          {feedbacks['terms'] && (
+            <Label basic color="red">
+              {feedbacks['terms']}
+            </Label>
+          )}
         </div>
       )}
       <br />
@@ -793,7 +819,6 @@ const ApplicationFormInputs = (props) => {
       </Button.Group>
     </Form>
   );
-}
-
+};
 
 export default ApplicationForm;

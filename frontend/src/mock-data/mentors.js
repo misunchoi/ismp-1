@@ -4,16 +4,17 @@
 const mentors = {
   usc: {
     campus: {
+      name: 'University of Southern California',
       location: 'Los Angeles, CA',
       blurb:
-        'USC advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        'The University of Southern California is one of the world’s leading private research universities. An anchor institution in Los Angeles, a global center for arts, technology and international business, USC’s diverse curricular offerings provide extensive opportunities for interdisciplinary study and collaboration with leading researchers in highly advanced learning environments.',
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: 'https://react.semantic-ui.com/images/wireframe/image.png',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/joel_letro.jpg',
         name: 'Joel Letro',
         credentials: [
           {
@@ -21,12 +22,16 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Director, Optimization at LQ Digital',
+        current_job: {
+          company: 'LQ Digital',
+          position: 'Director, Optimization'
+        },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/joel-letro-7814494a/'
       },
       {
-        image: 'http://jessewoo.github.io/images/ismp/kenhsu.jpg',
+        image:
+          'http://jessewoo.github.io/images/ismp/mentors/jerome-gonzaga.jpg',
         name: 'Jerome Gonzaga',
         credentials: [
           {
@@ -38,7 +43,10 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Associate Construction Project Manager at UC Irvine',
+        current_job: {
+          company: 'UC Irvine',
+          position: 'Associate Construction Project Manager'
+        },
         fun_facts:
           'Loves watermelon and can say “watermelon” in 12 different languages',
         linkedin_url: 'https://www.linkedin.com/in/jerome-gonzaga-eit-pmp/'
@@ -47,16 +55,17 @@ const mentors = {
   },
   ucb: {
     campus: {
+      name: 'University of California, Berkeley',
       location: 'Berkeley, CA',
       blurb:
-        'UC Berkeley advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        'The University of California was founded in 1868, born out of a vision in the State Constitution of a university that would "contribute even more than California\'s gold to the glory and happiness of advancing generations."',
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/mimi_chen.jpg',
         name: 'Mimi Chen',
         credentials: [
           {
@@ -64,12 +73,15 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Marketing Coordinator, Marcus & Millichap',
+        current_job: {
+          company: 'Marcus & Millichap',
+          position: 'Marketing Coordinator'
+        },
         fun_facts: 'Knows pi to the 35th digit',
         linkedin_url: 'https://www.linkedin.com/in/minghsichen'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/daniel_liu.jpg',
         name: 'Daniel Liu',
         credentials: [
           {
@@ -77,12 +89,16 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Software Engineer, Splunk Inc.',
+        current_job: {
+          company: 'Splunk Inc.',
+          position: 'Software Engineer'
+        },
         fun_facts: 'Also a wedding pianist for more than 10 weddings',
         linkedin_url: 'https://www.linkedin.com/in/daniel-liu-744a7081/'
       },
       {
-        image: '',
+        image:
+          'http://jessewoo.github.io/images/ismp/mentors/marissa_brooks.jpg',
         name: 'Marissa Brooks',
         credentials: [
           {
@@ -90,7 +106,10 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Product Surveillance Specialist, Penumbra Inc.',
+        current_job: {
+          company: 'Penumbra Inc.',
+          position: 'Product Surveillance Specialist'
+        },
         fun_facts: 'Will eat anything banana flavored.',
         linkedin_url: ''
       }
@@ -98,16 +117,17 @@ const mentors = {
   },
   ucla: {
     campus: {
+      name: 'University of California, Los Angeles',
       location: 'Los Angeles, CA',
       blurb:
-        'UCLA advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        "We doubt the critics, reject the status quo and see opportunity in dissatisfaction. Our campus, faculty and students are driven by optimism. It is not naïve; it is essential. And it has fueled every accomplishment, allowing us to redefine what's possible, time after time. This can-do perspective has brought us 14 Nobel Prizes, 14 faculty MacArthur Fellows, 118 NCAA titles and more Olympic medals than most nations. Our faculty and alumni helped create the Internet and pioneered reverse osmosis. And more than 140 companies have been created based on technology developed at UCLA.",
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/andrew_chen.jpg',
         name: 'Andrew Chen',
         credentials: [
           {
@@ -119,13 +139,16 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Senior Data Analyst, Mothership',
+        current_job: {
+          company: 'Mothership',
+          position: 'Senior Data Analyst'
+        },
         fun_facts:
           "I love to listen to all kinds of podcasts (politics, public policy, philosophy, and technology), I'm a lifelong Laker fan.",
         linkedin_url: 'https://www.linkedin.com/in/andrewgchen90/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/angela_chen.jpg',
         name: 'Angela Chen',
         credentials: [
           {
@@ -137,12 +160,15 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Pharmacist, MedWatchers',
+        current_job: {
+          company: 'MedWatchers',
+          position: 'Pharmacist'
+        },
         fun_facts: 'I am trilingual (Taiwanese, Mandarin, English)',
         linkedin_url: 'https://www.linkedin.com/in/shen-angela/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/alex_lee.jpg',
         name: 'Alex Lee',
         credentials: [
           {
@@ -150,7 +176,10 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'PhD Candidate, UCLA: Molecular and Medical Pharmacology',
+        current_job: {
+          company: 'UCLA: Molecular and Medical Pharmacology',
+          position: 'PhD Candidate'
+        },
         fun_facts:
           'Learning how to cook new dishes from different countries around the world',
         linkedin_url: 'https://www.linkedin.com/in/alexander-lee-b0098862/'
@@ -159,16 +188,17 @@ const mentors = {
   },
   uci: {
     campus: {
+      name: 'University of California, Irvine',
       location: 'Irvine, CA',
       blurb:
-        'UCI advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        'In 1965, the University of California, Irvine was founded with a mission to catalyze the community and enhance lives through rigorous academics, cutting-edge research, and dedicated public service. Today, we draw on the unyielding spirit of our pioneering faculty, staff and students who arrived on campus with a dream to inspire change and generate new ideas. We believe that true progress is made when different perspectives come together to advance our understanding of the world around us. And we enlighten our communities and point the way to a better future. At UCI, we shine brighter.',
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/jon_eng.jpg',
         name: 'Jonathan Eng',
         credentials: [
           {
@@ -180,13 +210,16 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Senior Machine Learning Engineer, Iterable',
+        current_job: {
+          company: 'Iterable',
+          position: 'Senior Machine Learning Engineer'
+        },
         fun_facts:
           'Once won a chopstick competition where I had to pick out metal marbles from a box.',
         linkedin_url: 'https://www.linkedin.com/in/jwsyeng/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/empty_male.jpg',
         name: 'Larry Tan',
         credentials: [
           {
@@ -198,12 +231,15 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Senior Data Analyst, DataTree by First American',
+        current_job: {
+          company: 'DataTree by First American',
+          position: 'Senior Data Analyst'
+        },
         fun_facts: 'Learnd 6 languages and speaks 3 languages fluently',
         linkedin_url: 'https://www.linkedin.com/in/larry-tan-32212348/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/stacey_song.jpg',
         name: 'Stacy Song',
         credentials: [
           {
@@ -211,7 +247,10 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Technical Writer, HackerOne',
+        current_job: {
+          company: 'HackerOne',
+          position: 'Technical Writer'
+        },
         fun_facts:
           "I'm afraid of monkeys even though I was born in the year of the monkey.",
         linkedin_url: 'https://www.linkedin.com/in/stacyspiva/'
@@ -220,16 +259,17 @@ const mentors = {
   },
   uscd: {
     campus: {
+      name: 'University of California, San Diego',
       location: 'San Diego, CA',
       blurb:
-        'UCSD advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        'Recognized as one of the top 15 research universities worldwide, our culture of collaboration sparks discoveries that advance society and drive economic impact. Everything we do is dedicated to ensuring our students have the opportunity to become changemakers, equipped with the multidisciplinary tools needed to accelerate answers to our world’s most pressing issues.',
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/ryan_lathan.jpg',
         name: 'Ryan Lathan',
         credentials: [
           {
@@ -237,12 +277,15 @@ const mentors = {
             organization: 'UCSD'
           }
         ],
-        current_job: 'UX, UI Engineer, Inseego',
+        current_job: {
+          company: 'Inseego',
+          position: 'UX, UI Engineer'
+        },
         fun_facts: 'He helped to design this website with his UX skills.',
         linkedin_url: 'https://www.linkedin.com/in/ryan-lathan-a84b1513b/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/empty_male.jpg',
         name: 'Douglas Chan',
         credentials: [
           {
@@ -254,12 +297,15 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Software Engineer, Google',
+        current_job: {
+          company: 'Google',
+          position: 'Software Engineer'
+        },
         fun_facts: 'Used to be an archery instructor',
         linkedin_url: 'https://www.linkedin.com/in/douglaschan32167/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/empty_female.jpg',
         name: 'Micaela Trujillo ',
         credentials: [
           {
@@ -267,7 +313,10 @@ const mentors = {
             organization: 'UCSD'
           }
         ],
-        current_job: 'Quality Assurance Engineer, Procede Software',
+        current_job: {
+          company: 'Procede Software',
+          position: 'Quality Assurance Engineer'
+        },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/micaela-trujillo-3b487710a/'
       }
@@ -275,16 +324,17 @@ const mentors = {
   },
   uw: {
     campus: {
+      name: 'University of Washington',
       location: 'Seattle, WA',
       blurb:
-        'University of Washington advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        'The UW is one of the world’s preeminent public universities. Our impact on individuals, our region and the world is profound — whether we are launching young people into a boundless future or confronting the grand challenges of our time through undaunted research and scholarship. Ranked No. 14 in the world on the 2018 Academic Ranking of World Universities, the UW educates more than 54,000 students annually. We turn ideas into impact and transform lives and our world.',
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/kevin_limk.jpg',
         name: 'Kevin Limkrailassiri',
         credentials: [
           {
@@ -296,13 +346,16 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Data Scientist, Neal Analytics',
+        current_job: {
+          company: 'Neal Analytics',
+          position: 'Data Scientist'
+        },
         fun_facts: 'People say I can eat a ton.',
         linkedin_url:
           'https://www.linkedin.com/in/kevin-limkrailassiri-a949698b/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/empty_male.jpg',
         name: 'Howard Noz',
         credentials: [
           {
@@ -314,13 +367,16 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Software Developer, UPS',
+        current_job: {
+          company: 'UPS',
+          position: 'Software Developer'
+        },
         fun_facts:
           "I'm known for being able to imitate certain people so well, I have fooled even the person being imitated that I caught them on camera doing something",
         linkedin_url: 'https://www.linkedin.com/in/howardnoz/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/ana_zhong.jpg',
         name: 'Ana Zhong',
         credentials: [
           {
@@ -332,8 +388,10 @@ const mentors = {
             organization: 'UC Los Angeles'
           }
         ],
-        current_job:
-          'Pre-doctoral Instructor, UW Department of Spanish & Portuguese',
+        current_job: {
+          company: 'UW Department of Spanish & Portuguese',
+          position: 'Pre-doctoral Instructor'
+        },
         fun_facts: "Grew up in Panama, so I'm fluent in Spanish",
         linkedin_url: 'https://www.linkedin.com/in/ana-zhong-a6a708105/'
       }
@@ -341,16 +399,17 @@ const mentors = {
   },
   gwu: {
     campus: {
+      name: 'The George Washington University',
       location: 'Washington, DC',
       blurb:
-        'The George Washington University advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        'Since our capital city’s first days, people have traveled here for many reasons. They come to explore the past and to chart new futures. They come to ask questions and to seek expert answers. They come to start discourse and to remember in silence. They come to demand change and to be that change. They come to grow. They come to learn. They come to make history and join the ranks alongside many prominent GW alumni.',
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/empty_female.jpg',
         name: 'Maggie Hacker',
         credentials: [
           {
@@ -362,7 +421,10 @@ const mentors = {
             organization: 'University of Minnesota'
           }
         ],
-        current_job: 'Research Administrator, GWU',
+        current_job: {
+          company: 'GWU',
+          position: 'Research Administrator'
+        },
         fun_facts:
           'Never lived more than an hour from the town I was born until I moved to China for a year to study Chinese',
         linkedin_url: 'https://www.linkedin.com/in/maggie-hacker/'
@@ -371,16 +433,17 @@ const mentors = {
   },
   gmu: {
     campus: {
+      name: 'The George Mason University',
       location: 'Fairfax, VA',
       blurb:
-        'George Mason University advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        "Our identity was forged in 1972 on Virginia's strong ideals of academic excellence and service. Today, that spirit energizes us as a leader in scholarship and research; preparing graduates to meet the complex needs of a rapidly changing world.",
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/empty_female.jpg',
         name: 'May Huang',
         credentials: [
           {
@@ -396,12 +459,15 @@ const mentors = {
             organization: ''
           }
         ],
-        current_job: 'Project Manager, Capital Facilities, County of Fairfax',
+        current_job: {
+          company: 'County of Fairfax',
+          position: 'Project Manager, Capital Facilities'
+        },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/may-huang-p-e-4192538/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/empty_male.jpg',
         name: 'Xin Huang',
         credentials: [
           {
@@ -409,8 +475,10 @@ const mentors = {
             organization: 'University of Washington'
           }
         ],
-        current_job:
-          'Database Administrator, Contractor for the Federal Reserve Bank',
+        current_job: {
+          company: 'Federal Reserve Bank',
+          position: 'Database Administrator'
+        },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/xin-z-huang/'
       }
@@ -418,16 +486,17 @@ const mentors = {
   },
   uom: {
     campus: {
+      name: 'University of Maryland, College Park',
       location: 'College Park, MD',
       blurb:
-        'University of Maryland advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        "The University of Maryland, College Park is the state's flagship university and one of the nation's preeminent public research universities. A global leader in research, entrepreneurship and innovation, the university is home to more than 41,000 students, 14,000 faculty and staff, and 377,000 alumni all dedicated to the pursuit of Fearless Ideas. Located just outside Washington, D.C., we discover and share new knowledge every day through our renowned research enterprise and programs in academics, the arts and athletics. And we are committed to social entrepreneurship as the nation’s first “Do Good” campus.",
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/angela_kim.jpg',
         name: 'Angela Kim',
         credentials: [
           {
@@ -439,12 +508,15 @@ const mentors = {
             organization: 'UT Austin'
           }
         ],
-        current_job: 'Accountant, University System of Maryland',
+        current_job: {
+          company: 'University System of Maryland',
+          position: 'Accountant'
+        },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/angela-kim-87b9a696/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/david_kim.jpg',
         name: 'David Kim',
         credentials: [
           {
@@ -452,8 +524,10 @@ const mentors = {
             organization: 'UT Austin'
           }
         ],
-        current_job:
-          'Software Quality Assurance Tester, Omnitech Solutions, Inc.',
+        current_job: {
+          company: 'Omnitech Solutions, Inc.',
+          position: 'Software Quality Assurance Tester'
+        },
         fun_facts: 'I was a cheerleader in high school.',
         linkedin_url: 'https://www.linkedin.com/in/minjaikim/'
       }
@@ -461,16 +535,17 @@ const mentors = {
   },
   uta: {
     campus: {
+      name: 'University of Texas, Austin',
       location: 'Austin, TX',
       blurb:
-        'UT Austin advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        'The University of Texas at Austin, founded in 1883, ranks among the 40 best universities in the world. It supports some 51,000 diverse students with top national programs across 18 colleges and schools. And as Texas’ leading research university, UT attracts more than $650 million annually for discovery.',
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/annie_glass.jpg',
         name: 'Annie Glass',
         credentials: [
           {
@@ -478,12 +553,15 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Agile Coach, Aceable',
+        current_job: {
+          company: 'Aceable',
+          position: 'Agile Coach'
+        },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/anniehglass/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/wesker_lei.jpg',
         name: 'Wesker Lei',
         credentials: [
           {
@@ -495,12 +573,15 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Data Science Analyst, Revionics',
+        current_job: {
+          company: 'Revionics',
+          position: 'Data Science Analyst'
+        },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/kin-wesker-lei/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/henry_chen.jpg',
         name: 'Henry Chen',
         credentials: [
           {
@@ -512,7 +593,10 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Program Director, IBM',
+        current_job: {
+          company: 'IBM',
+          position: 'Program Director'
+        },
         fun_facts:
           "I love trying all kinds of new foods--I just don't eat carbs!",
         linkedin_url: 'https://www.linkedin.com/in/henrychen/'
@@ -521,30 +605,34 @@ const mentors = {
   },
   sac: {
     campus: {
+      name: 'California State University, Sacramento',
       location: 'Sacramento, CA',
       blurb:
-        'Sac State advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        'We are California’s capital university, providing world-class, affordable education in the political, cultural, and economic heart of the Golden State. We are a recognized leader in education, innovation, and engagement, dedicated to the belief that there are no limits to our students’ potential for excellence and success. We are powering the capital region though groundbreaking partnerships and more than 230,000 proud Hornet alumni. We are a vibrant and diverse community, united by our shared intellectual curiosity, commitment to improving the world around us, and passion for redefining the possible.',
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/gary_chang.jpg',
         name: 'Gary Chang',
         credentials: [
           {
             title: 'JD',
-            organization: ''
+            organization: 'UC Davis'
           }
         ],
-        current_job: 'Attorney III, California Department of Public Health',
+        current_job: {
+          company: 'California Department of Public Health',
+          position: 'Attorney III'
+        },
         fun_facts:
           'Once upon a time I was good at math and science (Neurobiology major in college!).',
         linkedin_url: 'https://www.linkedin.com/in/gary-chang-5848281/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/angel_fong.jpg',
         name: 'Angel Fong',
         credentials: [
           {
@@ -556,8 +644,10 @@ const mentors = {
             organization: 'UC Davis'
           }
         ],
-        current_job:
-          'Environmental Scientist, California Environmental Protection Agency ',
+        current_job: {
+          company: 'California Environmental Protection Agency',
+          position: 'Environmental Scientist'
+        },
         fun_facts: 'I lived in Japan for 9 years. ',
         linkedin_url: 'https://www.linkedin.com/in/angel-fong-161baa112/'
       }
@@ -565,16 +655,17 @@ const mentors = {
   },
   ucd: {
     campus: {
+      name: 'University of California, Davis',
       location: 'Davis, CA',
       blurb:
-        'UC Davis advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        'UC Davis is the home of the Aggies — go-getters, change makers and problem solvers who make their mark at one of the top public universities in the United States. Since we first opened in 1908, we’ve been known for standout academics, sustainability and Aggie Pride as well as valuing the Northern California lifestyle. These themes are woven into our 100-plus-year history and our reputation for solving problems related to food, health, the environment and society.',
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/sandra_lee.jpg',
         name: 'Sandra Lee',
         credentials: [
           {
@@ -590,12 +681,15 @@ const mentors = {
             organization: 'CFA Institute'
           }
         ],
-        current_job: 'Senior Financial Analyst, TechnipFMC',
+        current_job: {
+          company: 'TechnipFMC',
+          position: 'Senior Financial Analyst'
+        },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/sandra-kim-lee-890a5413/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/conrad_chu.jpg',
         name: 'Conrad Chu',
         credentials: [
           {
@@ -607,8 +701,10 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job:
-          'Venture Capital Investor, e.ventures CTO/Co-founder, Munchery',
+        current_job: {
+          company: 'e.ventures / Munchery',
+          position: 'Venture Capital Investor / CTO/Co-founder'
+        },
         fun_facts: 'My first job was making movies for Hollywood',
         linkedin_url: 'https://www.linkedin.com/in/conradchu/'
       }
@@ -616,16 +712,17 @@ const mentors = {
   },
   umn: {
     campus: {
+      name: 'University of Minnesota, Twin Cities',
       location: 'Minneapolis, MN',
       blurb:
-        'University of Minnesota advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        'The flagship University of Minnesota Twin Cities is the state’s land-grant university and one of the most prestigious public research universities in the nation. Our 3,900 faculty include members of the National Academy of Sciences, the National Academy of Engineering, and the Institute of Medicine, plus the American Academy of Arts and Sciences, among other bodies. Current and former faculty have won Guggenheim Fellowships, MacArthur Fellowships (“genius grants"), Nobel Prizes, and other significant honors.',
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/esther_zhu.jpg',
         name: 'Esther Zhu',
         credentials: [
           {
@@ -633,13 +730,15 @@ const mentors = {
             organization: 'University of Minnesota-Carlson School of Management'
           }
         ],
-        current_job:
-          'Senior Risk Advisory Consultant at EY, Sustainability Advocate',
+        current_job: {
+          company: 'EY, Sustainability Advocate',
+          position: 'Senior Risk Advisory Consultant'
+        },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/mengting-esther-zhu/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/Ian_Beh.jpg',
         name: 'Ian Beh',
         credentials: [
           {
@@ -647,12 +746,15 @@ const mentors = {
             organization: 'University of Minnesota'
           }
         ],
-        current_job: 'Developer, Affinity Plus Credit Union',
+        current_job: {
+          company: 'Affinity Plus Credit Union',
+          position: 'Developer'
+        },
         fun_facts: 'I enjoy playing ultimate frisbee!',
         linkedin_url: 'https://www.linkedin.com/in/ian-beh-6a299b154/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/jon_fu.jpg',
         name: 'Jon Fu',
         credentials: [
           {
@@ -664,7 +766,10 @@ const mentors = {
             organization: 'UC Davis'
           }
         ],
-        current_job: 'UI/UX Designer, Target',
+        current_job: {
+          company: 'Target',
+          position: 'UI/UX Designer'
+        },
         fun_facts:
           'I am addicted to iced coffee, but absolutely cannot stand hot coffee...even when it is negative degrees outside.',
         linkedin_url: 'https://www.linkedin.com/in/jonathanefu/'
@@ -673,16 +778,17 @@ const mentors = {
   },
   occ: {
     campus: {
+      name: 'Orange Coast College',
       location: 'Costa Mesa, CA',
       blurb:
-        'OCC advances knowledge, addresses pressing societal needs and creates a university enriched by diverse perspectives where all individuals can flourish.',
+        'Orange Coast College (OCC) is a public community college in Costa Mesa in Orange County, California. It was founded in 1947, with its first classes opening in the fall of 1948. It provides Associate of Art and Associate of Science degrees, certificates of achievement, and lower-division classes transferable to other colleges and universities. The school enrolls approximately 24,000 undergraduate students. In terms of population size, Orange Coast College is the third largest college in Orange County.',
       logo_img_url: '',
       facebook_link: '',
       instagram_link: ''
     },
     mentors: [
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/sharon_tung.jpg',
         name: 'Sharon Tung',
         credentials: [
           {
@@ -694,12 +800,15 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Clinical Dietitian, Iron Chef',
+        current_job: {
+          company: 'Iron Chef',
+          position: 'Clinical Dietitian'
+        },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/sharon-tung-ms-rdn-18b37792/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/empty_female.jpg',
         name: 'Eileen Salvador',
         credentials: [
           {
@@ -707,12 +816,15 @@ const mentors = {
             organization: 'UC Riverside'
           }
         ],
-        current_job: 'Operations Support Specialist at Glidewell Dental',
+        current_job: {
+          company: 'Glidewell Dental',
+          position: 'Operations Support Specialist'
+        },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/eileen-hong-a95189101/'
       },
       {
-        image: '',
+        image: 'http://jessewoo.github.io/images/ismp/mentors/empty_male.jpg',
         name: 'David Tung',
         credentials: [
           {
@@ -724,7 +836,10 @@ const mentors = {
             organization: 'UC Berkeley'
           }
         ],
-        current_job: 'Senior Software Engineer at Tanium',
+        current_job: {
+          company: 'Tanium',
+          position: 'Senior Software Engineer'
+        },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/david-tung-087b1168/'
       }

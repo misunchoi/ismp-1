@@ -1,22 +1,17 @@
 import React from 'react';
-import {
-  Modal,
-  Button,
-  Icon,
-} from 'semantic-ui-react';
+import { Modal, Button, Icon } from 'semantic-ui-react';
 import Markdown from 'react-remarkable';
 import { useTranslation } from 'react-i18next';
-import { Spaced } from './PolicyContent.styles'
+import { Spaced } from './PolicyContent.styles';
 
 const TermsModal = () => {
-
   const { t } = useTranslation('terms-of-use');
 
-  const generateBlock = (section) => {
+  const generateBlock = section => {
     let bodyElements = [];
     for (let i = 1; i < 100; i++) {
-      const bodyKey = section + ".body" + i
-      if(t(bodyKey) === bodyKey){
+      const bodyKey = section + '.body' + i;
+      if (t(bodyKey) === bodyKey) {
         break;
       } else {
         bodyElements.push(t(bodyKey));
@@ -25,14 +20,16 @@ const TermsModal = () => {
 
     return (
       <div>
-        <Markdown>{t(section + ".title")}</Markdown>
-        {bodyElements.map((text) => (
-          <Spaced><Markdown>{text}</Markdown></Spaced>
+        <Markdown>{t(section + '.title')}</Markdown>
+        {bodyElements.map(text => (
+          <Spaced>
+            <Markdown>{text}</Markdown>
+          </Spaced>
         ))}
         <br />
       </div>
     );
-  }
+  };
 
   const sections = [
     'acceptance_of_the_terms_of_use',
@@ -50,10 +47,10 @@ const TermsModal = () => {
     'indemnification',
     'governing_law_jurisdiction_and_class_action_waiver',
     'waiver_and_severability',
-    'entire_agreement',
+    'entire_agreement'
   ];
 
-  return(
+  return (
     <Modal trigger={<a as={Button}>Terms and Conditions</a>}>
       <Modal.Header>
         <Markdown>{t('title')}</Markdown>
@@ -61,14 +58,14 @@ const TermsModal = () => {
       <Modal.Content>
         <Modal.Description>
           <Markdown>{t('last_modified')}</Markdown>
-          <Spaced><Markdown>{t('note')}</Markdown></Spaced>
-          {sections.map((section) => (
-            generateBlock(section)
-          ))}
+          <Spaced>
+            <Markdown>{t('note')}</Markdown>
+          </Spaced>
+          {sections.map(section => generateBlock(section))}
         </Modal.Description>
       </Modal.Content>
     </Modal>
   );
-}
+};
 
 export default TermsModal;
