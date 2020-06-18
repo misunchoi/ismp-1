@@ -1,6 +1,8 @@
 # International Student Mentorship Website
 [![CircleCI](https://circleci.com/gh/International-Mentorship-ISMP/ismp.svg?style=svg)](https://circleci.com/gh/International-Mentorship-ISMP/ismp)
 
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/YOUR_SAUCE_USERNAME.svg)](https://saucelabs.com/u/YOUR_SAUCE_USERNAME)
+
 The website is built with Django and React.
 This is a set up so that we can easily create apps that use Django on the backend (and take advantage of the amazing admin UI) and React (set up with [`create-react-app`](https://npm.im/create-react-app)) for the front end application.
 
