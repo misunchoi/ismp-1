@@ -192,6 +192,8 @@ GET - gets the existing blogpostcontents. For populating pages.
   * publish_at: sort by publish_at field, oldest to newest.
   * -pubish_at: sort by publish_at field, newest to oldest.
 
+* fields: add ?fields=id,title_content,body_content,... to specify a whitelist of the fields that you want returned in the response of the json object.
+
 <strong>Don't forget to combine these with ?published=true when showing published blogposts.</strong>
 
 POST - creates a new blogpostcontent. Use this when creating a post for the first time.
@@ -356,6 +358,8 @@ GET
 
 <ins>Parameters</ins>:
 * Name: filter by the name of the school
+* fields: add ?fields=id,name for example to only receive the requested fields in the json response
+* expand: add ?expand=mentors to receive the full json object of the mentors associated with the school instead of just their ids. Can also expand the director field.
 
 POST
 

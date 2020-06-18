@@ -24,6 +24,10 @@ class BlogpostContent(models.Model):
         Blogpost, related_name="blogpost", on_delete=models.CASCADE, null=True)
     title_content = models.CharField(max_length=200, null=False)
     body_content = tinymce_models.HTMLField()
+    # Since we're going to rework this anyway, just have a name stored here that
+    # we can show when rendering blogposts.
+    author_display_name = models.CharField(max_length=50, blank=True)
+    preview_text = models.CharField(max_length=400, blank=True)
     # models.TextField(null=False) # for now, I want the indicator for whether the
     # translation exists to be
     # whether the entry is in this table as opposed to whether or not the field is null.

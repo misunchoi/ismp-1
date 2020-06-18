@@ -1,8 +1,9 @@
+from rest_flex_fields import FlexFieldsModelSerializer
 from rest_framework import serializers
 from api.blogpost.models import Blogpost, Tag, Topic
 
 
-class BlogpostSerializer(serializers.ModelSerializer):
+class BlogpostSerializer(FlexFieldsModelSerializer):
     class Meta:
         model = Blogpost
         fields = (

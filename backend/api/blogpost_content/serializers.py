@@ -1,9 +1,9 @@
-from rest_framework import serializers
+from rest_flex_fields import FlexFieldsModelSerializer
 from api.blogpost.serializers import BlogpostSerializer
 from .models import BlogpostContent
 
 
-class BlogpostContentSerializer(serializers.ModelSerializer):
+class BlogpostContentSerializer(FlexFieldsModelSerializer):
     """
     The serializer for blogpostcontent. Fairly basic, but has been slightly
     modified so that the blogpost within it will show the tag_set and topic_set.
@@ -19,10 +19,15 @@ class BlogpostContentSerializer(serializers.ModelSerializer):
             'blogpost',
             'title_content',
             'body_content',
+            'author_display_name',
+            'preview_text',
             'language',
             'is_draft',
             'created_at',
             'updated_at',
             'publish_at'
         )
+        expandable_fields = {
+            'blogpost': BlogpostSerializer
+        }
         depth = 2
