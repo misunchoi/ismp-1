@@ -9,7 +9,8 @@ import {
   Input,
   Segment,
   Select,
-  Step
+  Step,
+  Label
 } from 'semantic-ui-react';
 
 import { 
@@ -20,7 +21,10 @@ import {
   Title
 } from './ApplicationForm.styles';
 
-import Section from 'layout/Section';
+import PrivacyPolicyModal from './PrivacyPolicyModal';
+import TermsModal from './TermsModal';
+
+import Section from '../../layout/Section';
 
 import { requests } from 'utils/agent';
 
@@ -35,7 +39,7 @@ import { topicsOptions } from './ApplicationOptions';
 
 // change to true to prefill the form with valid inputs and debug easier
 // THIS SHOULD BE FALSE WHEN MERGING CODE
-const DEBUG = true;
+const DEBUG = false;
 
 const DEBUG_FORM_STATE = {
   first_name: 'Debug',
@@ -86,9 +90,18 @@ const useApplicationForm = () => {
   const [inputs, setInputs] = useState(defaultState);
 
   const handleInputChange = (_, data) => {
+    console.log(_, data);
+
+    let value = data.value;
+
+    if (data.checked !== undefined) {
+      // workaround because checkboxes don't have "value"
+      value = data.checked ? "checked" : "";
+    }
+
     setInputs(inputs => ({
       ...inputs,
-      [data.name]: data.value
+      [data.name]: value
     }));
   };
   return {
@@ -206,6 +219,17 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
         handleFeedbackChange(fieldName, '');
         return true;
       }
+    },
+    validateTermsChecked: (fieldName, value) => {
+      if (value !== "checked") {
+        handleFeedbackChange(
+          fieldName,
+          'Application cannot be submitted until you agree to the terms of service'
+        );
+        return false;
+      } else {
+        return true;
+      }
     }
   };
 
@@ -225,7 +249,8 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
     school_country: [validations.validateNotBlank],
     major: [validations.validateNotBlank],
     referral: [validations.validateNotBlank],
-    additional_comments: []
+    additional_comments: [],
+    terms: [validations.validateTermsChecked]
   };
 
   const validateField = (fieldName, value) => {
@@ -269,7 +294,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
         'major'
       ];
     } else if (step === 3) {
-      fields = ['referral', 'additional_comments'];
+      fields = ['referral', 'additional_comments', 'terms'];
     }
 
     let valid = true;
@@ -375,6 +400,7 @@ const ApplicationForm = props => {
                     handleInputChange={handleInputChange}
                     inputs={inputs}
                     renderError={renderError}
+                    feedbacks={feedbacks}
                     validateField={validateField}
                     stepClick={stepClick}
                     nextButtonLabel={nextButtonLabel}
@@ -418,7 +444,8 @@ const ApplicationFormInputs = (props) => {
     renderError,
     validateField,
     stepClick,
-    nextButtonLabel
+    nextButtonLabel,
+    feedbacks
   } = props;
   return (
     <Form size="large">
@@ -695,7 +722,7 @@ const ApplicationFormInputs = (props) => {
               return (
                 <Form.Field
                   label={topic.text}
-                  value={topic.value}
+                  // value={topic.value}
                   key={topic.key}
                   control={Checkbox}
                   name={topic.value}
@@ -723,6 +750,30 @@ const ApplicationFormInputs = (props) => {
             onChange={handleInputChange}
             value={inputs.additional_input}
           />
+
+          <Form.Field
+            required
+            id='terms-and-conditions-checkbox'
+            label={{
+              children: 
+              <span>
+                I agree to the <TermsModal>Terms and Services</TermsModal> and <PrivacyPolicyModal>Privacy Policy</PrivacyPolicyModal>
+              </span>,
+              htmlFor: 'terms-and-conditions-checkbox'
+            }}
+            control={Checkbox}
+            name="terms"
+            onBlur={() => {
+              validateField('terms', inputs.terms)}
+            } 
+            onChange={handleInputChange}
+          />
+          {feedbacks['terms'] &&
+          <Label
+            basic
+            color='red'
+            pointing='up'
+          >{feedbacks['terms']}</Label>}
         </div>
       )}
       <br />
@@ -750,4 +801,6 @@ const ApplicationFormInputs = (props) => {
     </Form>
   );
 }
+
+
 export default ApplicationForm;
