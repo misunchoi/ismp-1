@@ -3,17 +3,15 @@ from rest_framework.views import status
 from api.application_form.models import ApplicationForm, InterestTopic
 from api.application_form.serializers import ApplicationFormSerializer
 
-
 class ApplicationFormViewSetTest(APITestCase):
     def setUp(self):
         ApplicationForm.objects.create(
             first_name="Bobby",
             last_name="Bass",
-            birth_date='2000-01-01',
+            birth_year='2000',
             gender="M",
             country_of_origin='USA',
             email="bbass@rocketmail.com",
-            phone="18002254452",
             grade_level="undergraduate",
             school_name="UCSD",
             school_city="La Jolla",
@@ -28,11 +26,10 @@ class ApplicationFormViewSetTest(APITestCase):
         self.client.post("/api/v1/application/", {
             "first_name": "Krikor",
             "last_name": "Ailanjian",
-            "birth_date": "2020-05-07",
+            "birth_year": "2020",
             "gender": "M",
             "country_of_origin": "USA",
             "email": "kailanjian@gmail.com",
-            "phone": "6268251906",
             "grade_level": "undergraduate",
             "school_name": "UCSD",
             "school_city": "La Jolla",
@@ -51,7 +48,7 @@ class ApplicationFormViewSetTest(APITestCase):
         self.client.post("/api/v1/application/", {
             "first_name": "Krikor",
             "last_name": "Ailanjian",
-            "birth_date": "2020-05-07",
+            "birth_year": "2020",
             "gender": "M",
             "country_of_origin": "USA",
             "email": "kailanjian@gmail.com",
@@ -70,7 +67,7 @@ class ApplicationFormViewSetTest(APITestCase):
         self.client.post("/api/v1/application/", {
             "first_name": "Krikor",
             "last_name": "Ailanjian",
-            "birth_date": "2020-05-07",
+            "birth_year": "2020",
             "gender": "M",
             "country_of_origin": "USA",
             "email": "kailanjian@gmail.com",
@@ -88,7 +85,6 @@ class ApplicationFormViewSetTest(APITestCase):
 
         self.assertEqual(3, len(ApplicationForm.objects.all()))
         self.assertEqual(4, len(InterestTopic.objects.all()))
-
 
     def test_get_application_form(self):
         response = self.client.get("/api/v1/application/")

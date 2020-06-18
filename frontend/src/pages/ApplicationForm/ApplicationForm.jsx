@@ -46,10 +46,9 @@ const DEBUG_FORM_STATE = {
   last_name: 'User',
   preferred_name: 'Deb',
   gender: 'M',
-  birth_date: '01-12-1992',
+  birth_year: '1992',
   country_of_origin: 'USA',
   email: 'test@gmail.com',
-  phone: '1002524445',
   grade_level: 'undergraduate',
   school_name: 'UCSD',
   school_city: 'La Jolla',
@@ -67,10 +66,9 @@ const useApplicationForm = () => {
     last_name: '',
     preferred_name: '',
     gender: '',
-    birth_date: '',
+    birth_year: '',
     country_of_origin: '',
     email: '',
-    phone: '',
     grade_level: '',
     school_name: '',
     school_city: '',
@@ -220,6 +218,20 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
         return true;
       }
     },
+    validateYear: (fieldName, value) => {
+      const re=/^\d{4}$/
+
+      if (!re.test(value)) {
+        handleFeedbackChange(
+          fieldName,
+          'Please enter a valid 4-digit year'
+        )
+        return false;
+      } else {
+        handleFeedbackChange(fieldName, '');
+        return true;
+      }
+    },
     validateTermsChecked: (fieldName, value) => {
       if (value !== "checked") {
         handleFeedbackChange(
@@ -237,15 +249,14 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
     first_name: [validations.validateNotBlank],
     last_name: [validations.validateNotBlank],
     preferred_name: [],
-    birth_date: [validations.validateNotBlank, validations.validateDate],
+    birth_year: [validations.validateNotBlank, validations.validateYear],
     gender: [validations.validateNotBlank],
     country_of_origin: [validations.validateNotBlank],
     email: [validations.validateNotBlank, validations.validateEmail],
-    phone: [validations.validateNotBlank, validations.validatePhone],
     grade_level: [validations.validateNotBlank],
     school_name: [validations.validateNotBlank],
     school_city: [validations.validateNotBlank],
-    school_state: [validations.validateNotBlank],
+    school_state: [],
     school_country: [validations.validateNotBlank],
     major: [validations.validateNotBlank],
     referral: [validations.validateNotBlank],
@@ -278,10 +289,9 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
         'last_name',
         'preferred_name',
         'gender',
-        'birth_date',
+        'birth_year',
         'country_of_origin',
         'email',
-        'phone'
       ];
     } else if (step === 2) {
       fields = [
@@ -331,12 +341,6 @@ const ApplicationForm = props => {
         data['other_topic'] = undefined;
       }
 
-      if (data['birth_date']) {
-        // TODO: test that this doesn't break
-        // in theory the validation 
-        const [month, day, year] = data['birth_date'].split('-')
-        data['birth_date'] = `${year}-${month}-${day}`
-      }
 
       if (data['other_referral']) {
         data['referral'] = `${data['referral']}: ${data['other_referral']}`
@@ -515,18 +519,18 @@ const ApplicationFormInputs = (props) => {
             <Form.Field
               fluid
               required
-              control={DateInput}
+              control={Input}
               label={{
-                children: 'Birthday'
+                children: 'Birth Year'
                 // htmlFor: 'something'
               }}
-              name="birth_date"
-              dateFormat="MM-DD-YYYY"
-              onBlur={() => validateField('birth_date', inputs.birth_date)}
+              placeholder="YYYY"
+              name="birth_year"
+              onBlur={() => validateField('birth_year', inputs.birth_year)}
               id="form-input-control-birthday"
               onChange={handleInputChange}
-              value={inputs.birth_date}
-              error={renderError('birth_date')}
+              value={inputs.birth_year}
+              error={renderError('birth_year')}
             />
           </Form.Group>
           <Form.Group widths="equal">
@@ -557,20 +561,6 @@ const ApplicationFormInputs = (props) => {
               onChange={handleInputChange}
               value={inputs.email}
               error={renderError('email')}
-            />
-            <Form.Field
-              fluid
-              required
-              id="form-input-control-phone"
-              control={Input}
-              label="Phone"
-              placeholder="Phone"
-              name="phone"
-              type="text"
-              onBlur={handleValidateOnBlur}
-              onChange={handleInputChange}
-              value={inputs.phone}
-              error={renderError('phone')}
             />
           </Form.Group>
         </div>
@@ -603,6 +593,7 @@ const ApplicationFormInputs = (props) => {
               error={renderError('grade_level')}
             />
             <Form.Field
+              fluid 
               required
               id="form-input-control-current-school-name"
               control={Input}
@@ -618,6 +609,7 @@ const ApplicationFormInputs = (props) => {
           </Form.Group>
           <Form.Group widths="equal">
             <Form.Field
+              fluid
               required
               id="form-input-control-current-school-city"
               control={Input}
@@ -631,7 +623,7 @@ const ApplicationFormInputs = (props) => {
               error={renderError('school_city')}
             />
             <Form.Field
-              required
+              fluid
               id="form-input-control-current-school-state"
               control={Input}
               label="School State / Province"
@@ -644,6 +636,7 @@ const ApplicationFormInputs = (props) => {
               error={renderError('school_state')}
             />
             <Form.Field
+              fluid
               required
               id="form-input-control-current-school-country"
               control={Input}
@@ -660,6 +653,7 @@ const ApplicationFormInputs = (props) => {
           <p>If attending a new U.S. school next school term:</p>
           <Form.Group widths="equal">
             <Form.Field
+              fluid
               id="form-input-control-new-us-school-name"
               control={Input}
               label="US School Name"
@@ -670,6 +664,7 @@ const ApplicationFormInputs = (props) => {
               value={inputs.destination_school}
             />
             <Form.Field
+              fluid
               required
               id="form-input-control-school-major"
               control={Input}
@@ -691,6 +686,7 @@ const ApplicationFormInputs = (props) => {
           <Title>Section 3: Mentorship Information</Title>
           <Form.Group widths="equal">
             <Form.Field
+              fluid
               required
               control={Select}
               options={referralOptions}
@@ -733,6 +729,7 @@ const ApplicationFormInputs = (props) => {
             })}
           </Form.Group>
           {inputs['other'] && <Form.Field
+            fluid
             id="form-input-control-other-topic"
             control={Input}
             label="Other Topic"
@@ -743,6 +740,7 @@ const ApplicationFormInputs = (props) => {
             value={inputs.other_topic}
           />}
           <Form.TextArea
+            fluid
             label="Questions / Comments"
             placeholder="Questions / Comments"
             name="additional_input"
@@ -772,7 +770,6 @@ const ApplicationFormInputs = (props) => {
           <Label
             basic
             color='red'
-            pointing='up'
           >{feedbacks['terms']}</Label>}
         </div>
       )}
