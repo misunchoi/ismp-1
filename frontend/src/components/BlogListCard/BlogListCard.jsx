@@ -12,6 +12,7 @@ import {
   WebinarOnly,
   PreviewDescription,
   Category,
+  StyledLabel,
   Title,
   Blurb
 } from './BlogListCard.styles';
@@ -62,7 +63,7 @@ const BlogListCard = ({ blogCard }) => {
         <PreviewDescription>
           <Category>
             {category.map((item, index) => {
-              return <Label key={index}>{item}</Label>;
+              return <StyledLabel key={index}>{item}</StyledLabel>;
             })}
           </Category>
           <Link to={blog_url} color="black">
