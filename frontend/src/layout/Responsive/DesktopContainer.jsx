@@ -24,7 +24,11 @@ const DesktopContainer = ({ children }) => {
   };
 
   return (
-    <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
+    <Responsive
+      style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
+      getWidth={getWidth}
+      minWidth={Responsive.onlyTablet.minWidth}
+    >
       <Visibility
         once={false}
         onBottomPassed={showFixedMenu}
