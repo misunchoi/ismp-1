@@ -27,27 +27,29 @@ export const programInstructions = [
 
 export const programDetails = [
   {
-    headerImage: 'https://jessewoo.github.io/images/ismp/program/program.jpg',
+    headerImage:
+      'https://jessewoo.github.io/images/ismp/program/program_america.jpg',
     title: 'Transitioning to America',
     blurb:
       'We will cover topics like safety tips, American culture, and advice for making new friends to help make your transition to America go as smoothly as possible!'
   },
   {
-    headerImage: 'https://jessewoo.github.io/images/ismp/program/writing.jpg',
+    headerImage:
+      'https://jessewoo.github.io/images/ismp/program/program_english.jpg',
     title: 'English Training: Writing',
     blurb:
       'English is difficult to master, especially in the university setting. We will cover basic and advance English writing techniques such as essay organization, professional email writing, and common grammar mistakes to help you succeed in your classes and research!'
   },
   {
     headerImage:
-      'https://jessewoo.github.io/images/ismp/program/gradschool.jpg',
+      'https://jessewoo.github.io/images/ismp/program/program_grad.jpg',
     title: 'How to Succeed in Grad School',
     blurb:
       'Grad students face different expectations and challenges than undergraduates. Learn how to manage your time, interact with lab mates and professors, and other tips to write effectively and find a job after graduation.'
   },
   {
     headerImage:
-      'https://jessewoo.github.io/images/ismp/program/uscolleges.jpg',
+      'https://jessewoo.github.io/images/ismp/program/program_apply.jpg',
     title: 'Applying to US Colleges',
     blurb:
       'We will break down the admissions process and all the different factors to keep in mind as you prepare to study abroad in the US'
