@@ -9,7 +9,6 @@ const navLinks = [
   { text: 'Mentors', i18n_key: 'mentors', link: '/mentors' },
   { text: 'Program', i18n_key: 'program', link: '/program' },
   { text: 'Blog', i18n_key: 'blog', link: '/blog-list' }
-  // { text: 'Admin', i18n_key: 'Admin', link: '/login' } // Don't link this
 ];
 
 const AboutUsDropdown = () => {
