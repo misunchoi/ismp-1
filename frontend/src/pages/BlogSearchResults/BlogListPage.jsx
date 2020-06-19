@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 // Components / data to build
-import BlogList from '../../components/BlogList/BlogList';
-import Spinner from '../../components/Spinner/Spinner.component';
+import BlogList from 'components/BlogList/BlogList';
+import Spinner from 'components/Spinner/Spinner.component';
 import PageContainer from 'layout/PageContainer';
 import PageHeader from 'layout/PageHeader';
 import Section from 'layout/Section';
@@ -10,7 +10,7 @@ import { topicFilterOptions } from './BlogListPageOptions';
 import { Input, Form, Select, Button, Icon, Message } from 'semantic-ui-react';
 
 // Utils
-import { requests } from '../../utils/agent';
+import { requests, API_ROOT } from 'utils/agent';
 import { format } from 'date-fns';
 import { debounce as _debounce } from 'lodash';
 
@@ -69,8 +69,8 @@ const BlogSearch = ({ term }) => {
     let finalFetchApiUrl = '';
 
     if (overridingUrl) {
-      // TODO: Should not be hardcoded. Need to grab from environment file?
-      const redundantUrlFrag = 'http://localhost:8000/api/v1/';
+      // API_ROOT is in agent.js
+      const redundantUrlFrag = API_ROOT;
       finalFetchApiUrl = overridingUrl.replace(redundantUrlFrag, '');
     } else {
       const urlParam = [];
@@ -105,11 +105,11 @@ const BlogSearch = ({ term }) => {
             image_url: p && p.media_url,
             thumbnail_url: p && p.thumbnail_url,
             title: blog.title_content,
-            blurb: blog.body_content,
+            preview_text: blog.preview_text,
             blog_url: `/blogpost/${blog.id}`,
             blog_type: p && p.type,
             category: p && p.topic_set.map(topic => topic.display_text),
-            author: p && p.author.user,
+            author: blog.author_display_name,
             published_date: format(new Date(blog.publish_at), 'MM/dd/yyyy')
           };
         });
