@@ -20,6 +20,7 @@ import {
   SubTitle,
   Title
 } from './ApplicationForm.styles';
+import './ApplicationForm.css';
 
 import PrivacyPolicyModal from './PrivacyPolicyModal';
 import TermsModal from './TermsModal';
