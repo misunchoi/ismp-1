@@ -3,8 +3,9 @@ import superagentPromise from 'superagent-promise';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-const API_ROOT = process.env.REACT_APP_API_HOST + '/api/v1/';
-const API_ROOT_WITHOUT_APIV1 = process.env.REACT_APP_API_HOST;
+// Exported variables so a page like BlogListPage can use it
+export const API_ROOT = process.env.REACT_APP_API_HOST + '/api/v1/';
+export const API_ROOT_WITHOUT_APIV1 = process.env.REACT_APP_API_HOST;
 
 //const encode = encodeURIComponent;
 const responseBody = res => res.body;
@@ -68,7 +69,7 @@ export const SubscribeNewsletter = {
 
 export const BlogPost = {
   get: id => requests.get('blogpostcontent/' + id + '/')
-}
+};
 
 export default {
   setToken: _token => {

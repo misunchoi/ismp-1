@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactHtmlParser from 'react-html-parser';
-import { filter as _filter, head as _first } from 'lodash';
 import { Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
@@ -16,7 +14,7 @@ import {
 const BlogListCard = ({ blogCard }) => {
   const {
     image_url,
-    blurb,
+    preview_text,
     title,
     category,
     author,
@@ -24,18 +22,6 @@ const BlogListCard = ({ blogCard }) => {
     blog_url,
     blog_type
   } = blogCard;
-
-  const finalBlurb = text => {
-    return text.length > 200 ? `${text.substr(0, 200)} ...` : text;
-  };
-
-  const htmlBlurb = htmlDescription => {
-    const htmlArray = ReactHtmlParser(htmlDescription);
-    const firstParagraphObj = _first(_filter(htmlArray, ['type', 'p']));
-    const firstParaText = _first(firstParagraphObj.props.children);
-
-    return finalBlurb(firstParaText);
-  };
 
   return (
     <Grid doubling stackable padded="vertically">
@@ -64,11 +50,12 @@ const BlogListCard = ({ blogCard }) => {
         <Link to={blog_url} color="black">
           <Title>{title}</Title>
         </Link>
+
         <Blurb>
           <i>
             {published_date} by {author}
           </i>{' '}
-          - {htmlBlurb(blurb)}{' '}
+          - {preview_text}
           <Link to={blog_url}>
             <Icon name="arrow right" />
           </Link>
