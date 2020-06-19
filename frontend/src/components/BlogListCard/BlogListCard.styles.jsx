@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import theme from '../../styles/theme';
+import media from 'styles/media';
 
 export const Card = styled.div`
   padding: 15px 0;
@@ -42,6 +43,7 @@ export const PreviewImg = styled.img`
 export const PreviewDescription = styled.div`
   width: 60%;
   padding: 5px 15px 5px 20px;
+  ${media.phone`width: 100%; padding: 15px 0;`};
 `;
 
 export const Category = styled.div`

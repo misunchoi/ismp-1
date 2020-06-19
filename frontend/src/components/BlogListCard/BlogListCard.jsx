@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { filter as _filter, head as _first } from 'lodash';
-import { Icon, Label } from 'semantic-ui-react';
+import { Icon, Label, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -41,8 +41,8 @@ const BlogListCard = ({ blogCard }) => {
   };
 
   return (
-    <Card>
-      <BlogPreview>
+    <Grid container>
+      <Grid.Row>
         <PreviewCont>
           <WebinarOnly>
             {blog_type === 'webinar' && (
@@ -78,8 +78,8 @@ const BlogListCard = ({ blogCard }) => {
             </Link>
           </Blurb>
         </PreviewDescription>
-      </BlogPreview>
-    </Card>
+      </Grid.Row>
+    </Grid>
   );
 };
 
