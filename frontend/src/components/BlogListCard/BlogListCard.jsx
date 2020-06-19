@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { filter as _filter, head as _first } from 'lodash';
-import { Icon, Label, Grid } from 'semantic-ui-react';
+import { Icon, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 import {
-  Card,
-  BlogPreview,
-  PreviewCont,
   PreviewImg,
   WebinarOnly,
-  PreviewDescription,
   Category,
   StyledLabel,
   Title,
@@ -42,44 +38,42 @@ const BlogListCard = ({ blogCard }) => {
   };
 
   return (
-    <Grid container>
-      <Grid.Row>
-        <PreviewCont>
-          <WebinarOnly>
-            {blog_type === 'webinar' && (
-              <Icon
-                name="play circle"
-                style={{ color: 'white', margin: 0, width: 0 }}
-                size="big"
-              />
-            )}
-          </WebinarOnly>
-          <PreviewImg
-            src={image_url}
-            alt={title}
-            gray={blog_type === 'webinar'}
-          />
-        </PreviewCont>
-        <PreviewDescription>
-          <Category>
-            {category.map((item, index) => {
-              return <StyledLabel key={index}>{item}</StyledLabel>;
-            })}
-          </Category>
-          <Link to={blog_url} color="black">
-            <Title>{title}</Title>
+    <Grid doubling stackable padded="vertically">
+      <Grid.Column width={6}>
+        <WebinarOnly>
+          {blog_type === 'webinar' && (
+            <Icon
+              name="play circle"
+              style={{ color: 'white', margin: 0, width: 0 }}
+              size="big"
+            />
+          )}
+        </WebinarOnly>
+        <PreviewImg
+          src={image_url}
+          alt={title}
+          gray={blog_type === 'webinar'}
+        />
+      </Grid.Column>
+      <Grid.Column width={10}>
+        <Category>
+          {category.map((item, index) => {
+            return <StyledLabel key={index}>{item}</StyledLabel>;
+          })}
+        </Category>
+        <Link to={blog_url} color="black">
+          <Title>{title}</Title>
+        </Link>
+        <Blurb>
+          <i>
+            {published_date} by {author}
+          </i>{' '}
+          - {htmlBlurb(blurb)}{' '}
+          <Link to={blog_url}>
+            <Icon name="arrow right" />
           </Link>
-          <Blurb>
-            <i>
-              {published_date} by {author}
-            </i>{' '}
-            - {htmlBlurb(blurb)}{' '}
-            <Link to={blog_url}>
-              <Icon name="arrow right" />
-            </Link>
-          </Blurb>
-        </PreviewDescription>
-      </Grid.Row>
+        </Blurb>
+      </Grid.Column>
     </Grid>
   );
 };
