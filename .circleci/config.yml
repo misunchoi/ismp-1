@@ -4,16 +4,6 @@ orbs:
   docker: circleci/docker@1.0.1
 
 jobs:
-  build-and-test:
-    executor: docker/docker
-    steps:
-      - setup_remote_docker
-      - checkout
-      - docker/install-docker-tools
-      - run:
-          name: Test
-          command: |
-            .circleci/test_backend.sh
   build-and-publish:
     environment:
       IMAGE_BEND: richyen/ismp-backend
@@ -35,7 +25,6 @@ jobs:
 workflows:
   main:
     jobs:
-      - build-and-test
       - build-and-publish:
           context: ismp_website
           filters:
