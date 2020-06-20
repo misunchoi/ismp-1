@@ -1,6 +1,41 @@
 // For Mentors component
 // API will need to be able to support getting mentors grouped by school
 
+function createMentorJson(
+  name,
+  linkedin_url = '',
+  image = 'http://jessewoo.github.io/images/ismp/mentors/empty_female.jpg',
+  credentials = [],
+  current_job = { company: 'some company', position: 'some position' },
+  fun_facts = '',
+) {
+  return {
+    image: image,
+    name: name,
+    credentials: credentials,
+    current_job: current_job,
+    fun_facts: fun_facts,
+    linkedin_url: linkedin_url,
+  };
+};
+
+function createCampusJson(
+  name,
+  location = "",
+  blurb = "",
+  logo_img_url = "",
+  facebook_link = "",
+  instagram_link = "",
+) {
+  return {
+    name: name,
+    location: location,
+    blurb: blurb,
+    logo_img_url: logo_img_url,
+    facebook_link: facebook_link,
+    instagram_link: instagram_link,
+  };
+}
 const mentors = {
   usc: {
     campus: {
@@ -13,6 +48,7 @@ const mentors = {
       instagram_link: ''
     },
     mentors: [
+      createMentorJson("Irene Thomas"),
       {
         image: 'http://jessewoo.github.io/images/ismp/mentors/joel_letro.jpg',
         name: 'Joel Letro',
@@ -50,7 +86,7 @@ const mentors = {
         fun_facts:
           'Loves watermelon and can say “watermelon” in 12 different languages',
         linkedin_url: 'https://www.linkedin.com/in/jerome-gonzaga-eit-pmp/'
-      }
+      },
     ]
   },
   ucb: {
@@ -112,7 +148,8 @@ const mentors = {
         },
         fun_facts: 'Will eat anything banana flavored.',
         linkedin_url: ''
-      }
+      },
+      createMentorJson("Nany Huang"),
     ]
   },
   ucla: {
@@ -238,6 +275,7 @@ const mentors = {
         fun_facts: 'Learnd 6 languages and speaks 3 languages fluently',
         linkedin_url: 'https://www.linkedin.com/in/larry-tan-32212348/'
       },
+      createMentorJson("Raymond Yan"),
       {
         image: 'http://jessewoo.github.io/images/ismp/mentors/stacey_song.jpg',
         name: 'Stacy Song',
@@ -254,7 +292,7 @@ const mentors = {
         fun_facts:
           "I'm afraid of monkeys even though I was born in the year of the monkey.",
         linkedin_url: 'https://www.linkedin.com/in/stacyspiva/'
-      }
+      },
     ]
   },
   uscd: {
@@ -397,6 +435,21 @@ const mentors = {
       }
     ]
   },
+  diablo_valley_college: {
+    campus: {
+      name: 'Diablo Valley College',
+      location: 'Pleasant Hill,CA ',
+      blurb:
+        'Since our capital city’s first days, people have traveled here for many reasons. They come to explore the past and to chart new futures. They come to ask questions and to seek expert answers. They come to start discourse and to remember in silence. They come to demand change and to be that change. They come to grow. They come to learn. They come to make history and join the ranks alongside many prominent GW alumni.',
+      logo_img_url: '',
+      facebook_link: '',
+      instagram_link: ''
+    },
+    mentors: [
+      createMentorJson("Larry Tung", 'https://www.linkedin.com/in/tunglarry/'),
+      createMentorJson("Jenny Young")
+    ]
+  },
   gwu: {
     campus: {
       name: 'The George Washington University',
@@ -481,7 +534,10 @@ const mentors = {
         },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/xin-z-huang/'
-      }
+      },
+      createMentorJson("Xin Huang"),
+      createMentorJson("Philip Chen"),
+      createMentorJson("Wongwaree \"Arie\" Chen"),
     ]
   },
   uom: {
@@ -600,7 +656,8 @@ const mentors = {
         fun_facts:
           "I love trying all kinds of new foods--I just don't eat carbs!",
         linkedin_url: 'https://www.linkedin.com/in/henrychen/'
-      }
+      },
+      createMentorJson("Stephanie Lei"),
     ]
   },
   sac: {
@@ -707,7 +764,9 @@ const mentors = {
         },
         fun_facts: 'My first job was making movies for Hollywood',
         linkedin_url: 'https://www.linkedin.com/in/conradchu/'
-      }
+      },
+      createMentorJson("Lee Yang"),
+      createMentorJson("Madelyn Lam"),
     ]
   },
   umn: {
@@ -844,7 +903,15 @@ const mentors = {
         linkedin_url: 'https://www.linkedin.com/in/david-tung-087b1168/'
       }
     ]
-  }
+  },
+  unc: {
+    campus: createCampusJson("UNC Chapel Hill"),
+    mentors: [
+      createMentorJson("Connie Xiong"),
+      createMentorJson("Justin Yu"),
+      createMentorJson("Linda Yu"),
+    ]
+  },
 };
 
 export default mentors;
