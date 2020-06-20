@@ -11,7 +11,9 @@ const theme = {
     white: '#ffffff',
     lightGrey: '#fbfbfb',
     grey: '#f2f9fa',
+    lightHoverGrey: '#f7f7f7', // match semantic ui colors
     darkGrey: '#c4c4c4',
+    darkHoverGrey: '#2d2e2f',  // match semantic ui colors
     black: '#000000'
   },
 

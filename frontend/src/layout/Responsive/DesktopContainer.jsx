@@ -38,9 +38,7 @@ const DesktopContainer = ({ children }) => {
           <Menu
             borderless
             fixed={fixed ? 'top' : null}
-            inverted={!fixed}
             pointing={!fixed}
-            secondary={!fixed}
             size="large"
           >
             <Container>

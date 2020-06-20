@@ -12,11 +12,13 @@ import {
   Segment,
   Sidebar
 } from 'semantic-ui-react';
+import theme from '../../styles/theme';
 
 import { getWidth } from './responsiveUtils';
 
 const MobileContainer = ({ children }) => {
   const [sidebarOpened, setSidebarOpened] = useState(false);
+  const [hovered, setHovered] = useState();
 
   const handleSidebarHide = () => {
     setSidebarOpened(false);
@@ -24,6 +26,22 @@ const MobileContainer = ({ children }) => {
 
   const handleToggle = () => {
     setSidebarOpened(true);
+  };
+
+  const onHoverBegin = () => {
+    setHovered(true);
+  };
+
+  const onHoverEnd = () => {
+    setHovered(false);
+  };
+
+  const buttonStyle = {
+    backgroundColor: hovered ? theme.colors.lightPurple : theme.colors.purple,
+    color: theme.colors.white,
+    fontFamily: theme.fonts.Poppins,
+    fontSize: '14px',
+    textTransform: 'uppercase'
   };
 
   return (
@@ -67,7 +85,14 @@ const MobileContainer = ({ children }) => {
                 style={{ alignSelf: 'center' }}
                 position="right"
               >
-                <Button primary size="medium" content="Apply Now" />
+                <Button 
+                  primary 
+                  size="medium" 
+                  content="Apply Now" 
+                  onMouseOver={onHoverBegin} 
+                  onMouseLeave={onHoverEnd} 
+                  style={buttonStyle} 
+                />
               </Menu.Item>
             </Menu>
           </Container>
