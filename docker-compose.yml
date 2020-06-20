@@ -25,9 +25,23 @@ services:
       AWS_STORAGE_BUCKET_NAME: "INSERT THE NAME OF THE S3 BUCKET YOU CREATED HERE"
       # MailChimp Settings
       USE_MAILCHIMP: 'FALSE'
-      MAILCHIMP_USERNAME: 'PUT YOUR USERNAME HERE'
-      MAILCHIMP_API_KEY: 'INSERT YOUR MAILCHIMP API KEY HERE'
-      MAILCHIMP_LIST_ID: 'INSERT YOUR MAILCHIMP LIST ID HERE'
+      MAILCHIMP_USERNAME: 'INSERT MAILCHIMP USERNAME HERE'
+      MAILCHIMP_API_KEY: 'INSERT MAILCHIMP API KEY HERE'
+      MAILCHIMP_LIST_ID: 'INSERT MAILCHIMP LIST ID HERE'
+      # Hostname for when django is deployed. Leaving an empty string
+      # will allow localhost and 127.0.0.1
+      ALLOWED_HOST: ''
+      # DB settings
+      DB_DATABASE: 'postgres'
+      DB_HOST: 'ismpdb'
+      DB_PASSWORD: 'postgres'
+      DB_PORT: '5432'
+      DB_USER: 'postgres'
+      DEBUG: 'TRUE'
+      # this is not the key that will be used in production. Also please note
+      # that in environment variables in docker-compose.yml, you have to
+      # escape the $ character with another $ ($$).
+      DJANGO_SECRET_KEY: "this_is_not_a_real_secret_key"
     depends_on:
       - db
     entrypoint:
