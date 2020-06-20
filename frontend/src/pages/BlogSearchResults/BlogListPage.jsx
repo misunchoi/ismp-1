@@ -7,7 +7,15 @@ import PageContainer from 'layout/PageContainer';
 import PageHeader from 'layout/PageHeader';
 import Section from 'layout/Section';
 import { topicFilterOptions } from './BlogListPageOptions';
-import { Input, Form, Select, Button, Icon, Message } from 'semantic-ui-react';
+import {
+  Input,
+  Form,
+  Select,
+  Button,
+  Icon,
+  Message,
+  Grid
+} from 'semantic-ui-react';
 
 // Utils
 import { requests, API_ROOT } from 'utils/agent';
@@ -15,12 +23,7 @@ import { format } from 'date-fns';
 import { debounce as _debounce } from 'lodash';
 
 // Styling
-import {
-  FlexWrapper,
-  SearchFieldWrapper,
-  FilterWrapper,
-  PaginationWrapper
-} from './BlogListPage.styles';
+import { FlexWrapper, PaginationWrapper } from './BlogListPage.styles';
 
 const BlogSearch = ({ term }) => {
   const defaultInputState = {
@@ -164,9 +167,9 @@ const BlogSearch = ({ term }) => {
       <PageHeader title="Blog Article Search Results"></PageHeader>
       <Section>
         <Form size="large">
-          <FlexWrapper>
+          <Grid doubling stackable padded="vertically">
             {/* TODO IN FUTURE: Add in Autocomplete */}
-            <SearchFieldWrapper>
+            <Grid.Column width={5} floated="left">
               <Form.Field
                 id="form-input-control-search-term"
                 control={Input}
@@ -179,9 +182,9 @@ const BlogSearch = ({ term }) => {
                 onChange={handleInputChange}
                 value={searchInputs.query}
               />
-            </SearchFieldWrapper>
+            </Grid.Column>
 
-            <FilterWrapper>
+            <Grid.Column width={5}>
               <Form.Field
                 control={Select}
                 options={topicFilterOptions}
@@ -191,8 +194,8 @@ const BlogSearch = ({ term }) => {
                 onChange={handleInputChange}
                 value={searchInputs.topic}
               />
-            </FilterWrapper>
-          </FlexWrapper>
+            </Grid.Column>
+          </Grid>
         </Form>
       </Section>
 

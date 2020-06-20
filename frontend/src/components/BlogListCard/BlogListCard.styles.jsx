@@ -1,17 +1,11 @@
 import styled, { css } from 'styled-components';
 import theme from '../../styles/theme';
+import { Label } from 'semantic-ui-react';
 
-export const Card = styled.div`
-  padding: 15px 0;
-`;
-
-export const BlogPreview = styled.div`
-  display: flex;
-`;
-
-export const PreviewCont = styled.div`
-  width: 360px;
-  position: relative;
+export const StyledLabel = styled(Label)`
+  && {
+    margin-bottom: 5px;
+  }
 `;
 
 export const WebinarOnly = styled.div`
@@ -37,11 +31,6 @@ export const PreviewImg = styled.img`
   border: 1px solid grey;
 
   ${getWebinarStyling}
-`;
-
-export const PreviewDescription = styled.div`
-  width: 60%;
-  padding: 5px 15px 5px 20px;
 `;
 
 export const Category = styled.div`
