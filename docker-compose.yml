@@ -1,23 +1,24 @@
-version: '3'
+version: "3.8"
 
 services:
-  db:
+  postgres:
     image: postgres:12-alpine
-    hostname: ismpdb
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: ismp
+      POSTGRES_USER: ismp
+      POSTGRES_PASSWORD: "password"
+
   backend:
-    image: richyen/ismp-backend
+    # Docker-compose will build an image called "ismp_local/backend:dev" which we will re-use for tests
     build: ./backend
-    links:
-      - "db:ismpdb"
+    image: "localhost/ismp/backend:snapshot"
     volumes:
       - ./backend:/app/api
     ports:
       - "8000:8000"
-    environment:
+    environment: &BACKEND_ENV
       # AWS settings
       USE_S3: "FALSE" # change this to true and populate the following fields to upload to s3.
       AWS_ACCESS_KEY_ID: "INSERT YOUR AWS ACCESS KEY ID HERE"
@@ -31,34 +32,40 @@ services:
       # Hostname for when django is deployed. Leaving an empty string
       # will allow localhost and 127.0.0.1
       ALLOWED_HOST: ''
-      # DB settings
-      DB_DATABASE: 'postgres'
-      DB_HOST: 'ismpdb'
-      DB_PASSWORD: 'postgres'
-      DB_PORT: '5432'
-      DB_USER: 'postgres'
+      DB_DATABASE: ismp
+      DB_HOST: postgres
+      DB_PASSWORD: 'password'
+      DB_PORT: 5432
+      DB_USER: ismp
       DEBUG: 'TRUE'
       # this is not the key that will be used in production. Also please note
       # that in environment variables in docker-compose.yml, you have to
       # escape the $ character with another $ ($$).
       DJANGO_SECRET_KEY: "this_is_not_a_real_secret_key"
     depends_on:
-      - db
-    entrypoint:
-      - "/app/api/api-entrypoint.sh"
+      - postgres
+
+  backend_migrations:
+    image: "ismp_local/backend:dev"
+    volumes:
+      - ./backend:/app/api
+    environment:
+      <<: *BACKEND_ENV
+    command: /app/api/run_migrations.sh
+    depends_on:
+      - postgres
+      - backend
+
   frontend:
-    image: richyen/ismp-frontend
+    # Docker-compose will build an image called "ismp_local/frontend:dev" which we will re-use for tests
+    image: "localhost/ismp/frontend:snapshot"
     build: ./frontend
-    command: ["yarn", "start"]
     stdin_open: true
     tty: true
     environment:
-      REACT_APP_API_HOST: "http://localhost:8000"
+      REACT_APP_API_HOST: "http://backend:8000"
     volumes:
       - ./frontend:/app/frontend
-      - node-modules:/app/frontend/node_modules
+      - /app/frontend/node_modules
     ports:
       - "3000:3000"
-
-volumes:
-  node-modules:

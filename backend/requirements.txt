@@ -1,5 +1,4 @@
 #updating requirements
-psycopg2==2.8.5
 flake8
 pylint
 jwt

@@ -1,50 +1,48 @@
-version: '3'
+version: "3.8"
 
 services:
-  test-db:
+  test_postgres:
     image: postgres:12-alpine
-    hostname: ismpdb
-    ports:
-      - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: "postgres"
-  test-backend:
-    build:
-      context: backend/
-      dockerfile: Dockerfile.test
-    ports:
-      - "8000:8000"
-    links:
-      - "test-db:ismpdb"
-    environment:
+      POSTGRES_DB: ismp_test
+      POSTGRES_USER: ismp
+      POSTGRES_PASSWORD: "test"
+
+  test_backend:
+    image: "localhost/ismp/backend:snapshot"
+    environment: &TEST_BACKEND_ENV
       DEBUG: 'FALSE'
-      # DB settings
-      DB_DATABASE: 'postgres'
-      DB_HOST: 'ismpdb'
-      DB_PASSWORD: 'postgres'
-      DB_PORT: '5432'
-      DB_USER: 'postgres'
-      USE_S3: 'FALSE'
-      USE_MAILCHIMP: 'FALSE'
-      # this is not the key that will be used in production. Also please note
-      # that in environment variables in docker-compose.yml, you have to
-      # escape the $ character with another $ ($$).
+      DB_DATABASE: ismp_test
+      DB_HOST: test_postgres
+      DB_PASSWORD: "test"
+      DB_PORT: 5432
+      DB_USER: ismp
+      USE_S3: "FALSE"
+      USE_MAILCHIMP: "FALSE"
       DJANGO_SECRET_KEY: "this_is_not_a_real_secret_key"
     depends_on:
-      - test-db
-    entrypoint: ["/app/api/api-entrypoint.sh","test"]
-  test-frontend:
-    image: richyen/ismp-frontend
-    stdin_open: true
-    tty: true
-    environment:
-      REACT_APP_API_HOST: "http://localhost"
-      USE_S3: "FALSE"
-    volumes:
-      - node-modules:/app/frontend/node_modules
-    ports:
-      - "3000:3000"
-    entrypoint: /bin/sh -c "yarn run lint && yarn test"
+      - backend
+      - test_postgres
+    command: /app/api/run_tests.sh
 
-volumes:
-  node-modules:
+  test_backend_migrations:
+    image: "localhost/ismp/backend:snapshot"
+    volumes:
+      - ./backend:/app/api
+    environment:
+      <<: *TEST_BACKEND_ENV
+    command: /app/api/run_migrations.sh
+    depends_on:
+      - test_postgres
+      - test_backend
+
+  test_frontend:
+    image: "localhost/ismp/frontend:snapshot"
+    environment:
+      REACT_APP_API_HOST: "http://test_backend:8000"
+      USE_S3: "FALSE"
+    depends_on:
+      - frontend
+      - test_backend
+      - test_backend_migrations
+    command: /bin/sh -c "yarn run lint && yarn test"

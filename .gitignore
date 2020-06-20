@@ -10,3 +10,4 @@ backend/static
 frontend/yarn-error.log
 frontend/.eslintcache
 frontend/.env
+frontend/node-modules/

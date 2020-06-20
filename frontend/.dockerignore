@@ -1,0 +1,15 @@
+# Items that don't need to be copied into the Docker image.
+
+# Source Code
+.git
+.gitignore
+.dockerignore
+Dockerfile*
+docker-compose*
+
+# Logs
+logs
+*.log
+
+# Coverage directory used by tools like istanbul
+coverage
