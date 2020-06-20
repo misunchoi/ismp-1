@@ -28,6 +28,7 @@ class ApplicationForm(TimestampedModel):
     )
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    # on the application form, preferred name is actually listed at "english name"
     preferred_name = models.CharField(max_length=100, blank=True)
     birth_year = models.IntegerField(validators=[MaxValueValidator(9999), MinValueValidator(1000)])
     gender = models.CharField(max_length=1, choices=gender_choices)
@@ -40,7 +41,6 @@ class ApplicationForm(TimestampedModel):
     school_country = models.CharField(max_length=100)
     destination_school = models.CharField(max_length=100, blank=True)
     major = models.CharField(max_length=100)
-    # TODO: make other work on frontend
     referral = models.CharField(max_length=100)
     additional_input = models.CharField(max_length=100, blank=True)
 
@@ -52,20 +52,33 @@ class ApplicationForm(TimestampedModel):
         super().save(*args, **kwargs)
         if settings.USE_MAILCHIMP and not pk:
             # form a json object of the info mailchimp needs
+            gender_choices_map = {
+                'M': 'male',
+                'F': 'female'
+            }
+            if 'other:' in self.referral:
+                how_hear_value = 'other'
+                how_other_value = self.referral.replace('other:', '')
+            else:
+                how_hear_value = self.referral
+                how_other_value = ''
+
             new_user_data = {
                 'email_address': self.email,
                 'status_if_new': 'subscribed',
                 'merge_fields': {
                     'FNAME': self.first_name.title(),
                     'LNAME': self.last_name.title(),
+                    'ENG_NAME': self.preferred_name,
+                    'GENDER': gender_choices_map[str(self.gender)],
                     'APPLY_D': str(date.today()),
-                    'PHONE': self.phone,
-                    # only include the month and day because by default on mailchimp the
-                    # BIRTHDAY merge field only includes a month and a day in format mm/dd.
-                    'BIRTHDAY': self.birth_date.strftime("%m/%d"),
+                    'BIRTHYEAR': self.birth_year,
                     'SCHOOL': self.destination_school.lower(),
+                    'COUNTRY': self.country_of_origin,
                     'COUNTY': self.school_state.lower(),
-                    'GRADE_LVL': self.grade_level
+                    'GRADE_LVL': self.grade_level,
+                    'HOW_HEAR': how_hear_value,
+                    'HOW_OTHER': how_other_value
                 },
             }
             mailchimp_client = MailChimp(
@@ -93,7 +106,8 @@ class InterestTopic(models.Model):
     This model tracks interest topics which can be entered through a checklist
     Usage is create a new one for a new topic, use an existing one if it already exists
     Currently we create a new one if someone enters a topic into the other field that does not exist
-    Otherwise if checklists are used or duplicate string is used, add existing topic to that application
+    Otherwise if checklists are used or duplicate string is used, add existing topic to that
+    application
     """
 
     topic = models.CharField(max_length=100, unique=True)
