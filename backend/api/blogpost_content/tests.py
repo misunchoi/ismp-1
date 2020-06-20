@@ -25,13 +25,19 @@ class BaseViewTest(APITestCase):
             blogpost=None,
             title_content="",
             body_content="",
-            is_draft=False
+            is_draft=False,
+            preview_text="",
+            author_display_name="",
     ):
         if blogpost:
             BlogpostContent.objects.create(language=language,
                                            blogpost=blogpost,
                                            title_content=title_content,
-                                           body_content=body_content)
+                                           body_content=body_content,
+                                           preview_text=preview_text,
+                                           author_display_name=author_display_name,
+                                           is_draft=is_draft
+                                           )
 
     def setUp(self):
         # add test data
@@ -94,6 +100,7 @@ class GetByQueryParamTest(BaseViewTest):
             blogpost=valid_blogpost,
             title_content="title",
             body_content="body",
+            author_display_name="bobby tables",
             is_draft=True,
         )
         self.bpc2 = BlogpostContent.objects.create(
@@ -101,6 +108,8 @@ class GetByQueryParamTest(BaseViewTest):
             blogpost=valid_blogpost2,
             title_content="zhongwentitle",
             body_content="zhe shi zhongwenbodycontent",
+            author_display_name="zhongguoren",
+            preview_text="wo shi previewtext",
             is_draft=False,
             publish_at="2020-01-02T15:40:00Z"
         )
@@ -112,6 +121,18 @@ class GetByQueryParamTest(BaseViewTest):
         :return:
         """
         response = self.client.get(self.BLOGPOSTCONTENT_URL, {'query': 'zhongwe'}, format='json')
+        expected = BlogpostContent.objects.get(pk=self.bpc2.id)
+        serialized = BlogpostContentSerializer(expected)
+        self.assertEqual(response.data['results'][0], serialized.data)
+
+    def test_word_stemming(self):
+        """
+        This tests that the query gets stemmed before being passed to the db query.
+        If this doesn't work, queries that end with 's' 'ing', etc will not work.
+        :return:
+        """
+        response = self.client.get(
+            self.BLOGPOSTCONTENT_URL, {'query': 'zhongguorens'}, format='json')
         expected = BlogpostContent.objects.get(pk=self.bpc2.id)
         serialized = BlogpostContentSerializer(expected)
         self.assertEqual(response.data['results'][0], serialized.data)

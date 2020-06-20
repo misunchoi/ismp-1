@@ -2,7 +2,9 @@
 These views pertain to BlogpostContent.
 """
 from django.contrib.postgres.search import SearchVector
+from django.db.models import Q
 from django.utils import timezone
+from nltk.stem import PorterStemmer
 from rest_framework import filters, generics, viewsets, status
 from rest_framework.response import Response
 from .models import BlogpostContent
@@ -72,9 +74,24 @@ class BlogpostContentViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many
         featured = self.request.query_params.get('featured', False)
         published_only = self.request.query_params.get('published', False)
         if query_text is not None:
-            search_vector = SearchVector('title_content', 'body_content', 'blogpost__tag__name')
+            word_tokens = query_text.split()
+            ps = PorterStemmer()
+            word = word_tokens[0]
+            # search for the words of the query separately
+            aggregate_query = Q(search__icontains=ps.stem(word))
+            for word in word_tokens[1:]:
+                stemmed_word = ps.stem(word)
+                aggregate_query &= Q(search__icontains=stemmed_word)
+
+            search_vector = SearchVector(
+                'preview_text',
+                'title_content',
+                'blogpost__tag__name',
+                'body_content',
+                'author_display_name'
+            )
             result = BlogpostContent.objects.\
-                annotate(search=search_vector).filter(search__icontains=query_text)
+                annotate(search=search_vector).filter(aggregate_query)
         else:
             result = BlogpostContent.objects.all()
 
