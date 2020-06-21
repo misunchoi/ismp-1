@@ -24,6 +24,7 @@ import './ApplicationForm.css';
 
 import PrivacyPolicyModal from './PrivacyPolicyModal';
 import TermsModal from './TermsModal';
+import CodeOfConductModal from './CodeOfConductModal';
 
 import Section from '../../layout/Section';
 
@@ -248,6 +249,17 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
       } else {
         return true;
       }
+    },
+    validateCodeOfConductChecked: (fieldName, value) => {
+      if (value !== 'checked') {
+        handleFeedbackChange(
+          fieldName,
+          'Application cannot be submitted until you agree to the code of conduct'
+        );
+        return false;
+      } else {
+        return true;
+      }
     }
   };
 
@@ -267,7 +279,8 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
     major: [validations.validateNotBlank],
     referral: [validations.validateNotBlank],
     additional_comments: [],
-    terms: [validations.validateTermsChecked]
+    terms: [validations.validateTermsChecked],
+    code_of_conduct: [validations.validateCodeOfConductChecked]
   };
 
   const validateField = (fieldName, value) => {
@@ -310,7 +323,12 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
         'major'
       ];
     } else if (step === 3) {
-      fields = ['referral', 'additional_comments', 'terms'];
+      fields = [
+        'referral', 
+        'additional_comments', 
+        'terms', 
+        'code_of_conduct'
+      ];
     }
 
     let valid = true;
@@ -792,6 +810,30 @@ const ApplicationFormInputs = props => {
           {feedbacks['terms'] && (
             <Label basic color="red">
               {feedbacks['terms']}
+            </Label>
+          )}
+
+          <Form.Field
+            required
+            id="code-of-conduct-checkbox"
+            label={{
+              children: (
+                <span>
+                  I agree to the <CodeOfConductModal>Code of Conduct</CodeOfConductModal>
+                </span>
+              ),
+              htmlFor: 'code-of-conduct-checkbox'
+            }}
+            control={Checkbox}
+            name="code_of_conduct"
+            onBlur={() => {
+              validateField('code_of_conduct', inputs.code_of_conduct);
+            }}
+            onChange={handleInputChange}
+          />
+          {feedbacks['code_of_conduct'] && (
+            <Label basic color="red">
+              {feedbacks['code_of_conduct']}
             </Label>
           )}
         </div>

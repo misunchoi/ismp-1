@@ -1,33 +1,15 @@
 import React from 'react';
-import { Modal, Button, Icon } from 'semantic-ui-react';
-import Markdown from 'react-remarkable';
-import { useTranslation } from 'react-i18next';
+import {
+  Modal,
+  Button,
+} from 'semantic-ui-react';
+import TranslationParser from './TranslationParser';
+import { Title, Body } from './PolicyContent.styles';
 
-const PrivacyPolicyModal = props => {
-  const { t } = useTranslation('privacy-policy');
+const PrivacyPolicyModal = (props) => {
+  const file = 'privacy-policy'
 
-  const generateBlock = section => {
-    let bodyElements = [];
-    for (let i = 1; i < 100; i++) {
-      const bodyKey = section + '.body' + i;
-      if (t(bodyKey) === bodyKey) {
-        break;
-      } else {
-        bodyElements.push(t(bodyKey));
-      }
-    }
-
-    return (
-      <div>
-        <Markdown>{t(section + '.title')}</Markdown>
-        {bodyElements.map(text => (
-          <Markdown>{text}</Markdown>
-        ))}
-        <br />
-      </div>
-    );
-  };
-
+  // should match keys in file
   const sections = [
     'introduction',
     'children_under_the_age_of_13',
@@ -42,19 +24,22 @@ const PrivacyPolicyModal = props => {
     'changes_to_our_privacy_policy'
   ];
 
-  return (
-    <Modal trigger={<a as={Button}>Privacy Policy</a>}>
+  const Translation = TranslationParser(file, sections);
+
+  return(
+    <Modal trigger={<a type="button" as={Button}>Privacy Policy</a>}>
       <Modal.Header>
-        <Markdown>{t('title')}</Markdown>
+        {Translation.generateForKey('title')}
       </Modal.Header>
       <Modal.Content>
-        <Markdown>{t('last_modified')}</Markdown>
+        <Body>{Translation.generateForKey('last_modified')}</Body>
+        <br />
         <Modal.Description>
-          {sections.map(section => generateBlock(section))}
+          {Translation.generateBody(sections, Title, Body)}
         </Modal.Description>
       </Modal.Content>
     </Modal>
   );
-};
+}
 
 export default PrivacyPolicyModal;

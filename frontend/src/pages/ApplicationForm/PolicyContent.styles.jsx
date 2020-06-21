@@ -1,6 +1,12 @@
 import styled from 'styled-components';
-import theme from '../../styles/theme';
 
-export const Spaced = styled.div`
+export const Body = styled.div`
   margin-top: 10px;
+`;
+
+export const BoldedTitle = styled.div`
+  font-weight: bold;
+`;
+
+export const Title = styled.div`
 `;

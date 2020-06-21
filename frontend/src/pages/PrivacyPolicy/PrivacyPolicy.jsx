@@ -3,19 +3,36 @@ import PageHeader from 'layout/PageHeader';
 import Section from 'layout/Section';
 import SectionHeader from 'layout/SectionHeader';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import mixins from 'styles/mixins';
+import TranslationParser from 'pages/ApplicationForm/TranslationParser';
 
 const PrivacyPolicy = () => {
-  const { t } = useTranslation('privacy-policy');
+  const file = 'privacy-policy';
+
+  // should match keys in file
+  const sections = [
+    'introduction',
+    'children_under_the_age_of_13',
+    'information_we_collect_about_you_and_how_we_collect_it',
+    'information_you_provide_to_us',
+    'information_we_collect_through_automatic_data_collection_technologies',
+    'how_we_use_your_information',
+    'disclosure_of_your_information',
+    'california_do_not_track_disclosure',
+    'using_caution_when_sharing_information_with_others',
+    'data_security',
+    'changes_to_our_privacy_policy'
+  ];
+
+  const Translation = TranslationParser(file);
+
   return (
     <PageContainer>
-      <PageHeader title={t('title')} />
-      <LastUpdatedDate>Last updated June 1, 2020</LastUpdatedDate>
+      <PageHeader title={Translation.generateForKey('title')} />
+      <LastUpdatedDate>{Translation.generateForKey('last_modified')}</LastUpdatedDate>
       <Section>
-        <SectionHeader>{t('introduction.title')}</SectionHeader>
-        <p>{t('introduction.description')}</p>
+        {Translation.generateBody(sections, SectionHeader, Description)}
       </Section>
     </PageContainer>
   );
@@ -25,5 +42,8 @@ const LastUpdatedDate = styled.div`
   font-style: italic;
   ${mixins.marginBottomSm}
 `;
+
+const Description = styled.p`
+`
 
 export default PrivacyPolicy;

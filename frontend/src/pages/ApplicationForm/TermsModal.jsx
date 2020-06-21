@@ -1,36 +1,15 @@
 import React from 'react';
-import { Modal, Button, Icon } from 'semantic-ui-react';
-import Markdown from 'react-remarkable';
-import { useTranslation } from 'react-i18next';
-import { Spaced } from './PolicyContent.styles';
+import {
+  Modal,
+  Button
+} from 'semantic-ui-react';
+import TranslationParser from './TranslationParser';
+import { Title, Body } from './PolicyContent.styles'
 
 const TermsModal = () => {
-  const { t } = useTranslation('terms-of-use');
+  const file = 'terms-of-use'
 
-  const generateBlock = section => {
-    let bodyElements = [];
-    for (let i = 1; i < 100; i++) {
-      const bodyKey = section + '.body' + i;
-      if (t(bodyKey) === bodyKey) {
-        break;
-      } else {
-        bodyElements.push(t(bodyKey));
-      }
-    }
-
-    return (
-      <div>
-        <Markdown>{t(section + '.title')}</Markdown>
-        {bodyElements.map(text => (
-          <Spaced>
-            <Markdown>{text}</Markdown>
-          </Spaced>
-        ))}
-        <br />
-      </div>
-    );
-  };
-
+  // should match file keys
   const sections = [
     'acceptance_of_the_terms_of_use',
     'changes_to_the_terms_of_use',
@@ -47,25 +26,25 @@ const TermsModal = () => {
     'indemnification',
     'governing_law_jurisdiction_and_class_action_waiver',
     'waiver_and_severability',
-    'entire_agreement'
+    'entire_agreement',
   ];
 
-  return (
-    <Modal trigger={<a as={Button}>Terms and Conditions</a>}>
+  const Translation = TranslationParser(file, sections);
+
+  return(
+    <Modal trigger={<a type="button" as={Button}>Terms and Conditions</a>}>
       <Modal.Header>
-        <Markdown>{t('title')}</Markdown>
+        {Translation.generateForKey('title')}
       </Modal.Header>
       <Modal.Content>
         <Modal.Description>
-          <Markdown>{t('last_modified')}</Markdown>
-          <Spaced>
-            <Markdown>{t('note')}</Markdown>
-          </Spaced>
-          {sections.map(section => generateBlock(section))}
+          {Translation.generateForKey('last_modified')}
+          <Body>{Translation.generateForKey('note')}</Body>
+          {Translation.generateBody(sections, Title, Body)}
         </Modal.Description>
       </Modal.Content>
     </Modal>
   );
-};
+}
 
 export default TermsModal;

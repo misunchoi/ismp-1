@@ -28,7 +28,9 @@ const CodeOfConduct = () => {
     <PageContainer>
       <PageHeader title={t('title')} />
       <Section>
-        <SectionContent>{t('lastUpdated')}</SectionContent>
+        <SectionContent>
+          <LastUpdatedDate>{t('lastUpdated')}</LastUpdatedDate>
+        </SectionContent>
         <SectionContent>
           <Markdown>{t('intro')}</Markdown>
         </SectionContent>
@@ -37,48 +39,56 @@ const CodeOfConduct = () => {
         <SectionHeader>{t('applicationAndEnrollment.title')}</SectionHeader>
         <ol>
           <SectionListItem>
-            {t('applicationAndEnrollment.content1')}
+            {t('applicationAndEnrollment.body1')}
           </SectionListItem>
           <SectionListItem>
-            <Markdown>{t('applicationAndEnrollment.content2')}</Markdown>
+            <Markdown>{t('applicationAndEnrollment.body2')}</Markdown>
           </SectionListItem>
           <SectionListItem>
-            {t('applicationAndEnrollment.content3')}
+            {t('applicationAndEnrollment.body3')}
           </SectionListItem>
         </ol>
       </Section>
       <Section>
         <SectionHeader>{t('mimimumAgeRequirement.title')}</SectionHeader>
-        <>{t('mimimumAgeRequirement.content')}</>
+        <>{t('mimimumAgeRequirement.body')}</>
       </Section>
       <Section>
         <SectionHeader>{t('useOfLanguageAndImages.title')}</SectionHeader>
-        <>{t('useOfLanguageAndImages.content')}</>
+        <>{t('useOfLanguageAndImages.body')}</>
       </Section>
       <Section>
         <SectionHeader>{t('personalRespect.title')}</SectionHeader>
-        <>{t('personalRespect.content')}</>
+        <>{t('personalRespect.body')}</>
       </Section>
       <Section>
         <SectionHeader>
           {t('zeroTolerancePolicyForHarassment.title')}
         </SectionHeader>
-        <>{t('zeroTolerancePolicyForHarassment.content')}</>
+        <>{t('zeroTolerancePolicyForHarassment.body')}</>
       </Section>
       <Section>
         <SectionHeader>{t('virtualMeetings.title')}</SectionHeader>
-        <>{t('virtualMeetings.content')}</>
+        <>{t('virtualMeetings.body')}</>
       </Section>
       <Section>
         <SectionHeader>{t('noAcademicCreditOrGuarantees.title')}</SectionHeader>
-        <>{t('noAcademicCreditOrGuarantees.content')}</>
+        <>{t('noAcademicCreditOrGuarantees.body')}</>
       </Section>
       <Section>
         <SectionHeader>{t('emergencies.title')}</SectionHeader>
-        <>{t('emergencies.content')}</>
+        <>{t('emergencies.body')}</>
       </Section>
     </PageContainer>
   );
 };
+
+const LastUpdatedDate = styled.div`
+  font-style: italic;
+  ${mixins.marginBottomSm}
+`;
+
+const Description = styled.p`
+`;
 
 export default CodeOfConduct;

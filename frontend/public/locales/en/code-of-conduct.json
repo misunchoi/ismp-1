@@ -4,36 +4,36 @@
   "intro": "This Code of Conduct (this **\"Code of Conduct\"**) governs your application to and enrollment in the ISMP Program. Your failure to abide by any terms of the Code of Conduct below may result in the termination of your enrollment in the ISMP Program, at ISMP’s sole discretion. Capitalized terms that are used but not defined in this Code of Conduct shall have the meaning ascribed to them in the Terms of Use.",
   "applicationAndEnrollment": {
     "title": "Application and Enrollment",
-    "content1": "ISMP reserves the right to deny your application to enroll in the ISMP Program for any reasons, including but not limited to: limited space in the ISMP Program, unavailability of mentors, scheduling conflicts, and all other legally permissible reasons. ISMP will inform you of our decision to accept or deny your application within a reasonable time period from the time of your application. All decisions accepting or denying an application are final.",
-    "content2": "Once ISMP accepts your application, we require you to attend a mandatory virtual informational session (the **\"Meet and Greet\"**) to learn more about the ISMP Program and to assign you a mentor. If you are unable to attend the Meet and Greet, please contact us and we will attempt to reschedule you for another session.",
-    "content3": "The non-refundable enrollment fee for the ISMP Program is $25.00, payable after you have attended the Meet and Greet. Your enrollment fee will help cover ISMP’s expenses for the operation of the ISMP Program."
+    "body1": "ISMP reserves the right to deny your application to enroll in the ISMP Program for any reasons, including but not limited to: limited space in the ISMP Program, unavailability of mentors, scheduling conflicts, and all other legally permissible reasons. ISMP will inform you of our decision to accept or deny your application within a reasonable time period from the time of your application. All decisions accepting or denying an application are final.",
+    "body2": "Once ISMP accepts your application, we require you to attend a mandatory virtual informational session (the **\"Meet and Greet\"**) to learn more about the ISMP Program and to assign you a mentor. If you are unable to attend the Meet and Greet, please contact us and we will attempt to reschedule you for another session.",
+    "body3": "The non-refundable enrollment fee for the ISMP Program is $25.00, payable after you have attended the Meet and Greet. Your enrollment fee will help cover ISMP’s expenses for the operation of the ISMP Program."
   },
   "mimimumAgeRequirement": {
     "title": "If You Are Under the Age of 18",
-    "content": "If you are under the age of 18, you will need your parent’s written permission to enroll in the ISMP Program. You will be asked to provide the name and contact information for your parent during your application to the ISMP program, and your parent will be asked to provide a signed permission and waiver to allow your enrollment in the ISMP Program."
+    "body": "If you are under the age of 18, you will need your parent’s written permission to enroll in the ISMP Program. You will be asked to provide the name and contact information for your parent during your application to the ISMP program, and your parent will be asked to provide a signed permission and waiver to allow your enrollment in the ISMP Program."
   },
   "useOfLanguageAndImages": {
     "title": "Use of Language and Images",
-    "content": "You must not use or share vulgar, obscene, abusive or demeaning language, writing, pictures, signs or acts in written or oral communications, including but not limited to email, discussion boards, virtual meetings, on the Website, or in photographs, etc., to or with the mentors, volunteers, and other students of the ISMP Program. You are prohibited from sharing content from or links to suggestive, lewd, or otherwise inappropriate websites."
+    "body": "You must not use or share vulgar, obscene, abusive or demeaning language, writing, pictures, signs or acts in written or oral communications, including but not limited to email, discussion boards, virtual meetings, on the Website, or in photographs, etc., to or with the mentors, volunteers, and other students of the ISMP Program. You are prohibited from sharing content from or links to suggestive, lewd, or otherwise inappropriate websites."
   },
   "personalRespect": {
     "title": "Personal Respect",
-    "content": "Personal respect is the foundation of learning and meaningful communication. Enrollees and mentors are expected to treat one another in the ISMP Program in ways that convey respect and dignity. Language, comments, or images that show lack of respect will result in the termination of your enrollment to the ISMP Program, at ISMP’s sole discretion."
+    "body": "Personal respect is the foundation of learning and meaningful communication. Enrollees and mentors are expected to treat one another in the ISMP Program in ways that convey respect and dignity. Language, comments, or images that show lack of respect will result in the termination of your enrollment to the ISMP Program, at ISMP’s sole discretion."
   },
   "zeroTolerancePolicyForHarassment": {
     "title": "Zero-Tolerance Policy for Harassment, Intimidation, and Bullying",
-    "content": "The ISMP Program has a zero-tolerance policy for harassment, intimidation, and bullying.  Harassment in the form of name-calling, taunting, gestures, intimidation, crude conduct or jokes, slurs or ridicules are prohibited."
+    "body": "The ISMP Program has a zero-tolerance policy for harassment, intimidation, and bullying.  Harassment in the form of name-calling, taunting, gestures, intimidation, crude conduct or jokes, slurs or ridicules are prohibited."
   },
   "virtualMeetings": {
     "title": "Virtual Meetings",
-    "content": "All virtual meetings in the ISMP Program will require you to have a secured and suitable computer device with virtual conferencing capability and suitable internet speed to participate. It is your sole responsibility to procure such device in order to participate in the virtual meetings hosted by the ISMP Program."
+    "body": "All virtual meetings in the ISMP Program will require you to have a secured and suitable computer device with virtual conferencing capability and suitable internet speed to participate. It is your sole responsibility to procure such device in order to participate in the virtual meetings hosted by the ISMP Program."
   },
   "noAcademicCreditOrGuarantees": {
     "title": "No Academic Credit; No Guarantee of Internship or Job Placement",
-    "content": "Your enrollment in the ISMP Program does not and cannot substitute for academic credit at your academic institution. While the ISMP Program offers training and practical tips on topics such as interview skills and interview workshops, etc., your enrollment to the ISMP Program does not guarantee that you will be successful in your internship or job search."
+    "body": "Your enrollment in the ISMP Program does not and cannot substitute for academic credit at your academic institution. While the ISMP Program offers training and practical tips on topics such as interview skills and interview workshops, etc., your enrollment to the ISMP Program does not guarantee that you will be successful in your internship or job search."
   },
   "emergencies": {
     "title": "Emergencies",
-    "content": "In case of emergencies or health-related issues, please call your local emergency number, contact law enforcement, or go to your local emergency room. ISMP is not a licensed healthcare or counseling program, and therefore expressly disclaims any responsibility for emergencies or health-related issues involving the enrollees in the ISMP Program."
+    "body": "In case of emergencies or health-related issues, please call your local emergency number, contact law enforcement, or go to your local emergency room. ISMP is not a licensed healthcare or counseling program, and therefore expressly disclaims any responsibility for emergencies or health-related issues involving the enrollees in the ISMP Program."
   }
 }
