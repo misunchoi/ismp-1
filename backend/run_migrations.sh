@@ -1,15 +1,12 @@
 #!/bin/bash
 
-set -ex
-
-# Wait for Postgres to start up (avoids race condition)
+echo "Waiting for Postgres to be ready"
 for i in `seq 1 15`;
 do
-  nc -z $DB_HOST $DB_PORT && echo Success && exit 0
+  nc -z $DB_HOST $DB_PORT && echo Success && break
   echo -n .
   sleep 1
 done
-echo Failed waiting for $HOST $PORT && exit 1
 
 # Apply database migrations
 echo "Apply database migrations"

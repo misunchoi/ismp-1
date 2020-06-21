@@ -1,6 +1,4 @@
 # International Student Mentorship Website
-[![CircleCI](https://circleci.com/gh/International-Mentorship-ISMP/ismp.svg?style=svg)](https://circleci.com/gh/International-Mentorship-ISMP/ismp)
-
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/YOUR_SAUCE_USERNAME.svg)](https://saucelabs.com/u/YOUR_SAUCE_USERNAME)
 
 The website is built with Django and React.
@@ -21,10 +19,13 @@ Unlike venv which manages `pip` dependencies, [conda](https://docs.conda.io/en/l
 
 ## Development
 1. Make your edits in `backend/` or `frontend/`
-1. `make dev`
-1. There should now be two servers running:
-   * [http://127.0.0.1:8000](http://127.0.0.1:8000) is the Django backend app
-   * [http://127.0.0.1:3000](http://127.0.0.1:3000) is the React frontend app
+2. `make up`
+3. A load_balancer should now be serving requests and the container port is mapped to port on the host.
+  * The load_balancer can be reached at: [http://127.0.0.1:8080](http://127.0.0.1:8080)
+  * The routing configuration is in `./load_balancer/nginx.conf` specified by the `location` blocks.
+  * You will notice 2 destinations:
+    - `http://backend:8000` - the Django Server: Generally serves JSON
+    - `http://frontend:3000` - the React Web Server: Serves HTML and assets for the initial page load
 
 ## Testing
 1. `make test`
@@ -32,24 +33,22 @@ Unlike venv which manages `pip` dependencies, [conda](https://docs.conda.io/en/l
 
 ## Running Manually
 1. `docker-compose pull`
-1. `docker-compose up`
-1. There should now be two servers running:
-   * [http://127.0.0.1:8000](http://127.0.0.1:8000) is the Django backend app
-   * [http://127.0.0.1:3000](http://127.0.0.1:3000) is the React frontend app
+2. `docker-compose up`
+3. You can now go to [http://127.0.0.1:8080](http://127.0.0.1:8080)
 
 ## Using a dev site
 For some people (namely frontend team and people with older laptops), you may wish to use an external dev site for the backend.  To do this, follow these steps:
 1. `cd` into `ismp/frontend`
 1. `echo 'REACT_APP_API_HOST="http://###.###.###.###:####/'" > .env`, where `###.###.###.###:####` are the host and port to the backend dev site
 1. `docker-compose up frontend`
-1. Open your browser to `localhost:3000` to view your checkout of the frontend
+1. Open your browser to `localhost:8080` to view your checkout of the frontend
 
 ## Troubleshooting
-If you run into any issues with missing packages while the `frontend` container is running, you may need to clear the `node_modules` volume and re-pull or re-deploy the environment:
-1. docker-compose down
-1. docker volume prune -f
-1. docker-compose pull richyen/ismp-frontend
-1. docker-compose up frontend
+If you run into any issues with missing packages while the `frontend` container is running,
+1. docker-compose stop frontend
+2. docker-compose rm frontend
+3. docker volume prune -f
+4. docker-compose up frontend
 
 ## Using `docker-compose run` to issue one-off commands
 

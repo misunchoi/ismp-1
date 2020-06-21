@@ -1,13 +1,17 @@
-name: build-and-test
+name: CI
 
 on:
+  # Run on all commits to master branch
   push:
-    branches: [ '*' ]
+    branches:
+      - master
+  # Run on all pull requests to master branch
   pull_request:
-    branches: [ '*' ]
+    branches:
+      - master
 
 jobs:
-  build-and-test:
+  test_backend:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2

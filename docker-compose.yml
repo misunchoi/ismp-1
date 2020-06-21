@@ -10,14 +10,22 @@ services:
       POSTGRES_USER: ismp
       POSTGRES_PASSWORD: "password"
 
+  load_balancer:
+    image: nginx:1.19-alpine
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./load_balancer/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+      - backend
+
   backend:
-    # docker-compose will build an image called "localhost/ismp/backend:snapshot"
+    # An image called "localhost/ismp/backend:snapshot" will be built using the build context in ./backend
     build: ./backend
     image: "localhost/ismp/backend:snapshot"
     volumes:
       - ./backend:/app/api
-    ports:
-      - "8000:8000"
     environment: &BACKEND_ENV
       USE_S3: "FALSE"
       AWS_ACCESS_KEY_ID: "foobar_key"
@@ -27,7 +35,7 @@ services:
       MAILCHIMP_USERNAME: 'foobar'
       MAILCHIMP_API_KEY: 'foobar_api_key'
       MAILCHIMP_LIST_ID: 'foobar_list_id'
-      ALLOWED_HOST: ''
+      ALLOWED_HOST: 'backend'
       DB_DATABASE: ismp
       DB_HOST: postgres
       DB_PASSWORD: "password"
@@ -41,7 +49,7 @@ services:
     depends_on:
       - postgres
 
-  backend_migrations:
+  backend_db_migrations:
     image: "localhost/ismp/backend:snapshot"
     volumes:
       - ./backend:/app/api
@@ -50,18 +58,16 @@ services:
     command: /app/api/run_migrations.sh
     depends_on:
       - postgres
-      - backend # `backend` will build the image used for `backend_migrations`
+      - backend # `backend_db_migrations` depends on the image built by `backend`
 
   frontend:
-    # docker-compose will build an image called "localhost/ismp/frontend:snapshot"
+    # An image called "localhost/ismp/frontend:snapshot" will be built using the build context in ./frontend
     image: "localhost/ismp/frontend:snapshot"
     build: ./frontend
     stdin_open: true
     tty: true
     environment:
-      REACT_APP_API_HOST: "http://backend:8000"
+      REACT_APP_API_HOST: "http://localhost:8080"
     volumes:
       - ./frontend:/app/frontend
       - /app/frontend/node_modules
-    ports:
-      - "3000:3000"
