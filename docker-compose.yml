@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: "password"
 
   backend:
-    # Docker-compose will build an image called "ismp_local/backend:dev" which we will re-use for tests
+    # docker-compose will build an image called "localhost/ismp/backend:snapshot"
     build: ./backend
     image: "localhost/ismp/backend:snapshot"
     volumes:
@@ -19,25 +19,21 @@ services:
     ports:
       - "8000:8000"
     environment: &BACKEND_ENV
-      # AWS settings
-      USE_S3: "FALSE" # change this to true and populate the following fields to upload to s3.
-      AWS_ACCESS_KEY_ID: "INSERT YOUR AWS ACCESS KEY ID HERE"
-      AWS_SECRET_ACCESS_KEY: "INSERT YOUR AWS SECRET ACCESS KEY HERE"
-      AWS_STORAGE_BUCKET_NAME: "INSERT THE NAME OF THE S3 BUCKET YOU CREATED HERE"
-      # MailChimp Settings
+      USE_S3: "FALSE"
+      AWS_ACCESS_KEY_ID: "foobar_key"
+      AWS_SECRET_ACCESS_KEY: "foobar_secret"
+      AWS_STORAGE_BUCKET_NAME: "fake_bucket_lalala"
       USE_MAILCHIMP: 'FALSE'
-      MAILCHIMP_USERNAME: 'INSERT MAILCHIMP USERNAME HERE'
-      MAILCHIMP_API_KEY: 'INSERT MAILCHIMP API KEY HERE'
-      MAILCHIMP_LIST_ID: 'INSERT MAILCHIMP LIST ID HERE'
-      # Hostname for when django is deployed. Leaving an empty string
-      # will allow localhost and 127.0.0.1
+      MAILCHIMP_USERNAME: 'foobar'
+      MAILCHIMP_API_KEY: 'foobar_api_key'
+      MAILCHIMP_LIST_ID: 'foobar_list_id'
       ALLOWED_HOST: ''
       DB_DATABASE: ismp
       DB_HOST: postgres
-      DB_PASSWORD: 'password'
+      DB_PASSWORD: "password"
       DB_PORT: 5432
       DB_USER: ismp
-      DEBUG: 'TRUE'
+      DEBUG: "TRUE"
       # this is not the key that will be used in production. Also please note
       # that in environment variables in docker-compose.yml, you have to
       # escape the $ character with another $ ($$).
@@ -46,7 +42,7 @@ services:
       - postgres
 
   backend_migrations:
-    image: "ismp_local/backend:dev"
+    image: "localhost/ismp/backend:snapshot"
     volumes:
       - ./backend:/app/api
     environment:
@@ -54,10 +50,10 @@ services:
     command: /app/api/run_migrations.sh
     depends_on:
       - postgres
-      - backend
+      - backend # `backend` will build the image used for `backend_migrations`
 
   frontend:
-    # Docker-compose will build an image called "ismp_local/frontend:dev" which we will re-use for tests
+    # docker-compose will build an image called "localhost/ismp/frontend:snapshot"
     image: "localhost/ismp/frontend:snapshot"
     build: ./frontend
     stdin_open: true

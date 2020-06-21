@@ -37,12 +37,15 @@ DATABASES = {
     }
 }
 
+# Hostname for when django is deployed. Leaving an empty string
+# will allow localhost and 127.0.0.1
 ENV_ALLOWED_HOST = os.getenv("ALLOWED_HOST")
 if ENV_ALLOWED_HOST:
     ALLOWED_HOSTS = [ENV_ALLOWED_HOST]
 else:
     ALLOWED_HOSTS = []
 
+# When set to true, "AWS_S3_*" env variables must be specified
 USE_S3 = os.getenv('USE_S3').lower() == 'true'
 
 # define this outside of the if block even if not using s3 to get

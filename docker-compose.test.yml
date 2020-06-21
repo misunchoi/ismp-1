@@ -21,7 +21,7 @@ services:
       USE_MAILCHIMP: "FALSE"
       DJANGO_SECRET_KEY: "this_is_not_a_real_secret_key"
     depends_on:
-      - backend
+      - backend # `backend` will build the image used for `test_backend`
       - test_postgres
     command: /app/api/run_tests.sh
 
@@ -42,7 +42,7 @@ services:
       REACT_APP_API_HOST: "http://test_backend:8000"
       USE_S3: "FALSE"
     depends_on:
-      - frontend
+      - frontend # `frontend` will build the image used for `test_frontend`
       - test_backend
       - test_backend_migrations
     command: /bin/sh -c "yarn run lint && yarn test"
