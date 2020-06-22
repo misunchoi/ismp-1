@@ -17,7 +17,7 @@ function createMentorJson(
     fun_facts: fun_facts,
     linkedin_url: linkedin_url,
   };
-};
+}
 
 function createCampusJson(
   name,
@@ -295,7 +295,7 @@ const mentors = {
       },
     ]
   },
-  uscd: {
+  ucsd: {
     campus: {
       name: 'University of California, San Diego',
       location: 'San Diego, CA',
