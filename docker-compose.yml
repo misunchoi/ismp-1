@@ -64,6 +64,7 @@ services:
     image: "localhost/ismp/frontend:snapshot"
     build: ./frontend
     environment:
+      REACT_APP_AWS_STORAGE_BUCKET_NAME:
       REACT_APP_API_HOST: "http://localhost:8080"
       # TODO: Remove CI=true after https://github.com/facebook/create-react-app/pull/8845
       CI: "true"
