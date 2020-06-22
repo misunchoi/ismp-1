@@ -29,7 +29,7 @@ class ApplicationFormSerializer(serializers.ModelSerializer):
             'referral',
             'additional_input',
             'interest_topics')
-    
+
     def create(self, validated_data):
         """
         Override of serializer create

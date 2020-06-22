@@ -3,9 +3,10 @@ from datetime import date
 from hashlib import md5
 from django.conf import settings
 from django.db import models
-from django.core.validators import RegexValidator, MaxValueValidator, MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from mailchimp3 import MailChimp
 from api.core.models import TimestampedModel
+
 
 class ApplicationForm(TimestampedModel):
     """
@@ -101,6 +102,8 @@ class ApplicationForm(TimestampedModel):
                 email_hash.hexdigest(),
                 {'tags': tag_list}
             )
+
+
 class InterestTopic(models.Model):
     """
     This model tracks interest topics which can be entered through a checklist

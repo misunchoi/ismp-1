@@ -15,7 +15,10 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='school',
             name='director',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='schools_directed', to='mentor.Mentor'),
+            field=models.ForeignKey(null=True,
+                                    on_delete=django.db.models.deletion.SET_NULL,
+                                    related_name='schools_directed',
+                                    to='mentor.Mentor'),
         ),
         migrations.AddField(
             model_name='school',

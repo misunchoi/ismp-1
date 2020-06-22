@@ -18,7 +18,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='applicationform',
             name='birth_year',
-            field=models.IntegerField(default=1900, validators=[django.core.validators.MaxValueValidator(9999), django.core.validators.MinValueValidator(1000)]),
+            field=models.IntegerField(default=1900,
+                                      validators=[django.core.validators.MaxValueValidator(9999),
+                                                  django.core.validators.MinValueValidator(1000)]),
             preserve_default=False,
         ),
         migrations.AlterField(

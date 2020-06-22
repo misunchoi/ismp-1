@@ -3,6 +3,7 @@ from rest_framework.views import status
 from api.application_form.models import ApplicationForm, InterestTopic
 from api.application_form.serializers import ApplicationFormSerializer
 
+
 class ApplicationFormViewSetTest(APITestCase):
     def setUp(self):
         ApplicationForm.objects.create(
