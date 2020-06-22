@@ -3,7 +3,7 @@
     "model": "authentication.user",
     "pk": 1,
     "fields": {
-        "password": "pbkdf2_sha256$180000$wanKphGstDnc$qBPNekl+0QhLHW5vNJ7jay+idROLZiuT6DNZ+8PIwFY=",
+        "password": "pbkdf2_sha256$180000$XDRwIEw0zceW$1ucPCA0F2Tv+28vh0erccwDNL8VEW3RgmJb/aiYYGm0=",
         "last_login": "2020-06-01T21:44:04.089Z",
         "is_superuser": true,
         "created_at": "2020-06-01T21:43:56.954Z",
@@ -21,7 +21,7 @@
     "model": "authentication.user",
     "pk": 2,
     "fields": {
-        "password": "pbkdf2_sha256$180000$GGl5tf51HxCE$gN8FuRlhjrYoR2NHkzNWJXX9+6CtwBy/0xekR0RHdBU=",
+        "password": "pbkdf2_sha256$180000$LnYasbtByv8q$ZXi+JGhay5hIr2Z0Y+kMbbI9zBSgiuqknkomz9sV2Uo=",
         "last_login": null,
         "is_superuser": true,
         "created_at": "2020-06-01T21:44:34.807Z",
@@ -29,7 +29,7 @@
         "first_name": "",
         "last_name": "",
         "username": "admin",
-        "email": "admin@gmail.com",
+        "email": "admin@internationalmentorship.org",
         "is_staff": true,
         "groups": [],
         "user_permissions": []
