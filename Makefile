@@ -19,4 +19,4 @@ test_frontend:
 .PHONY: clean
 clean:
 	@echo "Cleaning up workdir"
-	$(DOCKER_COMPOSE_ALL) down --remove-orphans
+	docker-compose -f ./docker-compose.yml -f ./docker-compose.test.yml down --remove-orphans
