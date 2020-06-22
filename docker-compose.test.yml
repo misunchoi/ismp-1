@@ -1,6 +1,7 @@
 version: "3.8"
 
 services:
+  # Create separate DB to for backend tests
   test_postgres:
     image: postgres:12-alpine
     environment:
@@ -8,8 +9,10 @@ services:
       POSTGRES_USER: ismp
       POSTGRES_PASSWORD: "test"
 
+  # Run backend tests
   test_backend:
     image: "localhost/ismp/backend:snapshot"
+    build: ./backend
     environment: &TEST_BACKEND_ENV
       DEBUG: 'FALSE'
       DB_DATABASE: ismp_test
@@ -21,28 +24,16 @@ services:
       USE_MAILCHIMP: "FALSE"
       DJANGO_SECRET_KEY: "this_is_not_a_real_secret_key"
     depends_on:
-      - backend # `backend` will build the image used for `test_backend`
       - test_postgres
     command: /app/api/run_tests.sh
 
-  test_backend_migrations:
-    image: "localhost/ismp/backend:snapshot"
-    volumes:
-      - ./backend:/app/api
-    environment:
-      <<: *TEST_BACKEND_ENV
-    command: /app/api/run_migrations.sh
-    depends_on:
-      - test_postgres
-      - test_backend
-
+  # Run frontend tests
   test_frontend:
     image: "localhost/ismp/frontend:snapshot"
+    build: ./frontend
     environment:
-      REACT_APP_API_HOST: "http://test_backend:8000"
-      USE_S3: "FALSE"
+      # TODO: Remove CI=true after https://github.com/facebook/create-react-app/pull/8845
+      CI: "true"
     depends_on:
-      - frontend # `frontend` will build the image used for `test_frontend`
-      - test_backend
-      - test_backend_migrations
-    command: /bin/sh -c "yarn run lint && yarn test"
+      - frontend
+    command: yarn test

@@ -21,7 +21,6 @@ services:
       - backend
 
   backend:
-    # An image called "localhost/ismp/backend:snapshot" will be built using the build context in ./backend
     build: ./backend
     image: "localhost/ismp/backend:snapshot"
     volumes:
@@ -58,16 +57,17 @@ services:
     command: /app/api/run_migrations.sh
     depends_on:
       - postgres
-      - backend # `backend_db_migrations` depends on the image built by `backend`
+      # `backend_db_migrations` depends on the image built by `backend`
+      - backend
 
   frontend:
-    # An image called "localhost/ismp/frontend:snapshot" will be built using the build context in ./frontend
     image: "localhost/ismp/frontend:snapshot"
     build: ./frontend
-    stdin_open: true
-    tty: true
     environment:
       REACT_APP_API_HOST: "http://localhost:8080"
+      # TODO: Remove CI=true after https://github.com/facebook/create-react-app/pull/8845
+      CI: "true"
     volumes:
-      - ./frontend:/app/frontend
-      - /app/frontend/node_modules
+      # Overwrite docker image's src directories with locally modified code
+      - ./frontend/src:/app/frontend/src
+      - ./frontend/public:/app/frontend/public

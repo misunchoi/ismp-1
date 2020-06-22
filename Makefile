@@ -1,27 +1,18 @@
-DOCKER_COMPOSE ?= docker-compose -f ./docker-compose.yml
-DOCKER_COMPOSE_TEST ?= docker-compose -f ./docker-compose.yml -f ./docker-compose.test.yml
-DOCKER_COMPOSE_PULL ?= $(DOCKER_COMPOSE) pull
-
 .PHONY: dev
-up: docker_pull
+up:
 	@echo "Running containers"
-	$(DOCKER_COMPOSE) up
+	docker-compose up --build --remove-orphans
 
 .PHONY: test
-test: build
-	@echo "Running test containers"
-	$(DOCKER_COMPOSE_TEST) run --rm test_backend
-#	$(DOCKER_COMPOSE_TEST) run --rm test_frontend
+test_backend:
+	@echo "Running backend tests"
+	docker-compose build backend
+	docker-compose -f ./docker-compose.yml -f ./docker-compose.test.yml run --rm test_backend
 
-.PHONY: docker_pull
-docker_pull:
-	@echo "Ensuring docker containers are up-to-date"
-	$(DOCKER_COMPOSE_PULL)
-
-.PHONY: build
-build:
-	@echo "Building images"
-	$(DOCKER_COMPOSE) build
+test_frontend: build
+	@echo "Running frontend tests"
+	docker-compose build frontend
+	docker-compose -f ./docker-compose.yml -f ./docker-compose.test.yml run --rm test_frontend
 
 .PHONY: clean
 clean:

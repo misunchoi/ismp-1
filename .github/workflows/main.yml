@@ -11,10 +11,75 @@ on:
       - master
 
 jobs:
-  test_backend:
+  build_and_publish:
+    name: 'build_and_publish'
     runs-on: ubuntu-latest
+    env:
+      DOCKER_BUILDKIT: 1
     steps:
-    - uses: actions/checkout@v2
-    - name: make-test
-      run: |
-        ./.github/workflows/test_backend.sh
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: 'Check for changes in Git'
+        id: changes
+        run: |
+          if git diff --quiet HEAD master -- backend ; then
+            echo "::set-output name=backend::yes"
+          else
+            echo "::set-output name=backend::no"
+          fi
+          if git diff --quiet HEAD master -- frontend ; then
+            echo "::set-output name=frontend::yes"
+          else
+            echo "::set-output name=frontend::no"
+          fi
+
+      - run: docker-compose build
+
+      - name: 'Run Backend Tests'
+        if: (github.ref == 'refs/heads/master') || (steps.changes.outputs.backend == 'yes')
+        run: docker-compose -f ./docker-compose.yml -f ./docker-compose.test.yml run --rm test_backend
+
+      - name: 'Run Frontend Tests'
+        # TODO:` `yarn run lint` does not work
+        # TODO: `yarn test does` not run any tests
+        if: false # (github.ref == 'refs/heads/master') || (steps.changes.outputs.frontend == 'yes')
+        run: docker-compose -f ./docker-compose.yml -f ./docker-compose.test.yml run --rm test_frontend
+
+      - name: 'Run Simple end-to-end Tests on Docker Images'
+        run: |
+          docker-compose up -d
+          docker-compose run --rm load_balancer curl --max-time 5 --retry 10 --retry-connrefused backend:8000/ping/ | grep pong
+          docker-compose run --rm load_balancer curl --max-time 5 --retry 10 --retry-connrefused frontend:3000/ > /dev/null
+          curl --max-time 5 --retry 5 --retry-connrefused --output output.txt localhost:8080/
+          grep "<title>ISMP: International Student Mentorship Program</title>" output.txt
+
+      - name: 'Show docker-compose logs if there are any failures'
+        if: failure()
+        run: docker-compose logs --tail=200
+
+      - name: 'Tag and Publish'
+        if: github.ref == 'refs/heads/master'
+        env:
+          DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN_ISMP }}
+          DOCKER_HUB_USER: ${{ secrets.DOCKER_HUB_USER_ISMP }}
+        run: |
+          # Login to Docker Hub
+          echo ${DOCKER_HUB_TOKEN} | docker login -u ${DOCKER_HUB_USER} --password-stdin
+
+          # Tag and Publish Backend
+          docker tag localhost/ismp/backend:snapshot docker.io/ismp/backend:${GITHUB_SHA}
+          docker tag localhost/ismp/backend:snapshot docker.io/ismp/backend:latest
+          docker push docker.io/ismp/backend:${GITHUB_SHA}
+          docker push docker.io/ismp/backend:latest
+
+          # Tag and Publish Frontend
+          docker tag localhost/ismp/frontend:snapshot docker.io/ismp/frontend:${GITHUB_SHA}
+          docker tag localhost/ismp/frontend:snapshot docker.io/ismp/frontend:latest
+          docker push docker.io/ismp/frontend:${GITHUB_SHA}
+          docker push docker.io/ismp/frontend:latest
+
+          # Remove docker config file just in case, for security reasons
+          sudo rm -rf /home/runner/.docker/config.json
