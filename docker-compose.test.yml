@@ -13,7 +13,7 @@ services:
   test_backend:
     image: "localhost/ismp/backend:snapshot"
     build: ./backend
-    environment: &TEST_BACKEND_ENV
+    environment:
       DEBUG: 'FALSE'
       DB_DATABASE: ismp_test
       DB_HOST: test_postgres
