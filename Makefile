@@ -1,9 +1,11 @@
-.PHONY: dev
+.PHONY: up
 up:
 	@echo "Running containers"
 	docker-compose up --build --remove-orphans
 
 .PHONY: test
+test: test_backend test_frontend
+
 test_backend:
 	@echo "Running backend tests"
 	docker-compose build backend
