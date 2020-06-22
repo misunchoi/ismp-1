@@ -9,7 +9,7 @@ test_backend:
 	docker-compose build backend
 	docker-compose -f ./docker-compose.yml -f ./docker-compose.test.yml run --rm test_backend
 
-test_frontend: build
+test_frontend:
 	@echo "Running frontend tests"
 	docker-compose build frontend
 	docker-compose -f ./docker-compose.yml -f ./docker-compose.test.yml run --rm test_frontend
