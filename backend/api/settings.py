@@ -70,7 +70,7 @@ if USE_S3:
     PRIVATE_MEDIA_LOCATION = 'private'
     PRIVATE_FILE_STORAGE = 'api.upload.storage_backends.PrivateMediaStorage'
 else:
-    STATIC_URL = '/staticfiles/'
+    STATIC_URL = '/django_static/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     MEDIA_URL = '/mediafiles/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
