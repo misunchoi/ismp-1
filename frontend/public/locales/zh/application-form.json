@@ -1,0 +1,36 @@
+{
+  "step": {
+    "buttons": {
+      "submit": "Submit Zh",
+      "next": "Next Zh",
+      "prev": "Previous Zh"
+    },
+    "1": {
+      "title": "Personal zh",
+      "description": "Please enter in your personal information zh"
+    },
+    "2": {
+      "title": "Academic zh",
+      "description": "Please enter in your academic information zh"
+    },
+    "3": {
+      "title": "Interest zh",
+      "description": "Enter in mentorship interest zh"
+    }
+  },
+  "fields": {
+    "first_name": {
+      "label": "First name",
+      "placeholder": "First name"
+    }
+  },
+  "validations": {
+    "cannot_be_blank": "Cannot be blank"
+  },
+  "info": {
+    "title": "Important Information",
+    "body1": "Application is on a rolling basis. Once your application is submitted, you will be notified of your application status within 10 business days.",
+    "body2": "For those under the age of 18, please note that you will be required to receive parental or guardian consent. You will receive a follow up email with an online document to be signed and returned before you are paired with a mentor.",
+    "body3": "Please note that we reserve the right to deny any applications."
+  }
+}

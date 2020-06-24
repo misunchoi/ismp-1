@@ -88,7 +88,4 @@ const LastUpdatedDate = styled.div`
   ${mixins.marginBottomSm}
 `;
 
-const Description = styled.p`
-`;
-
 export default CodeOfConduct;

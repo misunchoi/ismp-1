@@ -1,0 +1,161 @@
+{
+  "step": {
+    "buttons": {
+      "submit": "Submit",
+      "next": "Next",
+      "prev": "Previous"
+    },
+    "1": {
+      "step_name": "Personal",
+      "title": "Section 1: Personal and Contact Information"
+    },
+    "2": {
+      "step_name": "Academic",
+      "title": "Section 2: Academic Information",
+      "subtitle": "Current School Information",
+      "new_school": "If attending a new U.S school next school term:"
+    },
+    "3": {
+      "step_name": "Interest",
+      "title": "Section 3: Mentorship Information"
+    }
+  },
+  "fields": {
+    "first_name": {
+      "label": "First name",
+      "placeholder": "First name"
+    },
+    "last_name": {
+      "label": "Last name",
+      "placeholder": "Last name"
+    },
+    "preferred_name": {
+      "label": "English name",
+      "placeholder": "English name"
+    },
+    "gender": {
+      "label": "Gender",
+      "placeholder": "Gender"
+    },
+    "birth_year": {
+      "label": "Birth Year",
+      "placeholder": "YYYY"
+    },
+    "country_of_origin": {
+      "label": "Country of Origin",
+      "placeholder": "Country of Origin"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Email"
+    },
+
+    "grade_level": {
+      "label": "Grade Level",
+      "placeholder": "Grade Level"
+    },
+    "school_name": {
+      "label": "School Name",
+      "placeholder": "School Name"
+    },
+    "school_city": {
+      "label": "School City",
+      "placeholder": "City"
+    },
+    "school_state": {
+      "label": "School State / Province",
+      "placeholder": "State / Province"
+    },
+    "school_country": {
+      "label": "School Country",
+      "placeholder": "Country"
+    },
+    "destination_school": {
+      "label": "US School Name",
+      "placeholder": "School Name"
+    },
+    "major": {
+      "label": "Current or Future Major",
+      "placeholder": "Major"
+    },
+
+    "referral": {
+      "label": "How Did You Hear About Us?",
+      "placeholder": "Select One"
+    },
+    "other_referral": {
+      "label": "Please Describe",
+      "placeholder": "Other"
+    },
+    "interest_topics": {
+      "label": "What Topics Are You Interested In?"
+    },
+    "other_topic": {
+      "label": "Other Topic",
+      "placeholder": "Other Topic"
+    },
+    "additional_input": {
+      "label": "Questions / Comments",
+      "placeholder": "Questions / Comments"
+    },
+    "terms_and_conditions": {
+      "label": {
+        "agree": "I agree to the",
+        "terms": "Terms and Services",
+        "and": "and",
+        "privacy_policy": "Privacy Policy"
+      }
+    },
+    "code_of_conduct": {
+      "label": {
+        "agree":"I agree to the",
+        "code": "Code of Conduct"
+      }
+    },
+    "options": {
+      "gender": {
+        "male": "Male",
+        "female": "Female"
+      },
+      "grade": {
+        "high_school": "High School / Secondary",
+        "undergrad": "Undergraduate",
+        "exchange": "Exchange Student",
+        "transfer": "Transfer Student",
+        "graduate": "Graduate Student"
+      },
+      "referral": {
+        "friend": "Friend",
+        "teacher": "Teacher",
+        "parent": "Parent",
+        "school": "School or Prep School",
+        "social": "Social Media",
+        "internet": "Internet",
+        "other": "Other"
+      },
+      "topics": {
+        "english": "Practicing / Improving English",
+        "friends": "Making American Friends",
+        "connecting": "Connecting with other International Students",
+        "job": "Getting a Job / Internship in America",
+        "culture": "Adjusting to American Culture",
+        "travelling": "Travelling",
+        "other": "Other"
+      }
+    }
+  },
+  "validations": {
+    "cannot_be_blank": "Cannot be blank",
+    "invalid_email": "Please enter email in format email@site.com",
+    "invalid_phone": "Please enter phone in format +999999999",
+    "invalid_year": "Please enter a valid 4-digit year",
+    "check_terms": "Application cannot be submitted until you agree to the terms of service",
+    "check_code": "Application cannot be submitted until you agree to the code of conduct"
+  },
+  "info": {
+    "title": "Important Information",
+    "body1": "Application is on a rolling basis. Once your application is submitted, you will be notified of your application status within 10 business days.",
+    "body2": "For those under the age of 18, please note that you will be required to receive parental or guardian consent. You will receive a follow up email with an online document to be signed and returned before you are paired with a mentor.",
+    "body3": "Please note that we reserve the right to deny any applications."
+  }
+}

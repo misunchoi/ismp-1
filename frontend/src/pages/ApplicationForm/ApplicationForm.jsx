@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { DateInput } from 'semantic-ui-calendar-react';
 import {
   Button,
   Checkbox,
@@ -14,7 +13,6 @@ import {
 } from 'semantic-ui-react';
 
 import {
-  Asterisk,
   List,
   ListItem,
   SubTitle,
@@ -32,12 +30,13 @@ import { requests } from 'utils/agent';
 
 import {
   appFormStep,
-  genderOptions,
-  gradeLevelOptions,
-  referralOptions
+  getGenderOptions,
+  getGradeLevelOptions,
+  getReferralOptions,
+  getTopicsOptions
 } from './ApplicationOptions';
 
-import { topicsOptions } from './ApplicationOptions';
+import { useTranslation } from 'react-i18next';
 
 // change to true to prefill the form with valid inputs and debug easier
 // THIS SHOULD BE FALSE WHEN MERGING CODE
@@ -110,7 +109,7 @@ const useApplicationForm = () => {
   };
 };
 
-const useApplicationFormFeedback = () => {
+const useApplicationFormFeedback = (t) => {
   const [feedbacks, setFeedbacks] = useState({});
 
   const handleFeedbackChange = (fieldName, feedback) => {
@@ -121,8 +120,6 @@ const useApplicationFormFeedback = () => {
   };
 
   const checkValid = () => {
-    if (DEBUG) console.log('checking validity');
-    if (DEBUG) console.log(Object.values(feedbacks));
     return Object.values(feedbacks).every(feedback => !feedback);
   };
 
@@ -133,16 +130,16 @@ const useApplicationFormFeedback = () => {
   };
 };
 
-const useStepFlow = (history, validateStep, signup) => {
+const useStepFlow = (history, validateStep, signup, t) => {
   // Step Application
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = appFormStep.length;
-  const [nextButtonLabel, setNextButtonLabel] = useState('Next');
+  const [nextButtonLabel, setNextButtonLabel] = useState(t('step.buttons.next'));
 
   useEffect(() => {
     currentStep === 3
-      ? setNextButtonLabel('Submit')
-      : setNextButtonLabel('Next');
+      ? setNextButtonLabel(t('step.buttons.submit'))
+      : setNextButtonLabel(t('step.buttons.next'));
   }, [currentStep]);
 
   const stepClick = action => {
@@ -174,11 +171,11 @@ const useStepFlow = (history, validateStep, signup) => {
   };
 };
 
-const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
+const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
   const validations = {
     validateNotBlank: (fieldName, value) => {
       if (!value) {
-        handleFeedbackChange(fieldName, 'cannot be blank');
+        handleFeedbackChange(fieldName, t('validations.cannot_be_blank'));
         return false;
       } else {
         handleFeedbackChange(fieldName, '');
@@ -192,7 +189,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
       if (!re.test(value)) {
         handleFeedbackChange(
           fieldName,
-          'please enter email in format email@site.com'
+          t('validations.invalid_email')
         );
         return false;
       } else {
@@ -206,21 +203,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
       if (!re.test(value)) {
         handleFeedbackChange(
           fieldName,
-          'Please enter phone in format +999999999'
-        );
-        return false;
-      } else {
-        handleFeedbackChange(fieldName, '');
-        return true;
-      }
-    },
-    validateDate: (fieldName, value) => {
-      const re = /^(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])-\d{4}$/;
-
-      if (!re.test(value)) {
-        handleFeedbackChange(
-          fieldName,
-          'Please enter date in format MM-DD-YYYY'
+          t('validations.invalid_phone')
         );
         return false;
       } else {
@@ -232,7 +215,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
       const re = /^\d{4}$/;
 
       if (!re.test(value)) {
-        handleFeedbackChange(fieldName, 'Please enter a valid 4-digit year');
+        handleFeedbackChange(fieldName, t('validations.invalid_year'));
         return false;
       } else {
         handleFeedbackChange(fieldName, '');
@@ -243,10 +226,11 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
       if (value !== 'checked') {
         handleFeedbackChange(
           fieldName,
-          'Application cannot be submitted until you agree to the terms of service'
+          t('validations.check_terms')
         );
         return false;
       } else {
+        handleFeedbackChange(fieldName, '')
         return true;
       }
     },
@@ -254,10 +238,11 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
       if (value !== 'checked') {
         handleFeedbackChange(
           fieldName,
-          'Application cannot be submitted until you agree to the code of conduct'
+          t('validations.check_code')
         );
         return false;
       } else {
+        handleFeedbackChange(fieldName, '')
         return true;
       }
     }
@@ -284,7 +269,6 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
   };
 
   const validateField = (fieldName, value) => {
-    console.log(`validating field ${fieldName} for value ${value}`);
     let valid = true;
 
     if (!fieldValidations[fieldName]) {
@@ -352,10 +336,12 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs) => {
 };
 
 const ApplicationForm = props => {
+  const { t } = useTranslation('application-form');
+
   const signup = () => {
     const data = inputs;
     data['interest_topics'] = [];
-    topicsOptions
+    getTopicsOptions(t)
       .map(option => option.value)
       .filter(topic => !!data[topic])
       .forEach(topic => {
@@ -387,7 +373,7 @@ const ApplicationForm = props => {
   const { inputs, handleInputChange } = useApplicationForm();
 
   // feedback
-  const { feedbacks, handleFeedbackChange } = useApplicationFormFeedback();
+  const { feedbacks, handleFeedbackChange } = useApplicationFormFeedback(t);
 
   const renderError = fieldName => {
     return feedbacks[fieldName]
@@ -402,13 +388,15 @@ const ApplicationForm = props => {
     validateStep,
     validateField,
     handleValidateOnBlur
-  } = ApplicationFormValidator(handleFeedbackChange, inputs);
+  } = ApplicationFormValidator(handleFeedbackChange, inputs, t);
 
   const { stepClick, nextButtonLabel, currentStep } = useStepFlow(
     props.history,
     validateStep,
-    signup
+    signup,
+    t
   );
+
 
   const appStepList = appFormStep.map(step => {
     return (
@@ -417,7 +405,7 @@ const ApplicationForm = props => {
         className={step.num === currentStep ? 'active' : null}
       >
         <Step.Content>
-          <Step.Title>{step.title}</Step.Title>
+          <Step.Title>{t(`step.${step.num}.step_name`)}</Step.Title>
         </Step.Content>
       </Step>
     );
@@ -442,28 +430,16 @@ const ApplicationForm = props => {
                     validateField={validateField}
                     stepClick={stepClick}
                     nextButtonLabel={nextButtonLabel}
+                    t={t}
                   />
                 </Grid.Column>
                 <Grid.Column width={6}>
                   <Segment>
-                    <SubTitle>Important Information</SubTitle>
+                    <SubTitle>{t('info.title')}</SubTitle>
                     <List>
-                      <ListItem>
-                        Application is on a rolling basis. Once your application
-                        is submitted, you will be notified of your application
-                        status within 10 business days.
-                      </ListItem>
-                      <ListItem>
-                        For those under the age of 18, please note that you will
-                        be required to receive parental or guardian consent. You
-                        will receive a follow up email with an online document
-                        to be signed and returned before you are paired with a
-                        mentor.
-                      </ListItem>
-                      <ListItem>
-                        Please note that we reserve the right to deny any
-                        applications.
-                      </ListItem>
+                      <ListItem>{t('info.body1')}</ListItem>
+                      <ListItem>{t('info.body2')}</ListItem>
+                      <ListItem>{t('info.body3')}</ListItem>
                     </List>
                   </Segment>
                 </Grid.Column>
@@ -486,21 +462,23 @@ const ApplicationFormInputs = props => {
     validateField,
     stepClick,
     nextButtonLabel,
-    feedbacks
+    feedbacks,
+    t
   } = props;
+
   return (
     <Form size="large">
       {currentStep === 1 && (
         <div id="personalInfo">
-          <Title>Section 1: Personal and Contact Information</Title>
+          <Title>{t('step.1.title')}</Title>
           <Form.Group widths="equal">
             <Form.Field
               fluid
               required
               id="form-input-control-first-name"
               control={Input}
-              label="First name"
-              placeholder="First name"
+              label={t('fields.first_name.label')}
+              placeholder={t('fields.first_name.placeholder')}
               name="first_name"
               type="text"
               onBlur={handleValidateOnBlur}
@@ -513,11 +491,11 @@ const ApplicationFormInputs = props => {
               required
               id="form-input-control-last-name"
               control={Input}
-              label="Last name"
-              placeholder="Last name"
+              label={t('fields.last_name.label')}
+              placeholder={t('fields.last_name.placeholder')}
               name="last_name"
-              onBlur={handleValidateOnBlur}
               type="text"
+              onBlur={handleValidateOnBlur}
               onChange={handleInputChange}
               value={inputs.last_name}
               error={renderError('last_name')}
@@ -526,8 +504,8 @@ const ApplicationFormInputs = props => {
               fluid
               id="form-input-control-preferred-name"
               control={Input}
-              label="English name"
-              placeholder="English name"
+              label={t('fields.preferred_name.label')}
+              placeholder={t('fields.preferred_name.placeholder')}
               name="preferred_name"
               type="text"
               onChange={handleInputChange}
@@ -538,13 +516,11 @@ const ApplicationFormInputs = props => {
             <Form.Field
               fluid
               required
+              id='form-select-control-gender'
               control={Select}
-              options={genderOptions}
-              label={{
-                children: 'Gender',
-                htmlFor: 'form-select-control-gender'
-              }}
-              placeholder="Gender"
+              options={getGenderOptions(t)}
+              label={t('fields.gender.label')}
+              placeholder={t('fields.gender.placeholder')}
               name="gender"
               onBlur={() => {
                 validateField('gender', inputs.gender);
@@ -556,15 +532,12 @@ const ApplicationFormInputs = props => {
             <Form.Field
               fluid
               required
+              id="form-input-control-birthday"
               control={Input}
-              label={{
-                children: 'Birth Year'
-                // htmlFor: 'something'
-              }}
-              placeholder="YYYY"
+              label={t('fields.birth_year.label')}
+              placeholder={t('fields.birth_year.placeholder')}
               name="birth_year"
               onBlur={() => validateField('birth_year', inputs.birth_year)}
-              id="form-input-control-birthday"
               onChange={handleInputChange}
               value={inputs.birth_year}
               error={renderError('birth_year')}
@@ -576,8 +549,8 @@ const ApplicationFormInputs = props => {
               required
               id="form-input-control-country"
               control={Input}
-              label="Country of Origin"
-              placeholder="Country of Origin"
+              label={t('fields.country_of_origin.label')}
+              placeholder={t('fields.country_of_origin.placeholder')}
               name="country_of_origin"
               type="text"
               onBlur={handleValidateOnBlur}
@@ -590,8 +563,8 @@ const ApplicationFormInputs = props => {
               required
               id="form-input-control-email"
               control={Input}
-              label="Email"
-              placeholder="Email"
+              label={t('fields.email.label')}
+              placeholder={t('fields.email.placeholder')}
               name="email"
               type="email"
               onBlur={handleValidateOnBlur}
@@ -604,19 +577,16 @@ const ApplicationFormInputs = props => {
       )}
       {currentStep === 2 && (
         <div id="academicInfo">
-          <Title>Section 2: Academic Information</Title>
-          <SubTitle>Current School Information</SubTitle>
+          <Title>{t('step.2.title')}</Title>
+          <SubTitle>{t('step.2.subtitle')}</SubTitle>
           <Form.Group widths="equal">
             <Form.Field
               fluid
               required
               control={Select}
-              options={gradeLevelOptions}
-              label={{
-                children: 'Grade Level',
-                htmlFor: 'form-select-control-current-grade-level'
-              }}
-              placeholder="Grade Level"
+              options={getGradeLevelOptions(t)}
+              label={t('fields.grade_level.label')}
+              placeholder={t('fields.grade_level.placeholder')}
               search
               searchInput={{
                 id: 'form-select-control-current-grade-level'
@@ -632,8 +602,8 @@ const ApplicationFormInputs = props => {
               required
               id="form-input-control-current-school-name"
               control={Input}
-              label="School Name"
-              placeholder="School Name"
+              label={t('fields.school_name.label')}
+              placeholder={t('fields.school_name.placeholder')}
               name="school_name"
               type="text"
               onBlur={handleValidateOnBlur}
@@ -648,8 +618,8 @@ const ApplicationFormInputs = props => {
               required
               id="form-input-control-current-school-city"
               control={Input}
-              label="School City"
-              placeholder="City"
+              label={t('fields.school_city.label')}
+              placeholder={t('fields.school_city.placeholder')}
               name="school_city"
               type="text"
               onBlur={handleValidateOnBlur}
@@ -661,8 +631,8 @@ const ApplicationFormInputs = props => {
               fluid
               id="form-input-control-current-school-state"
               control={Input}
-              label="School State / Province"
-              placeholder="State / Province"
+              label={t('fields.school_state.label')}
+              placeholder={t('fields.school_state.placeholder')}
               name="school_state"
               type="text"
               onBlur={handleValidateOnBlur}
@@ -675,8 +645,8 @@ const ApplicationFormInputs = props => {
               required
               id="form-input-control-current-school-country"
               control={Input}
-              label="School Country"
-              placeholder="Country"
+              label={t('fields.school_country.label')}
+              placeholder={t('fields.school_country.placeholder')}
               name="school_country"
               type="text"
               onBlur={handleValidateOnBlur}
@@ -685,14 +655,14 @@ const ApplicationFormInputs = props => {
               error={renderError('school_country')}
             />
           </Form.Group>
-          <p>If attending a new U.S. school next school term:</p>
+          <p>{t('step.2.new_school')}</p>
           <Form.Group widths="equal">
             <Form.Field
               fluid
               id="form-input-control-new-us-school-name"
               control={Input}
-              label="US School Name"
-              placeholder="School Name"
+              label={t('fields.destination_school.label')}
+              placeholder={t('fields.destination_school.placeholder')}
               name="destination_school"
               type="text"
               onChange={handleInputChange}
@@ -703,8 +673,8 @@ const ApplicationFormInputs = props => {
               required
               id="form-input-control-school-major"
               control={Input}
-              label="Current or Future Major"
-              placeholder="Major"
+              label={t('fields.major.label')}
+              placeholder={t('fields.major.placeholder')}
               name="major"
               type="text"
               onBlur={handleValidateOnBlur}
@@ -718,18 +688,15 @@ const ApplicationFormInputs = props => {
 
       {currentStep === 3 && (
         <div id="mentorshipInterest">
-          <Title>Section 3: Mentorship Information</Title>
+          <Title>{t('step.3.title')}</Title>
           <Form.Group widths="equal">
             <Form.Field
               fluid
               required
               control={Select}
-              options={referralOptions}
-              label={{
-                children: 'How Did You Hear About Us?',
-                htmlFor: 'form-select-control-referral'
-              }}
-              placeholder="Referral"
+              options={getReferralOptions(t)}
+              label={t('fields.referral.label')}
+              placeholder={t('fields.referral.placeholder')}
               search
               searchInput={{ id: 'form-select-control-referral' }}
               name="referral"
@@ -740,8 +707,8 @@ const ApplicationFormInputs = props => {
             {inputs.referral === 'other' && (
               <Form.Field
                 control={Input}
-                label="Please Describe"
-                placeholder="Other"
+                label={t('fields.other_referral.label')}
+                placeholder={t('fields.other_referral.placeholder')}
                 name="other_referral"
                 type="text"
                 onChange={handleInputChange}
@@ -751,11 +718,10 @@ const ApplicationFormInputs = props => {
           </Form.Group>
           <Form.Group grouped>
             <label>Choose topics interested in:</label>
-            {topicsOptions.map(topic => {
+            {getTopicsOptions(t).map(topic => {
               return (
                 <Form.Field
                   label={topic.text}
-                  // value={topic.value}
                   key={topic.key}
                   control={Checkbox}
                   name={topic.value}
@@ -770,8 +736,8 @@ const ApplicationFormInputs = props => {
               fluid
               id="form-input-control-other-topic"
               control={Input}
-              label="Other Topic"
-              placeholder="Other Topic"
+              label={t('fields.other_topic.label')}
+              placeholder={('fields.other_topic.placeholder')}
               name="other_topic"
               type="text"
               onChange={handleInputChange}
@@ -780,8 +746,8 @@ const ApplicationFormInputs = props => {
           )}
           <Form.TextArea
             fluid
-            label="Questions / Comments"
-            placeholder="Questions / Comments"
+            label={t('fields.additional_input.label')}
+            placeholder={t('fields.additional_input.placeholder')}
             name="additional_input"
             type="text"
             onChange={handleInputChange}
@@ -794,11 +760,10 @@ const ApplicationFormInputs = props => {
             label={{
               children: (
                 <span>
-                  I agree to the <TermsModal>Terms and Services</TermsModal> and{' '}
-                  <PrivacyPolicyModal>Privacy Policy</PrivacyPolicyModal>
+                  {t('fields.terms_and_conditions.label.agree')} <TermsModal>{t('fields.terms_and_conditions.label.terms')}</TermsModal> {t('fields.terms_and_conditions.label.and')}{' '}
+                  <PrivacyPolicyModal>{t('fields.terms_and_conditions.label.privacy_policy')}</PrivacyPolicyModal>
                 </span>
-              ),
-              htmlFor: 'terms-and-conditions-checkbox'
+              )
             }}
             control={Checkbox}
             name="terms"
@@ -819,10 +784,9 @@ const ApplicationFormInputs = props => {
             label={{
               children: (
                 <span>
-                  I agree to the <CodeOfConductModal>Code of Conduct</CodeOfConductModal>
+                  {t('fields.code_of_conduct.label.agree')} <CodeOfConductModal>{t('fields.code_of_conduct.label.code')}</CodeOfConductModal>
                 </span>
-              ),
-              htmlFor: 'code-of-conduct-checkbox'
+              )
             }}
             control={Checkbox}
             name="code_of_conduct"
@@ -844,7 +808,7 @@ const ApplicationFormInputs = props => {
         <Button
           id="form-button-control-previous"
           disabled={currentStep === 1}
-          content="Previous"
+          content={t('step.buttons.prev')}
           primary
           type="button"
           size="large"
