@@ -1,42 +1,40 @@
+import BlogCard from 'components/BlogCard';
 import HeroImage from 'components/HeroImage/HeroImage';
-import ProgramCard from 'components/ProgramCard';
 import Subscribe from 'components/Subscribe';
 import TestimonialCards from 'components/TestimonialCards/TestimonialCards';
 import WebinarHighlight from 'components/WebinarHighlight';
-// import blogPostFallbackData from 'fallback_data/blogpostcontent.json';
+import blogPostFallbackData from 'fallback_data/blogpostcontent.json';
 import Header from 'layout/Header';
 import SectionHeader from 'layout/SectionHeader';
-import { blogPosts } from 'mock-data/blog';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Embed, Grid } from 'semantic-ui-react';
 import styled from 'styled-components';
 import mixins from 'styles/mixins';
 import theme from 'styles/theme';
-// import { BlogPosts } from 'utils/agent';
+import { BlogPosts } from 'utils/agent';
 
 const Home = () => {
   const { t } = useTranslation(['home', 'general']);
 
-  // TODO: Update to use real blog post data
-  // const [featuredBlogs, setFeaturedBlogs] = useState([]);
+  const [featuredBlogPosts, setFeaturedBlogPosts] = useState([]);
 
-  // useEffect(() => {
-  //   const pullFeaturedBlogs = async () => {
-  //     await BlogPosts.getFeatured()
-  //       .then(results => {
-  //         setFeaturedBlogs(results.results);
-  //       })
-  //       .catch(error => {
-  //         const featuredBlogposts = blogPostFallbackData.filter(
-  //           blogpostContentJson => blogpostContentJson.blogpost.is_featured
-  //         );
-  //         setFeaturedBlogs(featuredBlogposts);
-  //       });
-  //   };
-  //   pullFeaturedBlogs();
-  // }, []);
+  useEffect(() => {
+    const getFeaturedBlogPosts = async () => {
+      await BlogPosts.getFeatured()
+        .then(results => {
+          setFeaturedBlogPosts(results.results);
+        })
+        .catch(error => {
+          const featuredBlogposts = blogPostFallbackData.filter(
+            blogpostContentJson => blogpostContentJson.blogpost.is_featured
+          );
+          setFeaturedBlogPosts(featuredBlogposts);
+        });
+    };
+    getFeaturedBlogPosts();
+  }, []);
 
   return (
     <>
@@ -47,7 +45,7 @@ const Home = () => {
       <HomeSection>
         <WebinarHighlightsSection t={t} />
         <VerticalSpacer />
-        <FeaturedBlogPostsSection t={t} />
+        <FeaturedBlogPostsSection t={t} blogPosts={featuredBlogPosts} />
       </HomeSection>
       <Subscribe />
     </>
@@ -117,19 +115,19 @@ const WebinarHighlightsSection = ({ t }) => (
   </>
 );
 
-const FeaturedBlogPostsSection = ({ t }) => (
+const FeaturedBlogPostsSection = ({ t, blogPosts }) => (
   <>
     <SectionHeaderContainer>
       <Header size="h2" font="serif">
         {t('featured_blogposts')}
       </Header>
       <HorizontalSpacer />
-      <Link to="">{t('general:view_all')}</Link>
+      <Link to="blog-list">{t('general:view_all')}</Link>
     </SectionHeaderContainer>
     <Grid doubling stackable columns={3}>
       {blogPosts.slice(0, 3).map(blogPost => (
-        <Grid.Column key={blogPost.title}>
-          <ProgramCard program={blogPost} />
+        <Grid.Column key={blogPost.title_content}>
+          <BlogCard blogPost={blogPost} />
         </Grid.Column>
       ))}
     </Grid>
