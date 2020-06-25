@@ -164,7 +164,7 @@ const BlogSearch = ({ term }) => {
 
   return (
     <PageContainer>
-      <PageHeader title="Blog Article Search Results"></PageHeader>
+      <PageHeader title="Blogs"></PageHeader>
       <Section>
         <Form size="large">
           <Grid doubling stackable padded="vertically">
