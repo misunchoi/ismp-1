@@ -141,7 +141,7 @@ const BlogSearch = ({ term }) => {
     return (
       <Message negative>
         <Message.Header>
-          We're sorry - there was an issue with the search request.
+          We're sorry - there was an issue with the search request. Please try again.
         </Message.Header>
         <p>{msg}</p>
       </Message>
@@ -152,11 +152,10 @@ const BlogSearch = ({ term }) => {
     return (
       <Message warning>
         <Message.Header>
-          We're sorry - your search came up with zero results.
+          Sorry, we couldn't find any results matching "{searchInputs.query}"
         </Message.Header>
         <p>
-          Please try another search term or topic. 0 Results from API call:{' '}
-          {searchApiUrl}.
+          Please try another search term or try selecting a topic instead
         </p>
       </Message>
     );
