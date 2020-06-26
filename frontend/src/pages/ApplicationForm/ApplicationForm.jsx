@@ -32,8 +32,6 @@ import {
   getTopicsOptions
 } from './ApplicationOptions';
 
-import PageContainer from 'layout/PageContainer';
-
 import { useTranslation } from 'react-i18next';
 import PageContainer from 'layout/PageContainer';
 
