@@ -74,12 +74,13 @@ class ApplicationForm(TimestampedModel):
                     'GENDER': gender_choices_map[str(self.gender)],
                     'APPLY_D': str(date.today()),
                     'BIRTHYEAR': self.birth_year,
-                    'SCHOOL': self.destination_school.lower(),
+                    'SCHOOL': self.school_name.lower(),
                     'COUNTRY': self.country_of_origin,
                     'COUNTY': self.school_state.lower(),
                     'GRADE_LVL': self.grade_level,
                     'HOW_HEAR': how_hear_value,
-                    'HOW_OTHER': how_other_value
+                    'HOW_OTHER': how_other_value,
+                    'US_SCHOOL': self.destination_school.lower()
                 },
             }
             mailchimp_client = MailChimp(
