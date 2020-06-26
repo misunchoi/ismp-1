@@ -66,14 +66,13 @@ const MobileContainer = ({ children }) => {
 
       <Sidebar.Pusher dimmed={sidebarOpened}>
         <Segment
-          inverted
           textAlign="center"
           style={{ padding: '1em 0em' }}
           vertical
         >
           <Container>
             {/* Hamburger button */}
-            <Menu inverted pointing secondary size="massive">
+            <Menu pointing secondary size="massive">
               <Menu.Item onClick={handleToggle}>
                 <Icon name="sidebar" />
               </Menu.Item>
