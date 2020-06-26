@@ -5,6 +5,7 @@ import './i18n';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TagManager from 'react-gtm-module'
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
@@ -15,6 +16,12 @@ import ScrollToTop from './routes/ScrollToTop';
 import GlobalStyle from './styles/globalStyle';
 import theme from './styles/theme';
 import * as serviceWorker from './utils/serviceWorker';
+
+const tagManagerArgs = {
+  gtmId: 'GTM-XXXXX' // fill this out with your own
+}
+TagManager.initialize(tagManagerArgs)
+
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

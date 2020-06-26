@@ -1,5 +1,6 @@
 import Header from 'layout/Header';
 import React, { useState } from 'react';
+import TagManager from 'react-gtm-module';
 import { useTranslation } from 'react-i18next';
 import { Button, Input } from 'semantic-ui-react';
 import styled from 'styled-components';
@@ -15,11 +16,26 @@ const Subscribe = () => {
     setEmail(data.value);
   };
 
+  // taken from https://jameshfisher.com/2017/10/30/web-cryptography-api-hello-world/
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder("utf-8").encode(str));
+    return Array.prototype.map.call(new Uint8Array(buf), x=>(('00'+x.toString(16)).slice(-2))).join('');
+  }
+
   const handleSubmit = () => {
     SubscribeNewsletter.post({ email }).then(response => {
       if (response.error) {
         alert(response.error);
       } else {
+        sha256(email).then(hash => {
+          const subscribeTagManagerArgs = {
+            dataLayer: {
+             'event': 'submit_newsletter',
+             'hash_email': hash,
+            }
+          }
+          TagManager.dataLayer(subscribeTagManagerArgs);
+        })
         alert(t('subscribe:subscribe_success'));
       }
     });
