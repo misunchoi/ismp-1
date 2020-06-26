@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import theme from 'styles/theme';
 import sizes from 'styles/sizes';
 import media from 'styles/media';
+import mixins from 'styles/mixins';
 
 // icons
 import logo from 'images/ISMP.png';
@@ -73,6 +74,11 @@ const DropDownContainer = styled.div`
   &:hover {
     background-color: ${props => props.mobile && theme.colors.darkHoverGrey};
   }
+`;
+
+const NavContainer = styled.div`
+  flex: 1 0 auto;
+  ${mixins.responsivePadding}
 `;
 
 const ApplyNowButton = styled(Link)`
@@ -186,7 +192,7 @@ const Nav = ({ mobile, history }) => {
   const currentPath = history.location.pathname;
 
   return (
-    <>
+    <NavContainer>
       <Menu.Item
         as={Link}
         name="home"
@@ -195,6 +201,9 @@ const Nav = ({ mobile, history }) => {
         style={{ 
           display: 'flex', 
           justifyContent: mobile ? 'center' : 'flex-start',
+          paddingLeft: 0,
+          paddingRight:0,
+          float: mobile ? 'inherit' : 'left',
         }}
       >
         <img 
@@ -203,8 +212,16 @@ const Nav = ({ mobile, history }) => {
           style={ mobile ? logoMobileStyle : logoStyle }
         />
       </Menu.Item>
-      <Menu.Menu position="right">
-        { !mobile && 
+      <Menu.Menu
+        position="right"
+        style={{
+          paddingLeft: 0,
+          paddingRight:0,
+          float: mobile ? 'inherit' : 'right',
+          height: mobile ? 'inherit' : '84.84px',
+        }}
+      >
+        { !mobile &&
           <AboutUsDropdown currentPath={currentPath} mobile={mobile}/>
         }
         { mobile &&
@@ -251,7 +268,7 @@ const Nav = ({ mobile, history }) => {
           <WeChatIcon src={wechat} alt="wechat"/>
         </SocialMediaIcons>
       </Menu.Menu>
-    </>
+    </NavContainer>
   );
 };
 

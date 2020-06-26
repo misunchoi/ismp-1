@@ -18,11 +18,9 @@ const DesktopContainer = ({ children }) => {
         <Menu borderless attached="top" size="large" />
 
         <Menu borderless fixed="top" size="large">
-          <Container>
-            <Suspense fallback={<Spinner />}>
-              <Nav />
-            </Suspense>
-          </Container>
+          <Suspense fallback={<Spinner />}>
+            <Nav />
+          </Suspense>
         </Menu>
       </Segment>
       {children}
