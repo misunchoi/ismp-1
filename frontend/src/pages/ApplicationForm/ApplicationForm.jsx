@@ -9,7 +9,8 @@ import {
   Segment,
   Select,
   Step,
-  Label
+  Label,
+  Message
 } from 'semantic-ui-react';
 
 import { List, ListItem, SubTitle, Title } from './ApplicationForm.styles';
@@ -30,6 +31,8 @@ import {
   getReferralOptions,
   getTopicsOptions
 } from './ApplicationOptions';
+
+import PageContainer from 'layout/PageContainer';
 
 import { useTranslation } from 'react-i18next';
 import PageContainer from 'layout/PageContainer';
@@ -192,19 +195,8 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
         return true;
       }
     },
-    validatePhone: (fieldName, value) => {
-      const re = /^\+?1?\d{9,15}$/;
-
-      if (!re.test(value)) {
-        handleFeedbackChange(fieldName, t('validations.invalid_phone'));
-        return false;
-      } else {
-        handleFeedbackChange(fieldName, '');
-        return true;
-      }
-    },
     validateYear: (fieldName, value) => {
-      const re = /^\d{4}$/;
+      const re = /^[12]\d{3}$/;
 
       if (!re.test(value)) {
         handleFeedbackChange(fieldName, t('validations.invalid_year'));
@@ -318,6 +310,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
 
 const ApplicationForm = props => {
   const { t } = useTranslation('application-form');
+  const [submissionSuccessful, setSubmissionSuccessful] = useState(undefined)
 
   const signup = () => {
     const data = inputs;
@@ -342,10 +335,12 @@ const ApplicationForm = props => {
     return requests.post('application/', data).then(
       response => {
         if (DEBUG) console.log(response);
+        setSubmissionSuccessful(true);
         return true;
       },
       error => {
         if (DEBUG) console.log(error);
+        setSubmissionSuccessful(false);
         return false;
       }
     );
@@ -395,7 +390,7 @@ const ApplicationForm = props => {
     <PageContainer>
       <Section>
         <Container>
-          <Segment>
+          <Segment padded>
             <Step.Group fluid>{appStepList}</Step.Group>
             <Grid>
               <Grid.Row>
@@ -410,6 +405,8 @@ const ApplicationForm = props => {
                     validateField={validateField}
                     stepClick={stepClick}
                     nextButtonLabel={nextButtonLabel}
+                    submissionSuccessful={submissionSuccessful}
+                    setSubmissionSuccessful={setSubmissionSuccessful}
                     t={t}
                   />
                 </Grid.Column>
@@ -443,6 +440,8 @@ const ApplicationFormInputs = props => {
     stepClick,
     nextButtonLabel,
     feedbacks,
+    submissionSuccessful,
+    setSubmissionSuccessful,
     t
   } = props;
 
@@ -461,6 +460,7 @@ const ApplicationFormInputs = props => {
               placeholder={t('fields.first_name.placeholder')}
               name="first_name"
               type="text"
+              maxLength="100"
               onBlur={handleValidateOnBlur}
               onChange={handleInputChange}
               value={inputs.first_name}
@@ -475,6 +475,7 @@ const ApplicationFormInputs = props => {
               placeholder={t('fields.last_name.placeholder')}
               name="last_name"
               type="text"
+              maxLength="100"
               onBlur={handleValidateOnBlur}
               onChange={handleInputChange}
               value={inputs.last_name}
@@ -488,6 +489,7 @@ const ApplicationFormInputs = props => {
               placeholder={t('fields.preferred_name.placeholder')}
               name="preferred_name"
               type="text"
+              maxLength="100"
               onChange={handleInputChange}
               value={inputs.preferred_name}
             />
@@ -533,6 +535,7 @@ const ApplicationFormInputs = props => {
               placeholder={t('fields.country_of_origin.placeholder')}
               name="country_of_origin"
               type="text"
+              maxLength="100"
               onBlur={handleValidateOnBlur}
               onChange={handleInputChange}
               value={inputs.country_of_origin}
@@ -547,6 +550,7 @@ const ApplicationFormInputs = props => {
               placeholder={t('fields.email.placeholder')}
               name="email"
               type="email"
+              maxLength="100"
               onBlur={handleValidateOnBlur}
               onChange={handleInputChange}
               value={inputs.email}
@@ -586,6 +590,7 @@ const ApplicationFormInputs = props => {
               placeholder={t('fields.school_name.placeholder')}
               name="school_name"
               type="text"
+              maxLength="100"
               onBlur={handleValidateOnBlur}
               onChange={handleInputChange}
               value={inputs.school_name}
@@ -602,6 +607,7 @@ const ApplicationFormInputs = props => {
               placeholder={t('fields.school_city.placeholder')}
               name="school_city"
               type="text"
+              maxLength="100"
               onBlur={handleValidateOnBlur}
               onChange={handleInputChange}
               value={inputs.school_city}
@@ -615,6 +621,7 @@ const ApplicationFormInputs = props => {
               placeholder={t('fields.school_state.placeholder')}
               name="school_state"
               type="text"
+              maxLength="100"
               onBlur={handleValidateOnBlur}
               onChange={handleInputChange}
               value={inputs.school_state}
@@ -629,6 +636,7 @@ const ApplicationFormInputs = props => {
               placeholder={t('fields.school_country.placeholder')}
               name="school_country"
               type="text"
+              maxLength="100"
               onBlur={handleValidateOnBlur}
               onChange={handleInputChange}
               value={inputs.school_country}
@@ -645,6 +653,7 @@ const ApplicationFormInputs = props => {
               placeholder={t('fields.destination_school.placeholder')}
               name="destination_school"
               type="text"
+              maxLength="100"
               onChange={handleInputChange}
               value={inputs.destination_school}
             />
@@ -657,6 +666,7 @@ const ApplicationFormInputs = props => {
               placeholder={t('fields.major.placeholder')}
               name="major"
               type="text"
+              maxLength="100"
               onBlur={handleValidateOnBlur}
               onChange={handleInputChange}
               value={inputs.major}
@@ -691,13 +701,14 @@ const ApplicationFormInputs = props => {
                 placeholder={t('fields.other_referral.placeholder')}
                 name="other_referral"
                 type="text"
+                maxLength="100"
                 onChange={handleInputChange}
                 value={inputs.other_referral}
               />
             )}
           </Form.Group>
           <Form.Group grouped>
-            <label>Choose topics interested in:</label>
+            <label>{t('fields.interest_topics.label')}</label>
             {getTopicsOptions(t).map(topic => {
               return (
                 <Form.Field
@@ -720,6 +731,7 @@ const ApplicationFormInputs = props => {
               placeholder={'fields.other_topic.placeholder'}
               name="other_topic"
               type="text"
+              maxLength="100"
               onChange={handleInputChange}
               value={inputs.other_topic}
             />
@@ -730,6 +742,7 @@ const ApplicationFormInputs = props => {
             placeholder={t('fields.additional_input.placeholder')}
             name="additional_input"
             type="text"
+            maxLength="1000"
             onChange={handleInputChange}
             value={inputs.additional_input}
           />
@@ -789,10 +802,20 @@ const ApplicationFormInputs = props => {
               {feedbacks['code_of_conduct']}
             </Label>
           )}
-        </div>
+          {
+            submissionSuccessful === false && 
+            <Message 
+              negative 
+              header={t('submission_error.header')}
+              content={t('submission_error.content')}
+              size="mini"
+              icon="exclamation circle"
+              onDismiss={() => {setSubmissionSuccessful(undefined)}}
+            />
+          }
+          </div>
       )}
       <br />
-
       <Button.Group id="actionButtons" horizontal="true">
         <Button
           id="form-button-control-previous"

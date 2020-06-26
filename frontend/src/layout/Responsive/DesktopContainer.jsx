@@ -1,54 +1,30 @@
 import Spinner from 'components/Spinner/Spinner.component';
 import Footer from 'layout/Footer';
 import Nav from 'layout/Navigation';
-import React, { Suspense, useState } from 'react';
-import {
-  Container,
-  Menu,
-  Responsive,
-  Segment,
-  Visibility
-} from 'semantic-ui-react';
+import React, { Suspense } from 'react';
+import { Container, Menu, Responsive, Segment } from 'semantic-ui-react';
 
 import { getWidth } from './responsiveUtils';
 
 const DesktopContainer = ({ children }) => {
-  const [fixed, setFixed] = useState(null);
-
-  const hideFixedMenu = () => {
-    setFixed(false);
-  };
-
-  const showFixedMenu = () => {
-    setFixed(true);
-  };
-
   return (
     <Responsive
       style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
       getWidth={getWidth}
       minWidth={Responsive.onlyTablet.minWidth}
     >
-      <Visibility
-        once={false}
-        onBottomPassed={showFixedMenu}
-        onBottomPassedReverse={hideFixedMenu}
-      >
-        <Segment inverted textAlign="center" style={{ padding: '0' }} vertical>
-          <Menu
-            borderless
-            fixed={fixed ? 'top' : null}
-            pointing={!fixed}
-            size="large"
-          >
-            <Container>
-              <Suspense fallback={<Spinner />}>
-                <Nav />
-              </Suspense>
-            </Container>
-          </Menu>
-        </Segment>
-      </Visibility>
+      <Segment inverted textAlign="center" style={{ padding: '0' }} vertical>
+        {/* This Menu serves as a placeholder to push the content down */}
+        <Menu borderless attached="top" size="large" />
+
+        <Menu borderless fixed="top" size="large">
+          <Container>
+            <Suspense fallback={<Spinner />}>
+              <Nav />
+            </Suspense>
+          </Container>
+        </Menu>
+      </Segment>
       {children}
       <Suspense fallback={<Spinner />}>
         <Footer />

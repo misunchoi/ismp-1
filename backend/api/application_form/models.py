@@ -43,7 +43,7 @@ class ApplicationForm(TimestampedModel):
     destination_school = models.CharField(max_length=100, blank=True)
     major = models.CharField(max_length=100)
     referral = models.CharField(max_length=100)
-    additional_input = models.CharField(max_length=100, blank=True)
+    additional_input = models.CharField(max_length=1000, blank=True)
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)

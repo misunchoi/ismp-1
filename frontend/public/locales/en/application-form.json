@@ -144,6 +144,10 @@
       }
     }
   },
+  "submission_error": {
+    "header": "Something went wrong while submitting your application.",
+    "content": "Please try again"
+  },
   "validations": {
     "cannot_be_blank": "Cannot be blank",
     "invalid_email": "Please enter email in format email@site.com",

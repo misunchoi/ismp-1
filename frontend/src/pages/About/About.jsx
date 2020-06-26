@@ -61,7 +61,7 @@ const SeeYourCampusSection = ({ t }) => (
     <Grid doubling stackable columns={1}>
       <Grid.Column>
         <span>{t('see_your_campus.blurb')}</span>{' '}
-        <Link to="">{t('apply_now')}</Link>
+        <Link to="/apply">{t('apply_now')}</Link>
       </Grid.Column>
     </Grid>
   </Section>
