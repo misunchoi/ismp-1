@@ -12,12 +12,7 @@ import {
   Label
 } from 'semantic-ui-react';
 
-import {
-  List,
-  ListItem,
-  SubTitle,
-  Title
-} from './ApplicationForm.styles';
+import { List, ListItem, SubTitle, Title } from './ApplicationForm.styles';
 import './ApplicationForm.css';
 
 import PrivacyPolicyModal from './PrivacyPolicyModal';
@@ -37,6 +32,7 @@ import {
 } from './ApplicationOptions';
 
 import { useTranslation } from 'react-i18next';
+import PageContainer from 'layout/PageContainer';
 
 // change to true to prefill the form with valid inputs and debug easier
 // THIS SHOULD BE FALSE WHEN MERGING CODE
@@ -109,7 +105,7 @@ const useApplicationForm = () => {
   };
 };
 
-const useApplicationFormFeedback = (t) => {
+const useApplicationFormFeedback = t => {
   const [feedbacks, setFeedbacks] = useState({});
 
   const handleFeedbackChange = (fieldName, feedback) => {
@@ -134,7 +130,9 @@ const useStepFlow = (history, validateStep, signup, t) => {
   // Step Application
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = appFormStep.length;
-  const [nextButtonLabel, setNextButtonLabel] = useState(t('step.buttons.next'));
+  const [nextButtonLabel, setNextButtonLabel] = useState(
+    t('step.buttons.next')
+  );
 
   useEffect(() => {
     currentStep === 3
@@ -187,10 +185,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
       const re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
 
       if (!re.test(value)) {
-        handleFeedbackChange(
-          fieldName,
-          t('validations.invalid_email')
-        );
+        handleFeedbackChange(fieldName, t('validations.invalid_email'));
         return false;
       } else {
         handleFeedbackChange(fieldName, '');
@@ -201,10 +196,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
       const re = /^\+?1?\d{9,15}$/;
 
       if (!re.test(value)) {
-        handleFeedbackChange(
-          fieldName,
-          t('validations.invalid_phone')
-        );
+        handleFeedbackChange(fieldName, t('validations.invalid_phone'));
         return false;
       } else {
         handleFeedbackChange(fieldName, '');
@@ -224,25 +216,19 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
     },
     validateTermsChecked: (fieldName, value) => {
       if (value !== 'checked') {
-        handleFeedbackChange(
-          fieldName,
-          t('validations.check_terms')
-        );
+        handleFeedbackChange(fieldName, t('validations.check_terms'));
         return false;
       } else {
-        handleFeedbackChange(fieldName, '')
+        handleFeedbackChange(fieldName, '');
         return true;
       }
     },
     validateCodeOfConductChecked: (fieldName, value) => {
       if (value !== 'checked') {
-        handleFeedbackChange(
-          fieldName,
-          t('validations.check_code')
-        );
+        handleFeedbackChange(fieldName, t('validations.check_code'));
         return false;
       } else {
-        handleFeedbackChange(fieldName, '')
+        handleFeedbackChange(fieldName, '');
         return true;
       }
     }
@@ -307,12 +293,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
         'major'
       ];
     } else if (step === 3) {
-      fields = [
-        'referral', 
-        'additional_comments', 
-        'terms', 
-        'code_of_conduct'
-      ];
+      fields = ['referral', 'additional_comments', 'terms', 'code_of_conduct'];
     }
 
     let valid = true;
@@ -397,7 +378,6 @@ const ApplicationForm = props => {
     t
   );
 
-
   const appStepList = appFormStep.map(step => {
     return (
       <Step
@@ -412,7 +392,7 @@ const ApplicationForm = props => {
   });
 
   return (
-    <Container>
+    <PageContainer>
       <Section>
         <Container>
           <Segment>
@@ -448,7 +428,7 @@ const ApplicationForm = props => {
           </Segment>
         </Container>
       </Section>
-    </Container>
+    </PageContainer>
   );
 };
 
@@ -516,7 +496,7 @@ const ApplicationFormInputs = props => {
             <Form.Field
               fluid
               required
-              id='form-select-control-gender'
+              id="form-select-control-gender"
               control={Select}
               options={getGenderOptions(t)}
               label={t('fields.gender.label')}
@@ -737,7 +717,7 @@ const ApplicationFormInputs = props => {
               id="form-input-control-other-topic"
               control={Input}
               label={t('fields.other_topic.label')}
-              placeholder={('fields.other_topic.placeholder')}
+              placeholder={'fields.other_topic.placeholder'}
               name="other_topic"
               type="text"
               onChange={handleInputChange}
@@ -760,8 +740,14 @@ const ApplicationFormInputs = props => {
             label={{
               children: (
                 <span>
-                  {t('fields.terms_and_conditions.label.agree')} <TermsModal>{t('fields.terms_and_conditions.label.terms')}</TermsModal> {t('fields.terms_and_conditions.label.and')}{' '}
-                  <PrivacyPolicyModal>{t('fields.terms_and_conditions.label.privacy_policy')}</PrivacyPolicyModal>
+                  {t('fields.terms_and_conditions.label.agree')}{' '}
+                  <TermsModal>
+                    {t('fields.terms_and_conditions.label.terms')}
+                  </TermsModal>{' '}
+                  {t('fields.terms_and_conditions.label.and')}{' '}
+                  <PrivacyPolicyModal>
+                    {t('fields.terms_and_conditions.label.privacy_policy')}
+                  </PrivacyPolicyModal>
                 </span>
               )
             }}
@@ -784,7 +770,10 @@ const ApplicationFormInputs = props => {
             label={{
               children: (
                 <span>
-                  {t('fields.code_of_conduct.label.agree')} <CodeOfConductModal>{t('fields.code_of_conduct.label.code')}</CodeOfConductModal>
+                  {t('fields.code_of_conduct.label.agree')}{' '}
+                  <CodeOfConductModal>
+                    {t('fields.code_of_conduct.label.code')}
+                  </CodeOfConductModal>
                 </span>
               )
             }}
