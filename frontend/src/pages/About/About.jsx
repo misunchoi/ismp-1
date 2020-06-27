@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import { Image } from 'semantic-ui-react';
 import { Grid } from 'semantic-ui-react';
 
+import {logApplyNowClick} from 'utils/google_tag_manager_helpers';
+
 const About = () => {
   const { t } = useTranslation('about');
   return (
@@ -61,7 +63,7 @@ const SeeYourCampusSection = ({ t }) => (
     <Grid doubling stackable columns={1}>
       <Grid.Column>
         <span>{t('see_your_campus.blurb')}</span>{' '}
-        <Link to="/apply">{t('apply_now')}</Link>
+        <Link to="/apply" onClick={logApplyNowClick}>{t('apply_now')}</Link>
       </Grid.Column>
     </Grid>
   </Section>

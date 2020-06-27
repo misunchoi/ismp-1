@@ -9,6 +9,8 @@ import sizes from 'styles/sizes';
 import media from 'styles/media';
 import mixins from 'styles/mixins';
 
+import {logApplyNowClick} from 'utils/google_tag_manager_helpers';
+
 // icons
 import logo from 'images/ISMP.png';
 import logoMobile from '../../images/ISMP_logo.png';
@@ -249,7 +251,7 @@ const Nav = ({ mobile, history }) => {
           );
         })}
         {mobile ? null : (
-          <ApplyNowButton to="/apply">
+          <ApplyNowButton to="/apply" onClick={logApplyNowClick}>
             {t('apply_now')}
           </ApplyNowButton>
         )}

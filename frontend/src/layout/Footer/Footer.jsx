@@ -1,10 +1,15 @@
+import React from 'react';
+import TagManager from 'react-gtm-module';
+import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
+
+import { Button, Grid, Header, List, Segment } from 'semantic-ui-react';
+import mixins from 'styles/mixins';
+
+import styled from 'styled-components';
 import SocialMediaIconList from 'components/SocialIconsList';
 import logo from 'images/ISMP_logo.png';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Button, Grid, Header, List, Segment } from 'semantic-ui-react';
-import styled from 'styled-components';
-import mixins from 'styles/mixins';
+import {logApplyNowClick} from 'utils/google_tag_manager_helpers';
 
 const style = {
   footerContainer: {
@@ -124,6 +129,13 @@ const PaddedSection = styled.section`
 
 const Footer = () => {
   const { i18n } = useTranslation();
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/apply');
+    logApplyNowClick();
+  }
+
   return (
     <Segment vertical style={style.footerContainer}>
       <PaddedSection>
@@ -137,6 +149,7 @@ const Footer = () => {
                 style={style.applyNowButton}
                 floated="right"
                 fluid
+                onClick={handleClick}
               >
                 APPLY NOW
               </Button>
