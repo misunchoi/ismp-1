@@ -34,6 +34,11 @@ import {
 
 import { useTranslation } from 'react-i18next';
 import PageContainer from 'layout/PageContainer';
+import {
+  logApplicationCompletion,
+  logApplicationProgress,
+  logApplicationView
+} from "utils/google_tag_manager_helpers";
 
 // change to true to prefill the form with valid inputs and debug easier
 // THIS SHOULD BE FALSE WHEN MERGING CODE
@@ -86,7 +91,7 @@ const useApplicationForm = () => {
   const [inputs, setInputs] = useState(defaultState);
 
   const handleInputChange = (_, data) => {
-    console.log(_, data);
+    if (DEBUG) console.log(_, data);
 
     let value = data.value;
 
@@ -149,6 +154,7 @@ const useStepFlow = (history, validateStep, signup, t) => {
       currentStep < totalSteps &&
       validateStep(currentStep)
     ) {
+      logApplicationProgress(currentStep);
       setCurrentStep(currentStep + 1);
     } else if (
       action === 'next' &&
@@ -310,6 +316,10 @@ const ApplicationForm = props => {
   const { t } = useTranslation('application-form');
   const [submissionSuccessful, setSubmissionSuccessful] = useState(undefined)
 
+  useEffect(() => {
+    logApplicationView();
+      }, []);
+
   const signup = () => {
     const data = inputs;
     data['interest_topics'] = [];
@@ -334,6 +344,7 @@ const ApplicationForm = props => {
       response => {
         if (DEBUG) console.log(response);
         setSubmissionSuccessful(true);
+        logApplicationCompletion(data['email'])
         return true;
       },
       error => {
@@ -801,9 +812,9 @@ const ApplicationFormInputs = props => {
             </Label>
           )}
           {
-            submissionSuccessful === false && 
-            <Message 
-              negative 
+            submissionSuccessful === false &&
+            <Message
+              negative
               header={t('submission_error.header')}
               content={t('submission_error.content')}
               size="mini"

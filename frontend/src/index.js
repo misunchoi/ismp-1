@@ -18,10 +18,9 @@ import theme from './styles/theme';
 import * as serviceWorker from './utils/serviceWorker';
 
 const tagManagerArgs = {
-  gtmId: 'GTM-XXXXX' // fill this out with your own
+  gtmId: 'GTM-XXXXXX' // fill this out with your own
 }
 TagManager.initialize(tagManagerArgs)
-
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
