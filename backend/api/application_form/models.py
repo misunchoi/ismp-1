@@ -1,6 +1,6 @@
 """When people apply for ISMP, these fields are stored."""
 from datetime import date
-from hashlib import md5
+from hashlib import md5, sha256
 from django.conf import settings
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -64,8 +64,16 @@ class ApplicationForm(TimestampedModel):
                 how_hear_value = self.referral
                 how_other_value = ''
 
+            mailchimp_client = MailChimp(
+                settings.MAILCHIMP_API_KEY,
+                settings.MAILCHIMP_USERNAME)
+            stripped_email = self.email.strip().lower()
+            utf8_email = stripped_email.encode('utf-8')
+            email_hash = md5(utf8_email).hexdigest()
+            email_sha256_hash = sha256(utf8_email).hexdigest()
+
             new_user_data = {
-                'email_address': self.email,
+                'email_address': stripped_email,
                 'status_if_new': 'subscribed',
                 'merge_fields': {
                     'FNAME': self.first_name.title(),
@@ -80,18 +88,15 @@ class ApplicationForm(TimestampedModel):
                     'GRADE_LVL': self.grade_level,
                     'HOW_HEAR': how_hear_value,
                     'HOW_OTHER': how_other_value,
-                    'US_SCHOOL': self.destination_school.lower()
+                    'US_SCHOOL': self.destination_school.lower(),
+                    'MAJOR': self.major,
+                    'GA_USER_ID': email_sha256_hash
                 },
             }
-            mailchimp_client = MailChimp(
-                settings.MAILCHIMP_API_KEY,
-                settings.MAILCHIMP_USERNAME)
-            utf8_email = self.email.lower().encode('utf-8')
-            email_hash = md5(utf8_email)
             # add the new user to the mailchimp list
             mailchimp_client.lists.members.create_or_update(
                 settings.MAILCHIMP_LIST_ID,
-                email_hash.hexdigest(),  # subscriber_hash
+                email_hash,  # subscriber_hash
                 new_user_data)
 
             tags_to_add = ['applied']
@@ -100,7 +105,7 @@ class ApplicationForm(TimestampedModel):
             tag_list = [{'name': tag_name, 'status': 'active'} for tag_name in tags_to_add]
             mailchimp_client.lists.members.tags.update(
                 settings.MAILCHIMP_LIST_ID,
-                email_hash.hexdigest(),
+                email_hash,
                 {'tags': tag_list}
             )
 
