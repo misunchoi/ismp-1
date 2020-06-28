@@ -6,7 +6,7 @@ export const programInstructions = [
   {
     icon: 'wordpress forms',
     title: 'Apply',
-    blurbHtml: '<p>Submit application <a href="/application">here</a></p>'
+    blurbHtml: '<p>Submit application <a href="/apply">here</a></p>'
   },
   {
     icon: 'group',
