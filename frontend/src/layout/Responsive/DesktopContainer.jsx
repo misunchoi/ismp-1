@@ -2,7 +2,7 @@ import Spinner from 'components/Spinner/Spinner.component';
 import Footer from 'layout/Footer';
 import Nav from 'layout/Navigation';
 import React, { Suspense } from 'react';
-import { Container, Menu, Responsive, Segment } from 'semantic-ui-react';
+import { Menu, Responsive, Segment } from 'semantic-ui-react';
 
 import { getWidth } from './responsiveUtils';
 

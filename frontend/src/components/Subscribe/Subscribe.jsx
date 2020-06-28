@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import mixins from 'styles/mixins';
 import theme from 'styles/theme';
 import { SubscribeNewsletter } from 'utils/agent';
-import TagManager from 'react-gtm-module';
 import {logSubscribe} from "utils/google_tag_manager_helpers";
 
 const Subscribe = () => {

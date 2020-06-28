@@ -4,23 +4,23 @@ function getMentorImage(imageName) {
   return "https://ismp-us-east-1.s3.amazonaws.com/mentors/headshots/" + imageName
 }
 
-function createMentorJson(
-  name,
-  linkedin_url = '',
-  image = getMentorImage('Empty-Female_500x500.jpg'),
-  credentials = [],
-  current_job = { company: 'some company', position: 'some position' },
-  fun_facts = '',
-) {
-  return {
-    image: image,
-    name: name,
-    credentials: credentials,
-    current_job: current_job,
-    fun_facts: fun_facts,
-    linkedin_url: linkedin_url,
-  };
-}
+//function createMentorJson(
+//  name,
+//  linkedin_url = '',
+//  image = getMentorImage('Empty-Female_500x500.jpg'),
+//  credentials = [],
+//  current_job = { company: 'some company', position: 'some position' },
+//  fun_facts = '',
+//) {
+//  return {
+//    image: image,
+//    name: name,
+//    credentials: credentials,
+//    current_job: current_job,
+//    fun_facts: fun_facts,
+//    linkedin_url: linkedin_url,
+//  };
+//}
 
 function createCampusJson(
   name,

@@ -1,5 +1,4 @@
 import React from 'react';
-import TagManager from 'react-gtm-module';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 

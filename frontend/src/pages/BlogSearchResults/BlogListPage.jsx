@@ -35,7 +35,6 @@ const BlogSearch = ({ term }) => {
   const [searchInputs, setSearchInputs] = useState(defaultInputState);
   const [isLoading, setIsLoading] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
-  const [searchApiUrl, setSearchApiUrl] = useState('');
   const [errorMsg, setErrorMsg] = useState(null);
   const [isZeroResults, setIsZeroResults] = useState(false);
   const [resultsPagination, setResultsPagination] = useState(null);
@@ -95,8 +94,6 @@ const BlogSearch = ({ term }) => {
 
       finalFetchApiUrl = fetchApiUrl;
     }
-
-    setSearchApiUrl(finalFetchApiUrl);
 
     return requests.get(finalFetchApiUrl).then(
       response => {
