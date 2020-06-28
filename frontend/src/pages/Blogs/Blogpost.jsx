@@ -14,10 +14,6 @@ import theme from '../../styles/theme';
 
 import arrowLeft from '../../images/arrow-left-purple.png';
 
-const Container = styled.div`
-  margin: 5% 0;
-`;
-
 const BlogContentContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -51,7 +47,7 @@ const BlogTitle = styled.div`
     margin-top: 8px;
     line-height: 36px;
   }
-  
+
   @media (min-width: ${sizes.laptop}px) {
     padding: 0 200px;
   }
@@ -60,10 +56,9 @@ const BlogTitle = styled.div`
 const BlogHomeLink = styled(Link)`
   display: flex;
   font-size: ${theme.fontSizes.md};
-  margin-left: 10%;
   color: ${theme.colors.purple};
   align-items: center;
-  
+
   &:hover {
     color: ${theme.colors.purple};
   }
@@ -109,10 +104,10 @@ const HeaderImg = styled.img`
   align-self: center;
   margin-bottom: 48px;
   object-fit: cover;
-  
+
   @media (min-width: ${sizes.phone}px) and (max-width: ${sizes.tablet}px) {
-      width: 630px;
-      height: 354px;
+    width: 630px;
+    height: 354px;
   }
 
   @media (max-width: ${sizes.phone}px) {
@@ -135,7 +130,12 @@ const BlogDataContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  & h1, h2, h3, h4, h5, h6 {
+  & h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: ${theme.fonts.PTSerif};
   }
   & h1 {
@@ -160,13 +160,15 @@ const BlogDataContainer = styled.div`
     font-size: ${theme.fontSizes.md};
     font-weight: bold;
   }
-  & p, div {
+  & p,
+  div {
     font-size: ${theme.fontSizes.md};
   }
 
   @media (max-width: ${sizes.phone}px) {
     margin: 0 5%;
-    & p, div {
+    & p,
+    div {
       font-size: ${theme.fontSizes.sm};
     }
   }
@@ -210,29 +212,29 @@ const ApplyNowBtn = styled(Link)`
   align-items: center;
   margin-left: 48px;
 
-   &:hover {
+  &:hover {
     color: ${theme.colors.black};
-   }
+  }
 
-   @media (max-width: ${sizes.phone}px) {
-     width: 84px;
-     height: 24px;
-     font-size: ${theme.fontSizes.xs};
-     margin-left: 36px;
-   }
+  @media (max-width: ${sizes.phone}px) {
+    width: 84px;
+    height: 24px;
+    font-size: ${theme.fontSizes.xs};
+    margin-left: 36px;
+  }
 `;
 
 const ErrorPageContainer = styled(PageContainer)`
-   height: 500px;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const ErrorMessage = styled.div`
-   font-size: ${theme.fontSizes.xl};
-   text-align: center;
-   padding: 16px 0;
+  font-size: ${theme.fontSizes.xl};
+  text-align: center;
+  padding: 16px 0;
 `;
 
 const BlogHomeErrorLink = styled(BlogHomeLink)`
@@ -243,14 +245,14 @@ const BlogHomeErrorLink = styled(BlogHomeLink)`
 `;
 
 const ArrowErrorIcon = styled(ArrowLeft)`
-   width: 20px;
-   height: 20px;
+  width: 20px;
+  height: 20px;
 `;
 
 const LoadingContainer = styled.div`
-   height: 500px;
-   display: flex;
-   align-items: center;
+  height: 500px;
+  display: flex;
+  align-items: center;
 `;
 
 class Blogpost extends Component {
@@ -269,19 +271,17 @@ class Blogpost extends Component {
   componentDidMount() {
     const populateBlogpostData = async () => {
       try {
-        await BlogPost
-          .get(this.state.blogPostContentId)
-            .then(result => {
-              this.setState({
-                blogPostContent: result,
-                content: result.body_content,
-                blogPostData: result.blogpost,
-                blogPostExists: true,
-                loadingBlogData: false
-              });
-            });
+        await BlogPost.get(this.state.blogPostContentId).then(result => {
+          this.setState({
+            blogPostContent: result,
+            content: result.body_content,
+            blogPostData: result.blogpost,
+            blogPostExists: true,
+            loadingBlogData: false
+          });
+        });
       } catch (error) {
-        console.log("Could not load blogpost: ", error);
+        console.log('Could not load blogpost: ', error);
         // Use fallback blog data if we get no response from the API
         let fallbackBlogpostContent = fallbackBlogpostContentData.filter(
           blogpostJson => {
@@ -289,11 +289,11 @@ class Blogpost extends Component {
           }
         );
         if (fallbackBlogpostContent.length === 0) {
-          this.setState({ 
+          this.setState({
             content: 'The requested blogpost was not found',
             blogPostExists: false,
             loadingBlogData: false
-           });
+          });
         } else {
           this.setState({
             blogPostContentId: fallbackBlogpostContent[0],
@@ -309,23 +309,26 @@ class Blogpost extends Component {
 
   getBlogData() {
     // Making sure associated blog information is defined
-    return (this.state.blogPostData !== {}) ? {
-      bio: this.state.blogPostData.author.bio,             // Author information
-      topic: this.state.blogPostData.topic_set.length > 0  // Show either blog type or topic category
-        ? this.state.blogPostData.topic_set[0].display_text 
-        : this.state.blogPostData.type,
-      headerMedia: this.state.blogPostData.media_url       // Header Image or Video
-    } : {
-      bio: '',
-      topic: '',
-      headerMedia: ''
-    }
+    return this.state.blogPostData !== {}
+      ? {
+          bio: this.state.blogPostData.author.bio || '', // Author information
+          topic:
+            this.state.blogPostData.topic_set.length > 0 // Show either blog type or topic category
+              ? this.state.blogPostData.topic_set[0].display_text
+              : this.state.blogPostData.type,
+          headerMedia: this.state.blogPostData.media_url // Header Image or Video
+        }
+      : {
+          bio: '',
+          topic: '',
+          headerMedia: ''
+        };
   }
 
   parseVideoLink(videoLink) {
-    // Video ID is used in Embed component to determine 
+    // Video ID is used in Embed component to determine
     // where to find the video link on YouTube
-    const videoId = videoLink.includes('embed/') 
+    const videoId = videoLink.includes('embed/')
       ? videoLink.split('embed/')[1]
       : videoLink.split('v=')[1];
     if (videoId.includes('&')) {
@@ -340,16 +343,16 @@ class Blogpost extends Component {
     if (headerMedia.includes('youtube')) {
       const videoId = this.parseVideoLink(headerMedia);
       return (
-        <HeaderVideo 
+        <HeaderVideo
           id={videoId}
-          source='youtube'
+          source="youtube"
           iframe={{
             allowFullscreen: true
           }}
         />
-      )
+      );
     } else {
-      return <HeaderImg src={headerMedia} alt='header'/>
+      return <HeaderImg src={headerMedia} alt="header" />;
     }
   }
 
@@ -357,46 +360,53 @@ class Blogpost extends Component {
     if (this.state.loadingBlogData) {
       return (
         <LoadingContainer>
-          <Loader active inline='centered'>Loading blog...</Loader>
+          <Loader active inline="centered">
+            Loading blog...
+          </Loader>
         </LoadingContainer>
-      )
+      );
     }
     if (!this.state.blogPostExists) {
       return (
         <ErrorPageContainer>
           <ErrorMessage>The requested blog was not found.</ErrorMessage>
           <BlogHomeErrorLink to="/blog-list">
-            <ArrowErrorIcon src={arrowLeft} alt="arrow-left"/>
+            <ArrowErrorIcon src={arrowLeft} alt="arrow-left" />
             Blog Home
           </BlogHomeErrorLink>
         </ErrorPageContainer>
-      )
+      );
     } else {
       const { bio, topic, headerMedia } = this.getBlogData();
       return (
-        <Container>
-          <BlogContentContainer>
-            <BlogHomeLink to="/blog-list">
-              <ArrowLeft src={arrowLeft} alt="arrow-left"/>
-              Blog Home
-            </BlogHomeLink>
-            <BlogTopic>{topic || this.state.blogPostContent.title_content}</BlogTopic>
-            <BlogTitle>{this.state.blogPostContent.title_content}</BlogTitle>
-            <DateAndAuthor>
-              {moment(this.state.blogPostContent.publish_at).format('MMMM DD, YYYY')} {bio && bio}
-            </DateAndAuthor>
-            { this.renderHeaderMedia(headerMedia || '') }
-            <BlogDataContainer>
-              <RenderBlog
-                initialContent={this.state.content}
-              />
-            </BlogDataContainer>
-          </BlogContentContainer>
+        <>
+          <PageContainer>
+            <BlogContentContainer>
+              <BlogHomeLink to="/blog-list">
+                <ArrowLeft src={arrowLeft} alt="arrow-left" />
+                Blog Home
+              </BlogHomeLink>
+              <BlogTopic>
+                {topic || this.state.blogPostContent.title_content}
+              </BlogTopic>
+              <BlogTitle>{this.state.blogPostContent.title_content}</BlogTitle>
+              <DateAndAuthor>
+                {moment(this.state.blogPostContent.publish_at).format(
+                  'MMMM DD, YYYY'
+                )}{' '}
+                {bio}
+              </DateAndAuthor>
+              {this.renderHeaderMedia(headerMedia || '')}
+              <BlogDataContainer>
+                <RenderBlog initialContent={this.state.content} />
+              </BlogDataContainer>
+            </BlogContentContainer>
+          </PageContainer>
           <GetConnected>
             Get connected with a mentor today
             <ApplyNowBtn to="/apply">APPLY NOW</ApplyNowBtn>
           </GetConnected>
-        </Container>
+        </>
       );
     }
   }
