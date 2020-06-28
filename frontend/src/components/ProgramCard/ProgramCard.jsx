@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Container, Description, Details, Image } from './ProgramCard.styles';
 
-const ProgramCard = ({ program }) => {
+const ProgramCard = ({ program, fullText }) => {
   const { headerImage, title } = program;
   const blurb = `${program.blurb.slice(0, 250)}...`;
 
@@ -14,7 +14,7 @@ const ProgramCard = ({ program }) => {
         <Header size="h3" font="sans">
           {title}
         </Header>
-        <Details>{blurb}</Details>
+        <Details>{fullText ? program.blurb : blurb}</Details>
       </Description>
     </Container>
   );

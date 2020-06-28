@@ -1,8 +1,11 @@
+const getLeadershipImage = imageName => {
+  return 'https://ismp-us-east-1.s3.amazonaws.com/leadership/' + imageName;
+};
+
 const leadershipInfo = {
   officers: [
     {
-      image:
-        'http://jessewoo.github.io/images/ismp/leadership/img-jessica-fu@2x.jpg',
+      image: getLeadershipImage('img-jessica-fu@2x.jpg'),
       name: 'Jessica Fu',
       title: 'President',
       credentials: [
@@ -18,7 +21,7 @@ const leadershipInfo = {
       linkedin_url: 'https://www.linkedin.com/in/jessica-fu-78625812/'
     },
     {
-      image: 'http://jessewoo.github.io/images/ismp/leadership/kenhsu.jpg',
+      image: getLeadershipImage('kenhsu.jpg'),
       name: 'Ken Hsu',
       title: 'Vice President',
       credentials: [
@@ -38,7 +41,7 @@ const leadershipInfo = {
       linkedin_url: 'https://www.linkedin.com/in/hsukenneth/'
     },
     {
-      image: 'http://jessewoo.github.io/images/ismp/leadership/jacobchang.jpg',
+      image: getLeadershipImage('jacobchang.jpg'),
       name: 'Jacob Chang',
       title: 'Secretary',
       credentials: [
@@ -58,8 +61,7 @@ const leadershipInfo = {
       linkedin_url: 'https://www.linkedin.com/in/jacob-chang-b5001819/'
     },
     {
-      image:
-        'http://jessewoo.github.io/images/ismp/leadership/img-james-nam@2x.jpg',
+      image: getLeadershipImage('img-james-nam@2x.jpg'),
       name: 'James Nam',
       title: 'Treasurer',
       credentials: [
@@ -89,7 +91,7 @@ const leadershipInfo = {
   ],
   directors: [
     {
-      image: 'http://jessewoo.github.io/images/ismp/leadership/henrychen.jpg',
+      image: getLeadershipImage('henrychen.jpg'),
       name: 'Henry Chen',
       title: 'Director',
       credentials: [
@@ -109,8 +111,7 @@ const leadershipInfo = {
       linkedin_url: 'https://www.linkedin.com/in/henrychen/'
     },
     {
-      image:
-        'http://jessewoo.github.io/images/ismp/leadership/img-sara-hong@2x.jpg',
+      image: getLeadershipImage('img-sara-hong@2x.jpg'),
       name: 'Sara Hong',
       title: 'Director',
       credentials: [
@@ -130,8 +131,7 @@ const leadershipInfo = {
       staff_url: 'https://writing.berkeley.edu/staff/sara-hong'
     },
     {
-      image:
-        'http://jessewoo.github.io/images/ismp/leadership/img-bo-zheng@2x.jpg',
+      image: getLeadershipImage('img-bo-zheng@2x.jpg'),
       name: 'Bo Zheng',
       title: 'Director',
       credentials: [
@@ -155,7 +155,7 @@ const leadershipInfo = {
       linkedin_url: 'https://www.linkedin.com/in/bozheng08/'
     },
     {
-      image: 'http://jessewoo.github.io/images/ismp/leadership/markborja.jpg',
+      image: getLeadershipImage('markborja.jpg'),
       name: 'Mark Borja',
       title: 'Director',
       credentials: [
@@ -175,8 +175,7 @@ const leadershipInfo = {
       linkedin_url: 'https://www.linkedin.com/in/mark-borja-66897b34/'
     },
     {
-      image:
-        'http://jessewoo.github.io/images/ismp/leadership/img-fran-chan@2x.jpg',
+      image: getLeadershipImage('img-fran-chan@2x.jpg'),
       name: 'Francisca Chan',
       title: 'Director',
       credentials: [
@@ -196,7 +195,7 @@ const leadershipInfo = {
       linkedin_url: 'https://www.linkedin.com/in/franciscalopez/'
     },
     {
-      image: 'http://jessewoo.github.io/images/ismp/leadership/kitng.jpg',
+      image: getLeadershipImage('kitng.jpg'),
       name: 'Kit Ng',
       title: 'Director',
       credentials: [

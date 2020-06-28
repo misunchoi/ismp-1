@@ -36,7 +36,7 @@ const Program = () => {
         <Grid doubling stackable columns={2}>
           {programDetails.map(program => (
             <Grid.Column key={program.title}>
-              <ProgramCard program={program} />
+              <ProgramCard program={program} fullText={true} />
             </Grid.Column>
           ))}
         </Grid>
