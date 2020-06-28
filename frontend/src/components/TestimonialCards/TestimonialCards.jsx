@@ -1,48 +1,58 @@
-import React from 'react';
-import { Responsive } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Responsive, Button } from 'semantic-ui-react';
 import styled from 'styled-components';
-import sizes from 'styles/sizes';
-import theme from 'styles/theme';
+import theme from '../../styles/theme';
+import sizes from '../../styles/sizes';
+import Truncate from 'react-truncate';
+import section from '../../layout/Section';
+import mixins from 'styles/mixins';
 
 // TODO: come from an API later
-const mentorsInfo = [
+const testimonials = [
   {
-    image: 'https://semantic-ui.com/images/avatar2/large/matthew.png',
-    name: 'Matthew Lastname',
-    school: 'Los Angeles, CA',
-    education: 'U.C. Berkeley',
-    major: 'Computer Science',
-    skills: 'English Training, Web Development',
-    testimonial:
-      'I joined ISMP and now I am writing a testimonial. Here is one that is two sentences long.'
+    name: 'Stella Seo',
+    school: 'UCSD',
+    major: 'Chem & Biochem, Ph.D',
+    hometown: 'Seoul, Korea',
+    quote:
+      'As an international graduate student, my social pool was very limited, and I didn’t know how to get through this big transition. However, after I met my mentor, I was able to have a valuable experience with good people that I would have never had without this program. My mentor not only taught me American life and culture but also helped me with English, which made it easier to complete my first quarter in the US.',
+    image: 'https://ismp-us-east-1.s3.amazonaws.com/testimonials/headshots/stella.jpg'
   },
   {
-    image: 'https://semantic-ui.com/images/avatar2/large/molly.png',
-    name: 'Molly Lastname',
-    school: 'Los Angeles, CA',
-    education: 'U.C. San Diego',
-    major: 'History',
-    skills: 'English Training, Web Development',
-    testimonial: 'It was good'
+    name: 'Taiga Koma',
+    school: 'OCC',
+    major: 'Psychology',
+    hometown: 'Japan',
+    quote:
+      'ISMP is a nice place to start your college life! Mentors are helping the international students with understanding American culture. Even a shy student can make friends in this community.',
+    image: 'https://semantic-ui.com/images/avatar2/large/matthew.png'
   },
   {
-    image: 'https://semantic-ui.com/images/avatar2/large/elyse.png',
-    name: 'Jennifer Lastname',
-    school: 'Los Angeles, CA',
-    education: 'U.C. Irvine',
-    major: 'Biology',
-    skills: 'English Training, Web Development',
-    testimonial:
-      'I feel like writing a very long testimonial, so here goes: looooooooooonggggggggggg ttttttessstimoniallllllllllllllllllllllll. This is a lot of text. Hopefully this looks okay on the UI. What happens now? Who knows? '
+    name: 'Gabi Lee',
+    school: 'UCLA',
+    major: 'Sociology, Senior',
+    hometown: '',
+    quote:
+      'My mentor is very understanding and resourceful, helping me with job search, interpersonal skills, and personal growth, which allows my senior year to be less stressful.',
+    image: 'https://ismp-us-east-1.s3.amazonaws.com/testimonials/headshots/gabi.jpg'
   }
 ];
 
-const DesktopContainer = styled.section`
-  /* max-height: 285px; */
+const StyledSection = styled.section`
+  background: ${props => props.backgroundColor};
+  margin: 0;
+  padding: 64px 0 0 0;
+  text-align: ${props => (props.center ? 'center' : 'left')};
+`;
+
+const DesktopContainer = styled(section)`
+  margin: 0;
+  padding-top: 64px;
+  padding-bottom: 64px;
+  ${mixins.responsivePadding};
   display: flex;
   flex-wrap: no-wrap;
-  padding: 2em 13.5%;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-evenly;
   background-color: ${theme.colors.grey};
 `;
@@ -66,53 +76,51 @@ const Container = ({ children }) => {
 };
 
 const DesktopRatio = styled.div`
-  position: relative;
   width: 30%;
   max-width: 270px;
-  padding-top: 40%;
 `;
 
 const MobileRatio = styled(DesktopRatio)`
-  padding-top: 285px;
   width: 100%;
+  max-width: 100%;
   margin: 1em;
 `;
 
-const CardRatio = ({ children }) => {
+const CardContainer = ({ children }) => {
   return (
     <>
-      <Responsive as={DesktopRatio} minWidth={800}>
-        {children}
+      <Responsive as={DesktopRatio} minWidth={sizes.tablet}>
+        {' '}
+        {children}{' '}
       </Responsive>
-      <Responsive as={MobileRatio} maxWidth={800}>
-        {children}
+      <Responsive as={MobileRatio} maxWidth={sizes.tablet}>
+        {' '}
+        {children}{' '}
       </Responsive>
     </>
   );
 };
 
 const TestimonialCard = styled.div`
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
   border-radius: 10px;
   box-shadow: 0 5px 5px ${theme.colors.darkGrey};
   background-color: #fafafa;
   padding: 0.25em 1em 1.5em 1em;
   margin: 0;
   font-family: ${theme.fonts.PTSerif};
-  &:hover {
-    background-color: white;
-  }
 `;
 
 const QuoteAndContentContainer = styled.div`
-  height: 62%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   justify-content: flex-start;
 `;
 
@@ -121,7 +129,7 @@ const QuotationMark = styled.h1`
   min-height: 32px;
   height: 40px;
   font-family: ${theme.fonts.PTSerif};
-  font-size: ${theme.fontSizes.h1};
+  font-size: 56px;
   margin: 0;
   text-align: center;
 `;
@@ -132,16 +140,13 @@ const ColoredQuotationMark = ({ index }) => {
   return <QuotationMark style={{ color: `${color}` }}>“</QuotationMark>;
 };
 
-const Quote = styled.div`
+const Quote = styled(Truncate)`
   width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-break: break-word;
+  height: 100%;
+  overflow-wrap: break-word;
   color: ${theme.colors.black};
-  font-size: 100%;
-  /* font-size: ${theme.fontSizes.md}; */
-  text-align: center;
-  line-height: 150%;
+  font-size: ${theme.fontSizes.md};
+  line-height: 30px;
 `;
 
 const Divider = styled.div`
@@ -157,7 +162,7 @@ const Profile = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 38%;
+  height: fit-content;
   padding: 0 0 0.5em 0;
   font-style: ${theme.fonts.PTSerif};
 `;
@@ -180,16 +185,52 @@ const ProfileImage = styled.img`
   height: 50px;
 `;
 
+const LinkButton = styled(Button)`
+  &&& {
+    font-size: 12;
+    padding: 0;
+    margin: 0;
+    background: none;
+    color: gray;
+  }
+`;
+
+const TestimonialQuote = ({ children }) => {
+  const [numLines, setNumLines] = useState(2);
+
+  return (
+    <>
+      <Quote lines={numLines} ellipsis={<span>...</span>}>
+        {children}
+      </Quote>
+      <span>
+        {console.log(numLines)}
+        <LinkButton
+          onClick={() =>
+            setNumLines(numLines === 2 ? 0 : numLines === 3 ? 0 : 3)
+          }
+        >
+          {numLines === 2
+            ? 'read more'
+            : numLines === 3
+            ? 'read more'
+            : 'read less'}
+        </LinkButton>
+      </span>
+    </>
+  );
+};
+
 const Cards = () => {
   return (
     <>
-      {mentorsInfo.map((info, i) => {
+      {testimonials.map((info, i) => {
         return (
-          <CardRatio key={i}>
+          <CardContainer key={i}>
             <TestimonialCard key={i}>
               <QuoteAndContentContainer>
                 <ColoredQuotationMark index={i} />
-                <Quote>{info.testimonial}</Quote>
+                <TestimonialQuote>{info.quote}</TestimonialQuote>
               </QuoteAndContentContainer>
 
               <Divider />
@@ -197,23 +238,26 @@ const Cards = () => {
               <Profile>
                 <ProfileImage src={info.image} alt="test" />
                 <Name>{info.name}</Name>
-                <Description>
-                  {info.major}, {info.education}
+                <Description lines={1} ellipsis={<span>...</span>}>
+                  {info.major} - {info.school}
                 </Description>
               </Profile>
             </TestimonialCard>
-          </CardRatio>
+          </CardContainer>
         );
       })}
     </>
   );
 };
+
 export class TestimonialCards extends React.Component {
   render() {
     return (
-      <Container>
-        <Cards />
-      </Container>
+      <StyledSection>
+        <Container>
+          <Cards />
+        </Container>
+      </StyledSection>
     );
   }
 }
