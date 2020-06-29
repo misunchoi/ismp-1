@@ -32,5 +32,11 @@
     "body1": "Application is on a rolling basis. Once your application is submitted, you will be notified of your application status within 10 business days.",
     "body2": "For those under the age of 18, please note that you will be required to receive parental or guardian consent. You will receive a follow up email with an online document to be signed and returned before you are paired with a mentor.",
     "body3": "Please note that we reserve the right to deny any applications."
+  },
+  "success": {
+    "title": "您的申请已经提交成功",
+    "body": "您将收到一封确认电子邮件，其中包含更多详细信息和后续步骤。期待与您会面！",
+    "program": "看項目",
+    "blog": "看博客"
   }
 }
