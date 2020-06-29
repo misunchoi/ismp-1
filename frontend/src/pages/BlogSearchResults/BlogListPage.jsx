@@ -198,7 +198,7 @@ const BlogSearch = ({ term }) => {
       </Section>
 
       <Section>
-        {isLoading ? (
+        {isLoading || searchResults === null ? (
           <Spinner />
         ) : errorMsg ? (
           errorMessage(errorMsg)
