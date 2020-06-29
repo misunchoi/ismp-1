@@ -65,15 +65,15 @@ const BlogSearch = ({ term }) => {
   };
 
   // q = searchInputs (state)
-  const fetchResultResponse = (q, overridingUrl) => {
+  const fetchResultResponse = (q, nextPageUrl) => {
     setIsLoading(true);
 
     let finalFetchApiUrl = '';
 
-    if (overridingUrl) {
-      // API_ROOT is in agent.js
-      const redundantUrlFrag = API_ROOT;
-      finalFetchApiUrl = overridingUrl.replace(redundantUrlFrag, '');
+    if (nextPageUrl) {
+      const matchPage = nextPageUrl.match(/page=(.*)/);
+      const pageNumber = matchPage && matchPage[0];
+      finalFetchApiUrl = `blogpostcontent/?${pageNumber}`;
     } else {
       const urlParam = [];
       const baseApiUrl = 'blogpostcontent/';
@@ -138,7 +138,8 @@ const BlogSearch = ({ term }) => {
     return (
       <Message negative>
         <Message.Header>
-          We're sorry - there was an issue with the search request. Please try again.
+          We're sorry - there was an issue with the search request. Please try
+          again.
         </Message.Header>
         <p>{msg}</p>
       </Message>
@@ -151,9 +152,7 @@ const BlogSearch = ({ term }) => {
         <Message.Header>
           Sorry, we couldn't find any results matching "{searchInputs.query}"
         </Message.Header>
-        <p>
-          Please try another search term or try selecting a topic instead
-        </p>
+        <p>Please try another search term or try selecting a topic instead</p>
       </Message>
     );
   };
