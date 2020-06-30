@@ -10,11 +10,11 @@ import theme from 'styles/theme';
 
 const Heading = styled.h1`
   font-size: ${theme.fontSizes.lg};
-`
+`;
 
 const SuccessText = styled.p`
   font-size: ${theme.fontSizes.md};
-`
+`;
 
 const ApplicationFormSuccess = () => {
   const { t } = useTranslation('application-form');
@@ -23,7 +23,7 @@ const ApplicationFormSuccess = () => {
     <PageContainer>
       <Section>
         <Container text>
-          <Grid stackable verticalAlign="middle"> 
+          <Grid stackable verticalAlign="middle">
             <Grid.Row>
               <Grid.Column width={4} centered>
                 <Icon name="check circle" size="massive" color="green" />
@@ -35,8 +35,12 @@ const ApplicationFormSuccess = () => {
             </Grid.Row>
             <Grid.Row columns={2} centered>
               <Grid.Column textAlign="center">
-                <Button as={Link} to="/program">{t('success.program')}</Button>
-                <Button as={Link} to="/blog">{t('success.blog')}</Button>
+                <Button as={Link} to="/program">
+                  {t('success.program')}
+                </Button>
+                <Button as={Link} to="/blog">
+                  {t('success.blog')}
+                </Button>
               </Grid.Column>
             </Grid.Row>
           </Grid>

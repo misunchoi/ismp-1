@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import mixins from 'styles/mixins';
 import theme from 'styles/theme';
 import { SubscribeNewsletter } from 'utils/agent';
-import {logSubscribe} from "utils/google_tag_manager_helpers";
+import { logSubscribe } from 'utils/google_tag_manager_helpers';
 
 const Subscribe = () => {
   const { t } = useTranslation(['general', 'subscribe']);
@@ -21,7 +21,7 @@ const Subscribe = () => {
       if (response.error) {
         alert(response.error);
       } else {
-          logSubscribe(email);
+        logSubscribe(email);
         alert(t('subscribe:subscribe_success'));
       }
     });

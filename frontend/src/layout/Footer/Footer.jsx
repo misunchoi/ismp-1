@@ -8,7 +8,7 @@ import mixins from 'styles/mixins';
 import styled from 'styled-components';
 import SocialMediaIconList from 'components/SocialIconsList';
 import logo from 'images/ISMP_logo.png';
-import {logApplyNowClick} from 'utils/google_tag_manager_helpers';
+import { logApplyNowClick } from 'utils/google_tag_manager_helpers';
 
 const style = {
   footerContainer: {
@@ -133,7 +133,7 @@ const Footer = () => {
   const handleClick = () => {
     history.push('/apply');
     logApplyNowClick();
-  }
+  };
 
   return (
     <Segment vertical style={style.footerContainer}>

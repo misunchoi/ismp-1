@@ -125,9 +125,9 @@ const FeaturedBlogPostsSection = ({ t, blogPosts }) => (
       <Link to="blog-list">{t('general:view_all')}</Link>
     </SectionHeaderContainer>
     <Grid doubling stackable columns={3}>
-      {blogPosts.slice(0, 3).map(blogPost => (
+      {blogPosts.slice(0, 3).map((blogPost, index) => (
         <Grid.Column key={blogPost.title_content}>
-          <BlogCard blogPost={blogPost} />
+          <BlogCard sourcePage={'home'} blogPost={blogPost} position={index} />
         </Grid.Column>
       ))}
     </Grid>

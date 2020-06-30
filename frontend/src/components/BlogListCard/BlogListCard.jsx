@@ -10,6 +10,7 @@ import {
   Title,
   Blurb
 } from './BlogListCard.styles';
+import { logContentClickFromBlogList } from 'utils/google_tag_manager_helpers';
 
 const BlogListCard = ({ blogCard }) => {
   const {
@@ -20,7 +21,8 @@ const BlogListCard = ({ blogCard }) => {
     author,
     published_date,
     blog_url,
-    blog_type
+    blog_type,
+    position
   } = blogCard;
 
   return (
@@ -47,7 +49,13 @@ const BlogListCard = ({ blogCard }) => {
             return <StyledLabel key={index}>{item}</StyledLabel>;
           })}
         </Category>
-        <Link to={blog_url} color="black">
+        <Link
+          to={blog_url}
+          color="black"
+          onClick={() =>
+            logContentClickFromBlogList('blog', blogCard, position)
+          }
+        >
           <Title>{title}</Title>
         </Link>
 
@@ -56,7 +64,12 @@ const BlogListCard = ({ blogCard }) => {
             {published_date} by {author}
           </i>{' '}
           - {preview_text}
-          <Link to={blog_url}>
+          <Link
+            to={blog_url}
+            onClick={() =>
+              logContentClickFromBlogList('blog', blogCard, position)
+            }
+          >
             <Icon name="arrow right" />
           </Link>
         </Blurb>

@@ -1,7 +1,9 @@
 // For Mentors component
 // API will need to be able to support getting mentors grouped by school
 function getMentorImage(imageName) {
-  return "https://ismp-us-east-1.s3.amazonaws.com/mentors/headshots/" + imageName
+  return (
+    'https://ismp-us-east-1.s3.amazonaws.com/mentors/headshots/' + imageName
+  );
 }
 
 //function createMentorJson(
@@ -24,11 +26,11 @@ function getMentorImage(imageName) {
 
 function createCampusJson(
   name,
-  location = "",
-  blurb = "",
-  logo_img_url = "",
-  facebook_link = "",
-  instagram_link = "",
+  location = '',
+  blurb = '',
+  logo_img_url = '',
+  facebook_link = '',
+  instagram_link = ''
 ) {
   return {
     name: name,
@@ -36,7 +38,7 @@ function createCampusJson(
     blurb: blurb,
     logo_img_url: logo_img_url,
     facebook_link: facebook_link,
-    instagram_link: instagram_link,
+    instagram_link: instagram_link
   };
 }
 const mentors = {
@@ -53,7 +55,7 @@ const mentors = {
     mentors: [
       {
         image: getMentorImage('Irene-Thomas_500x500.jpg'),
-        name: "Irene Thomas",
+        name: 'Irene Thomas',
         credentials: [
           {
             title: 'B.S. Civil Engineering',
@@ -107,7 +109,7 @@ const mentors = {
         fun_facts:
           'Loves watermelon and can say “watermelon” in 12 different languages',
         linkedin_url: 'https://www.linkedin.com/in/jerome-gonzaga-eit-pmp/'
-      },
+      }
     ]
   },
   ucb: {
@@ -154,8 +156,7 @@ const mentors = {
         linkedin_url: 'https://www.linkedin.com/in/daniel-liu-744a7081/'
       },
       {
-        image:
-          getMentorImage('Marissa-Brooks_500x500.jpg'),
+        image: getMentorImage('Marissa-Brooks_500x500.jpg'),
         name: 'Marissa Brooks',
         credentials: [
           {
@@ -187,9 +188,10 @@ const mentors = {
           company: 'Honor Home Care',
           position: 'Data Analyst'
         },
-        fun_facts: 'I\'m ambidextrous - helpful when I need to split different tasks between 2 hands (e.g. right hand for fork, left hand for knife)',
+        fun_facts:
+          "I'm ambidextrous - helpful when I need to split different tasks between 2 hands (e.g. right hand for fork, left hand for knife)",
         linkedin_url: 'www.linkedin.com/in/nancy-huang94'
-      },
+      }
     ]
   },
   ucla: {
@@ -334,7 +336,7 @@ const mentors = {
         fun_facts:
           "I'm afraid of monkeys even though I was born in the year of the monkey.",
         linkedin_url: 'https://www.linkedin.com/in/stacyspiva/'
-      },
+      }
     ]
   },
   ucsd: {
@@ -383,7 +385,7 @@ const mentors = {
         },
         fun_facts: 'Used to be an archery instructor',
         linkedin_url: 'https://www.linkedin.com/in/douglaschan32167/'
-      },
+      }
       // TODO: Picture
       // {
       //   image: getMentorImage('Empty-Female_500x500.jpg'),
@@ -609,9 +611,10 @@ const mentors = {
           company: 'U.S. Army Corps of Engineers',
           position: 'Project Engineer'
         },
-        fun_facts: 'Has never been to China even though both his parents were born there.',
+        fun_facts:
+          'Has never been to China even though both his parents were born there.',
         linkedin_url: 'https://www.linkedin.com/in/philip-chen-03a22331/'
-      },
+      }
     ]
   },
   uom: {
@@ -730,7 +733,7 @@ const mentors = {
         fun_facts:
           "I love trying all kinds of new foods--I just don't eat carbs!",
         linkedin_url: 'https://www.linkedin.com/in/henrychen/'
-      },
+      }
       // createMentorJson("Stephanie Lei"),
     ]
   },
@@ -847,7 +850,7 @@ const mentors = {
           {
             title: 'BS Computer Science',
             organization: 'Sacramento State University'
-          },
+          }
         ],
         current_job: {
           company: 'CALpers',
@@ -855,7 +858,7 @@ const mentors = {
         },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/madelyn-bachiller-78919863/'
-      },
+      }
     ]
   },
   umn: {
@@ -970,7 +973,7 @@ const mentors = {
         },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/eileen-hong-a95189101/'
-      },
+      }
       // TODO: Picture
       // {
       //   image: getMentorImage('Empty-Male_500x500.jpg'),
@@ -995,7 +998,7 @@ const mentors = {
     ]
   },
   unc: {
-    campus: createCampusJson("UNC Chapel Hill"),
+    campus: createCampusJson('UNC Chapel Hill'),
     mentors: [
       {
         image: getMentorImage('Connie-Xiong_500x500.jpg'),
@@ -1014,14 +1017,14 @@ const mentors = {
           company: '',
           position: ''
         },
-        fun_facts: 'I love spicy food including hot pot',
-      },
+        fun_facts: 'I love spicy food including hot pot'
+      }
       // createMentorJson("Justin Yu"),
       // createMentorJson("Linda Yu"),
     ]
-  },  
+  },
   rutgers: {
-    campus: createCampusJson("Rutgers"),
+    campus: createCampusJson('Rutgers'),
     mentors: [
       {
         image: getMentorImage('Matthew-Sallady_500x500.jpg'),
@@ -1042,11 +1045,11 @@ const mentors = {
         },
         fun_facts: 'Studied abroad in Argentina and is fluent in Spanish',
         linkedin_url: 'https://www.linkedin.com/in/matthew-sallady-425777a5/'
-      },
+      }
       // createMentorJson("Justin Yu"),
       // createMentorJson("Linda Yu"),
     ]
-  },
+  }
 };
 
 export default mentors;

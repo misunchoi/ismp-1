@@ -5,8 +5,9 @@ import { Image as SemanticImage } from 'semantic-ui-react';
 import styled from 'styled-components';
 import mixins from 'styles/mixins';
 import theme from 'styles/theme';
+import { logContentClick } from 'utils/google_tag_manager_helpers';
 
-const BlogCard = ({ blogPost }) => {
+const BlogCard = ({ sourcePage, blogPost, position }) => {
   const {
     title_content,
     preview_text,
@@ -21,7 +22,10 @@ const BlogCard = ({ blogPost }) => {
         fluid
       />
       <Description>
-        <Link to={`blogpost/${id}`}>
+        <Link
+          to={`blogpost/${id}`}
+          onClick={() => logContentClick(sourcePage, blogPost, position)}
+        >
           <Header size="h3" font="sans">
             {title_content}
           </Header>

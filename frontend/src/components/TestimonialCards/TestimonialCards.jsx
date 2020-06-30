@@ -16,7 +16,8 @@ const testimonials = [
     hometown: 'Seoul, Korea',
     quote:
       'As an international graduate student, my social pool was very limited, and I didn’t know how to get through this big transition. However, after I met my mentor, I was able to have a valuable experience with good people that I would have never had without this program. My mentor not only taught me American life and culture but also helped me with English, which made it easier to complete my first quarter in the US.',
-    image: 'https://ismp-us-east-1.s3.amazonaws.com/testimonials/headshots/stella.jpg'
+    image:
+      'https://ismp-us-east-1.s3.amazonaws.com/testimonials/headshots/stella.jpg'
   },
   {
     name: 'Taiga Koma',
@@ -34,7 +35,8 @@ const testimonials = [
     hometown: '',
     quote:
       'My mentor is very understanding and resourceful, helping me with job search, interpersonal skills, and personal growth, which allows my senior year to be less stressful.',
-    image: 'https://ismp-us-east-1.s3.amazonaws.com/testimonials/headshots/gabi.jpg'
+    image:
+      'https://ismp-us-east-1.s3.amazonaws.com/testimonials/headshots/gabi.jpg'
   }
 ];
 

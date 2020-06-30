@@ -19,6 +19,7 @@ import {
 
 // Utils
 import { requests, API_ROOT } from 'utils/agent';
+import { logContentList } from 'utils/google_tag_manager_helpers';
 import { format } from 'date-fns';
 import { debounce as _debounce } from 'lodash';
 
@@ -98,7 +99,7 @@ const BlogSearch = ({ term }) => {
     return requests.get(finalFetchApiUrl).then(
       response => {
         // Sanitize the data array for blogListCard to consume
-        const finalBlogArray = response.results.map(blog => {
+        const finalBlogArray = response.results.map((blog, index) => {
           const p = blog.blogpost;
 
           return {
@@ -110,9 +111,15 @@ const BlogSearch = ({ term }) => {
             blog_type: p && p.type,
             category: p && p.topic_set.map(topic => topic.display_text),
             author: blog.author_display_name,
-            published_date: format(new Date(blog.publish_at), 'MM/dd/yyyy')
+            published_date: format(new Date(blog.publish_at), 'MM/dd/yyyy'),
+            updated_at: format(new Date(blog.updated_at), 'MM/dd/yyyy'),
+            position: index,
+            id: blog.id,
+            type: blog.blogpost.type
           };
         });
+        // push information about the blogposts to the dataLayer
+        logContentList(response.results);
 
         setIsZeroResults(response.results.length === 0);
         setErrorMsg(null);

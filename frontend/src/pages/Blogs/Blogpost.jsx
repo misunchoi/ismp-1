@@ -13,6 +13,7 @@ import PageContainer from '../../layout/PageContainer';
 import theme from '../../styles/theme';
 
 import arrowLeft from '../../images/arrow-left-purple.png';
+import { logContentView } from 'utils/google_tag_manager_helpers';
 
 const BlogContentContainer = styled.div`
   display: flex;
@@ -279,6 +280,7 @@ class Blogpost extends Component {
             blogPostExists: true,
             loadingBlogData: false
           });
+          logContentView(result);
         });
       } catch (error) {
         console.log('Could not load blogpost: ', error);
