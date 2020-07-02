@@ -7,8 +7,11 @@ import mixins from 'styles/mixins';
 
 import styled from 'styled-components';
 import SocialMediaIconList from 'components/SocialIconsList';
-import logo from 'images/ISMP_logo.png';
 import { logApplyNowClick } from 'utils/google_tag_manager_helpers';
+
+const IsmpLogo = () => {
+  return 'https://ismp-us-east-1.s3.amazonaws.com/header/ISMP_logo.png';
+};
 
 const style = {
   footerContainer: {
@@ -160,7 +163,7 @@ const Footer = () => {
             <Grid.Column floated="left" width={5}>
               <List horizontal size="small">
                 <List.Item>
-                  <img src={logo} alt="ISMP" style={{ width: '53px' }} />
+                  <img src={IsmpLogo()} alt="ISMP" style={{ width: '53px' }} />
                 </List.Item>
                 <List.Item
                   style={style.languages}
