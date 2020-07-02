@@ -5,18 +5,9 @@ import { Link, withRouter } from 'react-router-dom';
 import { Dropdown, Menu } from 'semantic-ui-react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
-import sizes from 'styles/sizes';
 import media from 'styles/media';
-import mixins from 'styles/mixins';
 
-import {logApplyNowClick} from 'utils/google_tag_manager_helpers';
-
-// icons
-import logo from 'images/ISMP.png';
-import logoMobile from '../../images/ISMP_logo.png';
-import facebook from '../../images/Facebook.png';
-import instagram from '../../images/Instagram.png';
-import wechat from '../../images/Wechat.png';
+import { logApplyNowClick } from 'utils/google_tag_manager_helpers';
 
 const NavLink = styled(Link)`
   font-size: 16px;
@@ -26,10 +17,11 @@ const NavLink = styled(Link)`
   justify-content: center;
   color: ${theme.colors.purple};
   height: 100%;
-  border-bottom: ${ props => props.active ? '3px solid ' + theme.colors.purple : 0 };
-  font-weight: ${ props => props.active ? 'bold' : 'normal' };
-  margin-top: ${ props => props.active ? '4px' : 0 };
-  
+  border-bottom: ${props =>
+    props.active ? '3px solid ' + theme.colors.purple : 0};
+  font-weight: ${props => (props.active ? 'bold' : 'normal')};
+  margin-top: ${props => (props.active ? '4px' : 0)};
+
   &:hover {
     text-decoration: none;
   }
@@ -50,12 +42,12 @@ const NavLink = styled(Link)`
 
 const NavHover = styled.div`
   padding: 8px 16px;
-  
+
   &:hover {
     background-color: ${theme.colors.lightHoverGrey};
   }
 
-  @media (max-width: ${sizes.tablet}px) {
+  ${media.tablet`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,7 +55,7 @@ const NavHover = styled.div`
     &:hover {
       background-color: ${theme.colors.darkHoverGrey};
     }
-  }
+  `}
 `;
 
 const DropDownContainer = styled.div`
@@ -71,7 +63,8 @@ const DropDownContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
-  border-bottom: ${props => props.active ? '3px solid ' + theme.colors.purple : 0 };
+  border-bottom: ${props =>
+    props.active ? '3px solid ' + theme.colors.purple : 0};
 
   &:hover {
     background-color: ${props => props.mobile && theme.colors.darkHoverGrey};
@@ -79,8 +72,19 @@ const DropDownContainer = styled.div`
 `;
 
 const NavContainer = styled.div`
-  flex: 1 0 auto;
-  ${mixins.responsivePadding}
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10%;
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding: 0 2%;
+  }
+
+  ${media.tablet`
+    flex-direction: column;
+  `}
 `;
 
 const ApplyNowButton = styled(Link)`
@@ -107,35 +111,46 @@ const ApplyNowButton = styled(Link)`
 
 const SocialMediaIcons = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  width: 150px;
+  justify-content: center;
+  width: 64px;
 
   ${media.tablet`
     width: 100%;
     flex-direction: column;
-    height: 150px;
+    height: 80px;
   `}
 `;
 
 const SmIcon = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 18px;
+  height: 18px;
+  margin: 4px;
   cursor: pointer;
+
+  ${media.tablet`
+    width: 20px;
+    height: 20px;
+    margin: 6px;
+  `}
 `;
 
-const WeChatIcon = styled.img`
-  width: 30px;
-  height: 25px;
-  cursor: pointer;
+const WeChatIcon = styled(SmIcon)`
+  width: 21px;
+  height: 18px;
+
+  ${media.tablet`
+    width: 24px;
+    height: 20px;
+  `}
 `;
 
-const dropDownDesktop = { 
-  alignSelf: 'center', 
-  border: 0, 
-  color: theme.colors.purple, 
-  fontFamily: theme.fonts.Poppins,
+const dropDownDesktop = {
+  alignSelf: 'center',
+  border: 0,
+  color: theme.colors.purple,
+  fontFamily: theme.fonts.Poppins
 };
 
 const dropDownMobile = {
@@ -143,7 +158,7 @@ const dropDownMobile = {
   color: theme.colors.white,
   fontFamily: theme.fonts.Poppins,
   fontSize: '16px'
-}
+};
 
 const logoStyle = {
   width: '144px',
@@ -163,6 +178,10 @@ const navLinks = [
   { text: 'Blog', i18n_key: 'blog', link: '/blog-list' }
 ];
 
+const getHeaderIcon = name => {
+  return 'https://ismp-us-east-1.s3.amazonaws.com/header/' + name;
+};
+
 const AboutUsDropdown = ({ currentPath, mobile }) => {
   const { t } = useTranslation('general');
   let dropDownActive = ['/about', '/leadership'].includes(currentPath);
@@ -172,15 +191,21 @@ const AboutUsDropdown = ({ currentPath, mobile }) => {
       <Dropdown
         item
         text={t('about_us')}
-        style={ 
-          mobile ? dropDownMobile : dropDownDesktop
-        }
+        style={mobile ? dropDownMobile : dropDownDesktop}
       >
         <Dropdown.Menu>
-          <Dropdown.Item as={Link} to="/about" style={{color: theme.colors.purple}}>
+          <Dropdown.Item
+            as={Link}
+            to="/about"
+            style={{ color: theme.colors.purple }}
+          >
             {t('who_we_are')}
           </Dropdown.Item>
-          <Dropdown.Item as={Link} to="/leadership" style={{color: theme.colors.purple}}>
+          <Dropdown.Item
+            as={Link}
+            to="/leadership"
+            style={{ color: theme.colors.purple }}
+          >
             {t('leadership')}
           </Dropdown.Item>
         </Dropdown.Menu>
@@ -200,33 +225,24 @@ const Nav = ({ mobile, history }) => {
         name="home"
         position={mobile ? 'center' : 'left'}
         to="/"
-        style={{ 
-          display: 'flex', 
-          justifyContent: mobile ? 'center' : 'flex-start',
-          paddingLeft: 0,
-          paddingRight:0,
-          float: mobile ? 'inherit' : 'left',
+        style={{
+          display: 'flex',
+          justifyContent: mobile ? 'center' : 'flex-start'
         }}
       >
-        <img 
-          src={mobile ? logoMobile : logo} 
-          alt="ISMP" 
-          style={ mobile ? logoMobileStyle : logoStyle }
+        <img
+          src={
+            mobile ? getHeaderIcon('ISMP_logo.png') : getHeaderIcon('ISMP.png')
+          }
+          alt="ISMP"
+          style={mobile ? logoMobileStyle : logoStyle}
         />
       </Menu.Item>
-      <Menu.Menu
-        position="right"
-        style={{
-          paddingLeft: 0,
-          paddingRight:0,
-          float: mobile ? 'inherit' : 'right',
-          height: mobile ? 'inherit' : '84.84px',
-        }}
-      >
-        { !mobile &&
-          <AboutUsDropdown currentPath={currentPath} mobile={mobile}/>
-        }
-        { mobile &&
+      <Menu.Menu position="right">
+        {!mobile && (
+          <AboutUsDropdown currentPath={currentPath} mobile={mobile} />
+        )}
+        {mobile && (
           <div>
             <NavLink to="/about" active={currentPath === '/about'}>
               <NavHover>{t('who_we_are')}</NavHover>
@@ -234,8 +250,8 @@ const Nav = ({ mobile, history }) => {
             <NavLink to="/leadership" active={currentPath === '/leadership'}>
               <NavHover>{t('leadership')}</NavHover>
             </NavLink>
-          </div>  
-        }
+          </div>
+        )}
         {navLinks.map((nav, index) => {
           return (
             <NavLink
@@ -244,9 +260,7 @@ const Nav = ({ mobile, history }) => {
               style={{ alignSelf: 'center' }}
               active={currentPath === nav.link}
             >
-              <NavHover>
-                {t(nav.i18n_key)}
-              </NavHover>
+              <NavHover>{t(nav.i18n_key)}</NavHover>
             </NavLink>
           );
         })}
@@ -258,16 +272,39 @@ const Nav = ({ mobile, history }) => {
         <Menu.Item
           key="language-list"
           name="language-list"
-          style={{ alignSelf: 'center', padding: 0, alignItems: 'center'}}
+          style={{ alignSelf: 'center', padding: 0, alignItems: 'center' }}
         >
           <Dropdown.Menu>
-            <LanguageList mobile={mobile}/>
+            <LanguageList mobile={mobile} />
           </Dropdown.Menu>
         </Menu.Item>
         <SocialMediaIcons>
-          <SmIcon src={facebook} alt="facebook"/>
-          <SmIcon src={instagram} alt="instagram"/>
-          <WeChatIcon src={wechat} alt="wechat"/>
+          <div>
+            <a
+              href="https://www.facebook.com/internationalmentorship/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SmIcon src={getHeaderIcon('Facebook.png')} alt="facebook" />
+            </a>
+            <a
+              href="https://www.instagram.com/internationalmentorship/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SmIcon src={getHeaderIcon('Instagram.png')} alt="instagram" />
+            </a>
+          </div>
+          <div>
+            <WeChatIcon src={getHeaderIcon('Wechat.png')} alt="wechat" />
+            <a
+              href="https://www.linkedin.com/company/internationalmentorship"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <SmIcon src={getHeaderIcon('linkedin.png')} alt="linkedin" />
+            </a>
+          </div>
         </SocialMediaIcons>
       </Menu.Menu>
     </NavContainer>

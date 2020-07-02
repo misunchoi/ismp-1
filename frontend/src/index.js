@@ -5,7 +5,7 @@ import './i18n';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TagManager from 'react-gtm-module'
+import TagManager from 'react-gtm-module';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
@@ -19,8 +19,8 @@ import * as serviceWorker from './utils/serviceWorker';
 
 const tagManagerArgs = {
   gtmId: 'GTM-XXXXXX' // fill this out with your own
-}
-TagManager.initialize(tagManagerArgs)
+};
+TagManager.initialize(tagManagerArgs);
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
