@@ -6,9 +6,17 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: ismp
+      POSTGRES_DB: ismp_development
       POSTGRES_USER: ismp
       POSTGRES_PASSWORD: "password"
+
+  # Create separate DB for running backend tests
+  test_postgres:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_DB: ismp_test
+      POSTGRES_USER: ismp
+      POSTGRES_PASSWORD: "test"
 
   load_balancer:
     image: nginx:1.19-alpine
@@ -35,7 +43,7 @@ services:
       MAILCHIMP_API_KEY: 'foobar_api_key'
       MAILCHIMP_LIST_ID: 'foobar_list_id'
       ALLOWED_HOST: 'backend'
-      DB_DATABASE: ismp
+      DB_DATABASE: ismp_development
       DB_HOST: postgres
       DB_PASSWORD: "password"
       DB_PORT: 5432
@@ -61,11 +69,10 @@ services:
       - backend
 
   frontend:
-    image: "localhost/ismp/frontend:snapshot"
+    image: "localhost/ismp/frontend_dev:snapshot"
     build: ./frontend
     environment:
       REACT_APP_AWS_STORAGE_BUCKET_NAME:
-      REACT_APP_API_HOST: "http://localhost:8080"
       # TODO: Remove CI=true after https://github.com/facebook/create-react-app/pull/8845
       CI: "true"
     volumes:

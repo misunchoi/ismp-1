@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_ROOT = process.env.REACT_APP_API_HOST + '/api/users/';
+const API_ROOT = '/api/users/';
 
 class AuthService {
   login(email, password) {

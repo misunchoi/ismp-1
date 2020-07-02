@@ -4,8 +4,7 @@ import superagentPromise from 'superagent-promise';
 const superagent = superagentPromise(_superagent, global.Promise);
 
 // Exported variables so a page like BlogListPage can use it
-export const API_ROOT = process.env.REACT_APP_API_HOST + '/api/v1/';
-export const API_ROOT_WITHOUT_APIV1 = process.env.REACT_APP_API_HOST;
+export const API_ROOT = '/api/v1/';
 
 //const encode = encodeURIComponent;
 const responseBody = res => res.body;
@@ -62,7 +61,7 @@ export const schools = {
 export const SubscribeNewsletter = {
   post: body =>
     superagent
-      .post(`${API_ROOT_WITHOUT_APIV1}/subscribe-newsletter/`, body)
+      .post('/subscribe-newsletter/', body)
       .use(tokenPlugin)
       .then(responseBody)
 };

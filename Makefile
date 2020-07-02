@@ -3,20 +3,32 @@ up:
 	@echo "Running containers"
 	docker-compose up --build --remove-orphans
 
-.PHONY: test
 test: test_backend test_frontend
 
 test_backend:
 	@echo "Running backend tests"
-	docker-compose build backend
-	docker-compose -f ./docker-compose.yml -f ./docker-compose.test.yml run --rm test_backend
+	docker-compose up -d test_postgres
+	docker-compose run --rm \
+		-e DEBUG=FALSE \
+		-e DB_DATABASE=ismp_test \
+		-e DB_HOST=test_postgres \
+		-e DB_PASSWORD=test \
+		-e DB_PORT='5432' \
+		-e DB_USER=ismp \
+		-e USE_S3=FALSE \
+		-e USE_MAILCHIMP=FALSE \
+		-e DJANGO_SECRET_KEY=this_is_not_a_real_secret_key \
+		backend \
+		/app/api/run_tests.sh
 
 test_frontend:
 	@echo "Running frontend tests"
-	docker-compose build frontend
-	docker-compose -f ./docker-compose.yml -f ./docker-compose.test.yml run --rm test_frontend
+	docker-compose run --rm \
+		-e CI=TRUE \
+		frontend \
+		yarn test
 
-.PHONY: clean
 clean:
 	@echo "Cleaning up workdir"
-	docker-compose -f ./docker-compose.yml -f ./docker-compose.test.yml down --remove-orphans
+	docker-compose down --remove-orphans
+	docker-compose -f ./docker-compose.yml -f ./docker-compose.production.yml down --remove-orphans

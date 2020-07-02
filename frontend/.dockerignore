@@ -13,3 +13,6 @@ logs
 
 # Coverage directory used by tools like istanbul
 coverage
+
+build
+node_modules

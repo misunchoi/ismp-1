@@ -18,7 +18,7 @@ import {
 } from 'semantic-ui-react';
 
 // Utils
-import { requests, API_ROOT } from 'utils/agent';
+import { requests } from 'utils/agent';
 import { logContentList } from 'utils/google_tag_manager_helpers';
 import { format } from 'date-fns';
 import { debounce as _debounce } from 'lodash';
