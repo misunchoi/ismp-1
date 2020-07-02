@@ -12,7 +12,7 @@ docker-compose -f docker-compose.yml -f docker-compose.production.yml run \
 docker-compose -f docker-compose.yml -f docker-compose.production.yml run \
   --rm \
   load_balancer \
-  curl --max-time 5 --retry 10 --retry-connrefused frontend:3000/ > /dev/null
+  curl --max-time 5 --retry 10 --retry-connrefused frontend:3000/ping | grep pong
 
 output=$(curl -s --max-time 5 --retry 5 --retry-connrefused localhost:8080/ 2>/dev/null)
 
