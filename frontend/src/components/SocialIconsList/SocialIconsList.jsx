@@ -8,25 +8,16 @@ import { breakpoints } from 'styles/responsive';
 
 const socialMediaList = [
   {
-    icon: 'facebook-white.png',
-    title: 'facebook',
-    url: 'https://www.facebook.com/internationalstudentmp'
+    icon: 'facebook',
+    url: 'https://www.facebook.com/internationalstudentmp',
+    color: 'facebook'
   },
   {
-    icon: 'instagram-white.png',
-    title: 'instagram',
-    url: 'https://www.instagram.com/internationalstudentmp'
+    icon: 'instagram',
+    url: 'https://www.instagram.com/internationalstudentmp/',
+    color: 'instagram'
   },
-  {
-    icon: 'wechat-white.png',
-    title: 'wechat',
-    url: 'https://www.wechat.com/en'
-  },
-  {
-    icon: 'linkedin-white.png',
-    title: 'linkedin',
-    url: 'https://www.linkedin.com/company/internationalmentorship'
-  }
+  { icon: 'wechat', url: 'https://www.wechat.com/en', color: 'green' }
 ];
 
 const HeaderContainer = styled.div`
@@ -37,34 +28,21 @@ const HeaderContainer = styled.div`
   }
 `;
 
-const SmIcon = styled.img`
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
-  margin: 0 5px;
-`;
-
-const WeChatIcon = styled(SmIcon)`
-  width: 30px;
-`;
-
-const getFooterIcons = name => {
-  return 'https://ismp-us-east-1.s3.amazonaws.com/footer/' + name;
-};
-
-const SocialIconList = () => {
+const SocialIconList = ({ isHeader }) => {
   const isTablet = useMediaQuery({ query: breakpoints.tablet });
   const floated = isTablet ? 'left' : 'right';
 
   const socialMediaIconList = socialMediaList.map((social, index) => {
     return (
-      <HeaderContainer key={`${social.title}_${index}`}>
+      <HeaderContainer key={`${social.icon}_${index}`}>
         <a href={social.url} target="_blank" rel="noopener noreferrer">
-          {social.title === 'wechat' ? (
-            <WeChatIcon src={getFooterIcons(social.icon)} alt={social.title} />
-          ) : (
-            <SmIcon src={getFooterIcons(social.icon)} alt={social.title} />
-          )}
+          <Button
+            className={`ui ${social.icon} icon button`}
+            color={isHeader ? 'grey' : social.color}
+            basic={isHeader}
+          >
+            <i className={`${social.icon} icon`}></i>
+          </Button>
         </a>
       </HeaderContainer>
     );
