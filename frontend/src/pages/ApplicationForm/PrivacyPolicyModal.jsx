@@ -27,7 +27,7 @@ const PrivacyPolicyModal = (props) => {
   const Translation = TranslationParser(file, sections);
 
   return(
-    <Modal trigger={<a type="button" as={Button}>Privacy Policy</a>}>
+    <Modal trigger={<a type="button" as={Button}>{props.children}</a>}>
       <Modal.Header>
         {Translation.generateForKey('title')}
       </Modal.Header>

@@ -151,10 +151,9 @@
   "validations": {
     "cannot_be_blank": "Cannot be blank",
     "invalid_email": "Please enter email in format email@site.com",
-    "invalid_phone": "Please enter phone in format +999999999",
     "invalid_year": "Please enter a valid 4-digit year",
-    "check_terms": "Application cannot be submitted until you agree to the terms of service",
-    "check_code": "Application cannot be submitted until you agree to the code of conduct"
+    "check_terms": "Application cannot be submitted until you agree to the Terms of Service",
+    "check_code": "Application cannot be submitted until you agree to the Code of Conduct"
   },
   "info": {
     "title": "Important Information",

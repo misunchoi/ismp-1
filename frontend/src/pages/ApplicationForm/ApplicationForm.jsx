@@ -737,7 +737,7 @@ const ApplicationFormInputs = props => {
               id="form-input-control-other-topic"
               control={Input}
               label={t('fields.other_topic.label')}
-              placeholder={'fields.other_topic.placeholder'}
+              placeholder={t('fields.other_topic.placeholder')}
               name="other_topic"
               type="text"
               maxLength="100"

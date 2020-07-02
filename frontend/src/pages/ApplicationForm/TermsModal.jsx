@@ -6,7 +6,7 @@ import {
 import TranslationParser from './TranslationParser';
 import { Title, Body } from './PolicyContent.styles'
 
-const TermsModal = () => {
+const TermsModal = (props) => {
   const file = 'terms-of-use'
 
   // should match file keys
@@ -32,7 +32,7 @@ const TermsModal = () => {
   const Translation = TranslationParser(file, sections);
 
   return(
-    <Modal trigger={<a type="button" as={Button}>Terms and Conditions</a>}>
+    <Modal trigger={<a type="button" as={Button}>{props.children}</a>}>
       <Modal.Header>
         {Translation.generateForKey('title')}
       </Modal.Header>
