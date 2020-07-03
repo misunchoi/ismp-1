@@ -71,7 +71,7 @@ const footerContent = [
     links: [
       { text: 'Program', link: '/program' },
       { text: 'Mentors', link: '/mentors' },
-      { text: 'Blog', link: '/blog' }
+      { text: 'Blog', link: '/blog-list' }
     ],
     width: 3
   },
