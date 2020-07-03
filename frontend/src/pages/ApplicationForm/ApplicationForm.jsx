@@ -38,7 +38,7 @@ import {
   logApplicationCompletion,
   logApplicationProgress,
   logApplicationView
-} from 'utils/google_tag_manager_helpers';
+} from "utils/google_tag_manager_helpers";
 
 // change to true to prefill the form with valid inputs and debug easier
 // THIS SHOULD BE FALSE WHEN MERGING CODE
@@ -314,11 +314,11 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
 
 const ApplicationForm = props => {
   const { t } = useTranslation('application-form');
-  const [submissionSuccessful, setSubmissionSuccessful] = useState(undefined);
+  const [submissionSuccessful, setSubmissionSuccessful] = useState(undefined)
 
   useEffect(() => {
     logApplicationView();
-  }, []);
+      }, []);
 
   const signup = () => {
     const data = inputs;
@@ -344,7 +344,7 @@ const ApplicationForm = props => {
       response => {
         if (DEBUG) console.log(response);
         setSubmissionSuccessful(true);
-        logApplicationCompletion(data['email']);
+        logApplicationCompletion(data['email'])
         return true;
       },
       error => {
@@ -737,7 +737,7 @@ const ApplicationFormInputs = props => {
               id="form-input-control-other-topic"
               control={Input}
               label={t('fields.other_topic.label')}
-              placeholder={'fields.other_topic.placeholder'}
+              placeholder={t('fields.other_topic.placeholder')}
               name="other_topic"
               type="text"
               maxLength="100"
@@ -811,19 +811,18 @@ const ApplicationFormInputs = props => {
               {feedbacks['code_of_conduct']}
             </Label>
           )}
-          {submissionSuccessful === false && (
+          {
+            submissionSuccessful === false &&
             <Message
               negative
               header={t('submission_error.header')}
               content={t('submission_error.content')}
               size="mini"
               icon="exclamation circle"
-              onDismiss={() => {
-                setSubmissionSuccessful(undefined);
-              }}
+              onDismiss={() => {setSubmissionSuccessful(undefined)}}
             />
-          )}
-        </div>
+          }
+          </div>
       )}
       <br />
       <Button.Group id="actionButtons" horizontal="true">

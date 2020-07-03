@@ -4,12 +4,15 @@ import { Route, Switch } from 'react-router-dom';
 
 import * as RouteEnum from '.';
 
+import { NotFoundPage } from 'pages/Error/404';
+
 class Routes extends Component {
+
   render() {
     return (
       <>
-        <Switch>
-          <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<Spinner />}>
+          <Switch>
             <Route exact path="/" component={RouteEnum.HOME} />
             <Route path="/blog-list" component={RouteEnum.BLOG_LIST} />
             <Route exact path="/edit-blog" component={RouteEnum.EDIT_BLOG} />
@@ -37,8 +40,9 @@ class Routes extends Component {
             <Route exact path="/profile" component={RouteEnum.PROFILE} />
             <Route path="/blogpost/:id" component={RouteEnum.BLOGPOST} />
             <Route path="/ping">pong</Route>
-          </Suspense>
-        </Switch>
+            <Route component={NotFoundPage} />
+          </Switch>
+        </Suspense>
       </>
     );
   }

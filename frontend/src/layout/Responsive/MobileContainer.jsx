@@ -65,10 +65,14 @@ const MobileContainer = ({ children }) => {
       </Sidebar>
 
       <Sidebar.Pusher dimmed={sidebarOpened}>
-        <Segment textAlign="center" style={{ padding: '1em 0em' }} vertical>
+        <Segment
+          textAlign="center"
+          style={{ padding: '1em 0em' }}
+          vertical
+        >
           <Container>
             {/* Hamburger button */}
-            <Menu secondary size="large">
+            <Menu pointing secondary size="massive">
               <Menu.Item onClick={handleToggle}>
                 <Icon name="sidebar" />
               </Menu.Item>
@@ -80,13 +84,13 @@ const MobileContainer = ({ children }) => {
                 style={{ alignSelf: 'center' }}
                 position="right"
               >
-                <Button
-                  primary
-                  size="medium"
-                  content="Apply Now"
-                  onMouseOver={onHoverBegin}
-                  onMouseLeave={onHoverEnd}
-                  style={buttonStyle}
+                <Button 
+                  primary 
+                  size="medium" 
+                  content="Apply Now" 
+                  onMouseOver={onHoverBegin} 
+                  onMouseLeave={onHoverEnd} 
+                  style={buttonStyle} 
                 />
               </Menu.Item>
             </Menu>

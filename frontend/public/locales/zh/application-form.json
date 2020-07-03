@@ -1,37 +1,165 @@
 {
   "step": {
     "buttons": {
-      "submit": "Submit Zh",
-      "next": "Next Zh",
-      "prev": "Previous Zh"
+      "submit": "提交",
+      "next": "下一页t",
+      "prev": "返回上一页"
     },
     "1": {
-      "title": "Personal zh",
-      "description": "Please enter in your personal information zh"
+      "step_name": "个人资料",
+      "title": "申请人基本情况"
     },
     "2": {
-      "title": "Academic zh",
-      "description": "Please enter in your academic information zh"
+      "step_name": "学术资料",
+      "title": "学业信息",
+      "subtitle": "目前就读的学校",
+      "new_school": "如果计划下学期赴美学习："
     },
     "3": {
-      "title": "Interest zh",
-      "description": "Enter in mentorship interest zh"
+      "step_name": "兴趣",
+      "title": "项目内容"
     }
   },
   "fields": {
     "first_name": {
-      "label": "First name",
-      "placeholder": "First name"
+      "label": "名",
+      "placeholder": "名"
+    },
+    "last_name": {
+      "label": "姓",
+      "placeholder": "姓"
+    },
+    "preferred_name": {
+      "label": "英文名/英文昵称",
+      "placeholder": "英文名/英文昵称"
+    },
+    "gender": {
+      "label": "性别",
+      "placeholder": "性别"
+    },
+    "birth_year": {
+      "label": "出生年份",
+      "placeholder": "YYYY"
+    },
+    "country_of_origin": {
+      "label": "国家",
+      "placeholder": "国家"
+    },
+    "email": {
+      "label": "电子邮件",
+      "placeholder": "电子邮件"
+    },
+
+    "grade_level": {
+      "label": "年级",
+      "placeholder": "年级"
+    },
+    "school_name": {
+      "label": "学校名称",
+      "placeholder": "学校名称"
+    },
+    "school_city": {
+      "label": "学校所在城市",
+      "placeholder": "城市"
+    },
+    "school_state": {
+      "label": "学校所在省份",
+      "placeholder": "省份"
+    },
+    "school_country": {
+      "label": "学校所在国家",
+      "placeholder": "国家"
+    },
+    "destination_school": {
+      "label": "美国学校名",
+      "placeholder": "学校名"
+    },
+    "major": {
+      "label": "目前或未来专业",
+      "placeholder": "专业"
+    },
+
+    "referral": {
+      "label": "你是怎么知道我们组织的",
+      "placeholder": "选择一个"
+    },
+    "other_referral": {
+      "label": "其他",
+      "placeholder": "请描述"
+    },
+    "interest_topics": {
+      "label": "你对那些主题感兴趣？"
+    },
+    "other_topic": {
+      "label": "其他主题",
+      "placeholder": "请描述"
+    },
+    "additional_input": {
+      "label": "问题/意见",
+      "placeholder": "问题/意见"
+    },
+    "terms_and_conditions": {
+      "label": {
+        "agree": "我同意",
+        "terms": "条款和服务",
+        "and": "与",
+        "privacy_policy": "隐私政策"
+      }
+    },
+    "code_of_conduct": {
+      "label": {
+        "agree":"我同意",
+        "code": "行为规范"
+      }
+    },
+    "options": {
+      "gender": {
+        "male": "男",
+        "female": "女"
+      },
+      "grade": {
+        "high_school": "高中 /初中",
+        "undergrad": "本科",
+        "exchange": "交换生",
+        "transfer": "转学生",
+        "graduate": "研究生"
+       },
+      "referral": {
+        "friend": "朋友",
+        "teacher": "老师",
+        "parent": "父母亲",
+        "school": "学校或预备学校",
+        "social": "社交媒体",
+        "internet": "互联网",
+        "other": "其他"
+      },
+      "topics": {
+        "english": "练习/增进英文能力",
+        "friends": "结交美国朋友",
+        "connecting": "与其他国际学生交流",
+        "job": "在美国找工作/实习",
+        "culture": "适应美国文化",
+        "travelling": "旅行",
+        "other": "其他"
+      }
     }
   },
+  "submission_error": {
+    "header": "提交申请的时候出了点问题",
+    "content": "请再试一次"
+  },
   "validations": {
-    "cannot_be_blank": "Cannot be blank"
+    "cannot_be_blank": "必填选项",
+    "invalid_email": "请输入正确的电子邮件格式 email@site.com",
+    "invalid_year": "请输入有效的4位数年份",
+    "check_terms": "您必须同意服务条款才可提交",
+    "check_code": "您必须同意行为规范才可提交"
   },
   "info": {
-    "title": "Important Information",
-    "body1": "Application is on a rolling basis. Once your application is submitted, you will be notified of your application status within 10 business days.",
-    "body2": "For those under the age of 18, please note that you will be required to receive parental or guardian consent. You will receive a follow up email with an online document to be signed and returned before you are paired with a mentor.",
-    "body3": "Please note that we reserve the right to deny any applications."
+    "title": "重要信息",
+    "body1": "申请过程为分批受理。您的申请一经提交，我们将在10个工作日内通知您的申请情况。",
+    "body2": "如属十八岁以下人士，必须得到家长或监护人的同意。在您与导师配对之前，我们会将需要签署的文件以电子邮件的方式发送给您。",
+    "body3": "请注意，我们保留拒绝任何申请的权利。"
   },
   "success": {
     "title": "您的申请已经提交成功",
