@@ -13,7 +13,7 @@ import {
   Message
 } from 'semantic-ui-react';
 
-import { List, ListItem, SubTitle, Title } from './ApplicationForm.styles';
+import { List, ListItem, SubTitle, Title, TopInfoBox } from './ApplicationForm.styles';
 import './ApplicationForm.css';
 
 import PrivacyPolicyModal from './PrivacyPolicyModal';
@@ -23,6 +23,9 @@ import CodeOfConductModal from './CodeOfConductModal';
 import Section from '../../layout/Section';
 
 import { requests } from 'utils/agent';
+
+import { Responsive } from 'semantic-ui-react';
+import { isMobileWidth } from 'layout/Responsive/responsiveUtils';
 
 import {
   appFormStep,
@@ -312,6 +315,26 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
   return { handleValidateOnBlur, validateField, validateStep };
 };
 
+const InfoBox = (props) => {
+  const {
+    t,
+    maxHeight
+  } = props
+
+  return (
+    <Segment style={{overflow: 'auto', maxHeight: maxHeight || 'auto'}}>
+      <SubTitle size="large">{t('info.title')}</SubTitle>
+      <List>
+        <ListItem>{t('info.body1')}</ListItem>
+        <ListItem>{t('info.body2')}</ListItem>
+        <ListItem>{t('info.body3')}</ListItem>
+      </List>
+    </Segment>
+  );
+}
+
+
+
 const ApplicationForm = props => {
   const { t } = useTranslation('application-form');
   const [submissionSuccessful, setSubmissionSuccessful] = useState(undefined);
@@ -401,7 +424,17 @@ const ApplicationForm = props => {
         <Container>
           <Segment padded>
             <Step.Group fluid>{appStepList}</Step.Group>
-            <Grid>
+            <Grid stackable>
+              <Grid.Row>
+                {
+                  isMobileWidth() && 
+                  <div>
+                    <TopInfoBox>
+                      <InfoBox t={t} maxHeight="175px"/>
+                    </TopInfoBox>
+                  </div>
+                }
+              </Grid.Row>
               <Grid.Row>
                 <Grid.Column width={10}>
                   <ApplicationFormInputs
@@ -420,14 +453,7 @@ const ApplicationForm = props => {
                   />
                 </Grid.Column>
                 <Grid.Column width={6}>
-                  <Segment>
-                    <SubTitle>{t('info.title')}</SubTitle>
-                    <List>
-                      <ListItem>{t('info.body1')}</ListItem>
-                      <ListItem>{t('info.body2')}</ListItem>
-                      <ListItem>{t('info.body3')}</ListItem>
-                    </List>
-                  </Segment>
+                  { !isMobileWidth() && <InfoBox t={t} /> }
                 </Grid.Column>
               </Grid.Row>
             </Grid>

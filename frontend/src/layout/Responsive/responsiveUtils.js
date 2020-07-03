@@ -5,3 +5,7 @@ export const getWidth = () => {
 
   return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth;
 };
+
+export const isMobileWidth = () => {
+  return getWidth() <= Responsive.onlyMobile.maxWidth;
+}

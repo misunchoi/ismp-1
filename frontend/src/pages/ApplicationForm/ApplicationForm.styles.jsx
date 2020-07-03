@@ -21,3 +21,7 @@ export const ListItem = styled.li`
 export const Asterisk = styled.p`
   color: gray;
 `;
+
+export const TopInfoBox = styled.div`
+  margin-top: 10px;
+`
