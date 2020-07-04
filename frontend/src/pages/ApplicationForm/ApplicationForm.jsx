@@ -140,13 +140,13 @@ const useStepFlow = (history, validateStep, signup, t) => {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = appFormStep.length;
   const [nextButtonLabel, setNextButtonLabel] = useState(
-    t('step.buttons.next')
+    'step.buttons.next'
   );
 
   useEffect(() => {
     currentStep === 3
-      ? setNextButtonLabel(t('step.buttons.submit'))
-      : setNextButtonLabel(t('step.buttons.next'));
+      ? setNextButtonLabel('step.buttons.submit')
+      : setNextButtonLabel('step.buttons.next');
   }, [currentStep]);
 
   const stepClick = action => {
@@ -183,7 +183,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
   const validations = {
     validateNotBlank: (fieldName, value) => {
       if (!value) {
-        handleFeedbackChange(fieldName, t('validations.cannot_be_blank'));
+        handleFeedbackChange(fieldName, 'validations.cannot_be_blank');
         return false;
       } else {
         handleFeedbackChange(fieldName, '');
@@ -195,7 +195,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
       const re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
 
       if (!re.test(value)) {
-        handleFeedbackChange(fieldName, t('validations.invalid_email'));
+        handleFeedbackChange(fieldName, 'validations.invalid_email');
         return false;
       } else {
         handleFeedbackChange(fieldName, '');
@@ -206,7 +206,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
       const re = /^[12]\d{3}$/;
 
       if (!re.test(value)) {
-        handleFeedbackChange(fieldName, t('validations.invalid_year'));
+        handleFeedbackChange(fieldName, 'validations.invalid_year');
         return false;
       } else {
         handleFeedbackChange(fieldName, '');
@@ -215,7 +215,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
     },
     validateTermsChecked: (fieldName, value) => {
       if (value !== 'checked') {
-        handleFeedbackChange(fieldName, t('validations.check_terms'));
+        handleFeedbackChange(fieldName, 'validations.check_terms');
         return false;
       } else {
         handleFeedbackChange(fieldName, '');
@@ -224,7 +224,7 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
     },
     validateCodeOfConductChecked: (fieldName, value) => {
       if (value !== 'checked') {
-        handleFeedbackChange(fieldName, t('validations.check_code'));
+        handleFeedbackChange(fieldName, 'validations.check_code');
         return false;
       } else {
         handleFeedbackChange(fieldName, '');
@@ -386,7 +386,7 @@ const ApplicationForm = props => {
   const renderError = fieldName => {
     return feedbacks[fieldName]
       ? {
-          content: feedbacks[fieldName],
+          content: t(feedbacks[fieldName]),
           pointing: 'above'
         }
       : undefined;
@@ -865,7 +865,7 @@ const ApplicationFormInputs = props => {
         />
         <Button
           id="form-button-control-next"
-          content={nextButtonLabel}
+          content={t(nextButtonLabel)}
           primary
           type="button"
           size="large"
