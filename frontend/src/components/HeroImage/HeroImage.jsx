@@ -1,4 +1,3 @@
-import welcome from 'images/welcome.jpg';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Responsive } from 'semantic-ui-react';
@@ -52,11 +51,12 @@ const StyledSubTitle = styled.h2`
 const MobileSubTitle = styled(StyledSubTitle)`
   font-size: 1.5rem;
 `;
+const HeroImageUrl = "https://ismp-us-east-1.s3.amazonaws.com/components/home/ismphero_optimized.jpg";
 
 const DesktopHero = ({ translation }) => {
   return (
     <Responsive as={Container} minWidth={sizes.phone} style={{width: '100%'}}>
-      <StyledImage src={welcome} alt="Welcome" />
+      <StyledImage src={HeroImageUrl} alt="Welcome" />
       <StyledImageText>
         <StyledTitle>
           {translation('international_student_mentorship')}
@@ -72,7 +72,7 @@ const DesktopHero = ({ translation }) => {
 const MobileHero = ({ translation }) => {
   return (
     <Responsive as={Container} maxWidth={sizes.phone}>
-      <StyledImage src={welcome} alt="Welcome" />
+      <StyledImage src={HeroImageUrl} alt="Welcome" />
 
       <StyledImageText>
         <MobileTitle>
