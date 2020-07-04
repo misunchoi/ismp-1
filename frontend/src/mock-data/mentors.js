@@ -973,28 +973,27 @@ const mentors = {
         },
         fun_facts: '',
         linkedin_url: 'https://www.linkedin.com/in/eileen-hong-a95189101/'
+      },
+      {
+        image: getMentorImage('David-Tung_500x500.jpg'),
+        name: 'David Tung',
+        credentials: [
+          {
+            title: 'M.S. Electrical Engineering',
+            organization: 'UC Berkeley'
+          },
+          {
+            title: 'B.S. Electrical Engineering and Computer Science',
+            organization: 'UC Berkeley'
+          }
+        ],
+        current_job: {
+          company: 'Tanium',
+          position: 'Senior Software Engineer'
+        },
+        fun_facts: '',
+        linkedin_url: 'https://www.linkedin.com/in/david-tung-087b1168/'
       }
-      // TODO: Picture
-      // {
-      //   image: getMentorImage('Empty-Male_500x500.jpg'),
-      //   name: 'David Tung',
-      //   credentials: [
-      //     {
-      //       title: 'M.S. Electrical Engineering',
-      //       organization: 'UC Berkeley'
-      //     },
-      //     {
-      //       title: 'B.S. Electrical Engineering and Computer Science',
-      //       organization: 'UC Berkeley'
-      //     }
-      //   ],
-      //   current_job: {
-      //     company: 'Tanium',
-      //     position: 'Senior Software Engineer'
-      //   },
-      //   fun_facts: '',
-      //   linkedin_url: 'https://www.linkedin.com/in/david-tung-087b1168/'
-      // }
     ]
   },
   unc: {
