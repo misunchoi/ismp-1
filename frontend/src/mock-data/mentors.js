@@ -297,27 +297,26 @@ const mentors = {
           'Once won a chopstick competition where I had to pick out metal marbles from a box.',
         linkedin_url: 'https://www.linkedin.com/in/jwsyeng/'
       },
-      // TODO: Picture
-      // {
-      //   image: getMentorImage('Empty-Male_500x500.jpg'),
-      //   name: 'Larry Tan',
-      //   credentials: [
-      //     {
-      //       title: 'M.S. Industrial Engineering and Operations Research',
-      //       organization: 'UC Berkeley'
-      //     },
-      //     {
-      //       title: 'B.S. Industrial Engineering and Operations Research',
-      //       organization: 'UC Berkeley'
-      //     }
-      //   ],
-      //   current_job: {
-      //     company: 'DataTree by First American',
-      //     position: 'Senior Data Analyst'
-      //   },
-      //   fun_facts: 'Learnd 6 languages and speaks 3 languages fluently',
-      //   linkedin_url: 'https://www.linkedin.com/in/larry-tan-32212348/'
-      // },
+      {
+        image: getMentorImage('Larry-Tan_500x500.jpg'),
+        name: 'Larry Tan',
+        credentials: [
+          {
+            title: 'M.S. Industrial Engineering and Operations Research',
+            organization: 'UC Berkeley'
+          },
+          {
+            title: 'B.S. Industrial Engineering and Operations Research',
+            organization: 'UC Berkeley'
+          }
+        ],
+        current_job: {
+          company: 'DataTree by First American',
+          position: 'Senior Data Analyst'
+        },
+        fun_facts: 'Learned 6 languages and speaks 3 languages fluently',
+        linkedin_url: 'https://www.linkedin.com/in/larry-tan-32212348/'
+      },
       // TODO: Picture
       // createMentorJson("Raymond Yan"),
       {
