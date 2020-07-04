@@ -26,7 +26,7 @@ const testimonials = [
     hometown: 'Japan',
     quote:
       'ISMP is a nice place to start your college life! Mentors are helping the international students with understanding American culture. Even a shy student can make friends in this community.',
-    image: 'https://semantic-ui.com/images/avatar2/large/matthew.png'
+    image: 'https://ismp-us-east-1.s3.amazonaws.com/testimonials/headshots/taiga.jpg'
   },
   {
     name: 'Gabi Lee',
