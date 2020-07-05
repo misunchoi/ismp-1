@@ -103,7 +103,7 @@ jobs:
           aws lambda invoke \
           --function-name tfe_set_image_tag \
           --invocation-type Event \
-          --payload "{\"tfe_image_tag_variable\": \"${IMAGE_TAG_VAR}\",\"tfe_workspace_id\": ${TFE_WS_ID},\"repository\":\"backend\",\"version\": \"${GITHUB_SHA}\"}" \
+          --payload "{\"tfe_image_tag_variable\": \"${IMAGE_TAG_VAR}\",\"tfe_workspace_id\": \"${TFE_WS_ID}\",\"repository\":\"backend\",\"version\": \"${GITHUB_SHA}\"}" \
           response.json
 
       - name: 'Queue up a Terraform run to Deploy Frontend'
@@ -118,5 +118,5 @@ jobs:
           aws lambda invoke \
           --function-name tfe_set_image_tag \
           --invocation-type Event \
-          --payload "{\"tfe_image_tag_variable\": \"${IMAGE_TAG_VAR}\",\"tfe_workspace_id\": ${TFE_WS_ID},\"repository\":\"frontend\",\"version\": \"${GITHUB_SHA}\"}" \
+          --payload "{\"tfe_image_tag_variable\": \"${IMAGE_TAG_VAR}\",\"tfe_workspace_id\": \"${TFE_WS_ID}\",\"repository\":\"frontend\",\"version\": \"${GITHUB_SHA}\"}" \
           response.json
