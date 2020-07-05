@@ -46,5 +46,21 @@
       "updated_at": "2020-06-20T05:49:11.323853Z",
       "publish_at": "2020-06-20T05:25:06Z"
     }
+  },
+  {
+    "model": "blogpost_content.blogpostcontent",
+    "pk": 4,
+    "fields": {
+      "language": "en",
+      "blogpost": 4,
+      "title_content": "Mastering English Writing: Essay Prep and Writing Resources",
+      "body_content": "<div>\r\n<p>Writing essays are difficult even for native born American students, but there are techniques that can make your writing clearer and more persuasive.&nbsp; Come learn these helpful tips for how to approach and structure your essay writing for your classes with this webinar!</p>\r\n<p>&nbsp;</p>\r\n<div style=\"position: relative; width: 100%; padding-bottom: 56.25%; height: 0;\"><iframe style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%;\" src=\"https://www.youtube.com/embed/pW6UWfZz4qI\" width=\"560\" height=\"315\" frameborder=\"0\" allowfullscreen=\"allowfullscreen\"></iframe></div>\r\n</div>",
+      "author_display_name": "Sharon",
+      "preview_text": "Writing essays are difficult even for native born American students, but there are techniques that can make your writing clearer and more persuasive.  Come learn these helpful tips for how to approach and structure your essay writing for your classes with this webinar!",
+      "is_draft": false,
+      "created_at": "2020-07-05T19:14:29.068509Z",
+      "updated_at": "2020-07-05T23:12:40.289263Z",
+      "publish_at": "2020-07-05T19:14:19Z"
+  }
   }
 ]
