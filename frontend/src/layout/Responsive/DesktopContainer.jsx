@@ -14,6 +14,9 @@ const DesktopContainer = ({ children }) => {
       minWidth={Responsive.onlyTablet.minWidth}
     >
       <Segment inverted style={{ padding: '0' }} vertical>
+        {/* This Menu serves as a placeholder to push the content down */}
+        <Menu borderless attached="top" size="large" />
+
         <Menu borderless fixed="top" size="large">
           <Suspense fallback={<Spinner />}>
             <Nav />
