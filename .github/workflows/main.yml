@@ -97,13 +97,13 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.LAMBDA_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.LAMBDA_AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-east-1
-          IMAGE_TAG_VAR: ${{ secrets.BACKEND_IMAGE_TAG_TFE_VARIABLE_ID }}
+          IMAGE_TAG_VAR_ID: ${{ secrets.BACKEND_IMAGE_TAG_TFE_VARIABLE_ID }}
           TFE_WS_ID: ${{ secrets.TFE_BACKEND_WORKSPACE_ID }}
         run: |
           aws lambda invoke \
           --function-name tfe_set_image_tag \
           --invocation-type Event \
-          --payload "{\"tfe_image_tag_variable\": \"${IMAGE_TAG_VAR}\",\"tfe_workspace_id\": \"${TFE_WS_ID}\",\"repository\":\"backend\",\"version\": \"${GITHUB_SHA}\"}" \
+          --payload "{\"tfe_image_tag_variable_id\": \"${IMAGE_TAG_VAR_ID}\",\"tfe_workspace_id\": \"${TFE_WS_ID}\",\"repository\":\"backend\",\"version\": \"${GITHUB_SHA}\"}" \
           response.json
 
       - name: 'Queue up a Terraform run to Deploy Frontend'
@@ -112,11 +112,11 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.LAMBDA_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.LAMBDA_AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-east-1
-          IMAGE_TAG_VAR: ${{ secrets.FRONTEND_IMAGE_TAG_TFE_VARIABLE_ID }}
+          IMAGE_TAG_VAR_ID: ${{ secrets.FRONTEND_IMAGE_TAG_TFE_VARIABLE_ID }}
           TFE_WS_ID: ${{ secrets.TFE_FRONTEND_WORKSPACE_ID }}
         run: |
           aws lambda invoke \
           --function-name tfe_set_image_tag \
           --invocation-type Event \
-          --payload "{\"tfe_image_tag_variable\": \"${IMAGE_TAG_VAR}\",\"tfe_workspace_id\": \"${TFE_WS_ID}\",\"repository\":\"frontend\",\"version\": \"${GITHUB_SHA}\"}" \
+          --payload "{\"tfe_image_tag_variable_id\": \"${IMAGE_TAG_VAR_ID}\",\"tfe_workspace_id\": \"${TFE_WS_ID}\",\"repository\":\"frontend\",\"version\": \"${GITHUB_SHA}\"}" \
           response.json
