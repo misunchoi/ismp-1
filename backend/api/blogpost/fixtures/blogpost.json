@@ -3,105 +3,29 @@
     "model": "blogpost.blogpost",
     "pk": 1,
     "fields": {
-      "media_url": "https://blog.intostudy.com/wp-content/uploads/2020/05/study-from-home.jpg",
+      "media_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/housing_options/housing-options-large-image.jpg",
+      "thumbnail_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/housing_options/housing-options-thumbnail.jpg",
       "author_id": 1,
       "type": "blogpost",
-      "is_featured": true
+      "is_featured": true,
+      "slug": "education-7"
     }
   },
   {
     "model": "blogpost.blogpost",
     "pk": 2,
     "fields": {
-      "media_url": "https://blog.intostudy.com/wp-content/uploads/2013/05/Students-studying-outside.jpg",
-      "thumbnail_url": "https://blog.intostudy.com/wp-content/uploads/2016/06/notes-1.gif",
-      "author_id": 2,
+      "media_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/online_class_tips/online-class-tips-header-image.jpg",
+      "thumbnail_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/online_class_tips/online-class-tips-thumbnail.jpg",
+      "author_id": 1,
       "type": "blogpost",
-      "is_featured": false
+      "is_featured": true,
+      "slug": "education-7"
     }
   },
   {
     "model": "blogpost.blogpost",
     "pk": 3,
-    "fields": {
-      "media_url": "https://blog.intostudy.com/wp-content/uploads/2012/09/realx.jpg",
-      "type": "webinar",
-      "author_id": 1
-    }
-  },
-  {
-    "model": "blogpost.blogpost",
-    "pk": 4,
-    "fields": {
-      "media_url": "https://blog.intostudy.com/wp-content/uploads/2016/10/INTO-CITY-1-1024x681.jpg",
-      "thumbnail_url": "https://blog.intostudy.com/wp-content/uploads/2016/10/INTO-CITY-1-1024x681.jpg",
-      "author_id": 2,
-      "type": "webinar",
-      "slug": "michael-jordan",
-      "is_featured": true
-    }
-  },
-  {
-    "model": "blogpost.blogpost",
-    "pk": 5,
-    "fields": {
-      "media_url": "https://blog.intostudy.com/wp-content/uploads/2016/10/Accommodation-_23013.jpg",
-      "author_id": 1,
-      "type": "webinar",
-      "slug": "education-5",
-      "is_featured": true
-    }
-  },
-  {
-    "model": "blogpost.blogpost",
-    "pk": 6,
-    "fields": {
-      "media_url": "https://blog.intostudy.com/wp-content/uploads/2016/06/paper-606649_960_720-768x422.jpg",
-      "thumbnail_url": "https://blog.intostudy.com/wp-content/uploads/2019/08/Packing-1.gif",
-      "author_id": 2,
-      "type": "blogpost",
-      "slug": "education-6",
-      "is_featured": true
-    }
-  },
-  {
-    "model": "blogpost.blogpost",
-    "pk": 7,
-    "fields": {
-      "media_url": "https://blog.intostudy.com/wp-content/uploads/2016/06/nightstudy-768x514.jpg",
-      "author_id": 1,
-      "type": "blogpost",
-      "is_featured": false,
-      "slug": "education-7"
-    }
-  },
-  {
-    "model": "blogpost.blogpost",
-    "pk": 8,
-    "fields": {
-      "media_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/housing_options/housing-options-large-image.jpg",
-      "thumbnail_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/housing_options/housing-options-thumbnail.jpg",
-      "author_id": 1,
-      "type": "blogpost",
-      "is_featured": false,
-      "slug": "education-7"
-    }
-  },
-  {
-    "model": "blogpost.blogpost",
-    "pk": 9,
-    "fields": {
-      "media_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/online_class_tips/online-class-tips-header-image.jpg",
-      "thumbnail_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/online_class_tips/online-class-tips-thumbnail.jpg",
-      "author_id": 1,
-      "type": "blogpost",
-      "is_featured": false,
-      "slug": "education-7"
-    }
-  },
-  {
-    "model": "blogpost.blogpost",
-    "pk": 10,
     "fields": {
       "media_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/3_ways_to_manage_your_loneliness/loneliness_header_1050x590.jpeg",
       "thumbnail_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/3_ways_to_manage_your_loneliness/loneliness_thumbnail.jpg",

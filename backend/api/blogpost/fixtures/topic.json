@@ -6,7 +6,7 @@
       "title": "english",
       "display_text": "English Training: Writing",
       "description": "English is difficult to master, especially in the university setting.  We will cover basic and advance English writing techniques such as essay organization, professional email writing, and common grammar mistakes to help you succeed in your classes and research!",
-      "blogpost": [1, 7]
+      "blogpost": []
     }
   },
   {
@@ -16,7 +16,7 @@
       "title": "transitioning",
       "display_text": "Transitioning to America",
       "description": "We will cover topics like safety tips, American culture, and advice for making new friends to help make your transition to America go as smoothly as possible!",
-      "blogpost": [2, 6]
+      "blogpost": [1, 2, 3]
     }
   },
   {
@@ -26,7 +26,7 @@
       "title": "grad_school",
       "display_text": "How to Succeed in Grad School",
       "description": "Grad students face different expectations and challenges than undergraduates.  Learn how to manage your time, interact with lab mates and professors, and other tips to write effectively and find a job after graduation.",
-      "blogpost": [4, 5]
+      "blogpost": [2]
     }
   },
   {
@@ -36,7 +36,7 @@
       "title": "applying",
       "display_text": "Applying to US Colleges",
       "description": "We will break down the admissions process and all the different factors to keep in mind as you prepare to study abroad in the US.",
-      "blogpost": [7, 6]
+      "blogpost": []
     }
   }
 ]
