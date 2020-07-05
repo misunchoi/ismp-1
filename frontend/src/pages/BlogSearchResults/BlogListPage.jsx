@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Components / data to build
 import BlogList from 'components/BlogList/BlogList';
@@ -21,7 +21,7 @@ import {
 import { requests } from 'utils/agent';
 import { logContentList } from 'utils/google_tag_manager_helpers';
 import { format } from 'date-fns';
-import { debounce as _debounce } from 'lodash';
+import { useDebounce } from 'use-debounce';
 
 // Styling
 import { FlexWrapper, PaginationWrapper } from './BlogListPage.styles';
@@ -40,17 +40,10 @@ const BlogSearch = ({ term }) => {
   const [isZeroResults, setIsZeroResults] = useState(false);
   const [resultsPagination, setResultsPagination] = useState(null);
 
-  // REFERENCE: https://medium.com/@rajeshnaroth/using-throttle-and-debounce-in-a-react-function-component-5489fc3461b3
-  const delayedQuery = useCallback(
-    _debounce(q => {
-      fetchResultResponse(q, null);
-    }, 500),
-    []
-  );
-
+  const [debouncedSearchInputs] = useDebounce(searchInputs, 500);
   useEffect(() => {
-    delayedQuery(searchInputs);
-  }, [searchInputs, delayedQuery]);
+    fetchResultResponse(debouncedSearchInputs, null);
+  }, [debouncedSearchInputs]);
 
   const handleInputChange = (e, data) => {
     setSearchInputs(searchInputs => ({
@@ -157,7 +150,8 @@ const BlogSearch = ({ term }) => {
     return (
       <Message warning>
         <Message.Header>
-          Sorry, we couldn't find any results matching "{searchInputs.query}"
+          Sorry, we couldn't find any results matching "
+          {debouncedSearchInputs.query}"
         </Message.Header>
         <p>Please try another search term or try selecting a topic instead</p>
       </Message>

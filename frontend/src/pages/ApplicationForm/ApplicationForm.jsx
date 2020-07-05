@@ -13,7 +13,13 @@ import {
   Message
 } from 'semantic-ui-react';
 
-import { List, ListItem, SubTitle, Title, TopInfoBox } from './ApplicationForm.styles';
+import {
+  List,
+  ListItem,
+  SubTitle,
+  Title,
+  TopInfoBox
+} from './ApplicationForm.styles';
 import './ApplicationForm.css';
 
 import PrivacyPolicyModal from './PrivacyPolicyModal';
@@ -24,7 +30,6 @@ import Section from '../../layout/Section';
 
 import { requests } from 'utils/agent';
 
-import { Responsive } from 'semantic-ui-react';
 import { isMobileWidth } from 'layout/Responsive/responsiveUtils';
 
 import {
@@ -139,9 +144,7 @@ const useStepFlow = (history, validateStep, signup, t) => {
   // Step Application
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = appFormStep.length;
-  const [nextButtonLabel, setNextButtonLabel] = useState(
-    'step.buttons.next'
-  );
+  const [nextButtonLabel, setNextButtonLabel] = useState('step.buttons.next');
 
   useEffect(() => {
     currentStep === 3
@@ -315,14 +318,11 @@ const ApplicationFormValidator = (handleFeedbackChange, inputs, t) => {
   return { handleValidateOnBlur, validateField, validateStep };
 };
 
-const InfoBox = (props) => {
-  const {
-    t,
-    maxHeight
-  } = props
+const InfoBox = props => {
+  const { t, maxHeight } = props;
 
   return (
-    <Segment style={{overflow: 'auto', maxHeight: maxHeight || 'auto'}}>
+    <Segment style={{ overflow: 'auto', maxHeight: maxHeight || 'auto' }}>
       <SubTitle size="large">{t('info.title')}</SubTitle>
       <List>
         <ListItem>{t('info.body1')}</ListItem>
@@ -331,9 +331,7 @@ const InfoBox = (props) => {
       </List>
     </Segment>
   );
-}
-
-
+};
 
 const ApplicationForm = props => {
   const { t } = useTranslation('application-form');
@@ -426,14 +424,13 @@ const ApplicationForm = props => {
             <Step.Group fluid>{appStepList}</Step.Group>
             <Grid stackable>
               <Grid.Row>
-                {
-                  isMobileWidth() && 
+                {isMobileWidth() && (
                   <div>
                     <TopInfoBox>
-                      <InfoBox t={t} maxHeight="175px"/>
+                      <InfoBox t={t} maxHeight="175px" />
                     </TopInfoBox>
                   </div>
-                }
+                )}
               </Grid.Row>
               <Grid.Row>
                 <Grid.Column width={10}>
@@ -453,7 +450,7 @@ const ApplicationForm = props => {
                   />
                 </Grid.Column>
                 <Grid.Column width={6}>
-                  { !isMobileWidth() && <InfoBox t={t} /> }
+                  {!isMobileWidth() && <InfoBox t={t} />}
                 </Grid.Column>
               </Grid.Row>
             </Grid>

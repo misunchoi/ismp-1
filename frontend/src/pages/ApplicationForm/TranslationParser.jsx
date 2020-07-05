@@ -9,9 +9,9 @@ import { useTranslation } from 'react-i18next';
 //   title: "header title",
 //   body1: "first line of body",
 //   body2: "can have as many as you need"
-// }, 
+// },
 // header_key_something_else: {
-//  .. etc. 
+//  .. etc.
 // }
 // and iterates through it and renders it cleanly
 // Usage Example: TermsOfUse.jsx, PrivacyPolicy.jsx
@@ -22,20 +22,20 @@ const TranslationParser = (
 ) => {
   const { t } = useTranslation(translationFile);
 
-  const isKeyInFile = (key) => {
-    return t(key) !== key
-  }
+  const isKeyInFile = key => {
+    return t(key) !== key;
+  };
 
   const generateBlock = (section, TitleComponent, BodyComponent) => {
     let bodyElements = [];
 
-    if (isKeyInFile(section + ".body")) {
-      bodyElements.push(t(section + ".body"))
+    if (isKeyInFile(section + '.body')) {
+      bodyElements.push(t(section + '.body'));
     } else {
       for (let i = 1; i < 100; i++) {
-        const bodyKey = section + ".body" + i
+        const bodyKey = section + '.body' + i;
 
-        if(!isKeyInFile(bodyKey)) {
+        if (!isKeyInFile(bodyKey)) {
           break;
         } else {
           bodyElements.push(t(bodyKey));
@@ -45,23 +45,29 @@ const TranslationParser = (
 
     return (
       <div>
-        <TitleComponent><Markdown>{t(section + ".title")}</Markdown></TitleComponent>
-        {bodyElements.map((text) => (
-          <BodyComponent><Markdown>{text}</Markdown></BodyComponent>
+        <TitleComponent>
+          <Markdown>{t(section + '.title')}</Markdown>
+        </TitleComponent>
+        {bodyElements.map(text => (
+          <BodyComponent>
+            <Markdown>{text}</Markdown>
+          </BodyComponent>
         ))}
         <br />
       </div>
     );
-  }
+  };
 
   // TODO: generate these sections here from reading the file
-  const sections = headerKeys;
+  // const sections = headerKeys;
 
   return {
-    generateForKey: (key) => (<Markdown>{t(key)}</Markdown>),
+    generateForKey: key => <Markdown>{t(key)}</Markdown>,
     generateBody: (sections, TitleComponent, BodyComponent) => {
-      return sections.map((section) => generateBlock(section, TitleComponent, BodyComponent))
+      return sections.map(section =>
+        generateBlock(section, TitleComponent, BodyComponent)
+      );
     }
-  }
-}
+  };
+};
 export default TranslationParser;

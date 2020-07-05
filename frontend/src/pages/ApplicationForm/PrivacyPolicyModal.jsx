@@ -1,13 +1,10 @@
 import React from 'react';
-import {
-  Modal,
-  Button,
-} from 'semantic-ui-react';
+import { Modal, Button } from 'semantic-ui-react';
 import TranslationParser from './TranslationParser';
 import { Title, Body } from './PolicyContent.styles';
 
-const PrivacyPolicyModal = (props) => {
-  const file = 'privacy-policy'
+const PrivacyPolicyModal = props => {
+  const file = 'privacy-policy';
 
   // should match keys in file
   const sections = [
@@ -26,11 +23,16 @@ const PrivacyPolicyModal = (props) => {
 
   const Translation = TranslationParser(file, sections);
 
-  return(
-    <Modal trigger={<a type="button" as={Button}>{props.children}</a>}>
-      <Modal.Header>
-        {Translation.generateForKey('title')}
-      </Modal.Header>
+  return (
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+    <Modal
+      trigger={
+        <a type="button" as={Button}>
+          {props.children}
+        </a>
+      }
+    >
+      <Modal.Header>{Translation.generateForKey('title')}</Modal.Header>
       <Modal.Content>
         <Body>{Translation.generateForKey('last_modified')}</Body>
         <br />
@@ -40,6 +42,6 @@ const PrivacyPolicyModal = (props) => {
       </Modal.Content>
     </Modal>
   );
-}
+};
 
 export default PrivacyPolicyModal;

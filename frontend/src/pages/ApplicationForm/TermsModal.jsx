@@ -1,13 +1,10 @@
 import React from 'react';
-import {
-  Modal,
-  Button
-} from 'semantic-ui-react';
+import { Modal, Button } from 'semantic-ui-react';
 import TranslationParser from './TranslationParser';
-import { Title, Body } from './PolicyContent.styles'
+import { Title, Body } from './PolicyContent.styles';
 
-const TermsModal = (props) => {
-  const file = 'terms-of-use'
+const TermsModal = props => {
+  const file = 'terms-of-use';
 
   // should match file keys
   const sections = [
@@ -26,16 +23,21 @@ const TermsModal = (props) => {
     'indemnification',
     'governing_law_jurisdiction_and_class_action_waiver',
     'waiver_and_severability',
-    'entire_agreement',
+    'entire_agreement'
   ];
 
   const Translation = TranslationParser(file, sections);
 
-  return(
-    <Modal trigger={<a type="button" as={Button}>{props.children}</a>}>
-      <Modal.Header>
-        {Translation.generateForKey('title')}
-      </Modal.Header>
+  return (
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+    <Modal
+      trigger={
+        <a type="button" as={Button}>
+          {props.children}
+        </a>
+      }
+    >
+      <Modal.Header>{Translation.generateForKey('title')}</Modal.Header>
       <Modal.Content>
         <Modal.Description>
           {Translation.generateForKey('last_modified')}
@@ -45,6 +47,6 @@ const TermsModal = (props) => {
       </Modal.Content>
     </Modal>
   );
-}
+};
 
 export default TermsModal;
