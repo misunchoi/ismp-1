@@ -1,0 +1,24 @@
+{
+  "about_us": {
+    "section": "关于我们",
+    "who": "我们是谁",
+    "leadership": "组织领导"
+  },
+  "learn": {
+    "section": "了解更多",
+    "program": "项目",
+    "mentors": "导师",
+    "blog": "博客" 
+  },
+  "legal": {
+    "section": "法律声明",
+    "terms": "使用条款",
+    "privacy": "隐私政策",
+    "code": "行为准则"
+  },
+  "contact": {
+    "section": "联络方式",
+    "email": "发送邮件"
+  },
+  "copyright": "版权所有 2020 国际学生导师项目"
+}

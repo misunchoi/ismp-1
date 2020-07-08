@@ -59,41 +59,41 @@ const style = {
 
 const footerContent = [
   {
-    section: 'About Us',
+    section: 'about_us.section',
     links: [
-      { text: 'Who We Are', link: '/about' },
-      { text: 'Leadership', link: '/leadership' }
+      { text: 'about_us.who', link: '/about' },
+      { text: 'about_us.leadership', link: '/leadership' }
     ],
     width: 3
   },
   {
-    section: 'Learn',
+    section: 'learn.section',
     links: [
-      { text: 'Program', link: '/program' },
-      { text: 'Mentors', link: '/mentors' },
-      { text: 'Blog', link: '/blog-list' }
+      { text: 'learn.program', link: '/program' },
+      { text: 'learn.mentors', link: '/mentors' },
+      { text: 'learn.blog', link: '/blog-list' }
     ],
     width: 3
   },
   {
-    section: 'Legal',
+    section: 'legal.section',
     links: [
-      { text: 'Terms of Use', link: '/terms' },
-      { text: 'Privacy Policy', link: '/privacy' },
-      { text: 'Code of Conduct', link: '/code-of-conduct' }
+      { text: 'legal.terms', link: '/terms' },
+      { text: 'legal.privacy', link: '/privacy' },
+      { text: 'legal.code', link: '/code-of-conduct' }
     ],
     width: 3
   },
   {
-    section: 'Contact',
+    section: 'contact.section',
     links: [
-      { text: 'Email Us', link: 'mailto:info@internationalmentorship.org' }
+      { text: 'contact.email', link: 'mailto:info@internationalmentorship.org' }
     ],
     width: 3
   }
 ];
 
-const footerLinks = linkArr => {
+const footerLinks = (t, linkArr) => {
   return linkArr.map((linkObj, index) => {
     return (
       <List.Item
@@ -101,24 +101,24 @@ const footerLinks = linkArr => {
         href={linkObj.link}
         style={style.footerLink}
       >
-        {linkObj.text}
+        {t(linkObj.text)}
       </List.Item>
     );
   });
 };
 
-const links = contentArr => {
+const links = (t, contentArr) => {
   return contentArr.map((content, index) => {
     return (
       <Grid.Column width={content.width} key={index}>
         <Header
           inverted
           as="h4"
-          content={content.section}
+          content={t(content.section)}
           style={style.footerContentSection}
         />
         <List link inverted>
-          {footerLinks(content.links)}
+          {footerLinks(t, content.links)}
         </List>
       </Grid.Column>
     );
@@ -130,7 +130,7 @@ const PaddedSection = styled.section`
 `;
 
 const Footer = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation(['footer', 'general']);
   const history = useHistory();
 
   const handleClick = () => {
@@ -143,7 +143,7 @@ const Footer = () => {
       <PaddedSection>
         <Grid doubling stackable>
           <Grid.Row>
-            {links(footerContent)}
+            {links(t, footerContent)}
             <Grid.Column width={4}>
               <Button
                 as="a"
@@ -153,7 +153,7 @@ const Footer = () => {
                 fluid
                 onClick={handleClick}
               >
-                APPLY NOW
+                {t('general:apply_now').toUpperCase()}
               </Button>
               <SocialMediaIconList />
             </Grid.Column>
@@ -181,8 +181,7 @@ const Footer = () => {
             </Grid.Column>
             <Grid.Column floated="right" width={10}>
               <div style={style.rights}>
-                © 2020 International Student Mentorship Program. All rights
-                reserved.
+                © {t('copyright')}
               </div>
             </Grid.Column>
           </Grid.Row>
