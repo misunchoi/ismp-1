@@ -90,7 +90,7 @@ class BlogpostContentViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many
                 'body_content',
                 'author_display_name'
             )
-            result = BlogpostContent.objects.\
+            result = BlogpostContent.objects. \
                 annotate(search=search_vector).filter(aggregate_query)
         else:
             result = BlogpostContent.objects.all()
@@ -111,7 +111,9 @@ class BlogpostContentViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many
             result = result.filter(blogpost__is_featured=True)
             result = result.filter(is_draft=False)
             result = result.filter(publish_at__lte=timezone.now())
-        if published_only and not published_only.lower() == 'false':
+        # return only results that aren't drafts unless you specifically
+        # specify ?published=false
+        if not (published_only and published_only.lower() == 'false'):
             result = result.filter(is_draft=False)
             result = result.filter(publish_at__lte=timezone.now())
         return result

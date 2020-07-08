@@ -28,6 +28,7 @@ class BaseViewTest(APITestCase):
             is_draft=False,
             preview_text="",
             author_display_name="",
+            publish_at=None
     ):
         if blogpost:
             BlogpostContent.objects.create(language=language,
@@ -48,30 +49,20 @@ class BaseViewTest(APITestCase):
         self.create_blogpost(media_url="youtube.com", author=self.profile)
         valid_blogpost = Blogpost.objects.get(author=self.profile)
         self.created_blog_id = valid_blogpost.id
-        self.create_blogpost_content("en", valid_blogpost, "title", "body content")
+        self.create_blogpost_content(
+            "en",
+            valid_blogpost,
+            "title",
+            "body content",
+            publish_at="2020-01-02T15:40:00Z"
+        )
         self.create_blogpost_content(
             "cn",
             valid_blogpost,
             "zhongwentitle",
-            "zhe shi zhongwenbodycontent")
-
-
-class GetAllBlogpostContentsTest(BaseViewTest):
-
-    def test_get_all_blogpost_contents(self):
-        """
-        This test ensures that all blogpostcontents added in the setUp method
-        exist when we make a GET request to the blogpostcontent/ endpoint
-        """
-        # hit the API endpoint
-        response = self.client.get(
-            reverse("blogpostcontent-list", kwargs={"version": "v1"})
+            "zhe shi zhongwenbodycontent",
+            publish_at="2020-01-02T15:40:00Z"
         )
-        # fetch the data from db
-        expected = BlogpostContent.objects.all()
-        serialized = BlogpostContentSerializer(expected, many=True)
-        self.assertEqual(response.data['results'], serialized.data)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
 class GetByQueryParamTest(BaseViewTest):
@@ -86,22 +77,31 @@ class GetByQueryParamTest(BaseViewTest):
                                               password="password2")
         self.profile = self.user.profile
         self.profile2 = self.user2.profile
-        self.create_blogpost(
+        self.valid_blogpost = Blogpost.objects.create(
             media_url="youtube.com",
             author=self.profile,
             is_featured=False,
             type='webinar')
         self.create_blogpost(media_url="google.com", author=self.profile2, is_featured=True)
-        valid_blogpost = Blogpost.objects.get(author=self.profile)
+        # valid_blogpost = Blogpost.objects.get(author=self.profile)
         valid_blogpost2 = Blogpost.objects.get(author=self.profile2)
-        self.created_blog_id = valid_blogpost.id
+        self.created_blog_id = self.valid_blogpost.id
         self.bpc1 = BlogpostContent.objects.create(
             language="en",
-            blogpost=valid_blogpost,
+            blogpost=self.valid_blogpost,
             title_content="title",
             body_content="body",
             author_display_name="bobby tables",
-            is_draft=True,
+            is_draft=False,
+            publish_at="2020-01-02T15:40:00Z"
+        )
+        self.bpc1_draft = BlogpostContent.objects.create(
+            language="not en",
+            blogpost=self.valid_blogpost,
+            title_content="not title",
+            body_content="not body",
+            author_display_name="bobby tables",
+            is_draft=True
         )
         self.bpc2 = BlogpostContent.objects.create(
             language="cn",
@@ -139,14 +139,25 @@ class GetByQueryParamTest(BaseViewTest):
 
     def test_published_only(self):
         """
-        Tests filtering out drafts.
+        Tests filtering out drafts. This will happen by default.
         :return: nothing
         """
-        response = self.client.get(self.BLOGPOSTCONTENT_URL, {'published': 'true'}, format='json')
+        response = self.client.get(self.BLOGPOSTCONTENT_URL, format='json')
         expected = BlogpostContent.objects.get(pk=self.bpc2.id)
         serialized = BlogpostContentSerializer(expected)
         self.assertEqual(response.data['results'][0], serialized.data)
-        self.assertEqual(len(response.data['results']), 1)
+        self.assertEqual(len(response.data['results']), 2)
+
+    def test_return_published_and_draft(self):
+        """
+        Tests returning both published blogpostcontents and drafts.
+        :return: nothing
+        """
+        response = self.client.get(self.BLOGPOSTCONTENT_URL, {'published': 'false'}, format='json')
+        expected = BlogpostContent.objects.get(pk=self.bpc2.id)
+        serialized = BlogpostContentSerializer(expected)
+        self.assertEqual(response.data['results'][0], serialized.data)
+        self.assertEqual(len(response.data['results']), 3)
 
     def test_featured_only(self):
         """
@@ -167,8 +178,10 @@ class GetByQueryParamTest(BaseViewTest):
 
     def test_webinar_only(self):
         """
-        Tests getting only blogpostcontents that correspont to webinar-type blogposts.
+        Tests getting only blogpostcontents that correspond to webinar-type blogposts.
         :return: nothing
         """
+        blogpost_response = self.client.get("/api/v1/blogpost/", {"type": "webinar"}, format='json')
+        self.assertEqual(len(blogpost_response.data['results']), 1)
         response = self.client.get(self.BLOGPOSTCONTENT_URL, {'type': 'webinar'}, format='json')
         self.assertEqual(len(response.data['results']), 1)
