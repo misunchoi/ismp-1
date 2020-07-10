@@ -112,9 +112,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   img[alt=""],
-  img:not([alt]) {
-    filter: blur(5px);
-  }
 
   a {
     color: ${colors.purple};

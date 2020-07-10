@@ -19,6 +19,7 @@ const Home = () => {
   const { t } = useTranslation(['home', 'general']);
 
   const [featuredBlogPosts, setFeaturedBlogPosts] = useState([]);
+  const [recentWebinars, setRecentWebinars] = useState([]);
 
   useEffect(() => {
     const getFeaturedBlogPosts = async () => {
@@ -36,6 +37,22 @@ const Home = () => {
     getFeaturedBlogPosts();
   }, []);
 
+  useEffect(() => {
+    const getRecentWebinars = async () => {
+      await BlogPosts.getWebinars()
+        .then(results => {
+          setRecentWebinars(results.results);
+          })
+            .catch(error => {
+              const fallbackWebinars = blogPostFallbackData.filter(
+                blogpostContentJson => blogpostContentJson.blogpost.type === "webinar"
+              );
+              setRecentWebinars(fallbackWebinars);
+        });
+    };
+    getRecentWebinars();
+  }, []);
+
   return (
     <>
       <HeroImage />
@@ -43,7 +60,7 @@ const Home = () => {
       <MentorSection t={t} />
       <TestimonialCards />
       <HomeSection>
-        <WebinarHighlightsSection t={t} />
+        <WebinarHighlightsSection t={t} webinars={recentWebinars} />
         <VerticalSpacer />
         <FeaturedBlogPostsSection t={t} blogPosts={featuredBlogPosts} />
       </HomeSection>
@@ -95,25 +112,31 @@ const MentorSection = ({ t }) => (
   </HomeSection>
 );
 
-const WebinarHighlightsSection = ({ t }) => (
-  <>
-    <SectionHeaderContainer>
-      <Header size="h2" font="serif">
-        {t('webinar_highlights')}
-      </Header>
-      <HorizontalSpacer />
-      <Link to="">{t('general:view_all')}</Link>
-    </SectionHeaderContainer>
-    <Grid doubling stackable columns={2}>
-      <Grid.Column>
-        <WebinarHighlight id="Pcmwvi212jE" title="test 1" blog="" />
-      </Grid.Column>
-      <Grid.Column>
-        <WebinarHighlight id="Pcmwvi212jE" title="test 2" blog="" />
-      </Grid.Column>
-    </Grid>
-  </>
-);
+const WebinarHighlightsSection = ({ t, webinars }) => {
+    let numWebinars = webinars.length
+    if (numWebinars === 0) {
+        return <></>;
+    }
+    const maxWebinarsToDisplay = 2;
+    const numWebinarsToDisplay = Math.min(numWebinars, maxWebinarsToDisplay);
+    const webinarsToDisplay = webinars.slice(0, numWebinarsToDisplay);
+    return (
+      <>
+        <SectionHeaderContainer>
+          <Header size="h2" font="serif">
+            {t('webinar_highlights')}
+          </Header>
+          <HorizontalSpacer/>
+          <Link to={{pathname: "/blog-list", state: {term: '', type: 'webinar'}}}>{t('general:view_all')}</Link>
+        </SectionHeaderContainer>
+        <Grid doubling stackable columns={numWebinarsToDisplay}>
+          {webinarsToDisplay.map((webinar, index) => {
+            return <Grid.Column><WebinarHighlight key={webinar.id} webinar={webinar} index={index}/></Grid.Column>
+           })}
+        </Grid>
+      </>
+    )
+};
 
 const FeaturedBlogPostsSection = ({ t, blogPosts }) => (
   <>

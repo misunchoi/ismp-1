@@ -15,6 +15,7 @@ import theme from '../../styles/theme';
 import arrowLeft from '../../images/arrow-left-purple.png';
 import { logContentView } from 'utils/google_tag_manager_helpers';
 import RecommendedArticles from 'components/RecommendedArticles';
+import { parseYoutubeID } from "utils/youtubeIdParser";
 
 const BlogContentContainer = styled.div`
   display: flex;
@@ -282,7 +283,7 @@ class Blogpost extends Component {
   componentDidMount() {
     this.populateBlogpostData();
 
-    // Listening for a change to the blog id, 
+    // Listening for a change to the blog id,
     // for when a new blog needs to be loaded
     // when a recommended blog article is pressed
     this.historyListener = this.props.history.listen(location => {
@@ -338,27 +339,16 @@ class Blogpost extends Component {
     }
   };
 
-  parseVideoLink(videoLink) {
-    // Video ID is used in Embed component to determine
-    // where to find the video link on YouTube
-    const videoId = videoLink.includes('embed/')
-      ? videoLink.split('embed/')[1]
-      : videoLink.split('v=')[1];
-    if (videoId.includes('&')) {
-      return videoId.substr(0, '&');
-    }
-    return videoId;
-  }
-
   renderHeaderMedia(headerMedia) {
     // Determine whether or not we need to render
     // an image or video for the header
     if (headerMedia.includes('youtube')) {
-      const videoId = this.parseVideoLink(headerMedia);
+      const videoId = parseYoutubeID(headerMedia);
       return (
         <HeaderVideo
           id={videoId}
           source="youtube"
+          autoplay={false}
           iframe={{
             allowFullscreen: true
           }}
@@ -391,7 +381,7 @@ class Blogpost extends Component {
       );
     } else {
       // Show either blog type or topic category
-      const topic = this.state.blogPostData.topic_set.length > 0 
+      const topic = this.state.blogPostData.topic_set.length > 0
         ? this.state.blogPostData.topic_set[0].display_text
         : this.state.blogPostData.type;
       const headerMedia = this.state.blogPostData.media_url;
@@ -423,10 +413,10 @@ class Blogpost extends Component {
             Get connected with a mentor today
             <ApplyNowBtn to="/apply">APPLY NOW</ApplyNowBtn>
           </GetConnected>
-          <RecommendedArticles 
+          <RecommendedArticles
             topic={
-              this.state.blogPostData 
-              && this.state.blogPostData.topic_set.length > 0 
+              this.state.blogPostData
+              && this.state.blogPostData.topic_set.length > 0
               && this.state.blogPostData.topic_set[0].title
             }
             currentArticle={this.state.blogPostContent.id}

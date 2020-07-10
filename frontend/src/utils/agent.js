@@ -34,7 +34,8 @@ export const requests = {
 };
 
 export const BlogPosts = {
-  getFeatured: () => requests.get(`blogpostcontent/?featured=true`)
+  getFeatured: () => requests.get(`blogpostcontent/?featured=true`),
+  getWebinars: () => requests.get(`blogpostcontent/?type=webinar`)
 };
 
 // Example
