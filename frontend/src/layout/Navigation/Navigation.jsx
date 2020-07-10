@@ -223,7 +223,7 @@ const Nav = ({ mobile, history }) => {
       <Menu.Item
         as={Link}
         name="home"
-        position={mobile ? 'center' : 'left'}
+        position="left"
         to="/"
         style={{
           display: 'flex',
@@ -232,7 +232,7 @@ const Nav = ({ mobile, history }) => {
       >
         <img
           src={
-            mobile ? getHeaderIcon('ISMP_logo.png') : getHeaderIcon('ISMP.png')
+            mobile ? getHeaderIcon('ISMP_logo.png') : getHeaderIcon('ISMP_logo_large.png')
           }
           alt="ISMP"
           style={mobile ? logoMobileStyle : logoStyle}
@@ -244,10 +244,10 @@ const Nav = ({ mobile, history }) => {
         )}
         {mobile && (
           <div>
-            <NavLink to="/about" active={currentPath === '/about'}>
+            <NavLink to="/about" active={currentPath === '/about' ? 1 : 0}>
               <NavHover>{t('who_we_are')}</NavHover>
             </NavLink>
-            <NavLink to="/leadership" active={currentPath === '/leadership'}>
+            <NavLink to="/leadership" active={currentPath === '/leadership' ? 1 : 0}>
               <NavHover>{t('leadership')}</NavHover>
             </NavLink>
           </div>
@@ -258,7 +258,7 @@ const Nav = ({ mobile, history }) => {
               key={nav.text + index}
               to={nav.link}
               style={{ alignSelf: 'center' }}
-              active={currentPath === nav.link}
+              active={currentPath === nav.link ? 1 : 0}
             >
               <NavHover>{t(nav.i18n_key)}</NavHover>
             </NavLink>

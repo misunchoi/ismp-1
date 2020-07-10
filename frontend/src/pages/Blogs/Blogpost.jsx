@@ -14,6 +14,7 @@ import theme from '../../styles/theme';
 
 import arrowLeft from '../../images/arrow-left-purple.png';
 import { logContentView } from 'utils/google_tag_manager_helpers';
+import RecommendedArticles from 'components/RecommendedArticles';
 
 const BlogContentContainer = styled.div`
   display: flex;
@@ -50,7 +51,7 @@ const BlogTitle = styled.div`
   }
 
   @media (min-width: ${sizes.laptop}px) {
-    padding: 0 200px;
+    padding: 0 150px;
   }
 `;
 
@@ -137,7 +138,7 @@ const BlogDataContainer = styled.div`
   h4,
   h5,
   h6 {
-    font-family: ${theme.fonts.PTSerif};
+    font-family: ${theme.fonts.PTSerif} !important;
   }
   & h1 {
     font-size: ${theme.fontSizes.xxl};
@@ -162,14 +163,19 @@ const BlogDataContainer = styled.div`
     font-weight: bold;
   }
   & p,
-  div {
+  div,
+  span,
+  a {
     font-size: ${theme.fontSizes.md};
+    font-family: ${theme.fonts.Poppins} !important;
   }
 
   @media (max-width: ${sizes.phone}px) {
     margin: 0 5%;
     & p,
-    div {
+    div,
+    span,
+    a {
       font-size: ${theme.fontSizes.sm};
     }
   }
@@ -177,6 +183,10 @@ const BlogDataContainer = styled.div`
   @media (min-width: ${sizes.phone}) and (max-width: ${sizes.tablet} px) {
     margin: 0 10%;
   }
+
+  ${media.tablet`
+    margin: 0 5%;
+  `}
 `;
 
 const GetConnected = styled.div`
@@ -265,67 +275,68 @@ class Blogpost extends Component {
       blogPostContent: {},
       blogPostData: {},
       blogPostExists: false,
-      loadingBlogData: true
+      loadingBlogData: true,
     };
   }
 
   componentDidMount() {
-    const populateBlogpostData = async () => {
-      try {
-        await BlogPost.get(this.state.blogPostContentId).then(result => {
-          this.setState({
-            blogPostContent: result,
-            content: result.body_content,
-            blogPostData: result.blogpost,
-            blogPostExists: true,
-            loadingBlogData: false
-          });
-          logContentView(result);
-        });
-      } catch (error) {
-        console.log('Could not load blogpost: ', error);
-        // Use fallback blog data if we get no response from the API
-        let fallbackBlogpostContent = fallbackBlogpostContentData.filter(
-          blogpostJson => {
-            return this.state.blogPostContentId === blogpostJson.id;
-          }
-        );
-        if (fallbackBlogpostContent.length === 0) {
-          this.setState({
-            content: 'The requested blogpost was not found',
-            blogPostExists: false,
-            loadingBlogData: false
-          });
-        } else {
-          this.setState({
-            blogPostContentId: fallbackBlogpostContent[0],
-            content: fallbackBlogpostContent[0]['body_content'],
-            blogPostExists: true,
-            loadingBlogData: false
-          });
-        }
-      }
-    };
-    populateBlogpostData();
+    this.populateBlogpostData();
+
+    // Listening for a change to the blog id, 
+    // for when a new blog needs to be loaded
+    // when a recommended blog article is pressed
+    this.historyListener = this.props.history.listen(location => {
+      const pathPieces = location.pathname.split('/');
+      this.setState({ blogPostContentId: pathPieces[2] });
+    });
   }
 
-  getBlogData() {
-    // Making sure associated blog information is defined
-    return this.state.blogPostData !== {}
-      ? {
-          bio: this.state.blogPostData.author.bio || '', // Author information
-          topic:
-            this.state.blogPostData.topic_set.length > 0 // Show either blog type or topic category
-              ? this.state.blogPostData.topic_set[0].display_text
-              : this.state.blogPostData.type,
-          headerMedia: this.state.blogPostData.media_url // Header Image or Video
-        }
-      : {
-          bio: '',
-          topic: '',
-          headerMedia: ''
-        };
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.populateBlogpostData();
+    }
   }
+
+  componentWillUnmount() {
+    this.historyListener();
+  }
+
+  populateBlogpostData = async () => {
+    try {
+      await BlogPost.get(this.state.blogPostContentId).then(result => {
+        this.setState({
+          blogPostContent: result,
+          content: result.body_content,
+          blogPostData: result.blogpost,
+          blogPostExists: true,
+          loadingBlogData: false
+        });
+        logContentView(result);
+      });
+    } catch (error) {
+      console.log('Could not load blogpost: ', error);
+      // Use fallback blog data if we get no response from the API
+      let fallbackBlogpostContent = fallbackBlogpostContentData.filter(
+        blogpostJson => {
+          return this.state.blogPostContentId === blogpostJson.id;
+        }
+      );
+      if (fallbackBlogpostContent.length === 0) {
+        this.setState({
+          content: 'The requested blogpost was not found',
+          blogPostExists: false,
+          loadingBlogData: false
+        });
+      } else {
+        this.setState({
+          blogPostContentId: fallbackBlogpostContent[0],
+          content: fallbackBlogpostContent[0]['body_content'],
+          blogPostExists: true,
+          loadingBlogData: false
+        });
+      }
+    }
+  };
 
   parseVideoLink(videoLink) {
     // Video ID is used in Embed component to determine
@@ -379,7 +390,11 @@ class Blogpost extends Component {
         </ErrorPageContainer>
       );
     } else {
-      const { bio, topic, headerMedia } = this.getBlogData();
+      // Show either blog type or topic category
+      const topic = this.state.blogPostData.topic_set.length > 0 
+        ? this.state.blogPostData.topic_set[0].display_text
+        : this.state.blogPostData.type;
+      const headerMedia = this.state.blogPostData.media_url;
       return (
         <>
           <PageContainer>
@@ -396,7 +411,7 @@ class Blogpost extends Component {
                 {moment(this.state.blogPostContent.publish_at).format(
                   'MMMM DD, YYYY'
                 )}{' '}
-                {bio}
+                by {this.state.blogPostContent.author_display_name}
               </DateAndAuthor>
               {this.renderHeaderMedia(headerMedia || '')}
               <BlogDataContainer>
@@ -408,6 +423,14 @@ class Blogpost extends Component {
             Get connected with a mentor today
             <ApplyNowBtn to="/apply">APPLY NOW</ApplyNowBtn>
           </GetConnected>
+          <RecommendedArticles 
+            topic={
+              this.state.blogPostData 
+              && this.state.blogPostData.topic_set.length > 0 
+              && this.state.blogPostData.topic_set[0].title
+            }
+            currentArticle={this.state.blogPostContent.id}
+          />
         </>
       );
     }
