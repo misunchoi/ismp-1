@@ -111,38 +111,29 @@ const ApplyNowButton = styled(Link)`
 
 const SocialMediaIcons = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 64px;
+  width: 120px;
 
   ${media.tablet`
     width: 100%;
     flex-direction: column;
     height: 80px;
+    margin-top: 8px;
   `}
 `;
 
 const SmIcon = styled.img`
-  width: 18px;
-  height: 18px;
-  margin: 4px;
+  width: 25px;
+  height: 25px;
+  margin: 8px;
   cursor: pointer;
 
   ${media.tablet`
     width: 20px;
     height: 20px;
     margin: 6px;
-  `}
-`;
-
-const WeChatIcon = styled(SmIcon)`
-  width: 21px;
-  height: 18px;
-
-  ${media.tablet`
-    width: 24px;
-    height: 20px;
   `}
 `;
 
@@ -279,32 +270,27 @@ const Nav = ({ mobile, history }) => {
           </Dropdown.Menu>
         </Menu.Item>
         <SocialMediaIcons>
-          <div>
-            <a
-              href="https://www.facebook.com/internationalmentorship/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <SmIcon src={getHeaderIcon('Facebook.png')} alt="facebook" />
-            </a>
-            <a
-              href="https://www.instagram.com/internationalmentorship/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <SmIcon src={getHeaderIcon('Instagram.png')} alt="instagram" />
-            </a>
-          </div>
-          <div>
-            <WeChatIcon src={getHeaderIcon('Wechat.png')} alt="wechat" />
-            <a
-              href="https://www.linkedin.com/company/internationalmentorship"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <SmIcon src={getHeaderIcon('linkedin.png')} alt="linkedin" />
-            </a>
-          </div>
+          <a
+            href="https://www.facebook.com/internationalmentorship/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SmIcon src={getHeaderIcon('Facebook.png')} alt="facebook" />
+          </a>
+          <a
+            href="https://www.instagram.com/internationalmentorship/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SmIcon src={getHeaderIcon('Instagram.png')} alt="instagram" />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/internationalmentorship"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <SmIcon src={getHeaderIcon('linkedin.png')} alt="linkedin" />
+          </a>
         </SocialMediaIcons>
       </Menu.Menu>
     </NavContainer>

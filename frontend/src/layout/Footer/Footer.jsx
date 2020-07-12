@@ -1,9 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 import { Button, Grid, Header, List, Segment } from 'semantic-ui-react';
 import mixins from 'styles/mixins';
+import { breakpoints } from 'styles/responsive';
 
 import styled from 'styled-components';
 import SocialMediaIconList from 'components/SocialIconsList';
@@ -54,6 +56,15 @@ const style = {
     lineHeight: '24px',
     marginLeft: '50px',
     cursor: 'pointer'
+  },
+  weChatQr: {
+    width: '130px',
+    height: '130px',
+  },
+  weChatText: {
+    color: 'white',
+    marginTop: '8px',
+    textAlign: 'center'
   }
 };
 
@@ -138,6 +149,8 @@ const Footer = () => {
     logApplyNowClick();
   };
 
+  const isMobile = useMediaQuery({ query: breakpoints.phone });
+
   return (
     <Segment vertical style={style.footerContainer}>
       <PaddedSection>
@@ -157,8 +170,17 @@ const Footer = () => {
               </Button>
               <SocialMediaIconList />
             </Grid.Column>
+            <Grid.Column width={4} floated="right">
+              <Grid.Row style={{float: isMobile ? 'left' : 'right'}}>
+                <img 
+                  style={style.weChatQr} 
+                  src="https://ismp-us-east-1.s3.amazonaws.com/footer/ismp_wechat.png" 
+                  alt="wechat-qr"
+                />
+                <div style={style.weChatText}>WeChat</div>
+              </Grid.Row>
+            </Grid.Column>
           </Grid.Row>
-          <Grid.Row></Grid.Row>
           <Grid.Row>
             <Grid.Column floated="left" width={5}>
               <List horizontal size="small">
