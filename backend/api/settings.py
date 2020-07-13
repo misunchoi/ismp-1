@@ -112,6 +112,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # allow-cidr must be the first middleware
+    'allow_cidr.middleware.AllowCIDRMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -143,6 +145,10 @@ AXES_COOLOFF_TIME = 2
 # locked out
 AXES_FAILURE_LIMIT = 3
 
+LOGGING_LEVEL = os.getenv("LOGGING_LEVEL")
+if not LOGGING_LEVEL:
+    LOGGING_LEVEL = 'ERROR'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -153,7 +159,7 @@ LOGGING = {
     },
     'root': {
         'handlers': ['console'],
-        'level': 'DEBUG',
+        'level': LOGGING_LEVEL,
     },
 }
 
@@ -173,6 +179,9 @@ TEMPLATES = [
         },
     },
 ]
+
+#  Add the 10.0.0.0/8 cidr to ALLOWED_HOSTS
+ALLOWED_CIDR_NETS = ['10.0.0.0/8']
 
 WSGI_APPLICATION = 'api.wsgi.application'
 
