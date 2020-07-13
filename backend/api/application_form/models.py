@@ -5,7 +5,11 @@ from django.conf import settings
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from mailchimp3 import MailChimp
+from rest_framework.response import Response
 from api.core.models import TimestampedModel
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class ApplicationForm(TimestampedModel):
@@ -51,6 +55,7 @@ class ApplicationForm(TimestampedModel):
     def save(self, *args, **kwargs):
         pk = self.pk  # will be None if this  is a new item
         super().save(*args, **kwargs)
+        logger.info("applicant saved to DB")
         if settings.USE_MAILCHIMP and not pk:
             # form a json object of the info mailchimp needs
             gender_choices_map = {
@@ -94,20 +99,43 @@ class ApplicationForm(TimestampedModel):
                 },
             }
             # add the new user to the mailchimp list
-            mailchimp_client.lists.members.create_or_update(
-                settings.MAILCHIMP_LIST_ID,
-                email_hash,  # subscriber_hash
-                new_user_data)
+            try:
+                mailchimp_client.lists.members.create_or_update(
+                    settings.MAILCHIMP_LIST_ID,
+                    email_hash,  # subscriber_hash
+                    new_user_data)
+                logger.info("user successfully created in mailchimp. adding tags")
 
-            tags_to_add = ['applied']
-            # To add a tag, you have to send a dict with the 'name': TAG_NAME and also
-            # 'status':'active'. Good luck finding this in any documentation about mailchimp3.
-            tag_list = [{'name': tag_name, 'status': 'active'} for tag_name in tags_to_add]
-            mailchimp_client.lists.members.tags.update(
-                settings.MAILCHIMP_LIST_ID,
-                email_hash,
-                {'tags': tag_list}
-            )
+                tags_to_add = ['applied']
+                # To add a tag, you have to send a dict with the 'name': TAG_NAME and also
+                # 'status':'active'. Good luck finding this in any documentation about mailchimp3.
+                tag_list = [{'name': tag_name, 'status': 'active'} for tag_name in tags_to_add]
+                mailchimp_client.lists.members.tags.update(
+                    settings.MAILCHIMP_LIST_ID,
+                    email_hash,
+                    {'tags': tag_list}
+                )
+                logger.info("done adding tags")
+            except ValueError as value_error:
+                logger.critical("ValueError in sending information to mailchimp!")
+                logger.critical(str(value_error))
+                return Response({
+                    "status_if_new": "error",
+                    "error": str(value_error)
+                })
+            except Exception as e:
+                logger.critical("exception in sending user information to mailchimp")
+                logger.critical(e)
+                if e.args[0].get('title') == "Member Exists":
+                    error_msg = "Member already exists"
+                    logger.critical("Tried to create a user in mailchimp that already exists")
+                else:
+                    error_msg = "Unknown error. Please try again later."
+                    logger.critical(e)
+                return Response({
+                    "status": "error",
+                    "error": error_msg
+                })
 
 
 class InterestTopic(models.Model):
