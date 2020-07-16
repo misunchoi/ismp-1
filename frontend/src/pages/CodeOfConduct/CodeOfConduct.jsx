@@ -44,9 +44,6 @@ const CodeOfConduct = () => {
           <SectionListItem>
             <Markdown>{t('applicationAndEnrollment.body2')}</Markdown>
           </SectionListItem>
-          <SectionListItem>
-            {t('applicationAndEnrollment.body3')}
-          </SectionListItem>
         </ol>
       </Section>
       <Section>
