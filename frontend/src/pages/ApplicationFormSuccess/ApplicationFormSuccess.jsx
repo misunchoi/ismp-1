@@ -38,7 +38,7 @@ const ApplicationFormSuccess = () => {
                 <Button as={Link} to="/program">
                   {t('success.program')}
                 </Button>
-                <Button as={Link} to="/blog">
+                <Button as={Link} to="/blog-list">
                   {t('success.blog')}
                 </Button>
               </Grid.Column>
