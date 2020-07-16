@@ -10,12 +10,12 @@ const socialMediaList = [
   {
     icon: 'facebook-white.png',
     title: 'facebook',
-    url: 'https://www.facebook.com/internationalstudentmp'
+    url: 'https://www.facebook.com/internationalmentorship/'
   },
   {
     icon: 'instagram-white.png',
     title: 'instagram',
-    url: 'https://www.instagram.com/internationalstudentmp'
+    url: 'https://www.instagram.com/internationalmentorship/'
   },
   {
     icon: 'linkedin-white.png',
