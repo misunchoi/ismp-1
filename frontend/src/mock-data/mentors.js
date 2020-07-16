@@ -190,7 +190,7 @@ const mentors = {
         },
         fun_facts:
           "I'm ambidextrous - helpful when I need to split different tasks between 2 hands (e.g. right hand for fork, left hand for knife)",
-        linkedin_url: 'www.linkedin.com/in/nancy-huang94'
+        linkedin_url: 'https://www.linkedin.com/in/nancy-huang94'
       }
     ]
   },
