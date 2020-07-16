@@ -58,11 +58,11 @@ const mentors = {
         name: 'Irene Thomas',
         credentials: [
           {
-            title: 'B.S. Civil Engineering',
+            title: 'M.S. Structural Engineering, Mechanics, and Materials',
             organization: 'UC Berkeley'
           },
           {
-            title: 'M.S. Structural Engineering, Mechanics, and Materials',
+            title: 'B.S. Civil Engineering',
             organization: 'UC Berkeley'
           }
         ],
@@ -78,7 +78,7 @@ const mentors = {
         name: 'Joel Letro',
         credentials: [
           {
-            title: 'BS, Bioengineering and Biomedical Engineering',
+            title: 'B.S., Bioengineering and Biomedical Engineering',
             organization: 'UC Berkeley'
           }
         ],
@@ -94,11 +94,11 @@ const mentors = {
         name: 'Jerome Gonzaga',
         credentials: [
           {
-            title: 'B.S., Civil Engineering',
+            title: 'M.S., Project & Construction Management',
             organization: 'UC Berkeley'
           },
           {
-            title: 'M.S., Project & Construction Management',
+            title: 'B.S., Civil Engineering',
             organization: 'UC Berkeley'
           }
         ],
@@ -176,11 +176,11 @@ const mentors = {
         name: 'Nancy Huang',
         credentials: [
           {
-            title: 'B.S. Industrial Engineering and Operations Research',
+            title: 'M.S. Industrial Engineering and Operations Research',
             organization: 'UC Berkeley'
           },
           {
-            title: 'M.S. Industrial Engineering and Operations Research',
+            title: 'B.S. Industrial Engineering and Operations Research',
             organization: 'UC Berkeley'
           }
         ],
@@ -210,11 +210,11 @@ const mentors = {
         name: 'Andrew Chen',
         credentials: [
           {
-            title: 'MBA, Marshall School of Business',
+            title: 'M.S., Marshall School of Business',
             organization: 'USC'
           },
           {
-            title: 'BS, Business Administration',
+            title: 'B.S., Business Administration',
             organization: 'UC Berkeley'
           }
         ],
@@ -806,7 +806,7 @@ const mentors = {
             organization: 'UC Berkeley, Haas School of Business'
           },
           {
-            title: 'BA Economics',
+            title: 'B.A. Economics',
             organization: 'UC Berkeley'
           },
           {
@@ -847,7 +847,7 @@ const mentors = {
         name: 'Madelyn Lam',
         credentials: [
           {
-            title: 'BS Computer Science',
+            title: 'B.S. Computer Science',
             organization: 'Sacramento State University'
           }
         ],
@@ -1029,12 +1029,12 @@ const mentors = {
         name: 'Matthew Sallady',
         credentials: [
           {
-            title: 'B.S. Biology',
-            organization: 'UC Riverside'
-          },
-          {
             title: 'M.D.',
             organization: 'Western University'
+          },
+          {
+            title: 'B.S. Biology',
+            organization: 'UC Riverside'
           }
         ],
         current_job: {
