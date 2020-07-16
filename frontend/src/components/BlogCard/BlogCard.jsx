@@ -23,8 +23,10 @@ const BlogCard = ({ sourcePage, blogPost, position }) => {
       />
       <Description>
         <Link
-          to={`blogpost/${id}`}
-          onClick={() => logContentClick(sourcePage, blogPost, position)}
+          to={`/blogpost/${id}`}
+          onClick={() => {
+            logContentClick(sourcePage, blogPost, position);
+          }}
         >
           <Header size="h3" font="sans">
             {title_content}

@@ -16,6 +16,7 @@ const StyledImage = styled.img`
   width: 100%;
   object-fit: cover;
   filter: brightness(0.6);
+  height: calc(100vh - 40px);
 `;
 
 const StyledImageText = styled.div`
@@ -51,11 +52,12 @@ const StyledSubTitle = styled.h2`
 const MobileSubTitle = styled(StyledSubTitle)`
   font-size: 1.5rem;
 `;
-const HeroImageUrl = "https://ismp-us-east-1.s3.amazonaws.com/components/home/ismphero_optimized.jpg";
+const HeroImageUrl =
+  'https://ismp-us-east-1.s3.amazonaws.com/components/home/ismphero_optimized.jpg';
 
 const DesktopHero = ({ translation }) => {
   return (
-    <Responsive as={Container} minWidth={sizes.phone} style={{width: '100%'}}>
+    <Responsive as={Container} minWidth={sizes.phone} style={{ width: '100%' }}>
       <StyledImage src={HeroImageUrl} alt="Welcome" />
       <StyledImageText>
         <StyledTitle>

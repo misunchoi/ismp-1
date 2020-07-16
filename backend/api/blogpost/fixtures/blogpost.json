@@ -33,5 +33,27 @@
       "type": "blogpost",
       "is_featured": true
     }
+  },
+  {
+    "model": "blogpost.blogpost",
+    "pk": 4,
+    "fields": {
+      "media_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/english_writing_webinar/english_writing_thumbnail.jpg",
+      "thumbnail_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/english_writing_webinar/english_writing_thumbnail.jpg",
+      "author_id": 1,
+      "type": "webinar",
+      "is_featured": false
+    }
+  },
+  {
+    "model": "blogpost.blogpost",
+    "pk": 5,
+    "fields": {
+      "media_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/transitioning_to_the_us/american-flag.jpg",
+      "thumbnail_url": "https://ismp-us-east-1.s3.amazonaws.com/blogpost-assets/transitioning_to_the_us/american-flag.jpg",
+      "author_id": 1,
+      "type": "webinar",
+      "is_featured": false
+    }
   }
 ]

@@ -58,13 +58,10 @@ const TranslationParser = (
     );
   };
 
-  // TODO: generate these sections here from reading the file
-  // const sections = headerKeys;
-
   return {
     generateForKey: key => <Markdown>{t(key)}</Markdown>,
     generateBody: (sections, TitleComponent, BodyComponent) => {
-      return sections.map(section =>
+      return sections.map(section => 
         generateBlock(section, TitleComponent, BodyComponent)
       );
     }

@@ -18,11 +18,6 @@ const socialMediaList = [
     url: 'https://www.instagram.com/internationalstudentmp'
   },
   {
-    icon: 'wechat-white.png',
-    title: 'wechat',
-    url: 'https://www.wechat.com/en'
-  },
-  {
     icon: 'linkedin-white.png',
     title: 'linkedin',
     url: 'https://www.linkedin.com/company/internationalmentorship'
@@ -44,10 +39,6 @@ const SmIcon = styled.img`
   margin: 0 5px;
 `;
 
-const WeChatIcon = styled(SmIcon)`
-  width: 30px;
-`;
-
 const getFooterIcons = name => {
   return 'https://ismp-us-east-1.s3.amazonaws.com/footer/' + name;
 };
@@ -60,11 +51,7 @@ const SocialIconList = () => {
     return (
       <HeaderContainer key={`${social.title}_${index}`}>
         <a href={social.url} target="_blank" rel="noopener noreferrer">
-          {social.title === 'wechat' ? (
-            <WeChatIcon src={getFooterIcons(social.icon)} alt={social.title} />
-          ) : (
             <SmIcon src={getFooterIcons(social.icon)} alt={social.title} />
-          )}
         </a>
       </HeaderContainer>
     );

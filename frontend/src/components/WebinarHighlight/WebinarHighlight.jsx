@@ -3,13 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Embed } from 'semantic-ui-react';
 import styled from 'styled-components';
+import { parseYoutubeID } from "utils/youtubeIdParser";
+import { logContentClick } from "utils/google_tag_manager_helpers";
 
 const WebinarLink = styled(Link)`
   font-weight: bold;
 `;
 
-const WebinarHighlight = ({ title, id, blog }) => {
+const WebinarHighlight = ({ webinar, index }) => {
   const { t } = useTranslation(['webinar']);
+  const youtubeId = parseYoutubeID(webinar.body_content);
+  const blogpostUrl = "/blogpost/" + webinar.id;
   return (
     <div>
       <Embed
@@ -17,14 +21,13 @@ const WebinarHighlight = ({ title, id, blog }) => {
         autoplay={false}
         active={true}
         icon="arrow circle down"
-        id={id}
+        id={youtubeId}
         iframe={{ allowFullScreen: true }}
-        placeholder="/images/image-16by9.png"
         source="youtube"
       />
       <div style={{ height: '0.5rem' }} />
-      <WebinarLink as={Link} to={blog}>
-        {t('highlight')} {title} {t('webinar')}
+      <WebinarLink as={Link} to={blogpostUrl} onClick={() => logContentClick("home-webinar", webinar, index)}>
+        {t('highlight')} {webinar.title_content}
       </WebinarLink>
     </div>
   );

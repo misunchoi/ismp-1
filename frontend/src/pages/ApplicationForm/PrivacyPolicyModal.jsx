@@ -24,9 +24,9 @@ const PrivacyPolicyModal = props => {
   const Translation = TranslationParser(file, sections);
 
   return (
-    // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <Modal
       trigger={
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
         <a type="button" as={Button}>
           {props.children}
         </a>

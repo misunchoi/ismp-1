@@ -26,10 +26,12 @@ import { useDebounce } from 'use-debounce';
 // Styling
 import { FlexWrapper, PaginationWrapper } from './BlogListPage.styles';
 
-const BlogSearch = ({ term }) => {
+const BlogSearch = (props) => {
+
   const defaultInputState = {
-    query: term ? term : '',
-    topic: 'all'
+    query: props.location.state && props.location.state.term ? props.location.state.term : '',
+    topic: 'all',
+    type: props.location.state && props.location.state.type ? props.location.state.type : 'all'
   };
 
   // Component State
@@ -74,6 +76,11 @@ const BlogSearch = ({ term }) => {
 
       if (q.query.length > 0) {
         urlParam.push(`query=${q.query}`);
+      }
+
+      // filter type by blogpost or webinar if specified
+      if (q.type !== 'all') {
+        urlParam.push(`type=${q.type}`);
       }
 
       if (q.topic !== 'all') {

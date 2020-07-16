@@ -805,7 +805,7 @@ const ApplicationFormInputs = props => {
           />
           {feedbacks['terms'] && (
             <Label basic color="red">
-              {feedbacks['terms']}
+              {t(feedbacks['terms'])}
             </Label>
           )}
 
@@ -831,7 +831,7 @@ const ApplicationFormInputs = props => {
           />
           {feedbacks['code_of_conduct'] && (
             <Label basic color="red">
-              {feedbacks['code_of_conduct']}
+              {t(feedbacks['code_of_conduct'])}
             </Label>
           )}
           {submissionSuccessful === false && (

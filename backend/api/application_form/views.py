@@ -6,6 +6,9 @@ from rest_framework.response import Response
 from django.conf import settings
 from api.application_form.serializers import ApplicationFormSerializer
 from api.application_form.models import ApplicationForm
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class ApplicationFormViewSet(viewsets.ModelViewSet):
@@ -58,17 +61,22 @@ class SubscribeNewsletterView(views.APIView):
                 email_hash.hexdigest(),
                 {'tags': tag_list}
             )
+            logger.info("successfully subscribed user to newsletter")
             return Response({
                 "status": "success",
                 "request": str(new_user_data)
             })
         # TODO: Look into best practices for returning errors.
         except ValueError as value_error:
+            logger.critical("ValueError in sending information to mailchimp!")
+            logger.critical(str(value_error))
             return Response({
                 "status_if_new": "error",
                 "error": str(value_error)
             })
         except Exception as e:
+            logger.critical("exception in sending user information to mailchimp")
+            logger.critical(e)
             if e.args[0].get('title') == "Member Exists":
                 error_msg = "Email is already subscribed to newsletter."
             else:

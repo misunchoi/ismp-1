@@ -1,0 +1,24 @@
+{
+  "about_us": {
+    "section": "About Us",
+    "who": "Who We Are",
+    "leadership": "Leadership"
+  },
+  "learn": {
+    "section": "Learn",
+    "program": "Program",
+    "mentors": "Mentors",
+    "blog": "Blog" 
+  },
+  "legal": {
+    "section": "Legal",
+    "terms": "Terms of Use",
+    "privacy": "Privacy Policy",
+    "code": "Code of Conduct"
+  },
+  "contact": {
+    "section": "Contact",
+    "email": "Email Us"
+  },
+  "copyright": "2020 International Student Mentorship Program. All rights reserved."
+}

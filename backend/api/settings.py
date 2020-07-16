@@ -107,10 +107,13 @@ INSTALLED_APPS = [
     'api.school',
     'api.upload',
     'api.mentor',
-    'mailchimp3'
+    'mailchimp3',
+    'axes'
 ]
 
 MIDDLEWARE = [
+    # allow-cidr must be the first middleware
+    'allow_cidr.middleware.AllowCIDRMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -119,9 +122,46 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # AxesMiddleware should be the last middleware in the MIDDLEWARE list.
+    # It only formats user lockout messages and renders Axes lockout responses
+    # on failed user authentication attempts from login views.
+    # If you do not want Axes to override the authentication response
+    # you can skip installing the middleware and use your own views.
+    'axes.middleware.AxesMiddleware',
 ]
 
 ROOT_URLCONF = 'api.urls'
+
+AUTHENTICATION_BACKENDS = [
+    # AxesBackend should be the first backend in the AUTHENTICATION_BACKENDS list.
+    'axes.backends.AxesBackend',
+
+    # Django ModelBackend is the default authentication backend.
+    'django.contrib.auth.backends.ModelBackend',
+]
+# number of hours after you're locked out when you get unlocked
+AXES_COOLOFF_TIME = 2
+# the number of times you can fail at logging in before you get
+# locked out
+AXES_FAILURE_LIMIT = 3
+
+LOGGING_LEVEL = os.getenv("LOGGING_LEVEL")
+if not LOGGING_LEVEL:
+    LOGGING_LEVEL = 'ERROR'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': LOGGING_LEVEL,
+    },
+}
 
 TEMPLATES = [
     {
@@ -139,6 +179,9 @@ TEMPLATES = [
         },
     },
 ]
+
+#  Add the 10.0.0.0/8 cidr to ALLOWED_HOSTS
+ALLOWED_CIDR_NETS = ['10.0.0.0/8']
 
 WSGI_APPLICATION = 'api.wsgi.application'
 
